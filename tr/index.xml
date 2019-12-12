@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TRs on TORIO&#39;s blog</title>
-    <link>/tr/</link>
+    <link>https://rsn604.github.io/tr/</link>
     <description>Recent content in TRs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rsn604.github.io/tr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2019-11-16 大阪野鳥園まで歩く．．ついでに古本屋</title>
-      <link>/tr/2019-11-16/</link>
+      <link>https://rsn604.github.io/tr/2019-11-16/</link>
       <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tr/2019-11-16/</guid>
+      <guid>https://rsn604.github.io/tr/2019-11-16/</guid>
       <description>今日は快晴。10月は台風と大雨で大変な月でした。関西には大した影響はありませんでしたが、やはり災害の現場を映像で見せつけられると、外で浮かれ</description>
     </item>
     
     <item>
       <title>2019-09-20 大阪古本屋めぐり　今日は歩く</title>
-      <link>/tr/2019-09-20/</link>
+      <link>https://rsn604.github.io/tr/2019-09-20/</link>
       <pubDate>Fri, 20 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tr/2019-09-20/</guid>
+      <guid>https://rsn604.github.io/tr/2019-09-20/</guid>
       <description>今日は休み。古本屋へ行こう。 切符は例によってエコキップ JRで新大阪まで出て、エコきっぷを購入。本日は平日なので800円、少し高いかな。 江坂 新</description>
     </item>
     
     <item>
       <title>2019-08-24 大阪古本屋めぐり</title>
-      <link>/tr/2019-08-24/</link>
+      <link>https://rsn604.github.io/tr/2019-08-24/</link>
       <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tr/2019-08-24/</guid>
+      <guid>https://rsn604.github.io/tr/2019-08-24/</guid>
       <description>今年の夏も相変わらずの猛暑で、体温を上回る気温を前にしては外出もままなりません。 所用があるならともかく、単なる趣味の世界で熱中症になるのも、</description>
     </item>
     
