@@ -3,18 +3,29 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rsn604.github.io/fbook/</loc>
+    <lastmod>2020-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/fbook/one-by-one-they-disappearedmoray-dalton/</loc>
+    <lastmod>2020-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/</loc>
+    <lastmod>2020-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://rsn604.github.io/eqmm/1961-06-060/</loc>
     <lastmod>2020-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://rsn604.github.io/eqmm/</loc>
-    <lastmod>2020-01-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/</loc>
     <lastmod>2020-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -86,12 +97,6 @@
   <url>
     <loc>https://rsn604.github.io/fbook/dead-she-was-beautifulwhit-masterson/</loc>
     <lastmod>2019-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/fbook/</loc>
-    <lastmod>2019-12-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
