@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TORIO&#39;s blog</title>
@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EQMM 1961/9 No.63 西部小説特集</title>
+      <link>https://rsn604.github.io/eqmm/1961-09-063/</link>
+      <pubDate>Fri, 21 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/eqmm/1961-09-063/</guid>
+      <description>ロバート・アーサーを頂点に面白く読める作品揃い。 題名 作者 評点 コメント 決定的なひとひねり Ａ・Ｈ・Ｚ・カー 6.5 それほどのひねりがあるわけではない。</description>
+    </item>
     
     <item>
       <title>EQMM 1961/8 No.62</title>
