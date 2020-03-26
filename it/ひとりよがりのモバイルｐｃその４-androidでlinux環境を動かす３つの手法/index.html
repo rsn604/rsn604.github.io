@@ -88,6 +88,9 @@ if (!doNotTrack) {
 	<div class="post-nav__item post-nav__item--prev">
 		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%93-galaxy-tab-s-8.4sc-03g%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )</p></a>
 	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その５　Linux DeployによるDebianのインストール　事前準備編 )</p></a>
+	</div>
 </nav>
   <article class="post">
 		<header class="post__header">
@@ -113,7 +116,7 @@ if (!doNotTrack) {
 <hr>
 <h3 id="1-termux">(1) Termux</h3>
 <p><a href="https://play.google.com/store/apps/details?id=com.termux&amp;hl=ja">https://play.google.com/store/apps/details?id=com.termux&amp;hl=ja</a><br>
-<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94%E3%80%80Android%E3%81%A7Linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95(Termux).png" alt="SC-03G root"></p>
+<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94(Termux).png" alt="SC-03G root"></p>
 <p><strong>root化不要</strong><br>
 「Terminalで、EmacsやPythonが使えればよい」ということなら、これが一番簡単です。<br>
 両者ともパッケージがあるので、コマンド一発で入ります。pandasはパッケージがないので面倒ですが、ライブラリの環境を揃えてから、pipで頑張れば<strong>たぶん入る</strong>でしょう。<br>
@@ -123,7 +126,7 @@ Python関係でいえば、「IPython Notebook（Jupyter)を使いたい」、�
 <hr>
 <h3 id="2-userland">(2) UserLAnd</h3>
 <p><a href="https://play.google.com/store/apps/details?id=tech.ula&amp;hl=ja">https://play.google.com/store/apps/details?id=tech.ula&amp;hl=ja</a><br>
-<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94%E3%80%80Android%E3%81%A7Linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95(UsreLAnd).png" alt="SC-03G root"></p>
+<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94(UsreLAnd).png" alt="SC-03G root"></p>
 <p><strong>root化不要</strong><br>
 prootという特殊な手法で、<strong>疑似root化を実現</strong>しており、通常のLinuxとかなり近い環境を提供しています。ただ、prootには、それなりのオーバーヘッドがあるようなので、非力なマシンでは苦しいかもしれません。SC-03Gでは気にならないレベルでした。<br>
 ただ、いくつか問題もあるようで、動作しないプロダクトも散見するようです。</p>
@@ -131,7 +134,7 @@ prootという特殊な手法で、<strong>疑似root化を実現</strong>して
 <hr>
 <h3 id="3-linux-deploy">(3) Linux Deploy</h3>
 <p><a href="https://play.google.com/store/apps/details?id=ru.meefik.linuxdeploy&amp;hl=ja">https://play.google.com/store/apps/details?id=ru.meefik.linuxdeploy&amp;hl=ja</a><br>
-<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94%E3%80%80Android%E3%81%A7Linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95(LinuDeploy).png" alt="SC-03G root"></p>
+<img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%94(LinuDeploy).png" alt="SC-03G root"></p>
 <p><strong>root化必要</strong><br>
 これが大前提になります。root化できるマシンでないと実行できませんが、素のLinuxに近い環境が得られるはずです。少なくとも、prootを使っているUserLAndより速いことだけは間違いないでしょう。</p>
 <p>今回はこのツールを使って、Linux環境を構築していくことにしました。詳細は次回以降に説明していきます。</p>
@@ -158,6 +161,9 @@ prootという特殊な手法で、<strong>疑似root化を実現</strong>して
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
 		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%93-galaxy-tab-s-8.4sc-03g%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その５　Linux DeployによるDebianのインストール　事前準備編 )</p></a>
 	</div>
 </nav>
 
