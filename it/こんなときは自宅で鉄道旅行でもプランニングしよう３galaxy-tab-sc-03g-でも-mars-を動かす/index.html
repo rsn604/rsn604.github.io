@@ -107,7 +107,7 @@ if (!doNotTrack) {
 <div class="content post__content clearfix">
 			<h2 id="heading"></h2>
 <br clear="left">
-<p>今回は、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%91-%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A8%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E/">ひとりよがりのモバイルＰＣ</a>として構築したGalaxy Tab ( SC-03G )にも、 &ldquo;MARS&rdquo; を導入しましょう。このマシンには、Linux Debian環境を構築しましたが、AndoridでもDOSBOXは動きますので、こちらを使います。</p>
+<p>今回は、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%91-%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A8%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E/">ひとりよがりのモバイルＰＣ</a>として構築したGalaxy Tab ( SC-03G )にも、 &ldquo;MARS&rdquo; を導入しましょう。このマシンには、Linux Debian環境を構築しましたが、AndoridでもDOSBOXは動きますので、こちらを使いましょう。</p>
 <hr>
 <h3 id="事前準備">事前準備</h3>
 <p><a href="https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%92mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B/">前回</a>作成したMARSイメージファイル &ldquo;fdos_mars.img&rdquo; を、SC-03Gの内部ストレージに &ldquo;dosbox&rdquo; というディレクトリを作成、コピーしておきます。</p>
@@ -126,8 +126,8 @@ if (!doNotTrack) {
 <p><img src="/IT/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E3%80%81%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%88%EF%BC%93%EF%BC%89(02ExpertSettings).png" alt="MARS"></p>
 <p>&ldquo;DosBox Config&rdquo; の画面になりますので、ここでも最終行までスクロール、&quot;[autoexec]セクション&rdquo; （<span style="color: red; ">赤枠</span>）に</p>
 <h5 id="事前作成した-marsイメージファイル">事前作成した MARSイメージファイル</h5>
-<p>boot /storage/emulated/0/dosbox/fdos_mars.img</p>
-<p>を入力します。</p>
+<pre><code>boot /storage/emulated/0/dosbox/fdos_mars.img  
+</code></pre><p>を入力します。</p>
 <p><img src="/IT/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E3%80%81%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%88%EF%BC%93%EF%BC%89(03DOSBOX_CONF).png" alt="MARS"></p>
 <p>設定が終了したら、かならず下部にある<span style="color: green; ">緑のチェック</span>をタップして、セーブすることを忘れないようにしてください。</p>
 <p>以上で、&ldquo;MARS&rdquo; は動きます。実際に起動すると、おなじみの画面になるはずです。</p>
