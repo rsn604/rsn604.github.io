@@ -6,10 +6,19 @@
     <description>Recent content in ITs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ハヤカワ・ポケット・ミステリを分析する ( Python pandasを使ってみよう )</title>
+      <link>https://rsn604.github.io/it/%E3%83%8F%E3%83%A4%E3%82%AB%E3%83%AF%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%82%92%E5%88%86%E6%9E%90%E3%81%99%E3%82%8Bpython-pandas%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86/</link>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%8F%E3%83%A4%E3%82%AB%E3%83%AF%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%82%92%E5%88%86%E6%9E%90%E3%81%99%E3%82%8Bpython-pandas%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86/</guid>
+      <description>pandasは、データの加工、解析に非常に役立つ Python のライブラリです。本も何冊か出ていますが、そのなかでは、pandasの作者自らが書いた「P</description>
+    </item>
     
     <item>
       <title>こんなときは、自宅で鉄道旅行でもプランニングしよう（４） ( DOSVAXJ3で MARS を動かす )</title>
