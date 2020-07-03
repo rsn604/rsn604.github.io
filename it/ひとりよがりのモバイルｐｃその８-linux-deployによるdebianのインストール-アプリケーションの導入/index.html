@@ -139,20 +139,20 @@ clear mod4
 # ln -sf python3 python  
 # ln -sf pip3 pip  
 </code></pre><hr>
-<h3 id="3-rclone">(3) rclone</h3>
+<h3 id="3-java">(3) Java</h3>
+<p>Javaは、&ldquo;Java8 ARM 32ビット版&rdquo; を導入します。最近ライセンスが変わっていますが、個人で使う分には無料ですね。</p>
+<p><a href="https://www.oracle.com/java/technologies/javase-jdk8-downloads.html">https://www.oracle.com/java/technologies/javase-jdk8-downloads.html</a></p>
+<hr>
+<h3 id="4-ユーティリティ">(4) ユーティリティ</h3>
+<p>必要なツールを随時インストールしていきます。</p>
+<pre><code># apt -y install nkf curl git  
+</code></pre><hr>
+<h3 id="5-rclone">(5) rclone</h3>
 <p>現在、外部ファイルサービスとしてGoogle Driveを使っているので、rcloneで同期をとります。使い方などはここでは触れません。</p>
 <pre><code># curl https://rclone.org/install.sh |  bash  
   
 その後で、環境を設定  
 # rclone config  
-</code></pre><hr>
-<h3 id="4-java">(4) Java</h3>
-<p>Javaは、&ldquo;Java8 ARM 32ビット版&rdquo; を導入します。最近ライセンスが変わっていますが、個人で使う分には無料ですね。</p>
-<p><a href="https://www.oracle.com/java/technologies/javase-jdk8-downloads.html">https://www.oracle.com/java/technologies/javase-jdk8-downloads.html</a></p>
-<hr>
-<h3 id="5-その他">(5) その他</h3>
-<p>必要なツールを随時インストールしていきます。</p>
-<pre><code># apt -y install nkf curl git  
 </code></pre><hr>
 <h3 id="6-rootで使うのは心臓に良くない">(6) rootで使うのは心臓に良くない</h3>
 <p>Terminalで、&quot;#&rdquo; を見たくないという方は、適当なユーザーを作っておいて、そのIDに su するといいかもしれません。</p>
