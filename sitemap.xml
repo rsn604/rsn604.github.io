@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rsn604.github.io/anthology/</loc>
+    <lastmod>2020-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/categories/</loc>
+    <lastmod>2020-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/</loc>
+    <lastmod>2020-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/categories/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E3%82%92%E8%AA%AD%E3%82%80/</loc>
+    <lastmod>2020-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/anthology/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E9%9B%86%EF%BC%93-%E6%8E%A8%E7%90%86%E7%B7%A8%EF%BC%93-%E9%AA%A8%E3%81%BE%E3%81%A7%E5%87%8D%E3%82%8B%E6%AE%BA%E4%BA%BA%E4%BA%8B%E4%BB%B6%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/</loc>
+    <lastmod>2020-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rsn604.github.io/eqmm/1962-06-072/</loc>
     <lastmod>2020-07-02T00:00:00+00:00</lastmod>
   </url>
@@ -10,26 +35,6 @@
   <url>
     <loc>https://rsn604.github.io/eqmm/</loc>
     <lastmod>2020-07-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/</loc>
-    <lastmod>2020-07-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/anthology/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/categories/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/categories/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E3%82%92%E8%AA%AD%E3%82%80/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
