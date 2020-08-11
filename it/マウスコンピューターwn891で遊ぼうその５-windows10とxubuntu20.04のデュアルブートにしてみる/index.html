@@ -129,7 +129,7 @@ if (!doNotTrack) {
 </ul>
 <p>下部の「ブートローダのインストールデバイス」の設定には、悩みました。<br>
 WN891は”GPT/EFI”ですから、先頭パーティションであるESP（EFI System Partition）にブート情報を入れるのですが、このパーティションを指定するべきのか、あるいはマウントポイントを設定しないといけないのか、などなど。<br>
-結論から言ってしまうと、「<strong>何もしなくても、インストーラが適切に処理してくれる</strong>」ということです。インストール完了後の、”/etc/fastab”を覗いてみましょう。</p>
+結論から言ってしまうと、「<strong>何もしなくても、インストーラが適切に処理してくれる</strong>」ということです。インストール完了後の、”/etc/fstab”を覗いてみましょう。</p>
 <pre><code># /etc/fstab: static file system information.  
 #  
 # Use 'blkid' to print the universally unique identifier for a  
