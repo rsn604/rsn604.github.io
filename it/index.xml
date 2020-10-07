@@ -6,10 +6,19 @@
     <description>Recent content in ITs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 10 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/</guid>
+      <description>rootで動く Mozc UT2 をソースからコンパイルしてみよう。 Mozcとは、Wikipediaによれば、 Google 日本語入力のオープンソース版である。これは2</description>
+    </item>
     
     <item>
       <title>マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</title>
