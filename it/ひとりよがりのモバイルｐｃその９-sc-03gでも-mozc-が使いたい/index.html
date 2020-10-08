@@ -117,8 +117,10 @@ if (!doNotTrack) {
 <p>とのこと。<br>
 現在のLinuxでは、Mozcは最もポピュラーな日本語変換システムであり、ほとんどのディストリビューションでは、標準ツールになっています。</p>
 <p>さて、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/">ひとりよがりのモバイルＰＣ ( その４　AndroidでLinux環境を動かす３つの手法 )</a>の最後で少し触れましたが、SC-03Gは特殊なセキュリティシステムがあるため、LinuxDeployの環境構築を &ldquo;rootユーザー&rdquo; で行わざるえませんでした。<br>
-ところが、いくつかのツールはセキュリティの側面から、rootによる起動を抑制しています。実は、Mozcがまさしくそれであり、SC-03Gでは通常の方法（apt）でMozcをインストールしても、使用することが出来ないのです。<br>
-そういうわけで、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%97-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E7%92%B0%E5%A2%83%E6%95%B4%E5%82%99%E7%B7%A8/">ひとりよがりのモバイルＰＣ(その７　Linux DeployによるDebianのインストール　環境整備編)</a>では、&ldquo;Anthy&quot;をインストールせざるえなかったのですが、Anthyはもはや過去のツールであり、Mozcと比べると変換効率、操作性、全てにおいて見劣りします。</p>
+ところが、いくつかのツールはセキュリティの側面から、rootによる起動を抑制しています。実は、Mozcがまさしくそれであり、SC-03Gでは通常の方法（apt）でMozcをインストールしても、使用することが出来ません。実行すると、下記のように &ldquo;defunct&rdquo; という状態になってしまいます。</p>
+<img src="/IT/ひとりよがりのモバイルＰＣその９(mozc_defunct).png" style="margin-bottom:10px">  
+<br clear="left">  
+<p>そういうわけで、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%97-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E7%92%B0%E5%A2%83%E6%95%B4%E5%82%99%E7%B7%A8/">ひとりよがりのモバイルＰＣ(その７　Linux DeployによるDebianのインストール　環境整備編)</a>では、&ldquo;Anthy&quot;をインストールせざるえなかったのですが、Anthyはもはや過去のツールであり、Mozcと比べると変換効率、操作性、全てにおいて見劣りします。</p>
 <h4 id="やはりmozcを使いたい">やはり、Mozcを使いたい！！</h4>
 <p>そう、今回の目的は「<strong>SC-03GでMozcが使えるようする</strong>」ということなのです。</p>
 <hr>
@@ -187,7 +189,7 @@ echo '終了\n'
 <p>上記のスクリプトを実行して、Mozc UT2をコンパイルします。</p>
 <pre><code># cd mozc-2.23.2815.102+dfsg~ut2-20171008d+20200423focal  
 # ./build_mozc_plus_utdict  
-</code></pre><p>実行には、SC-03Gで20分程かかります。終了すると、同じディレクトリ内に、下記の &ldquo;.deb&quot;ファイルが作成されます</p>
+</code></pre><p>コンパイルには、SC-03Gで40分程かかります。終了すると、同じディレクトリ内に、下記の &ldquo;.deb&quot;ファイルが作成されます</p>
 <pre><code>emacs-mozc-bin-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
 emacs-mozc-bin_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
 emacs-mozc_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
