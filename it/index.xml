@@ -6,10 +6,19 @@
     <description>Recent content in ITs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 28 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</link>
+      <pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</guid>
+      <description>LifeTouch Noteで、Debian Wheezyを動かそう NECは過去に、大型キーボードも搭載する端末としてモバイルギアシリーズを発売しており、快適な</description>
+    </item>
     
     <item>
       <title>Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</title>
