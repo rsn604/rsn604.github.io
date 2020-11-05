@@ -168,8 +168,8 @@ UUID=B0BB-E925  /boot/efi       vfat    umask=0077      0       1
 </code></pre><h5 id="4-3-python3環境の構築">(4)-3 python3環境の構築</h5>
 <p>python3は、pyenvを使用してhomeディレクトリに導入、python2との競合を防ぎます。</p>
 <pre><code>~$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv  
-~$ sudo apt -y install -y libffi-dev libssl-dev zlib1g-dev liblzma-dev  
-~$ sudo apt -y install -y libbz2-dev libreadline-dev libsqlite3-dev  
+~$ sudo apt install -y libffi-dev libssl-dev zlib1g-dev liblzma-dev  
+~$ sudo apt install -y libbz2-dev libreadline-dev libsqlite3-dev  
 </code></pre><p>~/.bashrcに下記を追加します。</p>
 <pre><code>export PYENV_ROOT=$HOME/.pyenv  
 export PATH=$PYENV_ROOT/bin:$PATH  
