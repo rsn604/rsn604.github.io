@@ -106,7 +106,7 @@ if (!doNotTrack) {
 
 <div class="meta__item-categories meta__item">
 	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/%e3%83%a2%e3%83%90%e3%82%a4%e3%83%abpc" rel="category">モバイルPC</a></span>
+	<span class="meta__text"><a class="meta__link" href="/categories/%e3%81%b2%e3%81%a8%e3%82%8a%e3%82%88%e3%81%8c%e3%82%8a%e3%81%ae%e3%83%a2%e3%83%90%e3%82%a4%e3%83%abpc" rel="category">ひとりよがりのモバイルPC</a></span>
 </div>
 </div>
 		</header>
@@ -153,14 +153,18 @@ clear mod4
   
 その後で、環境を設定  
 # rclone config  
-</code></pre><hr>
-<h3 id="6-rootで使うのは心臓に良くない">(6) rootで使うのは心臓に良くない</h3>
-<p>Terminalで、&quot;#&rdquo; を見たくないという方は、適当なユーザーを作っておいて、そのIDに su するといいかもしれません。</p>
-<pre><code># adduser userxx  
-# su userxx  
 </code></pre><p>以上で、アプリケーションの導入は完了。</p>
 <hr>
-<p>個人的には必要十分な環境ができました。</p>
+<h3 id="linux-deployのイメージファイルimgについて202011追加">Linux Deployのイメージファイル”.img”について（2020/11追加）</h3>
+<p>Linux Deployでは、インストールされた内容は、”.img”に保存されますので、非常に管理が容易です。適当なタイミングでPCにバックアップを取っておけば、その段階に戻せますし、他のAndoridマシンにも簡単にコピーすることができます。</p>
+<p>また、この”.img”は、Linux上でLoopデバイスとしてmountできますので、そこで環境をセットアップすることも可能です。</p>
+<pre><code>$ sudo mount -o loop linux.img /mnt  
+</code></pre><p>ディスク容量の増加も簡単です。当初、5120MGで運用していましたが、少し容量が不足してきたので、6144MGに拡張しました。</p>
+<pre><code>$ e2fsck -f linux.img  
+$ resize2fs linux.img 6144M  
+</code></pre><p>完了後、Androidマシンに戻せば、何の問題もなく動きます。</p>
+<hr>
+<p>さて、以上で個人的に必要十分な環境ができました。</p>
 <h3 id="こんな感じです">こんな感じです</h3>
 <p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%98(%E4%BD%BF%E7%94%A8%E7%94%BB%E9%9D%A2).png" alt="SC-03G root"></p>
 <p>Firefoxを使うのは、左のサイドペインにbookmarkを表示できるから。ただ、それだけ(笑）。<br>

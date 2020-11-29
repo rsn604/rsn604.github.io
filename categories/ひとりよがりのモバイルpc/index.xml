@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ひとりよがりのモバイルPC on TORIO&#39;s blog</title>
+    <link>https://rsn604.github.io/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/</link>
+    <description>Recent content in ひとりよがりのモバイルPC on TORIO&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rsn604.github.io/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/</guid>
+      <description>rootで動く Mozc UT2 をソースからコンパイルしてみよう。 Mozcとは、Wikipediaによれば、 Google 日本語入力のオープンソース版である。これは2</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その８　Linux DeployによるDebianのインストール　アプリケーションの導入 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%98-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%B0%8E%E5%85%A5/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%98-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%B0%8E%E5%85%A5/</guid>
+      <description>EmacsやPythonなどを使えるようにする。 (1) Emacs パッケージでインストールします。 # apt -y install emacs SC-03Gの場合、ALTがMETAキーとして</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その７　Linux DeployによるDebianのインストール　環境整備編 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%97-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E7%92%B0%E5%A2%83%E6%95%B4%E5%82%99%E7%B7%A8/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%97-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E7%92%B0%E5%A2%83%E6%95%B4%E5%82%99%E7%B7%A8/</guid>
+      <description>日本語環境を整備しよう。 インストールが完了したら、下記の手順で環境を整えていきます。 (1) Debianコンテナの起動 画面上部の&amp;quot;STA</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その６　Linux DeployによるDebianのインストール　インストール編 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%96-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%96-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/</guid>
+      <description>Linux Deployをセットアップし、Debianをインストールする。 Linux Deployをダウンロード後、実行すると下記のような画面になります。 画面に</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その５　Linux DeployによるDebianのインストール　事前準備編 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/</link>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/</guid>
+      <description>用意するもの Busybox、 VNC、Android Terminal Emulator まずは前提となるツールを導入します。 (1) Busybox https://play.google.com/store/apps/details?id=stericson.busybox&amp;amp;hl=ja https://play.google.com/store/apps/details?id=ru.meefik.busybox&amp;amp;hl=ja どちらでも動きましたが、2番めのBusyb</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その４　AndroidでLinux環境を動かす３つの手法 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/</link>
+      <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/</guid>
+      <description>AndroidでEmacs、Python pandasを使いたい！ キーボード付きのマシンを買ったのは、文書入力を前提としているわけですが、わた</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%93-galaxy-tab-s-8.4sc-03g%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%93-galaxy-tab-s-8.4sc-03g%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B/</guid>
+      <description>まずは、つまらない前説 このところの日韓関係は、史上最悪と言われています。２０１９年半ばの日本の輸出管理強化に対抗した、韓国の不買運動「No J</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その２　専用キーボード編 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%92-%E5%B0%82%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89%E7%B7%A8/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%92-%E5%B0%82%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89%E7%B7%A8/</guid>
+      <description>理想からの転落く第一歩＞ SC-03G このキーボード、キーが足りないぞ このキーボードを一目見てわかることは、キー数が足りないということですね。 普通の日本</description>
+    </item>
+    
+    <item>
+      <title>ひとりよがりのモバイルＰＣ ( その１　ハードウエアの選択 )</title>
+      <link>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%91-%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A8%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%91-%E3%83%8F%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A8%E3%82%A2%E3%81%AE%E9%81%B8%E6%8A%9E/</guid>
+      <description>Galaxy Tab S 8.4 ( SC-03G ) を買ってしまう。 会社を退職する最大のメリットは、時間を最大に活用できることでしょう。今までのフリータイムは原則土日祝に限られて</description>
+    </item>
+    
+  </channel>
+</rss>
