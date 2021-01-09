@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rsn604.github.io/book/</loc>
+    <lastmod>2021-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/categories/</loc>
+    <lastmod>2021-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/</loc>
+    <lastmod>2021-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/</loc>
+    <lastmod>2021-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/book/%E6%AE%BA%E4%BA%BA%E3%82%92%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%99%E3%81%8B%E6%AD%BB%E3%81%AE%E9%80%80%E5%A0%B4%E3%83%8F%E3%83%AA%E3%82%A4%E3%82%AA%E3%83%AB%E3%82%BA%E3%82%AC%E3%83%BC/</loc>
+    <lastmod>2021-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rsn604.github.io/categories/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://rsn604.github.io/it/</loc>
-    <lastmod>2021-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -65,16 +80,6 @@
   <url>
     <loc>https://rsn604.github.io/fbook/the-case-of-black-twenty-twobrian-flynn/</loc>
     <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/book/</loc>
-    <lastmod>2020-12-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/</loc>
-    <lastmod>2020-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
