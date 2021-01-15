@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 13 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/</link>
+      <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/</guid>
+      <description>10年ぶりにインストールしてみよう [1] 事前準備など まずは、今後必要となるツールを事前に準備しましょう。 (1)nvflash Dynabook AZへのインストールは、内部パーティ</description>
+    </item>
     
     <item>
       <title>日本代表ミステリー選集１０　殺人者が追ってくる ( 中島河太郎　権田萬治編 )</title>
