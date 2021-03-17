@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://rsn604.github.io/book/</loc>
-    <lastmod>2021-03-07T00:00:00+00:00</lastmod>
+    <loc>https://rsn604.github.io/anthology/</loc>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://rsn604.github.io/categories/</loc>
-    <lastmod>2021-03-07T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://rsn604.github.io/</loc>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/anthology/%E7%B6%9A13%E3%81%AE%E5%AF%86%E5%AE%A4%E6%B8%A1%E8%BE%BA%E5%89%A3%E6%AC%A1%E7%B7%A8/</loc>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/book/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -35,11 +45,6 @@
   <url>
     <loc>https://rsn604.github.io/eqmm/</loc>
     <lastmod>2021-03-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/anthology/</loc>
-    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
