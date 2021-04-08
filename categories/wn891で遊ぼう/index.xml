@@ -6,10 +6,19 @@
     <description>Recent content in WN891で遊ぼう on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 10 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>最近、Chromebookが流行のようです。その背景には、文部科学省の「GIGAスクール構想」や「テレワークの拡大」にあると言われてますが、</description>
+    </item>
     
     <item>
       <title>マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</title>
