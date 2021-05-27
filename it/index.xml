@@ -6,10 +6,19 @@
     <description>Recent content in ITs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 24 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/</guid>
+      <description>MainLoop、Widget、Eventを理解しよう。 Urwidの基本機能を理解するには、まず、UrwidのWebサイトにアクセスし、ドキ</description>
+    </item>
     
     <item>
       <title>PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )</title>
