@@ -147,6 +147,7 @@ def show_or_exit(key):
 txt = urwid.Text(u&quot;Hello World&quot;)  
 fill = urwid.Filler(txt, 'top')  
 loop = urwid.MainLoop(fill, unhandled_input=show_or_exit)  
+loop.run()  
 </code></pre><p>このスクリプトは、</p>
 <ul>
 <li>画面の最上行に&quot;Hello World&quot;と表示後、キー入力を待つ。</li>
