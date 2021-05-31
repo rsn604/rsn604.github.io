@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 27 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Leprechaun Murders ( Adrian Reynolds )</title>
+      <link>https://rsn604.github.io/fbook/the-leprechaun-murdersadrian-reynolds/</link>
+      <pubDate>Mon, 31 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/fbook/the-leprechaun-murdersadrian-reynolds/</guid>
+      <description>伝説の妖精や徘徊する人形という不気味な雰囲気のなか、ラストまで読ませてくれます。 今回紹介する「The Leprechaun Murders」は、Adrian Rey</description>
+    </item>
     
     <item>
       <title>PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</title>
