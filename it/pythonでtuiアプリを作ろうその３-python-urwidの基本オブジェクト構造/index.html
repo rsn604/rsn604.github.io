@@ -178,7 +178,8 @@ loop.run()
 <p>ということになります。</p>
 <hr>
 <h3 id="クラス化する">クラス化する</h3>
-<p>今回のスクリプトを、今後の展開のベースとなるようクラス化しておきます。ここでは、<strong>Applicationクラス</strong>として実装しました。</p>
+<p>今回のスクリプトを、今後の展開のベースとなるようクラス化しておきます。ここでは、<strong>Applicationクラス</strong>として実装しました。<br>
+また、最終のWidgetをFrameに変更します。Frameは、上部からHeader、Body、Footerと3つの部分から構成されるコンテナです。HeaderとFooterはなくても良いので、どのような形にでも適用できる一般的なものとなります。また、小さなことですが、表示位置も画面中央に変更しておきます。</p>
 <pre><code>#!/usr/bin/env python  
 # -*- coding: utf-8 -*-  
 #  
@@ -197,11 +198,13 @@ class Application:
     def unhandled_keypress(self, k):  
         if k in ('q', 'Q'):  
             self.exit()  
-        self.txt.set_text(repr(k))  
+        self.text.set_text(repr(k))  
   
     def doformat(self):  
-        self.txt = urwid.Text(u&quot;Hello World&quot;)  
-        return urwid.Filler(self.txt, 'top')  
+        self.text = urwid.Text(u&quot;Hello World&quot;)  
+        filler = urwid.Filler(self.text, 'middle')  
+        frame = urwid.Frame(filler)  
+        return frame  
   
     def run(self):  
         self.main_loop = urwid.MainLoop(self.doformat(), unhandled_input=self.unhandled_keypress)  
