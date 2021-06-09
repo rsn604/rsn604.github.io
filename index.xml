@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 07 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/</guid>
+      <description>UrwidのListBoxオブジェクトを使ってみよう。 「画面に複数行を一覧表形式で表示する」のは、アプリケーションでは標準的な仕組みですが、</description>
+    </item>
     
     <item>
       <title>ユーモアミステリ傑作選 ( 風見潤編 )</title>
