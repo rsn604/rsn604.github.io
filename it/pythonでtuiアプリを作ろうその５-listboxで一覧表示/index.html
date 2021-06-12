@@ -320,18 +320,15 @@ class MyText(urwid.Text):
         return key  
   
 class ListWalker(urwid.ListWalker):  
-    def __init__(self, items, from_rec, rows):  
+    def __init__(self, items, rows):  
         self.focus = 0  
-        self.create_page(items, from_rec, rows)  
+        self.create_page(items, rows)  
   
-    def create_page(self,items, from_rec, rows):  
+    def create_page(self,items, rows):  
         self.lines = []  
         self.is_last = False  
         for i in range(rows):  
-            if len(items) &lt; from_rec + i:  
-                self.is_last = True  
-                break  
-            text = MyText(items[from_rec+i])  
+            text = MyText(items[i])  
             self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
   
     def get_focus(self):  
@@ -383,9 +380,9 @@ class Application:
         else:  
             return  
   
-    def doformat(self, from_rec=1):  
+    def doformat(self):  
         cols, rows = self.get_cols_rows()  
-        walker = ListWalker(get_items(), from_rec, rows)  
+        walker = ListWalker(get_items(), rows)  
         self.listbox = urwid.ListBox(walker)  
   
         btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
