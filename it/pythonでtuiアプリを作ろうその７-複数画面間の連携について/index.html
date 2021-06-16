@@ -132,12 +132,47 @@ if (!doNotTrack) {
             self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
             self.main_loop.run()  
 </code></pre><p>ちなみに、他のクラスを起動するコードは下記となります。この例では、ListクラスからDetailクラスを呼び出しています。</p>
-<pre><code>    def start_detail(self):  
-        detail.Detail().run(self.main_loop)  
+<pre><code>    detail.Detail().run(self.main_loop)  
   
 </code></pre><hr>
+<h3 id="抽象クラスapplicationの作成">抽象クラス(application)の作成</h3>
+<p>新しい画面クラスを作成する前に、これらの親クラスを定義しておきます。画面が複数になった場合、共通するメソッドが出てきますから、これらを先に抽象クラスとしてまとめておいたほうが効率的だからです。<br>
+ここでは、親クラス名を<strong>Application</strong>クラスとします。先に作成した<strong>List</strong>クラスや、これから定義する<strong>Detail</strong>クラスは、Applicationクラスを継承する形となります。先に説明した<strong>run</strong>メソッドなど、共通化できるものはこちらにまとめてしまいます。<br>
+下記にコードを示します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# application.py  
+#  
+import urwid  
+from mywidget import my_palette  
+  
+class Application:  
+    main_loop = None  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+    def get_cols_rows(self):  
+        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
+        return cols, rows-2  
+    def unhandled_keypress(self, k):  
+        return True  
+    def doformat(self):  
+        return urwid.widget  
+    def display(self):  
+        self.main_loop.widget = self.doformat()  
+    def start(self, next_class):  
+        next_class().run(self.main_loop)  
+    def run(self, main_loop=None):  
+        if main_loop != None:  
+            self.main_loop = main_loop  
+            self.main_loop.unhandled_input = self.unhandled_keypress  
+            self.display()  
+        else:  
+            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+            self.main_loop.run()  
+</code></pre><hr>
 <h3 id="詳細画面detailの作成">詳細画面（Detail)の作成</h3>
-<p>さて、画面遷移を行う処理が明確になったとろこで、実際の画面を作成していきましょう。</p>
+<p>さて、画面遷移を行う手法が明確になったところで、実際の画面を作成していきましょう。</p>
 <img src="/IT/PythonでTUIアプリを作ろう(その７image).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <p>上の画面イメージを作成していきます。新たに使用するWidgetは、表示フィールド、入力フィールドと、それを格納するコンテナです。</p>
 <h4 id="1表示フィールド">(1)表示フィールド</h4>
@@ -177,7 +212,7 @@ ValueError: too many values to unpack (expected 1)
 Fillerでラップし、スペースを調整しないといけません。これ、最初はわからないんだよね。</p>
 <hr>
 <h3 id="スクリプト">スクリプト</h3>
-<p>4ファイルになります。<strong>listwalker.py</strong>は変更がないので、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/">前回</a>のものをそのまま使ってください。</p>
+<p>5ファイルになります。<strong>listwalker.py</strong>は変更がないので、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/">前回</a>のものをそのまま使ってください。</p>
 <h4 id="1mywidgetpy">(1)mywidget.py</h4>
 <p>新しく使用するWidgetのメソッド、<strong>create_myedit</strong>、<strong>create_mylabel</strong>と、その属性を<strong>my_palette</strong>に追加しています。</p>
 <pre><code>#!/usr/bin/env python  
@@ -193,7 +228,6 @@ def get_items():
     for i in range(100):  
         items.append(&quot;テストデータ&quot;+str(i))  
     return items  
-  
 my_palette = [  
     ('body', 'default', 'default'),  
     ('foot', 'white', 'dark blue'),  
@@ -204,17 +238,13 @@ my_palette = [
     ('listwalker', 'black', 'light cyan'),  
     ('label', 'light cyan,bold', 'default')  
 ]  
-  
 def create_mybutton(label, callback, user_data=None):  
     button = urwid.Button(label, on_press=callback)  
     return urwid.AttrMap(button, 'button', 'button_focus')  
-  
 def create_myedit(edit_text, align='left', multiline=False):  
     return urwid.AttrMap(urwid.Edit(edit_text=edit_text, align=align, multiline=multiline), 'edit', 'edit_focus')  
-  
 def create_mylabel(label):  
     return urwid.AttrMap(urwid.Text(label, align=&quot;left&quot;), &quot;label&quot;)  
-  
 class MyText(urwid.Text):  
     def selectable(self):  
         return True  
@@ -224,7 +254,6 @@ class MyText(urwid.Text):
         elif key in ('k', 'K'):  
             return &quot;up&quot;  
         return key  
-  
 class MyFrame(urwid.Frame):  
     last_time_clicked = None  
     double_click = None  
@@ -243,44 +272,89 @@ class MyFrame(urwid.Frame):
 <pre><code>#!/usr/bin/env python  
 # -*- coding: utf-8 -*-  
 #  
+# detail.py  
+#  
+import urwid  
+  
+import application  
+import list  
+from mywidget import *  
+  
+class Detail(application.Application):  
+    def __init__(self):  
+        pass  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('r', 'R'):  
+            self.return_main()  
+        else:  
+            return  
+        return True  
+    def doformat(self, from_rec=1):  
+        btn_return = create_mybutton(&quot;R&quot;, self.return_main)  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_return, btn_q], 6, 1, 1, 'left')  
+  
+        self.edit_field01 = create_myedit(&quot;入力データ その1&quot;)  
+        self.edit_field02 = create_myedit(&quot;入力データ その2&quot;)  
+        self.edit_note = create_myedit(&quot;改行を含む入力データ\n2行目のデータ\n3行目のデータ&quot;,multiline=True)  
+        pile = [  
+            create_mylabel(&quot;Field01&quot;),  
+            self.edit_field01,  
+            create_mylabel(&quot;Field02&quot;),  
+            self.edit_field02,  
+            create_mylabel(&quot;Note&quot;),  
+            self.edit_note  
+        ]  
+        body = urwid.Filler(urwid.Pile(pile), valign='top')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = MyFrame(urwid.AttrWrap(body, 'body'), header=header, footer=footer)  
+        frame.focus_position = 'header'  
+        return frame  
+    def return_main(self, ignored=None):  
+        self.start(list.List)  
+def main():  
+    Detail().run()  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><h4 id="3listpy">(3)list.py</h4>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
 # list.py  
 #  
 import urwid  
   
+import application  
 import detail  
 from listwalker import ListWalker  
 from mywidget import *  
   
-class List:  
-    main_loop = None  
+class List(application.Application):  
     from_rec = 1  
-  
     def __init__(self):  
         pass  
-  
-    def exit(self, button=None):  
-        raise urwid.ExitMainLoop()  
-  
-    def get_cols_rows(self):  
-        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
-        return cols, rows-2  
-  
     def next_page(self, ignored=None):  
         if not self.last_page():  
             self.from_rec += self.rows  
             self.main_loop.widget = self.doformat()  
-  
     def prior_page(self, ignored=None):  
         if self.from_rec &gt; self.rows:  
             self.from_rec -= self.rows  
             self.main_loop.widget = self.doformat()  
-  
     def first_page(self):  
         return self.from_rec == 1  
-  
     def last_page(self):  
         return self.is_last  
-  
     def unhandled_keypress(self, k):  
         if self.main_loop.widget.focus_position == 'header' and k == 'down':  
             self.main_loop.widget.focus_position = 'body'  
@@ -298,7 +372,6 @@ class List:
         else:  
             return  
         return True  
-  
     def doformat(self, from_rec=1):  
         self.cols, self.rows = self.get_cols_rows()  
         walker = ListWalker(get_items(), self.from_rec, self.rows)  
@@ -324,104 +397,15 @@ class List:
         frame.double_click = self.start_detail  
         frame.focus_position = 'header'  
         return frame  
-  
     def start_detail(self):  
-        detail.Detail().run(self.main_loop)  
-  
-    def run(self, main_loop=None):  
-        if main_loop != None:  
-            self.main_loop = main_loop  
-            self.main_loop.unhandled_input = self.unhandled_keypress  
-            self.main_loop.widget = self.doformat()  
-        else:  
-            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
-            self.main_loop.run()  
-  
+        self.start(detail.Detail)  
 def main():  
     List().run()  
-  
-if __name__==&quot;__main__&quot;:  
-    main()  
-</code></pre><h4 id="3listpy">(3)list.py</h4>
-<p>Detailを起動する<strong>run</strong>メソッドを修正しています。</p>
-<pre><code>#!/usr/bin/env python  
-# -*- coding: utf-8 -*-  
-#  
-# list.py  
-#  
-import urwid  
-  
-import list  
-from mywidget import *  
-  
-class Detail:  
-    main_loop = None  
-  
-    def __init__(self):  
-        pass  
-  
-    def exit(self, button=None):  
-        raise urwid.ExitMainLoop()  
-  
-    def unhandled_keypress(self, k):  
-        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
-            self.main_loop.widget.focus_position = 'body'  
-        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
-            self.main_loop.widget.focus_position = 'header'  
-  
-        if k in ('q', 'Q'):  
-            self.exit()  
-        elif k in ('r', 'R'):  
-            pass  
-        else:  
-            return  
-        return True  
-  
-    def doformat(self, from_rec=1):  
-        btn_return = create_mybutton(&quot;R&quot;, self.return_main)  
-        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
-        header = urwid.GridFlow([btn_return, btn_q], 6, 1, 1, 'left')  
-  
-        self.edit_field01 = create_myedit(&quot;入力データ その1&quot;)  
-        self.edit_field02 = create_myedit(&quot;入力データ その2&quot;)  
-        self.edit_note = create_myedit(&quot;改行を含む入力データ\n2行目のデータ\n3行目のデータ&quot;,multiline=True)  
-        pile = [  
-            create_mylabel(&quot;Field01&quot;),  
-            self.edit_field01,  
-            create_mylabel(&quot;Field02&quot;),  
-            self.edit_field02,  
-            create_mylabel(&quot;Note&quot;),  
-            self.edit_note  
-        ]  
-        body = urwid.Filler(urwid.Pile(pile), valign='top')  
-  
-        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
-        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
-  
-        frame = MyFrame(urwid.AttrWrap(body, 'body'), header=header, footer=footer)  
-        frame.focus_position = 'header'  
-        return frame  
-  
-    def return_main(self, ignored=None):  
-        list.List().run(self.main_loop)  
-  
-    def run(self, main_loop=None):  
-        if main_loop != None:  
-            self.main_loop = main_loop  
-            self.main_loop.unhandled_input = self.unhandled_keypress  
-            self.main_loop.widget = self.doformat()  
-        else:  
-            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
-            self.main_loop.run()  
-  
-def main():  
-    Detail().run()  
-  
 if __name__==&quot;__main__&quot;:  
     main()  
 </code></pre><hr>
 <h3 id="動作確認">動作確認</h3>
-<p>では、実際に動かしてみましょう。<strong>mywidget.py</strong>、<strong>listwalker.py</strong>、<strong>list.py</strong>、<strong>Detail.py</strong>の4ファイルを、同一ディレクトリに入れておきます。</p>
+<p>では、実際に動かしてみましょう。<strong>application.py</strong>、<strong>mywidget.py</strong>、<strong>listwalker.py</strong>、<strong>list.py</strong>、<strong>Detail.py</strong>の5ファイルを、同一ディレクトリに入れておきます。</p>
 <pre><code>python3 list.py  
 </code></pre><p>先に示した画面が表示されたでしょうか。<br>
 データを<strong>Enter</strong>キーで選択、または<strong>マウスでダブルクリック</strong>すると、<strong>Detail</strong>オブジェクトの画面に遷移します。また、Detail画面からは、＜R＞ボタンで<strong>List</strong>画面に戻ることが出来ます。</p>
