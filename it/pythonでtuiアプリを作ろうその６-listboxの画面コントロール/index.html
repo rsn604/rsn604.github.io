@@ -301,7 +301,7 @@ class List:
             return  
         return True  
   
-    def doformat(self, from_rec=1):  
+    def doformat(self):  
         self.cols, self.rows = self.get_cols_rows()  
         walker = ListWalker(get_items(), self.from_rec, self.rows)  
         self.is_last = walker.last_page()  

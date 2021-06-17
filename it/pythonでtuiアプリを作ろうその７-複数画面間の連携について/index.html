@@ -296,7 +296,7 @@ class Detail(application.Application):
         else:  
             return  
         return True  
-    def doformat(self, from_rec=1):  
+    def doformat(self):  
         btn_return = create_mybutton(&quot;R&quot;, self.return_main)  
         btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
         header = urwid.GridFlow([btn_return, btn_q], 6, 1, 1, 'left')  
@@ -372,7 +372,7 @@ class List(application.Application):
         else:  
             return  
         return True  
-    def doformat(self, from_rec=1):  
+    def doformat(self):  
         self.cols, self.rows = self.get_cols_rows()  
         walker = ListWalker(get_items(), self.from_rec, self.rows)  
         self.is_last = walker.last_page()  

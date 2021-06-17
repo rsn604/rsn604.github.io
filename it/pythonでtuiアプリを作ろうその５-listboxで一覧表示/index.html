@@ -206,7 +206,7 @@ class Application:
             return  
         return True  
   
-    def doformat(self, from_rec=1):  
+    def doformat(self):  
         walker = ListWalker(get_items())  
         self.listbox = urwid.ListBox(walker)  
   
