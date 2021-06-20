@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ja-jp">
-<head>
+
+    <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,7 +97,8 @@ if (!doNotTrack) {
 	</div>
 </nav>
   <article class="post">
-		<header class="post__header">
+
+	  <header class="post__header">
 			<h1 class="post__title">PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
@@ -118,7 +120,7 @@ if (!doNotTrack) {
 <h3 id="単純なlistboxを作ってみる">単純なListBoxを作ってみる</h3>
 <p>まずは、前回も使用したクラスのbodyに、<a href="http://urwid.org/reference/widget.html#listbox" target="_blank">ListBox</a>を作成していきます。ListBoxクラスの生成は、下記のようになります。</p>
 <h5 id="class-urwidlistboxlistwalker">class urwid.ListBox(ListWalker)</h5>
-<p><strong>ListWalker</strong>は、<strong>SimpleListWalker</strong>のように、事前に用意されているクラスを使用するのが簡単ですが、ここでは応用の効くListWalkerを自前で書いてみましょう。と言っても難しい話ではなく、</p>
+<p><a href="http://urwid.org/reference/list_walkers.html?highlight=listwalker" target="_blank">ListWalker</a>は、<strong>SimpleListWalker</strong>のように、事前に用意されているクラスを使用するのが簡単ですが、ここでは応用の効くListWalkerを自前で書いてみましょう。と言っても難しい話ではなく、</p>
 <ul>
 <li>get_focus()</li>
 <li>set_focus()</li>
@@ -241,15 +243,14 @@ if __name__==&quot;__main__&quot;:
         elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
             self.main_loop.widget.focus_position = 'header'  
         '''  
-</code></pre><p>この部分のコメントを削除してみてください。見ればわかると思いますが、headerとbody間での移動を記述しています。</p>
-<p>再度実行してみましょう。今度は、ListBox部にFocusが移動しました。<br>
-しかし、まだ動きがおかしいですね。今回は、header部からdownキーを押すとListBoxの最初のデータには移動できますが、もう一度downキーを押すと最終行に移動してしまいます。<br>
+</code></pre><p>この部分のコメントを削除してみてください。見ればわかると思いますが、headerとbody間での移動を記述しています。<br>
+再度実行してみましょう。今度は、ListBox部にFocusが移動しました。</p>
+<p>しかし、まだ動きがおかしいですね。今回は、header部からdownキーを押すとListBoxの最初のデータには移動できますが、もう一度downキーを押すと最終行に移動してしまいます。<br>
 これは、ListBox内部のWidgetである<strong>Textオブジェクトが、選択可能ではない</strong>からです。考えてみると、Textの基本は表示機能ですから、Focusが当たるような処理を想定していないわけで、こうなるのは極めて当然なのです。</p>
 <hr>
-<h3 id="listboxを選択可能にしよう">ListBoxを選択可能にしよう。</h3>
-<p>可能にするためには、選択可能なTextクラスを作成すればよいのです。<br>
-それでは、Textのサブクラスを定義しましょう。ここでは、<strong>MyText</strong>クラスとしておきます。<br>
-Urwidでは、<strong>WidgetがSelectbaleでないとFocusを受け取れない</strong>という仕様になっています。そこでこのクラスでは、<strong>selectable</strong>メソッドで<strong>True</strong>を返し、入力を受け取れるよう、<strong>keypress</strong>メソッドを追加しておきます。</p>
+<h3 id="listbox内のtextを選択可能にしよう">ListBox内のTextを選択可能にしよう。</h3>
+<p>Urwidでは、<strong>WidgetがSelectbaleでないとFocusを受け取れない</strong>という仕様になっています。可能にするためには、選択可能なTextクラスを作成すればよいのです。<br>
+それでは、Textのサブクラスを定義しましょう。ここでは、<strong>MyText</strong>クラスとしておきます。このクラスでは、<strong>selectable</strong>メソッドで<strong>True</strong>を返し、入力を受け取れるよう<strong>keypress</strong>メソッドを追加、選択可能なWidgetとして定義するわけです。</p>
 <p>先程のスクリプトに、MyTextクラスを追加します。また、ListBoxに追加するWidgetを、<strong>TextからMyTextに変更</strong>しましょう。</p>
 <pre><code># MyTextクラスを追加する  
 class MyText(urwid.Text):  
@@ -278,7 +279,7 @@ class ListWalker(urwid.ListWalker):
 これでもいいのかもしれませんが、TUIでは適切でないインタフェースでしょう。やはり、ここは画面のサイズに適切な行数分だけを表示したいものです。</p>
 <hr>
 <h3 id="画面サイズに合わせた表示とデータ選択">画面サイズに合わせた表示とデータ選択</h3>
-<p>それでは、先に進めましょう。<br>
+<p>それでは、さらに先に進みましょう。<br>
 今回のアプリケーションでは、データは100件ほど用意していますが、通常のターミナルは24行が標準です。headerとfooterに1行ほど使用しますから、body部は22行ほどになるわけです。もちろん、決め打ちするのではなく、ターミナルのサイズに従って表示行を決定しないといけません。</p>
 <h4 id="画面サイズの取得">画面サイズの取得</h4>
 <p>画面サイズは、<a href="http://urwid.org/reference/display_modules.html?highlight=screen#urwid.raw_display.Screen" target="_blank">raw_display</a>のScreenオブジェクトから取得します。</p>
@@ -412,8 +413,9 @@ if __name__==&quot;__main__&quot;:
 <pre><code>python3 s05_03.py  
 </code></pre><p><a href="" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その５-03).png" style="margin-left:20px;margin-bottom:30px;width:500px;"></a></p>
 <p>これで、想定した動きになりました。<br>
-しかし、画面上には22行のデータだけが表示されています。実際のデータは100件ほどあるわけですから、表示されなくなってしまったデータがあるのは困りものです。</p>
-<p>次回は<strong>ページング処理</strong>を入れて、この部分を追加していきましょう。</p>
+矢印キーでListBox内を移動できますし、Enterキーを叩くと、footer部に選択されたデータが表示されています。</p>
+<p>しかし、画面上には22行のデータだけが表示されています。実際のデータは100件ほどあるわけですから、表示されないデータがあるのは困りものです。<br>
+次回は<strong>ページング処理</strong>を入れて、この部分を追加していきましょう。</p>
 
 		</div>
 	</article>
@@ -441,7 +443,9 @@ if __name__==&quot;__main__&quot;:
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
+
 </footer>
+
 	</div>
-<script async defer src="/js/menu.js"></script></body>
+    <script async defer src="/js/menu.js"></script></body>
 </html>

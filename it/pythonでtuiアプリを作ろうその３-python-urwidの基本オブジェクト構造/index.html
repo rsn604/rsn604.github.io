@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ja-jp">
-<head>
+
+    <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,7 +97,8 @@ if (!doNotTrack) {
 	</div>
 </nav>
   <article class="post">
-		<header class="post__header">
+
+	  <header class="post__header">
 			<h1 class="post__title">PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
@@ -128,8 +130,8 @@ if (!doNotTrack) {
 <p>次に、<strong>Widget</strong>。<br>
 <strong>Widget</strong>は、画面を構成する部品です。<strong>Widget</strong>は、層構造を取ることができ、ある<strong>widget</strong>上に、別の<strong>Widget</strong>が乗るような部品構造を取ることが一般的です。</p>
 <img src="/IT/PythonでTUIアプリを作ろう(その３Widget).png" style="margin-left:50px;margin-bottom:30px;width:600px;">  
-<p>上の図では、Wideget &ldquo;a&quot;上に、”b&rdquo;、さらに”c”、”d”、”e”というような層構造を示しています。<br>
-一般に、最下層でベースとなる部品をコンテナと呼びますが、この図ではWideget &ldquo;a&quot;がコンテナにあたります。</p>
+<p>上の図では、Widget &ldquo;a&quot;上に、”b&rdquo;、さらに”c”、”d”、”e”というような層構造を示しています。<br>
+一般に、最下層でベースとなる部品をコンテナと呼びますが、この図ではWidget &ldquo;a&quot;がコンテナにあたります。</p>
 <h5 id="3event">（3）Event</h5>
 <p>ユーザーによってキー入力などの処理が行われると、それに対応する<strong>Event</strong>が発生します。<strong>Event</strong>は、それぞれの<strong>Widget</strong>に伝えられていくことになります。（2）で示した構造では、&ldquo;a&quot;から順番に<strong>Event</strong>が伝搬されていきます。</p>
 <hr>
@@ -247,7 +249,9 @@ if __name__==&quot;__main__&quot;:
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
+
 </footer>
+
 	</div>
-<script async defer src="/js/menu.js"></script></body>
+    <script async defer src="/js/menu.js"></script></body>
 </html>
