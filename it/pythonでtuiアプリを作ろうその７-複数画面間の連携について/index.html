@@ -123,8 +123,9 @@ if (!doNotTrack) {
 <h4 id="1-初期起動の場合">(1) 初期起動の場合</h4>
 <p>MainLoopオブジェクトは、まだ存在しない状態（Pythonでいえば<strong>None</strong>）ですので、MainLoopオブジェクトの生成から開始します。</p>
 <h4 id="2-他のクラスから起動された場合">(2) 他のクラスから起動された場合</h4>
-<p>伝達されたMainLoopオブジェクトを再利用し、画面生成処理(<strong>doFormat</strong>メソッド)で生成された<strong>Container Widget</strong>をMainLoopの<strong>widget</strong>プロパティに設定すると新たな画面が表示されることになります。</p>
-<p>そこで、各クラスを始動する<strong>runメソッド</strong>を、この2つに合うよう拡張してみましょう。<strong>MainLoopオブジェクトを引数に設定</strong>し、その内容によってロジックを分割します。</p>
+<p>伝達されたMainLoopオブジェクトを再利用し、画面生成処理(<strong>doFormat</strong>メソッド)で生成された<strong>Container Widget</strong>をMainLoopの<strong>widget</strong>プロパティに設定、新たな画面を表示します。</p>
+<p>そこで、各クラスを始動する<strong>runメソッド</strong>を、この2つに合うよう拡張してみましょう。<br>
+<strong>MainLoopオブジェクトを引数に設定</strong>し、その内容によってロジックを分割します。</p>
 <pre><code>    def run(self, main_loop=None):  
         if main_loop != None:  
             self.main_loop = main_loop  
@@ -139,7 +140,7 @@ if (!doNotTrack) {
 </code></pre><hr>
 <h3 id="抽象クラスapplicationの作成">抽象クラス(application)の作成</h3>
 <p>新しい画面クラスを作成する前に、これらの親クラスを定義しておきます。画面が複数になった場合、共通するメソッドが出てきますから、これらを先に抽象クラスとしてまとめておいたほうが効率的だからです。<br>
-ここでは、親クラス名を<strong>Application</strong>クラスとします。先に作成した<strong>List</strong>クラスや、これから定義する<strong>Detail</strong>クラスは、Applicationクラスを継承する形となります。先に説明した<strong>run</strong>メソッドなど、共通化できるものはこちらにまとめてしまいます。<br>
+ここでは、親クラス名を<strong>Application</strong>クラスとします。先に作成した<strong>List</strong>クラスや、これから定義する<strong>Detail</strong>クラスは、Applicationクラスを継承する形となります。先に説明した<strong>run</strong>メソッドなど、共通化できるものはこちらにまとめてしまいましょう。<br>
 下記にコードを示します。</p>
 <pre><code>#!/usr/bin/env python  
 # -*- coding: utf-8 -*-  
@@ -183,7 +184,7 @@ class Application:
 <pre><code>def create_mylabel(label):  
     return urwid.AttrMap(urwid.Text(label, align=&quot;left&quot;), &quot;label&quot;)  
 </code></pre><h4 id="2入力フィールド">（2)入力フィールド</h4>
-<p>入力用のフィールドは、<a href="http://urwid.org/reference/widget.html#edit" target="_blank">Edit</a>というWidgetで定義します。このWidgetにfocusが移動した場合、文字入力はもちろんですが、矢印キーでの移動、Delキー、Insキーでの文字の削除、追加が標準でできるようになっています。また、オプションで複数行入力もサポートされています。<br>
+<p>入力用のフィールドは、<a href="http://urwid.org/reference/widget.html#edit" target="_blank">Edit</a>というWidgetで定義します。このWidgetにfocusが移動した場合、文字入力はもちろんですが、矢印キーでの移動、Delキー、Insキーでの文字の削除、追加などが標準でできるようになっています。また、オプションで複数行入力もサポートされています。<br>
 これも、属性を付加したオブジェクトを定義しておきます。</p>
 <pre><code>def create_myedit(edit_text, align='left', multiline=False):  
     return urwid.AttrMap(urwid.Edit(edit_text=edit_text, align=align, multiline=multiline), 'edit', 'edit_focus')  
@@ -211,7 +212,7 @@ ValueError: too many values to unpack (expected 1)
 <p>If you want to use a flow widget where a box widget is expected you need to first wrap it with a widget like Filler that will take care of filling the empty space above or below what the flow widget displays.</p>
 </blockquote>
 <p>ということなのです。<br>
-Fillerでラップし、スペースを調整しないといけません。これ、最初はわからないんだよね。</p>
+Fillerでラップし、スペースを調整しないといけません。これ、最初はわからないんだよね（笑）。</p>
 <hr>
 <h3 id="スクリプト">スクリプト</h3>
 <p>5ファイルになります。<strong>listwalker.py</strong>は変更がないので、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/">前回</a>のものをそのまま使ってください。</p>
