@@ -6,10 +6,19 @@
     <description>Recent content in PythonでTUI on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/categories/python%E3%81%A7tui/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その８　画面間データ連携について )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</guid>
+      <description>データ連携用の共通オブジェクトを設定する。 今回は、前回定義したListクラスとDetailクラス間に、データ連携機能を組み込んでいきます。と</description>
+    </item>
     
     <item>
       <title>PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</title>
