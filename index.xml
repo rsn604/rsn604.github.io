@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>月下の殺人鬼　宝石傑作集３・怪奇幻想編 ( 中島河太郎編 )</title>
+      <link>https://rsn604.github.io/anthology/%E6%9C%88%E4%B8%8B%E3%81%AE%E6%AE%BA%E4%BA%BA%E9%AC%BC-%E5%AE%9D%E7%9F%B3%E5%82%91%E4%BD%9C%E9%9B%86%EF%BC%93%E6%80%AA%E5%A5%87%E5%B9%BB%E6%83%B3%E7%B7%A8%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/</link>
+      <pubDate>Sat, 03 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/anthology/%E6%9C%88%E4%B8%8B%E3%81%AE%E6%AE%BA%E4%BA%BA%E9%AC%BC-%E5%AE%9D%E7%9F%B3%E5%82%91%E4%BD%9C%E9%9B%86%EF%BC%93%E6%80%AA%E5%A5%87%E5%B9%BB%E6%83%B3%E7%B7%A8%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/</guid>
+      <description>暗く辛気臭い作品にうんざり。 題名 作者 評点 コメント 西瓜畑の物語作者 火野葦平 7.0 [宝石 昭和22年11月]現代の推理小説（第３巻） ロマン派の饗宴で読</description>
+    </item>
     
     <item>
       <title>PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</title>
