@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )" />
+<meta property="og:description" content="WN891は、Atomプロセッサに2GBのメモリという極めて脆弱な環境で、どちらもアップグレードすることはできません。できることは限られてい" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/" />
+<meta property="article:published_time" content="2020-08-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-02T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )"/>
+<meta name="twitter:description" content="WN891は、Atomプロセッサに2GBのメモリという極めて脆弱な環境で、どちらもアップグレードすることはできません。できることは限られてい"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-02T00:00:00Z">August 02, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/" rel="category">WN891で遊ぼう</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>WN891は、Atomプロセッサに2GBのメモリという極めて脆弱な環境で、どちらもアップグレードすることはできません。できることは限られていますが、少しでも良い環境を目指し、チューニングしていきましょう。購入当時の2015年にも少しやっていた内容ですが、今回再度トライしてみました。基本方針は「<strong>何はともあれ、メモリを空けること</strong>」です。</p>
+<h3 id="メモリ使用率を観る">メモリ使用率を観る</h3>
+<p>まずは、クリーンインストールを終了した初期状態のWN891の電源を入れて、タスクマネージャ（下部タスクバーの空いている部分を右クリックでメニューが出てきます）を起動してみます。マシン起動時は、初期化プロセスが動いていますので、CPU、メモリ使用率が高くなっていますが、一定時間経つと、CPU使用率が10%を切るレベルに落ち着きますので、その段階のメモリ使用率を見てみます。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(00TManager01).png" alt="WN891"></p>
+<p>全メモリ1.9Gのうち1.2G、63%使用となっています。これは、いわゆる固定費のようなもので、何も動かさなくてもこれだけは使うということです。この状態から、ブラウザを起動、Yahooなど適当なページをTabで2〜3ページくらい開いてみましょう。すると、メモリ使用率は、一気に95%くらいに上がります</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(00TManager02).png" alt="WN891"></p>
+<p>では、残り5%で追加のページを観ることができるでしょうか。</p>
+<p>サイトにもよりますが、まず問題なく動くでしょう。これは、言うまでもなく、Windows10が仮想メモリをサポートしているからです。<br>
+いわゆる<strong>ページング</strong>と呼ばれる機能ですが、メモリは一定サイズ（通常4K）の単位（ページ）で管理されており、メモリが不足すると、一部のページを外部ファイルに書き出します。このページデータセットにページを書き出すことを「<strong>ページアウト</strong>」といいますが、これにより空きメモリを確保するわけです。しかし、ページアウトされたメモリ領域へのアクセスが発生する（ページフォルト）と、ページデータセットから実メモリに読み戻さないといけません。これを「<strong>ページイン</strong>」と呼びます。</p>
+<p>いまは、メモリが潤沢なマシンがほとんどなので、あまりページングに注目する人はいないかもしれません。<br>
+昔話で恐縮ですが、わたしが80年代前半に地方の工場で見ていたマシンは、メモリ2MG（ギガではありませんよ、メガです）でした。「えらく小さなマシンだな」と思うかもしれませんが、これでも、IBM System/370アーキテクチャの汎用機だったんです。最下位機種でしたけど。<br>
+さて、このような実行環境では、メモリが少ないので、ページングをいかに抑えるかがチューニングのポイントでした。一般的に、ページアウトは何回起きても、あまり大きな問題にはなりません。問題になるのはページインで、これが一定回数以上になると、レスポンスが一気に劣化します。当時は、1秒あたりのページイン回数に、しきい値（10回/秒以下程度）を設けて管理するのが一般的でした。</p>
+<p>さきほど、ブラウザでWebを観るケースを例にしましたが、このような対話処理はあまり大きな問題にはなりません。対話処理と言いますが、そう思っているのは使っている人間サイドだけで、コンピュータにとっては、ほとんど遊んでいるようなものだからです。画面を見ている時はもちろん、キーを打っているような時間でさえ、マシンサイドからみるとアイドルタイムばかりなのです。このような処理ではページアウトはあっても、ページインは極めて少ないのが特徴ですし、空いている時間に内部処理は完結してしまうので、レスポンスにはさほど影響を与えません。</p>
+<p>当時、汎用機の世界で問題を引き起こすのは、マシンリソースをリアルに使っていく、オンラインバッチのような処理形態がほとんどでした。これを見直し、「<strong>メモリの有効活用を図り、ページングを少なくしていくこと</strong>」がチューニングのポイントだったわけです。<br>
+Windows10でも、最初から居座っていたり、定期的に動いて、CPUやメモリといったリソースを使っている輩がいるようです。できることは少ないかもしれませんが、それらを出来る限り排除して、初期メモリ消費を下げることを目標にしましょう。</p>
+<hr>
+<h3 id="チューニングの実行">チューニングの実行</h3>
+<p>それでは、実際に作業を始めていきましょう。</p>
+<h4 id="1バックグラウンド処理を削減する">(1)　バックグラウンド処理を削減する</h4>
+<pre><code>設定-&gt;プライバシー-&gt;バックグラウンドアプリ  
+</code></pre><p>なんとまあ、つまらない処理がバックグラウンドに常駐しているのでしょうか。「<strong>すべてオフ</strong>」で良いでしょう。「Windowsセキュリティ」あたりは残しておいたほうが良いかもしれませんけど。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(01Background02).png" alt="WN891"></p>
+<hr>
+<h4 id="2スタートアップ">(2)　スタートアップ</h4>
+<p>タスクマネージャを起動し、「スタートアップ」タグをクリックします。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(02Startup01).png" alt="WN891"></p>
+<p>この環境では、Microsoft Onedriveを使っていない場合、無効にします。</p>
+<hr>
+<h4 id="3不要サービスを無効化">(3)　不要サービスを無効化</h4>
+<p>タスクマネージャを起動し、「サービス」タグをクリック、さらに最下部の「サービス管理ツールを開く」をクリックします。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(04Service01).png" alt="WN891"></p>
+<p>「スタートアップの種類」をクリックし、”自動”のものから表示させます。<br>
+「Connected User Experiences and Telemetry」は、MicrosoftにWindowsの使用状況を送るサービスなので「無効」。<br>
+「Print Spooler」もプリンタ未接続ですから、無効にします。</p>
+<p><strong>”Sysmain”は、そのままにしておきましょう。</strong><br>
+「無効にせよ」との情報がWeb上に多くありますが、<strong>このサービスを停止すると、メモリ圧縮機能が動かなくなります</strong>。後述しますが、この機能は、WN891のようなリアルメモリの少ないマシンには有効ですので、そのままにしておくことを強くお薦めします。</p>
+<hr>
+<h4 id="4情報収集を停める">(4)　情報収集を停める</h4>
+<p>サービスで「Connected User Experiences and Telemetry」を停止しましたが、次は、スケジューラで定期的に情報収集をしているタスクを停めてみましょう。まずは、下記に手順で「タスクスケジューラ」を起動します。</p>
+<pre><code>スタートメニュー -&gt; Windows管理ツール -&gt; タスクスケジューラ  
+</code></pre><p>タスクスケジューラライブラリ -&gt; Microsoft -&gt; Windows以下にある下記の項目を無効化します。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(05Task01).png" alt="WN891"></p>
+<p>以下の項目を、右クリックして無効化していきます。</p>
+<pre><code>Application Experience -&gt; Microsoft Compatibility Appraiser  
+                          ProgramDataUpdater  
+Autochk -&gt; Proxy  
+Customer Experience Improvement Program -&gt; Consolidator  
+                                           UsbCeip  
+Disk Diagnostic -&gt; Microsoft-Windows-DiskDiagnosticDataCollector  
+                   Microsoft-Windows-DiskDiagnosticResolver  
+  
+</code></pre><hr>
+<h4 id="5-windows10のメモリ圧縮">(5) Windows10のメモリ圧縮</h4>
+<p>Windows10から、ページング機能にメモリ圧縮が追加されたようです。これは一部のメモリを圧縮しておき、ページング対象になるページを少なくすることが目的です。一方で、圧縮、非圧縮にはCPUを使いますので、トレードオフとなりますが、どう考えてもページングのコストのほうが大きいでしょう。特に、メモリの少ないWN891のようなマシンでは、この機能は極めて有効だと思います。<br>
+ただ、多くのWindowsマシンは、メモリが豊富で、ページングの必要すらありませんから、CPUの無駄遣いにすぎないという評価になってしまうのかもしれません。<br>
+Linuxには、かなり前から”Zswap”と呼ばれる同様の機能がカーネルに組み込まれていて、メモリの少ないマシンで活用されている実績があります。Windows10にも、このような機能が入ってきたことは、注目されるべきことでしょう。</p>
+<hr>
+<h4 id="6-常駐クライアントに注意">(6) 常駐クライアントに注意</h4>
+<p>WN891のようなマシンを使う場合、メモリに常駐するようなプログラムはできる限り避けなければいけません。例えば、DropboxやGoogleDriveの常駐クライアントは、確かに便利ですが、CPUもMemoryも相当消費します。rcloneのようなコマンドツールを使うことをお薦めします。</p>
+<hr>
+<h3 id="削減結果のまとめ">削減結果のまとめ</h3>
+<p>それでは、上記による削減効果を見ていきましょう。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(00TManager03).png" alt="WN891"></p>
+<p>状況によって上下しますが、1GBを切るようになりました。200MG以上の削減になっていることがわかります。</p>
+<p>さて、ここまでのチューニングで、オフィス系業務における文書作成やWebを観る程度なら、なんとかメモリ2GBで使える感じになりました。<br>
+もちろん、32ビット版Windows10限定です。64ビットとなると、アドレス幅が倍になりますから、倍増とは言いませんが、50-60%以上のメモリ増が必要になります。そういう意味で、64ビットWindows10では、最低でもメモリ4Gということになるでしょう。</p>
+<hr>
+<h4 id="付記画面表示の高速化">(付記)　画面表示の高速化</h4>
+<p>最後に、不要なアニメーションを無効化して、画面の動きを軽快にしておきます。</p>
+<pre><code>コントロールパネル -&gt; システムとセキュリティ -&gt; システム -&gt; システムの詳細設定 -&gt; パフォーマンス -&gt; 設定  
+</code></pre><p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(03Animation01).png" alt="WN891"></p>
+<p>下記のように、アニメーション関係のチェックを外してしまいます。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(03Animation02).png" alt="WN891"></p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93(03Animation03).png" alt="WN891"></p>
+<p>これで、動きが少し良くなったのではないでしょうか。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

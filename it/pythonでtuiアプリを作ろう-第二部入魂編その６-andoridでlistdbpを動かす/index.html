@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )" />
+<meta property="og:description" content="ここまで説明してきたPython Urwidを使用したTUIアプリケーション”ListDBP”の動作環境は、基本的にLinuxを想定していまし" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-andorid%E3%81%A7listdbp%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/" />
+<meta property="article:published_time" content="2021-10-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-24T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )"/>
+<meta name="twitter:description" content="ここまで説明してきたPython Urwidを使用したTUIアプリケーション”ListDBP”の動作環境は、基本的にLinuxを想定していまし"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-24T00:00:00Z">October 24, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>ここまで説明してきた<strong>Python Urwid</strong>を使用したTUIアプリケーション”<strong>ListDBP</strong>”の動作環境は、基本的にLinuxを想定していました。<br>
+しかし、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/">「PythonでTUIアプリを作ろう (その１　TUIアプリとは)」</a>で述べたように、「<strong>TUIアプリの活用範囲は広い</strong>」のです。</p>
+<h4 id="listdbpはスマートフォンでも動く">ListDBPは、スマートフォンでも動く。</h4>
+<p>今回は、Andorid環境での動作について検証していきましょう。</p>
+<hr>
+<h3 id="1termux">[1]　Termux</h3>
+<p>言うまでもなく、<strong>Android</strong>環境での動作を可能にしているツールは、<strong>Termux</strong>です。今回、TUIアプリケーションを公開しているのも、<strong>Termux</strong>環境で動くことが動機の一つになっています。</p>
+<p>さて、その<strong>Termux</strong>ですが、最近<strong>Android5-6</strong>が切り捨てられていたり、その行くすえが気になりますが、今の所なんとかなります。<br>
+これについては、<a href="https://rsn604.github.io/it/termux%E3%81%AErepository%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%9D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">TermuxのRepositoryが使えなくなっている ( その対処法について )</a>にまとめていますので、参考にしてください。</p>
+<p>それでは、<strong>Google Play</strong>から<strong>Termux</strong>をインストール、下記の手順で環境を整えていきます。</p>
+<h4 id="1内部ストレージsdcardの有効化">(1)　内部ストレージ(/sdcard)の有効化</h4>
+<p>まずは、内部ストレージ(SDカード)を下記のコマンドで有効化します。</p>
+<pre><code>termux-setup-storage  
+</code></pre><p><strong>Andorid</strong>では、内部ストレージ(SDカード)上のファイルは実行できませんが、Pythonインタプリタで動く<strong>ListDBP</strong>は、動作が可能です。スクリプトとデータは、ここに置いたほうが運用しやすいと思います。</p>
+<h4 id="2python-urwidのインストール">(2)　Python Urwidのインストール</h4>
+<p>次に、<strong>Termux環境</strong>に、<strong>Python</strong>と<strong>Urwid</strong>をインストールします。</p>
+<pre><code>pkg update  
+pkg install python  
+pip install urwid  
+</code></pre><h4 id="3listdbpのセットアップと実行">(3)　ListDBPのセットアップと実行</h4>
+<p><a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/">「PythonでTUIアプリを作ろう 第二部入魂編(その５　TUIアプリケーションの作成)」</a>で説明したコード内の「<strong>ListDBPディレクトリ</strong>」を、内部ストレージ(/sdcard)にコピーしておきます。</p>
+<p>完了後、コピーしたディレクトリに移動、アプリケーションを起動します。</p>
+<pre><code>cd /sdcard/ListDBP  
+python list.py  
+</code></pre><h4 id="4データテーブル一覧の表示と選択">(4)　データテーブル一覧の表示と選択</h4>
+<p>ここからは、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/">前回</a>説明した内容と同様です。画面は、<strong>Nexus5</strong>(Android6.0)で実行したものです。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(01Termux01).png" style="margin-left:20px;margin-bottom:30px;width:300px;">  
+<br clear="left">  
+<h4 id="5list一覧detail表示画面">(5)　List一覧、Detail表示画面</h4>
+<p>画面を連携させていきます。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(01Termux02).png" style="margin-left:20px;margin-bottom:30px;width:300px;">  
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(01Termux03).png" style="margin-left:20px;margin-bottom:30px;width:300px;">  
+<br clear="left">  
+<h4 id="6google-mapsとの連携">(6)　Google Mapsとの連携</h4>
+<p><strong>Android</strong>上では<strong>Intent</strong>を利用して、<strong>Google Maps</strong>を起動しています。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(01Termux04).png" style="margin-left:20px;margin-bottom:30px;width:300px;">  
+<br clear="left">  
+<p><strong>Urwid</strong>がマウスをサポートしてくれたおかげで、<strong>Termux</strong>上ではタッチが効きます。ボタン部分はもちろんですが、<strong>List一覧</strong>ではダブルタップで<strong>Detail画面</strong>に移動することも可能です。</p>
+<hr>
+<h3 id="2gnuroot-debianlifetouch-note">[2]　GNURoot Debian(Lifetouch Note)</h3>
+<p><strong>Termux</strong>で動けば十分なのですが、<a href="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/">Android黎明期のクラムシェルたち(その２　LifeTouch NoteでLinuxを使おう)</a>で説明した<strong>Lifetouch Note</strong>上の<strong>Debian Wheezy</strong>でも実行してみましょう。</p>
+<p>この<strong>Debian</strong>では、標準で<strong>Python2.7</strong>が導入されますので、こちらをベースに動かしてみます。</p>
+<h5 id="1urwidのインストール">(1)　Urwidのインストール</h5>
+<p>この環境では、<strong>pip</strong>がうまく入らなかったので、<strong>Urwid</strong>は<a href="https://github.com/urwid/urwid" target="_blank">ソース</a>から入れてしまいます。ダウンロードした<strong>Urwid</strong>のディクトリ(<strong>urwid-master</strong>)に移り、<strong>setup.py</strong>でインストールします。</p>
+<pre><code>cd urwid-master  
+python setup.py install  
+</code></pre><h5 id="2スクリプトの起動">(2)　スクリプトの起動</h5>
+<p><strong>Termux</strong>同様に、sdcard上に<strong>ListDBP</strong>をコピーし、起動します。</p>
+<pre><code>cd /sdcard/ListDBP  
+python list.py  
+</code></pre><h5 id="3データテーブル一覧の表示と選択">(3)　データテーブル一覧の表示と選択</h5>
+<p>この<strong>Terminal</strong>では、<strong>Popup Dialog</strong>が少し乱れてしまいますね。いささか見栄えはよくありませんが、実行に支障はありません。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(02GNURoot01).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<br clear="left">  
+<h5 id="4list一覧detail表示画面">(4)　List一覧、Detail表示画面</h5>
+<p>メイン画面は問題なく表示されます。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(02GNURoot02).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<br clear="left">  
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(02GNURoot03).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<br clear="left">  
+<p>この環境は、<strong>Terminal</strong>ベースなので、<strong>Google Maps</strong>との連携は出来ません。</p>
+<hr>
+<h3 id="3linux-deploy">[3]　Linux Deploy</h3>
+<p><a href="https://rsn604.github.io/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/" target="_blank">ひとりよがりのモバイルＰＣ</a>で説明してきた<strong>Linux Deploy</strong>の環境でも動かしてみました。もちろん何の問題もなく動きます。</p>
+<img src="/IT/PythonでTUIアプリを作ろう 第二部入魂編その６(03LinuxDeploy01).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<br clear="left">  
+<hr>
+<p>以上、<strong>Android環境</strong>で、<strong>ListDBP</strong>を動かしてみました。</p>
+<p>ここでは、<strong>Android</strong>以外の環境を説明しませんが、<strong>Chromebook</strong>の<strong>Linux環境</strong>である「<strong>Crostini</strong>」でも動きますし、<strong>64ビットのWindows10</strong>では、<strong>WSL</strong>で<strong>Linux環境</strong>を作れば問題なく動作することを確認しています。</p>
+<p><a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/">初回</a>に、</p>
+<h3 id="汎用的な言語を使ってtuiアプリを作成様々な環境で動作させること">「汎用的な言語を使ってTUIアプリを作成、様々な環境で動作させること」</h3>
+<p>というテーマ設定を行ったわけですが、一応の目標は達成できたのではないでしょうか。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

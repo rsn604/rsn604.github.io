@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 )" />
+<meta property="og:description" content="tviewのWidgetとEventを理解しよう。 tviewの基本機能を理解するには、まず、下記のドキュメンテーションを見ることが第一歩でし" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/" />
+<meta property="article:published_time" content="2022-04-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-15T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 )"/>
+<meta name="twitter:description" content="tviewのWidgetとEventを理解しよう。 tviewの基本機能を理解するには、まず、下記のドキュメンテーションを見ることが第一歩でし"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その２　TUIライブラリの選択 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-15T00:00:00Z">April 15, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewのwidgetとeventを理解しよう">tviewのWidgetとEventを理解しよう。</h2>
+<br clear="left">
+<p><strong>tview</strong>の基本機能を理解するには、まず、下記のドキュメンテーションを見ることが第一歩でしょう。</p>
+<p><a href="https://pkg.go.dev/github.com/rivo/tview" target="_blank"><img src="/IT/Go言語(golang)でTUIアプリを作ろうその３(01tview).png" style="margin-left:50px;margin-bottom:30px;width:600px;"></a></p>
+<hr>
+<h3 id="1widget一覧">(1)　Widget一覧</h3>
+<p>画面を下に少しスクロールしたところに、”<strong>Widgets</strong>”という項目があります。基本的な部品は揃っているように見えますが、細部を見ていくと気になる点も少なくありません。それは後で述べるとして、とりあえずWidget一覧を見ていきましょう。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Widget</th>
+<th align="left">概要</th>
+<th align="center">利用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">TextView</td>
+<td align="left">表示フィールド。マルチライン可。</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="left">Table</td>
+<td align="left">テーブル形式のデータ。スクロール化。</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">TreeView</td>
+<td align="left">ツリー形式の表示</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">List</td>
+<td align="left">一覧表示</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="left">InputField</td>
+<td align="left">入力フィールド。マルチラインをサポートしていないようだ。</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="left">DropDown</td>
+<td align="left">ドロップダウン形式の表示</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Checkbox</td>
+<td align="left">チェックボックス</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Button</td>
+<td align="left">ボタン</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="left">Form</td>
+<td align="left">入力フォーム。Widgetというより雛形で再利用性に乏しい。</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Modal</td>
+<td align="left">単なるメッセージボックス。再利用性に乏しい。</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Grid</td>
+<td align="left">二次元のコンテナ。</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Flex</td>
+<td align="left">一次元のコンテナ。縦、横の方向を選択する。</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="left">Pages</td>
+<td align="left">画面に複数ページを切り替えて表示できるコンテナ。</td>
+<td align="center">○</td>
+</tr>
+</tbody>
+</table>
+<p>なお、これからの開発に使用する予定の<strong>Widget</strong>には、「○」を付けておきました。</p>
+<hr>
+<h3 id="2オブジェクト構造">(2)　オブジェクト構造</h3>
+<p>オブジェクトの構造について重要なポイントが、上記ドキュメント中盤に”<strong>Type Hierarchy</strong>”として記述されています。</p>
+<blockquote>
+<p>All widgets listed above contain the Box type. All of Box&rsquo;s functions are therefore available for all widgets, too.</p>
+</blockquote>
+<blockquote>
+<p>All widgets also implement the Primitive interface.</p>
+</blockquote>
+<p>というところです。<br>
+要するに、すべての<strong>Widget</strong>は、<strong>Primitive</strong>インターフェースを実装、<strong>Box</strong>オブジェクトを継承しているということです。下記に概念図を示しておきます。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその３(02widget).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<hr>
+<h3 id="3widgetとevent">(3)　WidgetとEvent</h3>
+<p>次に、<strong>Widget</strong>と<strong>Event</strong>の関係ですが、最上部のWidgetを、<strong>Application</strong>オブジェクトの<strong>SetRoot</strong>メソッドにセットすることでアプリケーションが開始されます。<br>
+入力Eventは、各Widgetの<strong>SetInputCapture</strong>メソッドや、<strong>SetDoneFunc</strong>メソッドで処理されることになります。これも概念図を示しておきます。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその３(03event).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>プログラミング例も示しておきましょう。<br>
+下記のプログラムでは、<strong>Widget</strong>は<strong>inputField</strong>一つだけですので、このインスタンスを<strong>Application</strong>の<strong>SetRoot</strong>メソッドにセットしています。また、入力完了イベントは、<strong>SetDoneFunc</strong>メソッドで処理しています。</p>
+<pre><code>func main() {  
+	app := tview.NewApplication()  
+	inputField := tview.NewInputField().  
+		SetLabel(&quot;文字を入力: &quot;).  
+		SetFieldWidth(10).  
+		SetDoneFunc(func(key tcell.Key) {  
+			app.Stop()  
+		})  
+	if err := app.SetRoot(inputField, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+</code></pre><p><strong>Python Urwid</strong>では、各Widgetで処理されないイベントを一括でハンドリングできる<strong>unhandled input</strong>が用意されていましたが、<strong>tview</strong>では、<strong>app</strong>にも<strong>SetInputCapture</strong>メソッドがありますので、ここで処理すれば良さそうです。</p>
+<hr>
+<h3 id="4問題点">(4)　問題点</h3>
+<p>先にも少し触れましたが、<strong>tview</strong>のWidgetには気になる点が複数あります。</p>
+<ul>
+<li>データ入力を司る<strong>inputField</strong>が、複数行入力をサポートしていないこと。<br>
+これは、最も大きな問題です。</li>
+<li>ダイアログ関係がないこと。<br>
+<strong>Modal</strong>が一見その様に見えますが、実はメッセージボックスそのもので応用が効きません。これでは、<strong>Widget</strong>とは言えないでしょう</li>
+<li><strong>Form</strong>も同様。<br>
+入力画面をサポートするものですが、作成できる画面フォーマットは決まっており、汎用性がありません。</li>
+</ul>
+<p>こんなところでしょうか。前途多難が懸念されますが、その予想は．．．．外れませんでしたね（笑）。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その２　TUIライブラリの選択 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

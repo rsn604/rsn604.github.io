@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TermuxのRepositoryが使えなくなっている ( その対処法について ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="TermuxのRepositoryが使えなくなっている ( その対処法について )" />
+<meta property="og:description" content="Android6では、Termuxは使えないのか？ (2022/03追記) 下記の手法は、現在では使えなくなっています。メインリポジトリにもアク" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/termux%E3%81%AErepository%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%9D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+<meta property="article:published_time" content="2021-07-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-25T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TermuxのRepositoryが使えなくなっている ( その対処法について )"/>
+<meta name="twitter:description" content="Android6では、Termuxは使えないのか？ (2022/03追記) 下記の手法は、現在では使えなくなっています。メインリポジトリにもアク"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その１　個人データの管理を考える )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">TermuxのRepositoryが使えなくなっている ( その対処法について )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-07-25T00:00:00Z">July 25, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="android6ではtermuxは使えないのか">Android6では、Termuxは使えないのか？</h2>
+<br clear="left">
+<p>(2022/03追記)<br>
+下記の手法は、現在では使えなくなっています。メインリポジトリにもアクセスできなくなっているので、インストール後の初期設定が動きません。Android6以下の環境では、Termux使用は無理のようです。<a href="https://play.google.com/store/apps/details?id=tech.ula&hl=ja&gl=US" target="_blank">UserLAnd</a>あたりを考えるべきでしょう。</p>
+<hr>
+<p>(2022/09追記)<br>
+<a href="https://github.com/termux/termux-app/wiki/Termux-on-android-5-or-6" target="_blank">Android5、6用のリポジトリ</a>がセットアップされているようです。どこまで維持されるかはわかりませんが、現状sources.listを下記に変更すれば、使用できるようです。</p>
+<p>/data/data/com.termux/files/usr/etc/apt/sources.list</p>
+<pre><code>deb https://packages.termux.dev/apt/termux-main-21 stable main  
+deb https://termux.dev/science-packages-21-bin science stable  
+deb https://termux.dev/game-packages-21-bin games stable  
+deb https://termux.dev/termux-root-packages-21-bin root stable  
+</code></pre><p>(ここまで追記)</p>
+<hr>
+<p>(2023/02追記)<br>
+現状、Google PlayからインストールしたTermuxは、初期化の段階でエラーになるため、上記の入れ替えはできなくなっています。Android5-6で対応するには、古いAPKを持ってきてインストールする必要があるようです。<a href="https://android.stackexchange.com/questions/245738/how-to-install-termux-on-old-android-5-devices-using-the-official-archive" target="_blank">こちら</a>の情報を参考にしてみてください。以下は、そのサマリー。</p>
+<ul>
+<li>APKのインストール<br>
+<a href="https://sfile.mobi/15rZKbhHLsA7" target="_blank">termux-v0.79-offline-bootstraps.apk</a>を探して、インストール。</li>
+<li>/data/data/com.termux/files/usr/etc/apt/sources.listの変更</li>
+</ul>
+<pre><code>deb https://packages.termux.dev/apt/termux-main-21 stable main  
+</code></pre><ul>
+<li>
+<p>不要ライブラリの削除<br>
+apt remove science-repo<br>
+apt remove game-repo</p>
+</li>
+<li>
+<p>ツールの導入<br>
+apy update<br>
+pkg install xxxx</p>
+</li>
+</ul>
+<p>(ここまで追記)</p>
+<hr>
+<p>今月(2021/07)のはじめ、最近まとめていた<a href="https://rsn604.github.io/categories/python%E3%81%A7tui/" target="_blank">「Python TUI」</a>の動作確認をしようと、<strong>Termux</strong>を起動したときの話です。</p>
+<h3 id="pkg-updateの出力に驚く">pkg updateの出力に驚く</h3>
+<p>久しぶりの使用だったので、挨拶代わりに”pkg update”と入力したところ、こんなエラーが出てきて、びっくり。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(01pkgupdate).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>どうも、”dl.bintray.com/grimler/game-packages-21”と”dl.bintray.com/grimler/science-packages-21”というRepositoryがおかしいようですね。</p>
+<h3 id="repositoryが使えなくなっているとは">Repositoryが使えなくなっているとは．．．</h3>
+<p>調べていくと、<a href="https://github.com/termux/termux-packages/issues/6726" target="_blank">この情報</a>を見つけました。</p>
+<blockquote>
+<p>All Termux repositories previously hosted on JFrog Bintray are down since 1st May, 2021. This means that all repositories hosted on dl.bintray.com domain are no longer available anymore. There nothing can be done on our side because Bintray service announced its sunset.</p>
+</blockquote>
+<p>なるほど、2021/05/01から”JFrog Bintray”というRepositoryが使えなくなっているわけですか。<br>
+対処療法としては、</p>
+<pre><code>termux-change-repo  
+</code></pre><p>というコマンドで、Repositoryを変更すれば良いらしい。<br>
+ただし、これはドキュメントにあるように、<strong>Android7+のみの対応</strong>とのこと。さらに、いろいろ書いてあって、「Google Playのものは古いから使うな。F-Droidからダウンロードしろ」、さらに「Remember that Android 5.x - 6.x is NOT SUPPORTED!」とダメ押し。いやいや、なかなか強烈だな（笑）。</p>
+<p>まずは、手元に有る<strong>ASUSのZenfone Max M2</strong>（Android9）で実行すると、問題はなくなりました。<br>
+しかし、Android6の<strong>Nexus7</strong>（2013）では、termux-change-repoと入力しても、下記のようになってしまいます。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(01termux-change-repo).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>ドキュメントにあるように、<strong>Android6は見放された</strong>ということですね。</p>
+<hr>
+<h3 id="android6での対応策">Android6での対応策</h3>
+<p>しかし、これは困りました。古いタブレットに<strong>Termux</strong>を入れて、Unixライクの環境を構築している方は、少なくないと思います。<br>
+<strong>Nexus7</strong>なんて、その代表でしょう。公式の更新は、Android6どまりですからね。カスタムROMに逃げるという手はありますが、たかが<strong>Termux</strong>ごときのために、環境を作り直す気にはなれません。</p>
+<h5 id="古いタブレット活用のためにtermuxがある">古いタブレット活用のためにTermuxがある</h5>
+<p>いや、これは少し言い過ぎかな。<br>
+というわけで、なんとかならないかちょっと調べてみました。</p>
+<h4 id="repositoryの設定は">Repositoryの設定は．．．</h4>
+<p>Debian系なら”/etc/apt”の”sources.list”ですから、<strong>Termux</strong>もそんなところだろうと見当をつけて調べていきます。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(02apt).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<pre><code>/data/data/com.termux/files/usr/etc/apt/sources.list  
+/data/data/com.termux/files/usr/etc/apt/sources.list.d/game.list  
+/data/data/com.termux/files/usr/etc/apt/sources.list.d/science.list  
+</code></pre><p>がありました。</p>
+<p>問題なのは、<strong>games.list</strong>と<strong>sciences.list</strong>なので、とりあえず、これの”dl.bintray.com”に関わるエントリをコメントアウトしておきます。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(03game).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<img src="/IT/TermuxのRepositoryが使えなくなっている(04science).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>その後、”pkg update”すると、なんとかエラーはなくなりました。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(05pkgupdate2).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<hr>
+<h4 id="再インストールして確認する">再インストールして確認する。</h4>
+<p>しかし、これらのRepositoryなしで問題ないのでしょうか。<strong>Termux</strong>でGameなんてやる気はないからいいですけど、Scienceというのはどうなんでしょうね。<br>
+とりあえず確認のため、<strong>Termux</strong>を再インストールし、上記のRepositoryをコメントアウト。必要なツールをインストールしてみます</p>
+<p>まずは、pythonから。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(06python).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>問題なく入りました。pythonのライブラリは、pipでインストールできます。Urwidを入れてみました。</p>
+<img src="/IT/TermuxのRepositoryが使えなくなっている(08urwid).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>その後、<strong>vim</strong>、<strong>emacs</strong>、<strong>git</strong>と入れてみたが、問題なくインストールが出来ました。個人的にはこれでOKです。</p>
+<hr>
+<h3 id="代替repositoryを探してみる">代替Repositoryを探してみる。</h3>
+<p>ただ、<strong>Game</strong>はともかく、<strong>Science</strong>に関わるツールが必要になる可能性は否定できません。<br>
+代替Repositoryがないか探してみると、<a href="https://www.reddit.com/r/termux/comments/oa2fpw/need_solution_for_install_packages_offline/" target="_blank">こんな情報</a>を見つけました。</p>
+<blockquote>
+<p>Replace dead repos with:<br>
+<a href="https://github.com/termux/termux-root-packages-21-bin">https://github.com/termux/termux-root-packages-21-bin</a><br>
+<a href="https://github.com/termux/game-packages-21-bin">https://github.com/termux/game-packages-21-bin</a><br>
+<a href="https://github.com/termux/science-packages-21-bin">https://github.com/termux/science-packages-21-bin</a><br>
+<a href="https://termux.net">https://termux.net</a> still works.</p>
+</blockquote>
+<p>なんて書いてある。</p>
+<p>これらを順に見ていくと、最初の<strong>termux-root-packages-21-bin</strong>には、</p>
+<blockquote>
+<p>To be able to install these packages in termux for android 5 you need to edit $PREFIX/etc/apt/sources.list.d/root.list</p>
+</blockquote>
+<p>とありますが、<strong>root.list</strong>なんてファイルはなかったので、とりあえず無視。</p>
+<p>次の<strong>game-packages-21-bin</strong>には、</p>
+<blockquote>
+<p>To be able to install these packages in termux for android 5 you need to edit $PREFIX/etc/apt/sources.list.d/game.list and change from:<br>
+deb <a href="https://dl.bintray.com/grimler/game-packages-21">https://dl.bintray.com/grimler/game-packages-21</a> games stable<br>
+to<br>
+deb <a href="https://termux.com/game-packages-21-bin">https://termux.com/game-packages-21-bin</a> games stable</p>
+</blockquote>
+<p>3つ目の<strong>science-packages-21-bin</strong>には同様に、</p>
+<blockquote>
+<p>To be able to install these packages in termux for android 5 you need to edit $PREFIX/etc/apt/sources.list.d/science.list and change from:<br>
+deb <a href="https://dl.bintray.com/grimler/science-packages-21">https://dl.bintray.com/grimler/science-packages-21</a> science stable<br>
+to<br>
+deb <a href="https://termux.com/science-packages-21-bin">https://termux.com/science-packages-21-bin</a> science stable</p>
+</blockquote>
+<p>と書いてあります。</p>
+<p>試しに指定して、”pkg update”してみましたが、とりあえずエラーは出ませんでした。まあ、いまのところ必要ないですけどね。<br>
+何かの参考になれば幸いです。</p>
+<hr>
+<h3 id="環境のバックアップ">環境のバックアップ</h3>
+<p>上記の状況を考えてみると、<strong>Google PlayにあるTermux</strong>の寿命も短かそうですね。まあ、apkが出回るので、ここになくても大きな問題ではないかもしれませんが。<br>
+とりあえず、必要なツールをインストールしたら、バックアップを取っておくのが良いでしょう。バックアップ手法については、<a href="https://wiki.termux.com/wiki/Backing_up_Termux" target="_blank">ここ</a>に情報があります。まあ、<strong>usr</strong>と<strong>home</strong>を<strong>tar</strong>でまとめているだけですね。レストアは、それの解凍。CPUアーキテクチャが同一なら、他のマシンに持っていくことも可能です。</p>
+<hr>
+<h3 id="これからどうしようか">これからどうしようか</h3>
+<p>こんな状況ですが、<strong>Termux</strong>のためだけに、新しく<strong>Android7+</strong>の機器を買う気にはなれませんよね。<br>
+Unix環境など、バージョンが少々古くても大きな問題はないので、自分の環境を早々に作ってしまい、そこに引き籠もるのが正解のような気がします。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その１　個人データの管理を考える )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

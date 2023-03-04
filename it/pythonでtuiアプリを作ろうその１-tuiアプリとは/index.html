@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その１　TUIアプリとは ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その１　TUIアプリとは )" />
+<meta property="og:description" content="TUIアプリの活用範囲に注目しよう。 一般に、コンピュータシステムにおける「ユーザーインタフェース（UI）」といえば、WindowsやOS Xで" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/" />
+<meta property="article:published_time" content="2021-05-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-22T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その１　TUIアプリとは )"/>
+<meta name="twitter:description" content="TUIアプリの活用範囲に注目しよう。 一般に、コンピュータシステムにおける「ユーザーインタフェース（UI）」といえば、WindowsやOS Xで"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その１　TUIアプリとは )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-05-22T00:00:00Z">May 22, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tuiアプリの活用範囲に注目しよう">TUIアプリの活用範囲に注目しよう。</h2>
+<br clear="left">
+<hr>
+<p>一般に、コンピュータシステムにおける「ユーザーインタフェース（UI）」といえば、WindowsやOS Xで慣れ親しんでいるような「画面上にウィンドウを表示してマウスで操作する」というスタイルになるでしょう。<br>
+しかし、その一方で「ターミナル」のように、マウスは全く使用せず、キーボード入力だけで実行する環境もあります。何のガイダンスもない無愛想な環境なので、入力コマンドを知らない人間には、何もできないと言っても過言ではありませんから、Windowsのユーザーの中には、全く使わないという方もおられるでしょう。逆に、ターミナル環境にすっかり慣れ親しんでしまって、「マウスを触ることなどまったくない」というツワモノも少なからず存在するようです。</p>
+<p>前者のように、マウス操作を中心とした環境のインタフェースを「GUI（Graphical User Interface）」と呼び、後者のキーボードによる入力環境を「CUI(Character User Interface)」と呼ぶようです。</p>
+<p>「CUI」というと「1行のコマンドを入力する」といった操作を連想しますが、ターミナル上でも画面を制御して、ユーザー入力フィールドを設定したり、ボタン操作、一覧リスト表示などの機能を実現することができます。<br>
+下記に、そのようなアプリケーションの一つである、懐かしのファイラー”MC”こと”ミッドナイトコマンダー”の表示例を示します。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その１MC).png" style="margin-right:50px;margin-bottom:30px">  
+<p>地味と思われるターミナルですが、結構派手な画面が実現できるわけです。</p>
+<hr>
+<h3 id="tuiアプリケーションとは">”TUI”アプリケーションとは</h3>
+<p>このようなアプリケーションのインターフェースは、一般に”<strong>TUI</strong>”と呼ばれます。<br>
+”<strong>TUI</strong>”は、テキストユーザインタフェース（Text User Interface）、またはターミナルベースユーザインタフェース(Terminal base User Interface)のとも言われるようですが、意味するところは同じで、ターミナル上で動作完結するアプリケーションを指します。</p>
+<p>TUIアプリは、多くの場合、”<strong>curses</strong>”あるいは、その後継の”<strong>ncurses</strong>”というCライブラリをベースとすることで、汎用性を担保しています。このライブラリは、ターミナルの基本動作を<strong>ESCシーケンス</strong>で定義しています。そこで定義されたコマンドを、それぞれのターミナルタイプ毎にマッピングすることで、共通インターフェースを実現しているわけです。一昔前ならVT100、いまならxtermなどが代表的なターミナルタイプです。</p>
+<hr>
+<h3 id="tuiアプリの特徴と問題">TUIアプリの特徴と問題</h3>
+<p>このようなTUIアプリの特徴として、大きく２つが挙げられるでしょう。</p>
+<ul>
+<li>動作が極めて軽いこと。<br>
+基本的に、ターミナル制御はマシンリソースを消費しませんので、きわめて軽快に動きます。<br>
+”<strong>curses</strong>”だから、「のろい」ということは全くありません（笑）。</li>
+<li>応用範囲が広いこと。<br>
+UNIX環境であれば、たいていの環境で利用可能です。また、SSHでログインしたリモートマシン上でも動作しますから、ネットワーク経由で使用することもできます。</li>
+</ul>
+<p>一方で、GUIと言われるWindowsやMacOSの標準アプリケーションと比べてみると、</p>
+<ul>
+<li>画面表示はあまり美しくありませんし、操作性に統一性がありません。ユーザーフレンドリとは言えない環境なので、違和感を感じる人は少なくないでしょう。</li>
+<li>コマンドを直接入力する必要があるので、それなりの前提知識、スキルが必要となります。</li>
+</ul>
+<p>という問題があります。</p>
+<hr>
+<h3 id="tuiアプリの活用範囲は広い">TUIアプリの活用範囲は広い</h3>
+<p>先にも述べましたが、TUIアプリケーションは、多くの環境で汎用的に利用することが可能です。</p>
+<ul>
+<li>UNIXをベースにしている環境であれば、まず動きますので、UbuntuをはじめとするLinux環境はもちろん、MacOSもDarwinというUNIXベースなので、動作に問題はないでしょう。</li>
+<li>Windows環境では、標準の環境では難しいかもしれませんが、CygwinのようなUNIX疑似環境で動作します。最近のWindows10 64ビット環境ならば、WSLがありますね。</li>
+</ul>
+<h4 id="さらに注目すべきはandroid環境です">さらに注目すべきは、Android環境です。</h4>
+<p><strong>Termuxというツールをインストールすると、Androidのスマートフォン上でTUIアプリが動作</strong>するのです。</p>
+<p>ご存知の方も多いでしょうが、Androidで動くアプリケーション開発では、Javaがベースになります。最近では簡易言語Kotlinなども使えるようですが、いずれにしても膨大なAndroidのAPIを理解しないといけません。<br>
+日常的にAndroidアプリ開発に従事するのであれば、その労力の対価は期待できますが、「ちょっと作ってみたい」といった軽い発想には、いささか敷居が高いと言わざるえません。<br>
+また、苦労して作ったアプリは、基本的にAndroid上でしか動かないので、日頃使っているデスクトップ上で使用することは難しいでしょう。</p>
+<h4 id="アプリケーションを作るのであれば使用している様々な環境で動かしたい">アプリケーションを作るのであれば、使用している様々な環境で動かしたい。</h4>
+<p>そういう思いは当然でしょう。<br>
+TUIベースでアプリケーションを作成すれば、そのようなニーズに答えることができそうです。「<strong>自作アプリを、スマートフォンとPCで同時に動かしてみる</strong>」というのも一興ではないでしょうか</p>
+<hr>
+<h3 id="そこで今回のテーマです">そこで、今回のテーマです。</h3>
+<h4 id="汎用的な言語を使ってtuiアプリを作成様々な環境で動作させること">「汎用的な言語を使ってTUIアプリを作成、様々な環境で動作させること」</h4>
+<p>を目標とします。</p>
+<p>まず、開発言語はPythonを選択します。現在、非常に人気のある言語ですし、どの環境でも動作しますから、異議はないでしょう。</p>
+<p>それでは、次回からPython上でのTUI作成環境を整え、実際にコードを書いていきましょう。</p>
+<hr>
+<p>(2022/05 追記)<br>
+Go言語(golang)でも、ほぼ同様の内容でコードを書いています。PythonではなくGoに興味のある方は、<a href="https://rsn604.github.io/categories/golang%E3%81%A7tui/page/2/" target="_blank">Go言語(golang)でTUIアプリを作ろう</a>を参照ください。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

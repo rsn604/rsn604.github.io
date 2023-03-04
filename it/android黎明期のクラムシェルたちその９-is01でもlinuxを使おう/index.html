@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android黎明期のクラムシェルたち ( その９　IS01でもLinuxを使おう ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Android黎明期のクラムシェルたち ( その９　IS01でもLinuxを使おう )" />
+<meta property="og:description" content="IS01で、Debian Wheezyを動かしてみる。 さて、久しぶりに取り出したIS01なのですから､何もしないのはもったいない。なんとかの一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%99-is01%E3%81%A7%E3%82%82linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" />
+<meta property="article:published_time" content="2021-02-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-12T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android黎明期のクラムシェルたち ( その９　IS01でもLinuxを使おう )"/>
+<meta name="twitter:description" content="IS01で、Debian Wheezyを動かしてみる。 さて、久しぶりに取り出したIS01なのですから､何もしないのはもったいない。なんとかの一"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%98-is01%E3%81%AE%E6%80%9D%E3%81%84%E5%87%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その８　IS01の思い出 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android黎明期のクラムシェルたち ( その９　IS01でもLinuxを使おう )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-02-12T00:00:00Z">February 12, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="is01でdebian-wheezyを動かしてみる">IS01で、Debian Wheezyを動かしてみる。</h2>
+<br clear="left">
+<p>さて、久しぶりに取り出したIS01なのですから､何もしないのはもったいない。なんとかの一つ覚えなのですが，このマシンにもLinuxを入れてみましょう。やり方も二番煎じ，<a href="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/">Android黎明期のクラムシェルたち(その２　LifeTouch NoteでLinuxを使おう)</a>でやってみたDebian化です。LifeTouch Noteよりリソースの少ないIS01ですが，ターミナルベースなら何とかなりそうです。</p>
+<p>結論から申し上げますと、</p>
+<h4 id="andorid16ではうまく行きませんが22では問題なく起動しました">Andorid1.6ではうまく行きませんが、2.2では問題なく起動しました。</h4>
+<p>使用感ですが、設定で「コントロールキー」に”トラックボール”，「Back Button behaivior」に”Send ESC to Terminal”を割り当てると，Emacs、vimもそれなりに使うことができました。先のLifeTouch Noteでも説明しましたように、環境を設定すれば日本語表示は問題ありません。<br>
+python2.7、gccなどの言語も動きますし，sshでリモートに繋げることも可能です。</p>
+<h3 id="日本語入力に対応する">日本語入力に対応する</h3>
+<p>LifeTouch Noteでは標準のATOKが日本語入力にも使えましたが、IS01のAndroid2.2で導入される”iWnn”や、”Google日本語入力”では、入力ができません。ツールを色々探してみて、なんとかこれを見つけました。</p>
+<h4 id="a-hrefhttpray-mizukilacoocanjpsoftwareskk_jphtml-target_blankskk-for-android-a"><a href="http://ray-mizuki.la.coocan.jp/software/skk_jp.html" target="_blank">SKK for Android </a></h4>
+<p>このサイトにある”SKK for Android 1.6(ハードキー専用版)”というバージョンを導入すると、IS01でも日本語入力が可能になります。</p>
+<p>Emacsでの入力がこちら。<br>
+<img src="/IT/Android黎明期のクラムシェルたち(その９)(Emacs).png"></p>
+<p>これは、Androidにおける日本語入力ですから、コマンドラインでも当然使えます。<br>
+<img src="/IT/Android黎明期のクラムシェルたち(その９)(Command).png"></p>
+<p>なんとか日本語入力もできるようになりました。</p>
+<hr>
+<h3 id="最後に">最後に</h3>
+<p>もはや、あまり使い道のないIS01ですが、ターミナルベースではありますが、<strong>Linuxが動く230グラムの軽量マシン</strong>となれば、少し使ってみたいという人もいるかもしれませんね。<br>
+中古で2、3千円も出せば購入できるマシンですので、おもちゃとして割り切れば、ちょっとした退屈しのぎにはなるでしょう。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%98-is01%E3%81%AE%E6%80%9D%E3%81%84%E5%87%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その８　IS01の思い出 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その７　複数画面間の連携について ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )" />
+<meta property="og:description" content="Python Urwidで、画面の遷移をサポートしてみよう。 今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。 これまでの画面がデータを" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+<meta property="article:published_time" content="2021-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-16T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )"/>
+<meta name="twitter:description" content="Python Urwidで、画面の遷移をサポートしてみよう。 今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。 これまでの画面がデータを"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その８　画面間データ連携について )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-16T00:00:00Z">June 16, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="python-urwidで画面の遷移をサポートしてみよう">Python Urwidで、画面の遷移をサポートしてみよう。</h2>
+<br clear="left">
+<p>今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。<br>
+これまでの画面がデータを一覧表示(<strong>List</strong>)するものでしたから、次の画面は、選択された１件分を表示する詳細画面(<strong>Detail</strong>)となります。</p>
+<hr>
+<h3 id="画面遷移を行うには">画面遷移を行うには</h3>
+<p><a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/">PythonでTUIアプリを作ろう(その３　Python Urwidの基本オブジェクト構造)</a>で、Urwidの基本オブジェクト構造を、<strong>概念図</strong>にしてみました。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その３Object).jpg" style="margin-left:20px;margin-bottom:10px;width:600px;">  
+<p>この図にありますように、Urwidにおいて中心にあるオブジェクトは、<strong>MainLoop</strong>であり、画面を構成する<strong>Widget</strong>は、すべてこのMainLoopに紐付けられており、Urwidで複数画面連携するには、この<strong>MainLoopオブジェクトを共有する</strong>必要があります。</p>
+<p>すなわち、ListクラスからDetailクラスに画面遷移する場合は、Listクラスで生成されたMainLoopオブジェクトを、Detailクラスに伝達する必要があるわけです。スクリプトの起動形態を、下記に2つに分けて考えるとよいでしょう。</p>
+<h4 id="1初期起動の場合">(1)　初期起動の場合</h4>
+<p>MainLoopオブジェクトは、まだ存在しない状態（Pythonでいえば<strong>None</strong>）ですので、MainLoopオブジェクトの生成から開始します。</p>
+<h4 id="2他のクラスから起動された場合">(2)　他のクラスから起動された場合</h4>
+<p>伝達されたMainLoopオブジェクトを再利用し、画面生成処理(<strong>doFormat</strong>メソッド)で生成された<strong>Container Widget</strong>をMainLoopの<strong>widget</strong>プロパティに設定、新たな画面を表示します。</p>
+<p>そこで、各クラスを始動する<strong>runメソッド</strong>を、この2つに合うよう拡張してみましょう。<br>
+<strong>MainLoopオブジェクトを引数に設定</strong>し、その内容によってロジックを分割します。</p>
+<pre><code>    def run(self, main_loop=None):  
+        if main_loop != None:  
+            self.main_loop = main_loop  
+            self.main_loop.unhandled_input = self.unhandled_keypress  
+            self.main_loop.widget = self.doformat()  
+        else:  
+            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+            self.main_loop.run()  
+</code></pre><p>ちなみに、他のクラスを起動するコードは下記となります。この例では、ListクラスからDetailクラスを呼び出しています。</p>
+<pre><code>    detail.Detail().run(self.main_loop)  
+  
+</code></pre><hr>
+<h3 id="抽象クラスapplicationの作成">抽象クラス(application)の作成</h3>
+<p>新しい画面クラスを作成する前に、これらの親クラスを定義しておきます。画面が複数になった場合、共通するメソッドが出てきますから、これらを先に抽象クラスとしてまとめておいたほうが効率的だからです。<br>
+ここでは、親クラス名を<strong>Application</strong>クラスとします。先に作成した<strong>List</strong>クラスや、これから定義する<strong>Detail</strong>クラスは、Applicationクラスを継承する形となります。先に説明した<strong>run</strong>メソッドなど、共通化できるものはこちらにまとめてしまいましょう。<br>
+下記にコードを示します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# application.py  
+#  
+import urwid  
+from mywidget import my_palette  
+  
+class Application:  
+    main_loop = None  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+    def get_cols_rows(self):  
+        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
+        return cols, rows-2  
+    def unhandled_keypress(self, k):  
+        return True  
+    def doformat(self):  
+        return urwid.widget  
+    def display(self):  
+        self.main_loop.widget = self.doformat()  
+    def start(self, next_class):  
+        next_class().run(self.main_loop)  
+    def run(self, main_loop=None):  
+        if main_loop != None:  
+            self.main_loop = main_loop  
+            self.main_loop.unhandled_input = self.unhandled_keypress  
+            self.display()  
+        else:  
+            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+            self.main_loop.run()  
+</code></pre><hr>
+<h3 id="詳細画面detailの作成">詳細画面（Detail)の作成</h3>
+<p>さて、画面遷移を行う手法が明確になったところで、実際の画面を作成していきましょう。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その７image).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>上の画面イメージを作成していきます。新たに使用するWidgetは、表示フィールド、入力フィールドと、それを格納するコンテナです。</p>
+<h4 id="1表示フィールド">(1)　表示フィールド</h4>
+<p>ListBoxに使用しているTextは、選択可能にするため、Textのサブクラスを定義していますが、Detail画面は単純な表示だけですので、通常の<a href="http://urwid.org/reference/widget.html#text" target="_blank">Text</a>クラスを使用します。<br>
+ここでは、<strong>AttraMap</strong>で属性を付加したオブジェクトを生成する<strong>create_mylabel</strong>というメソッドを、<strong>mywidget.py</strong>に追加して使用します。</p>
+<pre><code>def create_mylabel(label):  
+    return urwid.AttrMap(urwid.Text(label, align=&quot;left&quot;), &quot;label&quot;)  
+</code></pre><h4 id="2入力フィールド">（2)　入力フィールド</h4>
+<p>入力用のフィールドは、<a href="http://urwid.org/reference/widget.html#edit" target="_blank">Edit</a>というWidgetで定義します。このWidgetにfocusが移動した場合、文字入力はもちろんですが、矢印キーでの移動、Delキー、Insキーでの文字の削除、追加などが標準でできるようになっています。また、オプションで複数行入力もサポートされています。<br>
+これも、属性を付加したオブジェクトを定義しておきます。</p>
+<pre><code>def create_myedit(edit_text, align='left', multiline=False):  
+    return urwid.AttrMap(urwid.Edit(edit_text=edit_text, align=align, multiline=multiline), 'edit', 'edit_focus')  
+</code></pre><h4 id="3コンテナ">(3)　コンテナ</h4>
+<p>垂直方向にWidgetを配置するコンテナには、<a href="http://urwid.org/reference/widget.html#pile" target="_blank">Pile</a>を使用します。パラメータとして、オブジェクトのリストを渡します。</p>
+<p>入力画面の構成は、下記のようなコードになります。</p>
+<pre><code>        self.edit_field01 = create_myedit(&quot;入力データ その1&quot;)  
+        self.edit_field02 = create_myedit(&quot;入力データ その2&quot;)  
+        self.edit_note = create_myedit(&quot;改行を含む入力データ\n2行目のデータ\n3行目のデータ&quot;,multiline=True)  
+        pile = [  
+            create_mylabel(&quot;Field01&quot;),  
+            self.edit_field01,  
+            create_mylabel(&quot;Field02&quot;),  
+            self.edit_field02,  
+            create_mylabel(&quot;Note&quot;),  
+            self.edit_note  
+        ]  
+        body = urwid.Filler(urwid.Pile(pile), valign='top')  
+        #body = urwid.Pile(pile)  
+</code></pre><p>注意すべき点は、Pileオブジェクトをそのままセットする（上のコメントになっている<strong>body=の部分</strong>）と、下記のようなエラーになってしまいます。</p>
+<pre><code>    (maxcol,) = size  
+ValueError: too many values to unpack (expected 1)  
+</code></pre><p>これは、<a href="https://github.com/urwid/urwid/wiki/FAQ" target="_blank">FAQ</a>にもありますように、</p>
+<blockquote>
+<p>If you want to use a flow widget where a box widget is expected you need to first wrap it with a widget like Filler that will take care of filling the empty space above or below what the flow widget displays.</p>
+</blockquote>
+<p>ということなのです。<br>
+Fillerでラップし、スペースを調整しないといけません。これ、最初はわからないんだよね（笑）。</p>
+<hr>
+<h3 id="スクリプト">スクリプト</h3>
+<p>5ファイルになります。<strong>listwalker.py</strong>は変更がないので、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/">前回</a>のものをそのまま使ってください。</p>
+<h4 id="1mywidgetpy">(1)　mywidget.py</h4>
+<p>新しく使用するWidgetのメソッド、<strong>create_myedit</strong>、<strong>create_mylabel</strong>と、その属性を<strong>my_palette</strong>に追加しています。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# mywidget.py  
+#  
+import urwid  
+import time  
+  
+def get_items():  
+    items = []  
+    for i in range(100):  
+        items.append(&quot;テストデータ&quot;+str(i))  
+    return items  
+my_palette = [  
+    ('body', 'default', 'default'),  
+    ('foot', 'white', 'dark blue'),  
+    ('button', 'yellow', 'default'),  
+    ('button_focus', 'black', 'yellow'),  
+    ('edit', 'white', 'black'),  
+    ('edit_focus', 'yellow', 'black'),  
+    ('listwalker', 'black', 'light cyan'),  
+    ('label', 'light cyan,bold', 'default')  
+]  
+def create_mybutton(label, callback, user_data=None):  
+    button = urwid.Button(label, on_press=callback)  
+    return urwid.AttrMap(button, 'button', 'button_focus')  
+def create_myedit(edit_text, align='left', multiline=False):  
+    return urwid.AttrMap(urwid.Edit(edit_text=edit_text, align=align, multiline=multiline), 'edit', 'edit_focus')  
+def create_mylabel(label):  
+    return urwid.AttrMap(urwid.Text(label, align=&quot;left&quot;), &quot;label&quot;)  
+class MyText(urwid.Text):  
+    def selectable(self):  
+        return True  
+    def keypress(self, size, key):  
+        if key in ('j', 'J'):  
+            return &quot;down&quot;  
+        elif key in ('k', 'K'):  
+            return &quot;up&quot;  
+        return key  
+class MyFrame(urwid.Frame):  
+    last_time_clicked = None  
+    double_click = None  
+    def mouse_event(self, size, event, button, col, row, focus):  
+        if event == 'mouse press':  
+            now = time.time()  
+            if (self.last_time_clicked and (now - self.last_time_clicked &lt; 0.5)):  
+                if self.double_click:  
+                    self.double_click()  
+            else:  
+                urwid.Frame.mouse_event(self, size, event, button, col, row, focus)  
+            self.last_time_clicked = now  
+  
+</code></pre><h4 id="2detailpy">(2)　detail.py</h4>
+<p>今回新たに追加した詳細画面クラスです。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# detail.py  
+#  
+import urwid  
+  
+import application  
+import list  
+from mywidget import *  
+  
+class Detail(application.Application):  
+    def __init__(self):  
+        pass  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('r', 'R'):  
+            self.return_main()  
+        else:  
+            return  
+        return True  
+    def doformat(self):  
+        btn_return = create_mybutton(&quot;R&quot;, self.return_main)  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_return, btn_q], 6, 1, 1, 'left')  
+  
+        self.edit_field01 = create_myedit(&quot;入力データ その1&quot;)  
+        self.edit_field02 = create_myedit(&quot;入力データ その2&quot;)  
+        self.edit_note = create_myedit(&quot;改行を含む入力データ\n2行目のデータ\n3行目のデータ&quot;,multiline=True)  
+        pile = [  
+            create_mylabel(&quot;Field01&quot;),  
+            self.edit_field01,  
+            create_mylabel(&quot;Field02&quot;),  
+            self.edit_field02,  
+            create_mylabel(&quot;Note&quot;),  
+            self.edit_note  
+        ]  
+        body = urwid.Filler(urwid.Pile(pile), valign='top')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = MyFrame(urwid.AttrWrap(body, 'body'), header=header, footer=footer)  
+        frame.focus_position = 'header'  
+        return frame  
+    def return_main(self, ignored=None):  
+        self.start(list.List)  
+def main():  
+    Detail().run()  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><h4 id="3listpy">(3)　list.py</h4>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# list.py  
+#  
+import urwid  
+  
+import application  
+import detail  
+from listwalker import ListWalker  
+from mywidget import *  
+  
+class List(application.Application):  
+    from_rec = 1  
+    def __init__(self):  
+        pass  
+    def next_page(self, ignored=None):  
+        if not self.last_page():  
+            self.from_rec += self.rows  
+            self.main_loop.widget = self.doformat()  
+    def prior_page(self, ignored=None):  
+        if self.from_rec &gt; self.rows:  
+            self.from_rec -= self.rows  
+            self.main_loop.widget = self.doformat()  
+    def first_page(self):  
+        return self.from_rec == 1  
+    def last_page(self):  
+        return self.is_last  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('n', 'N'):  
+            self.next_page()  
+        elif k in ('p', 'P'):  
+            self.prior_page()  
+        elif k == 'enter':  
+            self.start_detail()  
+        else:  
+            return  
+        return True  
+    def doformat(self):  
+        self.cols, self.rows = self.get_cols_rows()  
+        walker = ListWalker(get_items(), self.from_rec, self.rows)  
+        self.is_last = walker.last_page()  
+        self.listbox = urwid.ListBox(walker)  
+  
+        if self.last_page():  
+            btn_next = urwid.Divider()  
+        else:  
+            btn_next = create_mybutton(&quot;N&quot;, self.next_page)  
+        if self.first_page():  
+            btn_prior = urwid.Divider()  
+        else:  
+            btn_prior = create_mybutton(&quot;P&quot;, self.prior_page)  
+  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_next, btn_prior, btn_q], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = MyFrame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame.double_click = self.start_detail  
+        frame.focus_position = 'header'  
+        return frame  
+    def start_detail(self):  
+        self.start(detail.Detail)  
+def main():  
+    List().run()  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><hr>
+<h3 id="動作確認">動作確認</h3>
+<p>では、実際に動かしてみましょう。<strong>application.py</strong>、<strong>mywidget.py</strong>、<strong>listwalker.py</strong>、<strong>list.py</strong>、<strong>Detail.py</strong>の5ファイルを、同一ディレクトリに入れておきます。</p>
+<pre><code>python3 list.py  
+</code></pre><p>先に示した画面が表示されたでしょうか。<br>
+データを<strong>Enter</strong>キーで選択、または<strong>マウスでダブルクリック</strong>すると、<strong>Detail</strong>オブジェクトの画面に遷移します。また、Detail画面からは、＜R＞ボタンで<strong>List</strong>画面に戻ることが出来ます。</p>
+<p>しかし、今回の例は単純に画面が遷移しただけで、データは全く引き継がれていませんね。<br>
+実際のアプリケーションでは、一覧画面（List)で選択されたデータの詳細（Detail)が次の画面で表示されねばなりません。次回は、このあたりに対応してみましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section07" target="_blank">Section07</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その８　画面間データ連携について )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

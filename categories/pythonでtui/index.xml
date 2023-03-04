@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PythonでTUI on TORIO&#39;s blog</title>
+    <link>https://rsn604.github.io/categories/python%E3%81%A7tui/</link>
+    <description>Recent content in PythonでTUI on TORIO&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 28 Oct 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rsn604.github.io/categories/python%E3%81%A7tui/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/</guid>
+      <description>ListDBPのデータベースにMySQLを使用してみる。 今回は、まず「Pythonとデータベース」について説明したうえで、「ListDBPに</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-andorid%E3%81%A7listdbp%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</link>
+      <pubDate>Sun, 24 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-andorid%E3%81%A7listdbp%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</guid>
+      <description>ここまで説明してきたPython Urwidを使用したTUIアプリケーション”ListDBP”の動作環境は、基本的にLinuxを想定していまし</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションの作成 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/</link>
+      <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/</guid>
+      <description>TUI部品とLiSTDBを連動させ、TUIアプリケーションを完成させよう。 PythonでTUIアプリを作ろう(その１〜その９)で説明したPy</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/</guid>
+      <description>作成したListDB用CSVファイルで、データベースを作成します。 CSVデータのロード CSVファイルをデータベースにロードするには、「Lis</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/</link>
+      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/</guid>
+      <description>今回は、前回説明したListDBに使用するデータを作成していきます。 スクレイピングによるデータ収集 いろいろ考えてみたのですが、このBlogに</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その２　ListDBの構造について )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</link>
+      <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</guid>
+      <description>今回は、アプリケーションの中核となるListDBの構造について説明します。 [1] ListDBの概要 まずは、最初に概念図を示しましょう。 見ていただ</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう 第二部入魂編 ( その１　個人データの管理を考える )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/</link>
+      <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/</guid>
+      <description>再開にあたって 先に9回に渡って、Python Urwidを使用したTUI(Terminal base User Interface)アプリケーション開発について</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/</link>
+      <pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/</guid>
+      <description>UrwidのOverlayをマスターしよう。 アプリケーション画面設計を行う際には、データを選択したり、条件入力を行う機能が不可欠です。一般に</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その８　画面間データ連携について )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</guid>
+      <description>データ連携用の共通オブジェクトを設定する。 今回は、前回定義したListクラスとDetailクラス間に、データ連携機能を組み込んでいきます。と</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</guid>
+      <description>Python Urwidで、画面の遷移をサポートしてみよう。 今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。 これまでの画面がデータを</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/</link>
+      <pubDate>Sat, 12 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/</guid>
+      <description>ページング処理を追加しよう。 今回は、前回のスクリプトにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/</guid>
+      <description>UrwidのListBoxオブジェクトを使ってみよう。 「画面に複数行を一覧表形式で表示する」のは、アプリケーションでは標準的な仕組みですが、</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その４　Buttonを配置する )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/</link>
+      <pubDate>Thu, 03 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/</guid>
+      <description>UrwidのButtonオブジェクトとイベントを理解しよう。 それでは、最初のWidgetとしてButtonを使ってみましょう。ユーザーインタ</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/</guid>
+      <description>UrwidのMainLoop、Widget、Eventを理解しよう。 Urwidの基本機能を理解するには、まず、UrwidのWebサイトにアク</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/</guid>
+      <description>日本語（ユニコード）対応で評価しよう。 Pythonの公式ドキュメントでは、「ターミナルアプリケーションの意義」について、下記のように指摘して</description>
+    </item>
+    
+    <item>
+      <title>PythonでTUIアプリを作ろう ( その１　TUIアプリとは )</title>
+      <link>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/</guid>
+      <description>TUIアプリの活用範囲に注目しよう。 一般に、コンピュータシステムにおける「ユーザーインタフェース（UI）」といえば、WindowsやOS Xで</description>
+    </item>
+    
+  </channel>
+</rss>

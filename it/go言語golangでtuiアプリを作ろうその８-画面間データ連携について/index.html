@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について )" />
+<meta property="og:description" content="tviewで、画面の遷移をサポートしてみよう。 今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。 これまでの画面がデータを一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+<meta property="article:published_time" content="2022-05-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-11T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について )"/>
+<meta name="twitter:description" content="tviewで、画面の遷移をサポートしてみよう。 今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。 これまでの画面がデータを一"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-05-11T00:00:00Z">May 11, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewで画面の遷移をサポートしてみよう">tviewで、画面の遷移をサポートしてみよう。</h2>
+<br clear="left">
+<p>今回は、新たな画面を追加して画面間の遷移処理を組み込んでみましょう。<br>
+これまでの画面がデータを一覧表示(<strong>List</strong>)するものでしたから、次の画面は、選択された１件分を表示する詳細画面(<strong>Detail</strong>)となります。</p>
+<hr>
+<h3 id="1画面遷移を行うには">[1]　画面遷移を行うには</h3>
+<p><a href="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/">Go言語(golang)でTUIアプリを作ろう(その３　tviewの基本構造)</a>で、tviewの基本オブジェクト構造を、<strong>概念図</strong>にしてみました。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその３(03event).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>この図にありますように、<strong>tview</strong>の中心にあるオブジェクトは、<strong>Application</strong>であり、画面を構成する<strong>Primitive</strong>は、すべてこの<strong>Application</strong>に紐付けられています。したがって、<strong>tview</strong>で複数画面を連携するには、この<strong>Applicationオブジェクトを共有する</strong>必要があります。</p>
+<p>アプリケーションの起動形態を、下記の2つに分けて考えてみるとよいでしょう。</p>
+<h4 id="1初期起動の場合">(1)　初期起動の場合</h4>
+<p><strong>Application</strong>オブジェクトは、まだ存在しない状態（<strong>nil</strong>）ですので、<strong>Application</strong>オブジェクトの生成から開始します。</p>
+<h4 id="2他のクラスから起動された場合">(2)　他のクラスから起動された場合</h4>
+<ul>
+<li>例えば、<strong>List</strong>から<strong>Detail</strong>に画面遷移する場合は、<strong>List</strong>クラスで生成された<strong>Application</strong>オブジェクトを、<strong>Detail</strong>に引き渡します。</li>
+<li><strong>Detail</strong>では、画面作成処理で生成した<strong>Container</strong>をApplicationの<strong>SetRoot</strong>メソッドにセットして、新たな画面を表示します。</li>
+</ul>
+<p><strong>Application</strong>オブジェクトを、上記の手順で再利用することになるわけです。このあたりのロジックについては、すでに<a href="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/">前回</a>示していますが、下記のようなコードになります。</p>
+<pre><code>func (self *MyApplication) run(app *tview.Application, primitive tview.Primitive) {  
+	if app == nil {  
+		self.app = tview.NewApplication()  
+		if err := self.app.SetRoot(primitive, true).EnableMouse(true).Run(); err != nil {  
+			panic(err)  
+		}  
+	} else {  
+		self.app = app  
+		self.display(primitive)  
+	}  
+}  
+</code></pre><p>他の画面を起動するコードは下記となります。この例では、<strong>List</strong>画面から<strong>Detail</strong>画面を呼び出しています。</p>
+<pre><code>	NewDetail().run(self.app, common)  
+  
+</code></pre><hr>
+<h3 id="2詳細画面detailの作成">[2]　詳細画面（Detail)の作成</h3>
+<p>さて、画面遷移を行う手法が明確になったところで、実際の画面を作成していきましょう。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその８(00Detail).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>上の画面イメージを作成していきます。新たに使用する<strong>Primitive</strong>は、表示フィールド、入力フィールド、それを格納するコンテナです。</p>
+<h4 id="1表示フィールド">(1)　表示フィールド</h4>
+<p><strong>tview</strong>における表示フィールドは、<a href="https://pkg.go.dev/github.com/rivo/tview#TextView" target="_blank">TextView</a>で定義します。NewTextView()メソッドでインスタンスを生成し、Setterで適当な属性を定義していきます。<br>
+今回は、下記のような共通的な表示フィールドを<strong>myLabel</strong>として設定しています。</p>
+<pre><code>func myLabel(label string) *tview.TextView {  
+	return tview.NewTextView().SetTextColor(tcell.ColorAqua).SetText(label).SetTextAlign(tview.AlignLeft)  
+}  
+</code></pre><h4 id="2入力フィールド">（2)　入力フィールド</h4>
+<p>入力用のフィールドは、<a href="https://pkg.go.dev/github.com/rivo/tview#InputField" target="_blank">InputField</a>で定義します。InputFieldにfocusが移動した場合、文字入力はもちろんですが、矢印キーでの移動、Delキー、Insキーでの文字の削除、追加などが標準でできるようになっています。これも、属性を付加した<strong>myEdit</strong>を定義しておきます。</p>
+<pre><code>func myEdit(text string, rows int) *tview.InputField {  
+	return tview.NewInputField().SetFieldWidth(rows).SetText(text).SetFieldTextColor(tcell.ColorWhite).SetFieldBackgroundColor(tcell.ColorBlack).SetFieldStyle(tcell.StyleDefault.Underline(true))  
+}  
+</code></pre><p><a href="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/">先にも</a>少し触れましたが、<strong>tview</strong>では、複数行入力がサポートされていません。</p>
+<h4 id="3コンテナ">(3)　コンテナ</h4>
+<p><strong>Primitive</strong>を配置するコンテナには、<a href="https://pkg.go.dev/github.com/rivo/tview#Flex" target="_blank">Flex</a>と、<a href="https://pkg.go.dev/github.com/rivo/tview#Grid" target="_blank">Grid</a>がありますが、今回は<strong>Flex</strong>をを使用します。<br>
+採用理由は、一方向に配置する形式のほうがわかりやすいことと、<strong>Flex</strong>には、<strong>GetItem</strong>メソッドによって、内部に格納されている<strong>Primitive</strong>にアクセスできるからです。（なぜ、<strong>Grid</strong>にはこのメソッドがないのでしょう。どうもこのあたりに、<strong>tview</strong>の詰めの甘さを感じます。）</p>
+<p><strong>Detail</strong>部の入力画面は、下記のようなコードになります。</p>
+<pre><code>func (self *Detail) detailBody(pages *tview.Pages, header *tview.Flex, footer *tview.Flex, common *Common) *tview.Flex {  
+	var focusPrimitives []tview.Primitive  
+	body := tview.NewFlex().SetDirection(tview.FlexRow)  
+	btnCategory := myButton(common.category)  
+	editField01 := myEdit(&quot;フィールド01&quot;, common.cols)  
+	editField02 := myEdit(&quot;フィールド02&quot;, common.cols)  
+	focusPrimitives = append(focusPrimitives, btnCategory)  
+	focusPrimitives = append(focusPrimitives, editField01)  
+	focusPrimitives = append(focusPrimitives, editField02)  
+	editNote := tview.NewTextView().SetText(&quot;FirstLine\nNextLine&quot;)  
+  
+	body.AddItem(myLabel(&quot;ID&quot;), 1, 0, false)  
+	body.AddItem(myLabel(fmt.Sprintf(&quot;%d&quot;, common.selectedItem-1)), 1, 0, false)  
+  
+	body.AddItem(myLabel(&quot;Category&quot;), 1, 0, false)  
+	body.AddItem(btnCategory, 1, 0, false)  
+	body.AddItem(myLabel(&quot;Field01&quot;), 1, 0, false)  
+	body.AddItem(editField01, 1, 0, false)  
+	body.AddItem(myLabel(&quot;Field02&quot;), 1, 0, false)  
+	body.AddItem(editField02, 1, 0, false)  
+	body.AddItem(myLabel(&quot;Note&quot;), 1, 0, false)  
+	body.AddItem(editNote, 0, 1, true)  
+  
+	body.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+  
+		case tcell.KeyTab:  
+			mySetFocus(self.app, focusPrimitives, false)  
+			return nil  
+		case tcell.KeyBacktab:  
+			if btnCategory.HasFocus() {  
+				myFlexFocus(self.app, header, false)  
+				return nil  
+			} else {  
+				mySetFocus(self.app, focusPrimitives, true)  
+				return nil  
+			}  
+		case tcell.KeyDown:  
+			mySetFocus(self.app, focusPrimitives, false)  
+			return nil  
+		case tcell.KeyUp:  
+			if btnCategory.HasFocus() {  
+				myFlexFocus(self.app, header, false)  
+				return nil  
+			} else {  
+				mySetFocus(self.app, focusPrimitives, true)  
+				return nil  
+			}  
+		}  
+		return event  
+	})  
+  
+	// ------------------------------  
+	// InputCapture on Header  
+	// ------------------------------  
+	header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRight, tcell.KeyTab:  
+			myFlexFocus(self.app, header, false)  
+			return nil  
+		case tcell.KeyLeft, tcell.KeyBacktab:  
+			myFlexFocus(self.app, header, true)  
+			return nil  
+		case tcell.KeyDown:  
+			mySetFocus(self.app, focusPrimitives, false)  
+			return nil  
+		case tcell.KeyRune:  
+			switch event.Rune() {  
+			case 'q', 'Q':  
+				self.exit()  
+			case 'r', 'R':  
+				NewMainList().run(self.app, common)  
+			}  
+		}  
+		return event  
+	})  
+  
+	return body  
+}  
+</code></pre><p><strong>Detail</strong>部から、<strong>List</strong>部に戻る部分は、下記のコードになります。</p>
+<pre><code>	btnR := myButton(&quot;&lt;R&gt;&quot;).SetSelectedFunc(func() {  
+		NewMainList().run(self.app, common)  
+	})  
+  
+</code></pre><p>詳細はソースコードを見てください。<strong>tview</strong>では、<strong>Focus</strong>移動を自前で書かないといけないので、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">Python Urwid</a>に比べると冗長さが目立ちますね。</p>
+<hr>
+<h3 id="3プログラムの実行">[3]　プログラムの実行</h3>
+<p>下記のコマンドを入力します。</p>
+<pre><code>go run cmd/main.go  
+</code></pre><p><strong>List</strong>で選択されたデータが、<strong>Detail</strong>に渡っていることがわかります。</p>
+<p>次回は、<strong>tview</strong>の標準機能ではサポートされていない<strong>Dialog</strong>を実装してみましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section08" target="_blank">Section08</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

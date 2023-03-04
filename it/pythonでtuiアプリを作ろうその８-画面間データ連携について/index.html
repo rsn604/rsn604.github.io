@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その８　画面間データ連携について ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その８　画面間データ連携について )" />
+<meta property="og:description" content="データ連携用の共通オブジェクトを設定する。 今回は、前回定義したListクラスとDetailクラス間に、データ連携機能を組み込んでいきます。と" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" />
+<meta property="article:published_time" content="2021-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-24T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その８　画面間データ連携について )"/>
+<meta name="twitter:description" content="データ連携用の共通オブジェクトを設定する。 今回は、前回定義したListクラスとDetailクラス間に、データ連携機能を組み込んでいきます。と"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その８　画面間データ連携について )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-24T00:00:00Z">June 24, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="データ連携用の共通オブジェクトを設定する">データ連携用の共通オブジェクトを設定する。</h2>
+<br clear="left">
+<p>今回は、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">前回</a>定義した<strong>List</strong>クラスと<strong>Detail</strong>クラス間に、データ連携機能を組み込んでいきます。と言っても難しい話ではなく、オブジェクトを定義して起動時に引き渡すだけのことです。</p>
+<p>今回想定している動きは、下記のようになります。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その８-01).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p><strong>List</strong>でデータを選択すると、該当のデータが<strong>Detail</strong>に表示される。それだけですね。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その８-02).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<hr>
+<h3 id="事前処理">事前処理</h3>
+<p>メインロジックを変更していく前に、必要な事前処理を行います。</p>
+<h4 id="1データの準備">（1）　データの準備</h4>
+<p>前準備として、連携ができるようデータアイテムを調整しておきます。<strong>mywidget.py</strong>内の<strong>get_item</strong>メソッドを下記のように変更します。フィールド項目を3つに増やし、最初のフィールドで個別データを識別できるようにしておきます。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# mywidget.py  
+#  
+import urwid  
+import time  
+  
+def get_items(name):  
+    items = []  
+    for i in range(100):  
+        item = []  
+        item.append(name+str(i))  
+        item.append(name+str(i)+&quot; フィールド02&quot;)  
+        item.append(&quot;改行を含む入力データ\n2行目のデータ\n3行目のデータ&quot;)  
+        items.append(item)  
+    return items  
+  
+</code></pre><h4 id="2listwalkerの変更">（2）　ListWalkerの変更</h4>
+<p>フィールドが3つにふえたので、リスト表示を行っている<strong>listwalker.py</strong>も最初のフィールドを表示するよう変更します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# listwalker.py  
+#  
+import urwid  
+from mywidget import MyText  
+  
+class ListWalker(urwid.ListWalker):  
+    def __init__(self, items, from_rec, rows):  
+        self.focus = 0  
+        self.create_page(items, from_rec, rows)  
+  
+    def create_page(self,items, from_rec, rows):  
+        self.lines = []  
+        self.is_last = False  
+        for i in range(rows):  
+            if len(items) &lt; from_rec + i:  
+                self.is_last = True  
+                break  
+            #text = MyText(items[from_rec+i-1])  
+            text = MyText(items[from_rec+i-1][0])  
+            self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
+</code></pre><p>これで、データの準備は完了です。</p>
+<hr>
+<h3 id="共通クラスの定義">共通クラスの定義</h3>
+<p>次に、新しいクラスを定義します。<br>
+<strong>List</strong>クラスと<strong>Detail</strong>クラス間でやり取りをされる共通データですから、<strong>Common</strong>クラスと言う名称にしましょう。<br>
+とりあえずは、開始レコード（<strong>from_rec</strong>)と選択レコード（<strong>selected_item</strong>）を項目として入れておきます。<strong>table_name</strong>は、後の拡張用なのでとりあえず無視してください。<br>
+下記のコードを、<strong>common.py</strong>として用意します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# common.py  
+#  
+class Common:  
+    table_name = &quot;テータ&quot;  
+    from_rec = 1  
+    selected_item = 1  
+</code></pre><hr>
+<h3 id="既存クラスの変更">既存クラスの変更</h3>
+<p>ここからは、既存のクラスに変更を加えていきます。やることは単純、共通オブジェクト<strong>Common</strong>を受け取れるようにするだけです。順に見ていきましょう。</p>
+<hr>
+<h4 id="1applicationクラス">（1）　Applicationクラス</h4>
+<p>クラス間を連携する<strong>start</strong>メソッドは、親クラスである<strong>Application</strong>クラス内に定義されているので、ここに共通オブジェクト<strong>Common</strong>をパラメータとして追加します。</p>
+<pre><code>    def start(self, next_class, common=None):  
+        next_class(common).run(self.main_loop)  
+</code></pre><p>こんなコードに変更します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# application.py  
+#  
+import urwid  
+from mywidget import my_palette  
+  
+class Application:  
+    main_loop = None  
+  
+    '''  
+    @classmethod  
+    def get_instance(cls, common=None):  
+        if not hasattr(cls, &quot;_instance&quot;):  
+            cls._instance = cls(common)  
+        else:  
+            cls._instance.common = common  
+        return cls._instance  
+    '''  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+  
+    def get_cols_rows(self):  
+        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
+        return cols, rows-2  
+  
+    def unhandled_keypress(self, k):  
+        return True  
+  
+    def doformat(self):  
+        return urwid.widget  
+  
+    def display(self):  
+        self.main_loop.widget = self.doformat()  
+  
+    def start(self, next_class, common=None):  
+        next_class(common).run(self.main_loop)  
+        #next_class.get_instance(common).run(self.main_loop)  
+  
+    def run(self, main_loop=None):  
+        if main_loop != None:  
+            self.main_loop = main_loop  
+            self.main_loop.unhandled_input = self.unhandled_keypress  
+            self.display()  
+        else:  
+            self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+            self.main_loop.run()  
+</code></pre><hr>
+<h4 id="2listクラス">（2）　Listクラス</h4>
+<p>各画面クラスでは、<strong>コンストラクタ</strong>にて共通オブジェクト<strong>Common</strong>を受け取ることになりますので、そのコードを追加します。</p>
+<pre><code>class List(application.Application):  
+    def __init__(self, common):  
+        self.common = common  
+</code></pre><p>また、<strong>List</strong>から、<strong>Detail</strong>を呼び出す部分は、選択されたレコード番号を引き渡すロジックを追加しておきましょう。</p>
+<pre><code>    def start_detail(self):  
+        self.common.selected_item = self.listbox.focus_position + self.common.from_rec  
+        self.start(detail.Detail, self.common)  
+</code></pre><p>コード全体を示します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# list.py  
+#  
+import urwid  
+  
+import application  
+import detail  
+from listwalker import ListWalker  
+from mywidget import *  
+from common import Common  
+  
+class List(application.Application):  
+    def __init__(self, common):  
+        self.common = common  
+  
+    def next_page(self, ignored=None):  
+        if not self.last_page():  
+            self.common.from_rec += self.rows  
+            self.main_loop.widget = self.doformat()  
+  
+    def prior_page(self, ignored=None):  
+        if self.common.from_rec &gt; self.rows:  
+            self.common.from_rec -= self.rows  
+            self.main_loop.widget = self.doformat()  
+  
+    def first_page(self):  
+        return self.common.from_rec == 1  
+  
+    def last_page(self):  
+        return self.is_last  
+  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('n', 'N'):  
+            self.next_page()  
+        elif k in ('p', 'P'):  
+            self.prior_page()  
+        elif k == 'enter':  
+            self.start_detail()  
+        else:  
+            return  
+        return True  
+    def get_start_record(self, item):  
+        if self.common.from_rec &gt;= self.common.selected_item:  
+            return self.common.from_rec  
+        if int(item/self.rows)*self.rows == item:  
+            return (int(item/self.rows) - 1)*self.rows+1  
+        else:  
+            return (int(item/self.rows))*self.rows+1  
+    def doformat(self):  
+        self.cols, self.rows = self.get_cols_rows()  
+        self.common.from_rec =  self.get_start_record(self.common.selected_item)  
+  
+        walker = ListWalker(get_items(self.common.table_name), self.common.from_rec, self.rows)  
+        self.is_last = walker.last_page()  
+        self.listbox = urwid.ListBox(walker)  
+  
+        if self.last_page():  
+            btn_next = urwid.Divider()  
+        else:  
+            btn_next = create_mybutton(&quot;N&quot;, self.next_page)  
+        if self.first_page():  
+            btn_prior = urwid.Divider()  
+        else:  
+            btn_prior = create_mybutton(&quot;P&quot;, self.prior_page)  
+  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_next, btn_prior, btn_q], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = MyFrame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame.double_click = self.start_detail  
+  
+        if self.common.from_rec &lt;= self.common.selected_item &lt; self.common.from_rec+self.rows:  
+            self.listbox.focus_position = self.common.selected_item - self.common.from_rec  
+            self.common.selected_item = 0  
+            frame.focus_position = 'body'  
+        else:  
+            frame.focus_position = 'header'  
+        return frame  
+  
+    def start_detail(self):  
+        self.common.selected_item = self.listbox.focus_position + self.common.from_rec  
+        self.start(detail.Detail, self.common)  
+  
+def main():  
+    common = Common()  
+    List(common).run()  
+  
+if __name__==&quot;__main__&quot;:  
+    main()  
+  
+</code></pre><hr>
+<h4 id="3detailクラス">（3）　Detailクラス</h4>
+<p><strong>Detail</strong>から、<strong>List</strong>に戻る場合は、特に何もしません。共通オブジェクト<strong>Common</strong>をを、そのまま返すだけです。</p>
+<pre><code>    def return_main(self, ignored=None):  
+        self.start(list.List, self.common)  
+</code></pre><p>コード全体を示します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# list.py  
+#  
+import urwid  
+  
+import application  
+import list  
+from mywidget import *  
+from common import Common  
+  
+class Detail(application.Application):  
+    def __init__(self, common):  
+        self.common = common  
+        self.is_last = False  
+  
+    def next_page(self, ignored=None):  
+        if self.is_last == False:  
+            self.common.selected_item += 1  
+            self.display()  
+  
+    def prior_page(self, ignored=None):  
+        if self.common.selected_item &gt; 1:  
+            self.common.selected_item -= 1  
+            self.display()  
+  
+    def first_page(self):  
+        return self.common.selected_item == 1  
+  
+    def last_page(self):  
+        return self.is_last  
+  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('r', 'R'):  
+            self.return_main()  
+        elif k in ('n', 'N'):  
+            self.next_page()  
+        elif k in ('p', 'P'):  
+            self.prior_page()  
+        else:  
+            return  
+        return True  
+  
+    def doformat(self, from_rec=1):  
+        items = get_items(self.common.table_name)  
+        self.edit_field01 = create_myedit(items[self.common.selected_item-1][0])  
+        self.edit_field02 = create_myedit(items[self.common.selected_item-1][1])  
+        self.edit_note = create_myedit(items[self.common.selected_item-1][2],multiline=True)  
+        pile = [  
+            create_mylabel(&quot;Field01&quot;),  
+            self.edit_field01,  
+            create_mylabel(&quot;Field02&quot;),  
+            self.edit_field02,  
+            create_mylabel(&quot;Note&quot;),  
+            self.edit_note  
+        ]  
+        body = urwid.Filler(urwid.Pile(pile), valign='top')  
+        if self.common.selected_item == len(items):  
+            self.is_last = True  
+  
+        btn_return = create_mybutton(&quot;R&quot;, self.return_main)  
+        if self.last_page():  
+            btn_next = urwid.Divider()  
+        else:  
+            btn_next = create_mybutton(&quot;N&quot;, self.next_page)  
+        if self.first_page():  
+            btn_prior = urwid.Divider()  
+        else:  
+            btn_prior = create_mybutton(&quot;P&quot;, self.prior_page)  
+        btn_exit = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_return, btn_next, btn_prior, urwid.Divider(  
+), urwid.Divider(), btn_exit], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = MyFrame(urwid.AttrWrap(body, 'body'), header=header, footer=footer)  
+        frame.focus_position = 'header'  
+        return frame  
+  
+    def return_main(self, ignored=None):  
+        self.start(list.List, self.common)  
+  
+def main():  
+    common = Common()  
+    Detail(common).run()  
+  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><hr>
+<h3 id="動作確認">動作確認</h3>
+<p>では、実際に動かしてみましょう。<strong>application.py</strong>、<strong>mywidget.py</strong>、<strong>listwalker.py</strong>、<strong>list.py</strong>、<strong>Detail.py</strong>、<strong>common.py</strong>の6ファイルを、同一ディレクトリに入れておきます。</p>
+<pre><code>python3 list.py  
+</code></pre><p>先に示した画面が表示されたでしょうか。</p>
+<hr>
+<h3 id="クラスをsingletonに変更する">クラスをSingletonに変更する</h3>
+<p>最後に少し修正しておきます。<br>
+ここまでのスクリプトでは、<strong>List</strong>クラスと<strong>Detail</strong>クラスを行ったり来たりするたびに、新しいクラスが生成されてしまいます。これは資源の無駄使いなので、Singleton構造にして、1回限りの生成にしておきます。Singletonというのはデザインパターンの一つですので、詳細は適当なサイトを検索してみてください。</p>
+<p>下記の様に、<strong>get_instance</strong>メソッドを追加し、<strong>start</strong>メソッドを変更します。</p>
+<pre><code>class Application:  
+    main_loop = None  
+  
+    @classmethod  
+    def get_instance(cls, common=None):  
+        if not hasattr(cls, &quot;_instance&quot;):  
+            cls._instance = cls(common)  
+        else:  
+            cls._instance.common = common  
+        return cls._instance  
+  
+　　　　:  
+　　　　:  
+  
+    def start(self, next_class, common=None):  
+        #next_class(common).run(self.main_loop)  
+        next_class.get_instance(common).run(self.main_loop)  
+</code></pre><p>画面連携処理はこれで終了です。次回は、DialogBoxのようなWidgetを追加してみましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section08" target="_blank">Section08</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

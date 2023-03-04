@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )" />
+<meta property="og:description" content="rootで動く Mozc UT2 をソースからコンパイルしてみよう。 Mozcとは、Wikipediaによれば、 Google 日本語入力のオープンソース版である。これは2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/" />
+<meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-07T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )"/>
+<meta name="twitter:description" content="rootで動く Mozc UT2 をソースからコンパイルしてみよう。 Mozcとは、Wikipediaによれば、 Google 日本語入力のオープンソース版である。これは2"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-07T00:00:00Z">October 07, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/" rel="category">ひとりよがりのモバイルPC</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="rootで動く-mozc-ut2-をソースからコンパイルしてみよう">rootで動く Mozc UT2 をソースからコンパイルしてみよう。</h2>
+<br clear="left">
+<p>Mozcとは、<a href="https://ja.wikipedia.org/wiki/Google_%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" target="_blank">Wikipedia</a>によれば、</p>
+<blockquote>
+<p>Google 日本語入力のオープンソース版である。これは2010年5月11日にGoogle日本語入力をGoogle Chrome OSに移植するために必要な部分をオープンソースしたものである。</p>
+</blockquote>
+<p>とのこと。<br>
+現在のLinuxでは、Mozcは最もポピュラーな日本語変換システムであり、ほとんどのディストリビューションでは、標準ツールになっています。</p>
+<p>さて、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/">ひとりよがりのモバイルＰＣ ( その４　AndroidでLinux環境を動かす３つの手法 )</a>の最後で少し触れましたが、SC-03Gは特殊なセキュリティシステムがあるため、LinuxDeployの環境構築を &ldquo;rootユーザー&rdquo; で行わざるえませんでした。<br>
+ところが、いくつかのツールはセキュリティの側面から、rootによる起動を抑制しています。実は、Mozcがまさしくそれであり、SC-03Gでは通常の方法（apt）でMozcをインストールしても、使用することが出来ません。実行すると、下記のように &ldquo;defunct&rdquo; という状態になってしまいます。</p>
+<img src="/IT/ひとりよがりのモバイルＰＣその９(mozc_defunct).png" style="margin-bottom:10px">  
+<br clear="left">  
+<p>そういうわけで、<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%97-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E7%92%B0%E5%A2%83%E6%95%B4%E5%82%99%E7%B7%A8/">ひとりよがりのモバイルＰＣ(その７　Linux DeployによるDebianのインストール　環境整備編)</a>では、&ldquo;Anthy&quot;をインストールせざるえなかったのですが、Anthyはもはや過去のツールであり、Mozcと比べると変換効率、操作性、全てにおいて見劣りします。</p>
+<h4 id="やはりmozcを使いたい">やはり、Mozcを使いたい！！</h4>
+<p>そう、今回の目的は「<strong>SC-03GでMozcが使えるようする</strong>」ということなのです。</p>
+<hr>
+<h3 id="導入施策について">導入施策について</h3>
+<p>今回は、Mozcの辞書をさらに強化した「Mozc UT2」というツールを使ってみようと思います。<br>
+以下、</p>
+<ul>
+<li>(1) 「Mozc UT2」ソースパッケージの入手</li>
+<li>(2) root起動を抑制している部分の修正</li>
+<li>(3) コンパイルとインストール</li>
+</ul>
+<p>という手順を踏みます。<br>
+といっても、上記はわたしの能力を越える部分なので、ほとんどすべての情報をインターネット上から入手させていただきました。<br>
+特に「コンパイルとインストール方法」については、<a href="https://sicklylife.jp/ubuntu/2004/mozc_ut2.html" target="_blank">こちらの記事</a>のお世話になりました。ありがとうございます。</p>
+<h3 id="1-mozc-ut2ソースパッケージの入手">(1) 「Mozc UT2」ソースパッケージの入手</h3>
+<p><a href="https://ja.osdn.net/users/sicklylife/pf/mozc_ut_for_ubuntu/files/?id=26303" target="_blank">ここ</a>から、&ldquo;mozc-2.23.2815.102+dfsg~ut2-20171008d+20200423focal.tar.xz&rdquo; をダウンロードし、適当なディレクトリに展開します、</p>
+<h3 id="2-root起動を抑制している部分の修正">(2) root起動を抑制している部分の修正</h3>
+<p>展開したソースツリー内の &ldquo;mozc-2.23.2815.102+dfsg~ut2-20171008d+20200423focal/mut/src/base/run_level.cc&rdquo; を変更します。270行あたりから、rootでの実行をチェックしているところがあるので、ここをコメントアウトして、&ldquo;NORMAL&rdquo; を返すようにしてしまいます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#</span><span style="color:#75715e">else  </span><span style="color:#75715e">// OS_WIN  
+</span><span style="color:#75715e"></span><span style="color:#75715e">/*  
+</span><span style="color:#75715e">  if (type == SERVER || type == RENDERER) {  
+</span><span style="color:#75715e">    if (::geteuid() == 0) {  
+</span><span style="color:#75715e">      // This process is started by root, or the executable is setuid to root.  
+</span><span style="color:#75715e">  
+</span><span style="color:#75715e">      // TODO(yusukes): It would be better to add &#39;SAFE&#39; run-level which  
+</span><span style="color:#75715e">      //  prohibits all mutable operations to local resources and return the  
+</span><span style="color:#75715e">      //  level after calling chroot(&#34;/somewhere/safe&#34;), setgid(&#34;nogroup&#34;),  
+</span><span style="color:#75715e">      //  and setuid(&#34;nobody&#34;) here. This is because many novice Linux users  
+</span><span style="color:#75715e">      //  tend to login to their desktop as root.  
+</span><span style="color:#75715e">  
+</span><span style="color:#75715e">      return RunLevel::DENY;  
+</span><span style="color:#75715e">    }  
+</span><span style="color:#75715e">    if (::getuid() == 0) {  
+</span><span style="color:#75715e">      // The executable is setuided to non-root and is started by root user?  
+</span><span style="color:#75715e">      // This is unexpected. Returns DENY.  
+</span><span style="color:#75715e">      return RunLevel::DENY;  
+</span><span style="color:#75715e">    }  
+</span><span style="color:#75715e">    return RunLevel::NORMAL;  
+</span><span style="color:#75715e">  }  
+</span><span style="color:#75715e">  
+</span><span style="color:#75715e">  // type is &#39;CLIENT&#39;  
+</span><span style="color:#75715e">  if (::geteuid() == 0 || ::getuid() == 0) {  
+</span><span style="color:#75715e">    // When mozc.so is loaded into a privileged process, deny clients to use  
+</span><span style="color:#75715e">    // dictionary_tool and config_dialog.  
+</span><span style="color:#75715e">    return RunLevel::DENY;  
+</span><span style="color:#75715e">  }  
+</span><span style="color:#75715e">*/</span>  
+  <span style="color:#66d9ef">return</span> RunLevel<span style="color:#f92672">:</span><span style="color:#f92672">:</span>NORMAL;  
+</code></pre></div><hr>
+<h3 id="3-コンパイルとインストール">(3) コンパイルとインストール</h3>
+<p>ここからソースをコンパイルしていくのですが、必要となるツール、ライブラリを事前にインストールしないといけません。<br>
+まずは、build-essential（C,C++などの開発ツール一式）を入れておく、これは当然ですね。</p>
+<pre><code># apt -y install build-essential  
+</code></pre><p>続けて、Mozc UT2のコンパイルに必要なツールをインストールします。</p>
+<pre><code># apt install -y devscripts debhelper libibus-1.0-dev pkg-config libxcb-xfixes0-dev libgtk2.0-dev python-dev gyp protobuf-compiler libprotobuf-dev qtbase5-dev libqwt-qt5-dev libgwengui-qt5-dev libuim-dev libzinnia-dev fcitx-libs-dev gettext desktop-file-utils ninja-build  
+</code></pre><h4 id="スクリプトの変更">スクリプトの変更</h4>
+<p>実行スクリプトは、&ldquo;mozc-2.23.2815.102+dfsg~ut2-20171008d+20200423focal/build_mozc_plus_utdict&rdquo; ですが、このファイルを開いてみると、処理終了後、&quot;./mut&rdquo; を削除しています。一回で問題なく完了できればそれで良いのですが、ミスった場合、先に実施した変更内容を含め、ソース全体が削除されてしまいます。コメントアウトしておくのが無難でしょう。</p>
+<pre><code>#!/bin/sh  
+  
+cd ./mut/  
+debuild -b -uc -us -d  
+cd -  
+#rm -rf ./mut/    #&lt;-- comment out this line.  
+echo '終了\n'  
+</code></pre><h4 id="コンパイルの実行">コンパイルの実行</h4>
+<p>上記のスクリプトを実行して、Mozc UT2をコンパイルします。</p>
+<pre><code># cd mozc-2.23.2815.102+dfsg~ut2-20171008d+20200423focal  
+# ./build_mozc_plus_utdict  
+</code></pre><p>コンパイルには、SC-03Gで40分程かかります。終了すると、同じディレクトリ内に、下記の &ldquo;.deb&quot;ファイルが作成されます</p>
+<pre><code>emacs-mozc-bin-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+emacs-mozc-bin_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+emacs-mozc_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+fcitx-mozc-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+fcitx-mozc_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+ibus-mozc-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+ibus-mozc_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+mozc-data_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_all.deb  
+mozc-server-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+mozc-server_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+mozc-utils-gui-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+mozc-utils-gui_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+uim-mozc-dbgsym_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+uim-mozc_2.23.2815.102+dfsg-8ubuntu99+focal1.1~ut2.0_armhf.deb  
+</code></pre><h4 id="インストール">インストール</h4>
+<p>&ldquo;.deb&quot;ファイルを、インストールします。&ldquo;ibus&rdquo; と&rdquo; uim&rdquo; は不要なので、それ以外を導入します。「<strong>Emacsなんていらない</strong>」なんていう不逞の輩は、これも外して結構です（笑）。</p>
+<pre><code># dpkg -i ./mozc-data_*.deb ./mozc-server_*.deb ./mozc-utils-gui_*.deb  ./fcitx-mozc_*.deb ./emacs-mozc*.deb  
+</code></pre><p>以上で、(3)の「コンパイルとインストール」は完了です。</p>
+<p>終了後、マシンを再起動します。</p>
+<hr>
+<h3 id="4-設定">(4) 設定</h3>
+<h4 id="1-fcitx">1. fcitx</h4>
+<pre><code>メニューから、「設定」→「Fcitx設定」  
+</code></pre><img src="/IT/ひとりよがりのモバイルＰＣその９(fcitx00).png" style="margin-bottom:10px">  
+<br clear="left">  
+"mozc"が追加されていますね。ここで、"-"（上図下部）を押して"Anthy"を削除します。  
+<p>元から消してしまっても良いでしょう。</p>
+<pre><code># apt remove fcitx-anthy  
+</code></pre><p>Terminalを開いてみます。Alt+~（半/全）を押すと、[Mozc]のガイダンスが出てくるので、適当に入力してみましょう。</p>
+<img src="/IT/ひとりよがりのモバイルＰＣその９(terminal).png" style="margin-bottom:10px">  
+<br clear="left">  
+候補がでてきました。  
+<hr>
+<h4 id="2-emacs">2. emacs</h4>
+<p>.emacsに、下記を追加します。最近の設定は、 ~/.emacs.d/に、init.elなんやらと小賢しげに書くらしいが、そんな設定が生まれる前からEmacsを使っているわたしは、&quot;.emacs&quot;一本。文句あるまい（笑）。</p>
+<pre><code>(require 'mozc)  
+(setq default-input-method &quot;japanese-mozc&quot;)  
+</code></pre><p>Emacsを起動し、Ctrl+\を押して入力します。</p>
+<img src="/IT/ひとりよがりのモバイルＰＣその９(emacs).png" style="margin-bottom:10px">  
+<br clear="left">  
+下部に、[Mozc]と出ていますね。  
+<p>EmacsでMozcが使えるのは、本当に嬉しい。これでいつも使っているマシンと同じ環境になりました。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

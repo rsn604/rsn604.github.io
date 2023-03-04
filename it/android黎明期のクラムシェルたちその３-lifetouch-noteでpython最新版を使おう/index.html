@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )" />
+<meta property="og:description" content="LifeTouch Noteで、Python3.8.6をコンパイルしてみる 前回で、一通りの環境を構築できたのですが、実はPython環境に問題があります。 ”p" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%93-lifetouch-note%E3%81%A7python%E6%9C%80%E6%96%B0%E7%89%88%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" />
+<meta property="article:published_time" content="2020-10-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-30T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )"/>
+<meta name="twitter:description" content="LifeTouch Noteで、Python3.8.6をコンパイルしてみる 前回で、一通りの環境を構築できたのですが、実はPython環境に問題があります。 ”p"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その４　LifeTouch Noteを98Noteに )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-30T00:00:00Z">October 30, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="lifetouch-noteでpython386をコンパイルしてみる">LifeTouch Noteで、Python3.8.6をコンパイルしてみる</h2>
+<br clear="left">
+<p><a href="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/">前回</a>で、一通りの環境を構築できたのですが、実はPython環境に問題があります。</p>
+<h4 id="pipが動きません">”pip”が動きません。</h4>
+<p>このバージョンでは、”pip”はpython標準インストールでは入らないので、”apt-get install python3-pip”で入れてみたのですが、モジュールをインストールしようとすると、”Cannnot fetch index base URL http://&hellip;. ”とエラーを吐き、動いてくれません。<br>
+どうも、セキュリティ関係の問題のようなので、色々情報を探ったり、confファイルを書いたり、設定を変えてみたりしたのですが、うまくいかず匙を投げました。</p>
+<p>そもそも、Python3自体もバージョンが”3.2”と低いこともあって、今一つの感があります。<br>
+ということなので、<strong>Pythonをソースからコンパイルして、最新のレベルまで挙げてしまいしょう</strong>。Python3.7以降は、”pip”も標準装備なので、これで悩むこともなくなるとの期待も込めています。</p>
+<hr>
+<h3 id="pythonのコンパイル方法">Pythonのコンパイル方法</h3>
+<p>Pythonのコンパイル方法は、インターネット上にいくつかの情報が上がっていますが、今回は<br>
+<a href="https://hibiki-press.tech/python/install-from-source/5046" target="_blank">このサイト</a>の情報を参考にさせていただきました。ありがとうございます。</p>
+<p>やるべきことは簡単で、下記のステップを取ります。</p>
+<h4 id="1必要なパッケージの事前インストール">(1)必要なパッケージの事前インストール</h4>
+<p>まずは、前回インストールしたPython3を削除しておきます。</p>
+<pre><code># apt-get remove python3 python3-pip  
+# apt-get autoremove  
+  
+</code></pre><p>その後、必要なツールをインストールします。開発ツールである”build-essential”は、当然入っていると思いますが、記録のため入れておきます。</p>
+<pre><code># apt-get install build-essential libbz2-dev libdb-dev libreadline-dev libffi-dev libgdbm-dev liblzma-dev libncursesw5-dev libsqlite3-dev libssl-dev zlib1g-dev uuid-dev tk-dev  
+</code></pre><h4 id="2pythonソースのダウンロード">(2)Pythonソースのダウンロード</h4>
+<p>本家<a href="https://www.python.org/downloads/source/" target="_blank">python.org</a>から、ソースをダウンロードします。今回は、”Python-3.8.6.tgz”を使いました。</p>
+<p>（注）2020/10にPython3.9.0が出てしまい、3.8.6は最新版ではなくなってしまいました。「タイトルに偽りあり」ですが、新バージョンの最初のリリースはいささか不安。こちらを使うことにしました．．．ということにしておいて下さい（笑）。</p>
+<h4 id="3pythonのコンパイルとインストール">(3)Pythonのコンパイルとインストール</h4>
+<p>適当なディレクトリに置いたtar ballを解凍し、下記の手順でコンパイルとインストールを実行します。</p>
+<pre><code># tar xzvf Python-3.8.6.tgz  
+# cd Python-3.8.6  
+# ./configure  
+# make  
+# make altinstall  
+</code></pre><p>LifeTouch Note実機で実行すると、1時間程度かかりますが、特に問題なく完了しました。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(00CompilePython).jpg" alt="Lifetouch"></p>
+<h5 id="老体に鞭打ってpythonをコンパイルするlifetouch-noteの勇姿を見よ">老体に鞭打って、PythonをコンパイルするLifeTouch Noteの勇姿を見よ！！</h5>
+<p>ここまでは、順調でしたね。</p>
+<hr>
+<h3 id="sslの問題が発生">SSLの問題が発生</h3>
+<p>上記作業が完了すると、”/usr/local/bin/python3.8”、”/usr/local/bin/pip3.8”の実行ファイルがインストールされています。<br>
+早速、使ってみましょう。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(11StartPython).png" alt="Lifetouch"></p>
+<p>Pythonインタープリタは問題なく動きましたが、”pip”はこれまたエラーを吐いています。どうもSSL関係のようですが、コンパイル前に”libssl-dev”はインストールされていることを確認しています。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(12Pipfail).png" alt="Lifetouch"></p>
+<p>確認のため、”ssl”をimportしようとすると、</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(13Importssl).png" alt="Lifetouch"></p>
+<p>なるほど、インストールされていませんね。</p>
+<p>これには相当悩みましたが、<a href="https://jameskiefer.com/posts/installing-python-3.7-on-debian-8/" target="_blank">こんな情報</a>を見つけました。<br>
+このサイトによると、</p>
+<blockquote>
+<p>The first problem is that the packaged versions of openssl and libssl-dev are missing header information required to build Python 3.7+ so you will have to compile your own:</p>
+</blockquote>
+<p>とのこと。要するに、「packageで入れたopensslとlibssl-devには、Pythonをbuildするために必要なheaderがない」らしい。<br>
+対応策としては、「<strong>opensslをソースからコンパイルして、生成されるヘッダーとライブラリを使え</strong>」ということのようです。</p>
+<hr>
+<h3 id="問題解消へのアプローチ">問題解消へのアプローチ</h3>
+<p>それでは、上記情報に従って、対応していきましょう。</p>
+<h4 id="1-opnesslのコンパイル">(1) opnesslのコンパイル</h4>
+<p>まずは、必要なツールを事前に入れて置きます。</p>
+<pre><code># apt-get install checkinstall libreadline-gplv2-dev libncursesw5-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev  
+</code></pre><p>opensslのソースを<a href="https://www.openssl.org/source/old/1.0.2/" target="_blank"><a href="http://www.openssl.org">www.openssl.org</a></a>からダウンロードして、”/usr/src”に配置します。<br>
+このサイトと同じバージョン”openssl-1.0.2o.tar.gz”を使うことにしました。</p>
+<pre><code># cd /usr/src  
+# tar xzvf openssl-1.0.2o.tar.gz  
+# cd openssl-1.0.2o  
+# ./config shared --prefix=/usr/local/  
+# make  
+# make install  
+</code></pre><p>完了後、Python用に”lib”ディレクトリを作成し、上記で生成されたobjectをコピーしておきます。</p>
+<blockquote>
+<p>We will need to pass /usr/src/openssl-1.0.2o into the Python configure script. However, the configure script will look for a lib directory in that path which doesn’t exist. So we’ll create that manually:</p>
+</blockquote>
+<p>ということですね。</p>
+<pre><code># mkdir lib  
+# cp ./*.{so,so.1.0.0,a,pc} ./lib  
+</code></pre><h4 id="2-python386のリコンパイル">(2) Python3.8.6のリコンパイル</h4>
+<p>次に、Pythonを再度コンパイルします。</p>
+<pre><code># cd Python-3.8.6  
+# ./configure --with-openssl=/usr/src/openssl-1.0.2o  
+# make  
+# make altinstall  
+</code></pre><p>今回は、”configure”で、先程生成した”openssl”のディレクトリを指定しておきます。このサイトでは、”&ndash;enable-optimizations”も指定していますが、処理時間が大幅に伸びますので、ここでは外しておきます。</p>
+<p>完了後、早速テストしてみます。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(23Importssl).png" alt="Lifetouch"></p>
+<h4 id="あれれうまくいかないこれはまいったなあ">あれれ、うまくいかない。これはまいったなあ。</h4>
+<p>再度、makeをかけてみると、SSL関係やはりおかしかったようです。大量のメッセージがターミナル上に流れていたので、見逃していました。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(24MakeError).png" alt="Lifetouch"></p>
+<h4 id="3-解決策">(3) 解決策</h4>
+<p>メッセージを見る限り、opensslライブラリ関係のように思われます。<br>
+このサイトのComments欄にも「うまく行かなかった」という報告があり、そのフォローとして、下記の環境変数を指定してからコンパイルせよ、というコメントがありました。<br>
+なるほど、今回インストールしたオブジェクトとヘッダーを先に参照させろということですね。<br>
+早速、これを指定して再コンパイル。”clean”したほうが良いでしょう。</p>
+<pre><code># export LDFLAGS=&quot;-L/usr/local/lib/&quot;  
+# export LD_LIBRARY_PATH=&quot;/usr/local/lib/&quot;  
+# export CPPFLAGS=&quot;-I/usr/local/include -I/usr/local/include/openssl&quot;  
+# make clean  
+# make  
+</code></pre><p>うまくいったようなので、再度インストール。</p>
+<pre><code># make altinstall  
+</code></pre><p>検証してみましょう。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote2)(30Check).png" alt="Lifetouch"></p>
+<p>”ssl”のimportも、pipによるモジュールインストールもうまくいきました。</p>
+<p>なお、再ログイン後の実行にも有効になるよう、<strong>~/.bashrcに下記を追加</strong>しておきましょう。</p>
+<pre><code>export LD_LIBRARY_PATH=&quot;/usr/local/lib/&quot;  
+</code></pre><hr>
+<p>これで、Python3.8.6のインストール完了です。”pip”も動いてめでたし、めでたし。</p>
+<h4 id="これ何に使うのと聞かれると少しうろたえますけど笑">「これ、何に使うの？」と聞かれると、少しうろたえますけど（笑）。</h4>
+<p>まあ、自己満足でいいじゃありませんか。</p>
+<p>今回は少し無理をしてPython3を使えるようにしてみましたが、この後pandasのインストールには失敗しました。この時代では、いまだPython3環境が整備されていないということでしょう。<br>
+Python2.7が標準で入っていることを考えると、こちらを使ったほうが現実的ですね。pandasも”apt-get install python-pandas”で簡単にインストールできます。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その４　LifeTouch Noteを98Noteに )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

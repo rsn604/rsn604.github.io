@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DOS on TORIO&#39;s blog</title>
+    <link>https://rsn604.github.io/categories/dos/</link>
+    <description>Recent content in DOS on TORIO&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rsn604.github.io/categories/dos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>こんなときは、自宅で鉄道旅行でもプランニングしよう（４） ( DOSVAXJ3で MARS を動かす )</title>
+      <link>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%94dosvaxj3%E3%81%A7-mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%94dosvaxj3%E3%81%A7-mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</guid>
+      <description>前回までに、LinuxとAndroidで DOSBOX を使用して、&amp;ldquo;MARS&amp;rdquo; を動かす方法について説明しました。 ただ、DOSBO</description>
+    </item>
+    
+    <item>
+      <title>こんなときは、自宅で鉄道旅行でもプランニングしよう（３） ( Galaxy Tab ( SC-03G ) でも MARS を動かす )</title>
+      <link>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%93galaxy-tab-sc-03g-%E3%81%A7%E3%82%82-mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%93galaxy-tab-sc-03g-%E3%81%A7%E3%82%82-mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/</guid>
+      <description>今回は、ひとりよがりのモバイルＰＣとして構築したGalaxy Tab ( SC-03G )にも、 &amp;ldquo;MARS&amp;rdquo; を導入しましょう。このマシンには、Linux Debian環境を構</description>
+    </item>
+    
+    <item>
+      <title>こんなときは、自宅で鉄道旅行でもプランニングしよう（２） ( MARS を動かす環境を作る )</title>
+      <link>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%92mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%92mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8B/</guid>
+      <description>&amp;ldquo;MARS&amp;rdquo; はDOSツールですが、いまさらMS-DOSマシン実機を動かすわけには行きませんので、Linuxで動くDOSのエミュレータ &amp;ldquo;DOSBOX&amp;rdquo; を使用します。 ま</description>
+    </item>
+    
+    <item>
+      <title>こんなときは、自宅で鉄道旅行でもプランニングしよう ( 運賃計算ツール MARS を使ってみる )</title>
+      <link>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%E9%81%8B%E8%B3%83%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB-mars-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%E9%81%8B%E8%B3%83%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB-mars-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>このところの武漢ウィルスの影響で外出はご法度。厭な時代です。早く解消されることをこころから祈念しております。 さて、こんなときは、自宅でノンビ</description>
+    </item>
+    
+  </channel>
+</rss>

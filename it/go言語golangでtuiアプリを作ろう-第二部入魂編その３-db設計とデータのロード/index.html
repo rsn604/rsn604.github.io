@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その３　DB設計とデータのロード ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その３　DB設計とデータのロード )" />
+<meta property="og:description" content="BoltDB上にListDBを定義し、CSVからデータを追加してみる。 [1] ListDBとBoltの構造 今回は、Bolt上にListDBを定義し" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-db%E8%A8%AD%E8%A8%88%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/" />
+<meta property="article:published_time" content="2022-08-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-25T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その３　DB設計とデータのロード )"/>
+<meta name="twitter:description" content="BoltDB上にListDBを定義し、CSVからデータを追加してみる。 [1] ListDBとBoltの構造 今回は、Bolt上にListDBを定義し"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-%E6%96%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E6%8E%A1%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その２　新データベースツールの採用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-boltmanager%E3%81%AE%E6%8B%A1%E5%85%85/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その４　BoltManagerの拡充 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その３　DB設計とデータのロード )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-25T00:00:00Z">August 25, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="boltdb上にlistdbを定義しcsvからデータを追加してみる">BoltDB上にListDBを定義し、CSVからデータを追加してみる。</h2>
+<br clear="left">
+<h3 id="1listdbとboltの構造">[1]　ListDBとBoltの構造</h3>
+<p>今回は、<strong>Bolt</strong>上に<strong>ListDB</strong>を定義し、実際にデータをロードしていきます。<strong>ListDB</strong>の構造については、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">PythonでTUIアプリを作ろう 第二部入魂編(その２　ListDBの構造について)</a>を参照してください。</p>
+<h4 id="1基本構造">(1)　基本構造</h4>
+<p>まずは、<strong>Bolt</strong>上の<strong>Bucket</strong>を定義しましょう。<br>
+<strong>Root bucket</strong>は、”ListDB&quot;という名称とし、その下の<strong>Nested buckets</strong>として、定義情報(”MetaTbale&rdquo;)と実際のデータ(以下、そのデータ名を<strong>dbName</strong>とする)を定義します。<strong>Bucket</strong>の<strong>key</strong>と<strong>value</strong>は下記とします。</p>
+<pre><code>Bucket ”MetaTable” Key:dbName  Value:CSV(fieldName01,fieldName02,categoryList)  
+Bucket  dbName    Key:自動連番 Value:JSON(category,field01,field02,note)  
+</code></pre><p>概念図を下記に示します。<strong>ListDB</strong>と<strong>Bolt</strong>は、<strong>Manager</strong>と呼ばれるインタフェースを継承した<strong>BoltManager</strong>でマッピングされることとなります。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろう 第二部入魂編その2(01boltdb).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<hr>
+<h3 id="2データロード用csvファイル">[2]　データロード用CSVファイル</h3>
+<p>今回使用するデータは、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/">PythonでTUIアプリを作ろう 第二部入魂編(その３　スクレイピングによるデータ収集)</a>で作成したものを流用します。以下、データとプログラムは、<a href="#source">ここ</a>からダウンロードし、参照ください。</p>
+<h4 id="1csvの形式">(1)　CSVの形式</h4>
+<p>CSVは、1件目が定義情報、2件目以降が実データになります。</p>
+<h5 id="1定義情報">1)　定義情報</h5>
+<pre><code>データ名,フィールド1の名称,フィールド2の名称,CategoryList  
+</code></pre><p>の様に指定します。<strong>CategoryList</strong>は、カンマ（’,’)で複数設定しておきます。</p>
+<h5 id="2実データ">2)　実データ</h5>
+<pre><code>Category,Field01,Field02,Note  
+</code></pre><p>上記の様に指定します。<strong>Note</strong>内のカンマ（’,’)は、’改行’に変換されて、複数行データとなります。</p>
+<p>以下に、実際のCSVファイル(<strong>csv/bookoff_tokyo.csv</strong>)を示します。</p>
+<pre><code>ブックオフ店舗情報(東京都),name,address,千代田区,港区,新宿区,文京区,台東区,墨田区,江東区,品川区,目黒区,大田区,世田谷区,渋谷区,中野区,杉並区,豊島区,北区,板橋区,練馬区,足立区,江戸川区,八王子市,立川市,武蔵野市,青梅市,府中市,昭島市,調布市,町田市,小平市,国立市,福生市,東大和市,東久留米市,多摩市,西東京市  
+千代田区,BOOKOFF 秋葉原駅前店,東京都千代田区神田佐久間町1-6-4 ,03-5207-6206,10:00～21:00  
+港区,BOOKOFF総合買取窓口 田町駅西口店,東京都港区芝5丁目32-3 1F,03-5439-4131,11:00～20:00  
+新宿区,BOOKOFF 飯田橋駅東口店,東京都新宿区揚場町1-11 ,03-5206-6831,10:00～21:00  
+　　　:  
+　　　:  
+</code></pre><p>この例では、</p>
+<pre><code>dbName          　:　ブックオフ店舗情報(東京都)  
+フィールド1の名称  :　name  
+フィールド2の名称  :　address  
+CategoryList      :　千代田区,港区,新宿区,．．．．  
+</code></pre><p>として定義しています。</p>
+<p><strong>Bolt</strong>上では、<strong>Bucket</strong>”MetaTable&quot;にこの定義情報を格納、2件目以降は<strong>dbName</strong>を<strong>ID</strong>とした<strong>Bucket</strong>に順次格納することになります。</p>
+<hr>
+<h3 id="3managerインタフェースの構成">[3]　Managerインタフェースの構成</h3>
+<p>まずは、データロードを司る<strong>Manager</strong>(<strong>listdb/manager.go</strong>)を実装します。ここでは、メソッドの定義と、実Manager(<strong>BoltManager</strong>)の生成を行います。</p>
+<pre><code>package listdb  
+  
+// ----------------------------------------------------------------------  
+type Manager interface {  
+	Connect(databaseName string, connectString string) error  
+	ImportCSV(fname string) bool  
+	Define() error  
+	Close()  
+}  
+  
+func GetManager(name string) Manager {  
+	if name == &quot;BOLT&quot; {  
+		return new(BoltManager)  
+	} else {  
+		//return new(ListDBManager)  
+	}  
+	return nil  
+}  
+</code></pre><hr>
+<h3 id="4boltmanagerの実装listdbboltmanagergo">[4]　BoltManagerの実装(listdb/boltmanager.go)</h3>
+<p>次に、実際にデータロード処理を行う<strong>BoltManager</strong>を実装します。このプログラムは長くなるので、<strong>Bucket</strong>の定義とデータの追加部分のみ説明していきます。</p>
+<h4 id="1bucketmetatableの定義">(1)　Bucket(MetaTable)の定義</h4>
+<p>まずは、下記のコードで<strong>root</strong>となる<strong>Bucket</strong>”ListDB&quot;と、<strong>Nested bucket</strong>の”MetaTable&quot;を、<strong>read-write transaction</strong>内で作成します。</p>
+<pre><code>func (self *BoltManager) Define() error {  
+	err := self.GetDb().Update(func(tx *bolt.Tx) error {  
+		tx.DeleteBucket([]byte(LISTDB))  
+		root, err := tx.CreateBucketIfNotExists([]byte(LISTDB))  
+		if err != nil {  
+			return fmt.Errorf(&quot;D.ER could not create root bucket: %v&quot;, err)  
+		}  
+  
+		root.DeleteBucket([]byte(METATABLE))  
+		_, err = root.CreateBucketIfNotExists([]byte(METATABLE))  
+		if err != nil {  
+			return fmt.Errorf(&quot;D.ER could not create weight bucket: %v&quot;, err)  
+		}  
+		return nil  
+	})  
+	if err != nil {  
+		return fmt.Errorf(&quot;D.ER could not set up buckets, %v&quot;, err)  
+	}  
+	return nil  
+}  
+</code></pre><h4 id="2bucketmetatableへのデータ追加">(2)　Bucket(MetaTable)へのデータ追加</h4>
+<p><strong>Put</strong>メソッドを利用し、データを<strong>Bucket</strong>に格納します。<strong>MetaTable</strong>には、<strong>CSV</strong>をそのまま<strong>value</strong>として追加しています。</p>
+<pre><code>func (self *BoltManager) setMetaTable(tx *bolt.Tx, fields []string) error {  
+          :  
+          :  
+	err := tx.Bucket([]byte(LISTDB)).Bucket([]byte(METATABLE)).Put([]byte(fields[0]), []byte(strings.Join(fields[1:point], &quot;,&quot;)))  
+	if err != nil {  
+		return fmt.Errorf(&quot;D.ER could not set config: %v&quot;, err)  
+	}  
+	return nil  
+}  
+  
+</code></pre><h4 id="3bucketデータ名の定義">(3)　Bucket(データ名)の定義</h4>
+<p><strong>Buckt</strong>”MetaTable”と同様、<strong>root</strong>となる<strong>Bucket</strong>”ListDB&quot;に<strong>Nested bucket</strong>としてデータ部分(<strong>dbName</strong>)を定義します。</p>
+<pre><code>func (self *BoltManager) defineList(tx *bolt.Tx, dbName string) error {  
+	root := tx.Bucket([]byte(LISTDB))  
+	_, err := root.CreateBucketIfNotExists([]byte(dbName))  
+	if err != nil {  
+		return fmt.Errorf(&quot;D.ER could not create root bucket: %v&quot;, err)  
+	}  
+	return nil  
+}  
+  
+</code></pre><h4 id="4bucketデータ名へのデータ追加">(4)　Bucket(データ名)へのデータ追加</h4>
+<p><strong>Metatable</strong>同様、<strong>Put</strong>メソッドを利用し、データを<strong>Bucket</strong>に格納します。ここでは、構造にセットしたデータを<strong>JSON</strong>に変換しています。</p>
+<pre><code>func (self *BoltManager) itob(v int) []byte {  
+	b := make([]byte, 8)  
+	binary.BigEndian.PutUint64(b, uint64(v))  
+	return b  
+}  
+  
+func (self *BoltManager) addList(tx *bolt.Tx, dbName string, fields []string) error {  
+	listItem := new(ListItem)  
+	b := tx.Bucket([]byte(LISTDB)).Bucket([]byte(dbName))  
+	id, _ := b.NextSequence()  
+	listItem.ID = int(id)  
+	listItem.Category = fields[0]  
+	listItem.Field01 = fields[1]  
+	listItem.Field02 = fields[2]  
+	listItem.Note = strings.Join(fields[3:], &quot;\n&quot;)  
+  
+	buf, err := json.Marshal(listItem)  
+	if err != nil {  
+		return err  
+	}  
+	b.Put(self.itob(listItem.ID), buf)  
+	return nil  
+}  
+</code></pre><p><strong>golang</strong>では、構造体に下記のようなタグをつけることで、簡単に<strong>JSON</strong>へマッピング(<strong>Marshal、Unmarshal</strong>)できますので、変換後<strong>Bucket</strong>に<strong>Put</strong>しています。</p>
+<pre><code>type ListItem struct {  
+	ID       int    `json:&quot;id&quot;`  
+	Category string `json:&quot;category&quot;`  
+	Field01  string `json:&quot;field01&quot;`  
+	Field02  string `json:&quot;field02&quot;`  
+	Note     string `json:&quot;note&quot;`  
+}  
+</code></pre><h4 id="5csvの読み込みとデータロード">(5)　CSVの読み込みとデータロード</h4>
+<p>上記(1)から(4)のメソッドを使用して、<strong>CSV</strong>ファイルを<strong>Bucket</strong>にロードします。ここでの<strong>transaction</strong>は、<strong>Begin</strong>、<strong>Commit</strong>メソッドを使用し手動設定しています。</p>
+<pre><code>func (self *BoltManager) ImportCSV(fname string) bool {  
+	var fp *os.File  
+	var err error  
+  
+	fp, err = os.Open(fname)  
+	if err != nil {  
+		return false  
+	}  
+	defer fp.Close()  
+  
+	reader := csv.NewReader(fp)  
+	reader.Comma = ','  
+	reader.LazyQuotes = true  
+	reader.FieldsPerRecord = -1 // Nocheck fields count  
+	var firstTime = true  
+	var dbName string  
+  
+	tx, err := self.GetDb().Begin(true)  
+	if err != nil {  
+		return false  
+	}  
+	defer tx.Rollback()  
+  
+	for {  
+		fields, err := reader.Read()  
+		if err == io.EOF {  
+			break  
+		} else if err != nil {  
+			fmt.Println(err)  
+			return false  
+		}  
+		if len(fields) == 0 {  
+			continue  
+		}  
+		if firstTime == true {  
+			err = self.setMetaTable(tx, fields)  
+			if err != nil {  
+				return false  
+			}  
+			dbName = fields[0]  
+			err = self.defineList(tx, dbName)  
+			if err != nil {  
+				return false  
+			}  
+			firstTime = false  
+		} else {  
+			err = self.addList(tx, dbName, fields)  
+			if err != nil {  
+				return false  
+			}  
+		}  
+	}  
+  
+	if err = tx.Commit(); err != nil {  
+		return false  
+	}  
+	return true  
+}  
+</code></pre><hr>
+<h3 id="5ロードプログラムcmdloaddbgo">[5]　ロードプログラム(cmd/loaddb.go)</h3>
+<p>実際にデータロードを実行するプログラムです。ディレクトリ内の<strong>CSV</strong>ファイル（.csv）全件を対象に、一括ロードできるように設定しておきます。これにより、<strong>CSV</strong>ファイルが増加しても、ディレクトリにファイルを追加するだけで、もれなく処理することができるわけです。</p>
+<pre><code>package main  
+  
+import (  
+	&quot;fmt&quot;  
+	&quot;io/ioutil&quot;  
+	&quot;listdbg/listdb&quot;  
+	&quot;path/filepath&quot;  
+	&quot;strings&quot;  
+	&quot;time&quot;  
+)  
+  
+func GetFilesFromDir(dir string) []string {  
+	files, err := ioutil.ReadDir(dir)  
+	if err != nil {  
+		panic(err)  
+	}  
+	var paths []string  
+	for _, file := range files {  
+		if file.IsDir() {  
+			paths = append(paths, GetFilesFromDir(filepath.Join(dir, file.Name()))...)  
+			continue  
+		}  
+		paths = append(paths, filepath.Join(dir, file.Name()))  
+	}  
+	return paths  
+}  
+  
+func loadDB(manager listdb.Manager, databaseName string, connectString string, csvdir string) {  
+	var retCode bool  
+	var err error  
+	start := time.Now()  
+  
+	err = manager.Connect(databaseName, connectString)  
+	if err != nil {  
+		panic(err)  
+	}  
+  
+	if err = manager.Define(); err != nil {  
+		panic(err)  
+	}  
+  
+	csvfiles := GetFilesFromDir(csvdir)  
+	for _, csvfile := range csvfiles {  
+		pos := strings.LastIndex(csvfile, &quot;.&quot;)  
+		if csvfile[pos:] == &quot;.csv&quot; {  
+			retCode = manager.ImportCSV(csvfile)  
+			fmt.Printf(&quot;FileName:%s, RetCode:%t\n&quot;, csvfile, retCode)  
+		}  
+	}  
+	manager.Close()  
+	end := time.Now()  
+	fmt.Printf(&quot;%fsec\n&quot;, (end.Sub(start)).Seconds())  
+}  
+  
+func main() {  
+	var manager = listdb.GetManager(&quot;BOLT&quot;)  
+	loadDB(manager, &quot;BOLT&quot;, &quot;./db/ListDB.boltdb&quot;, &quot;./csv&quot;)  
+}  
+  
+</code></pre><hr>
+<h3 id="6プログラムの構造と実行">[6]　プログラムの構造と実行</h3>
+<p>プログラムのディレクトリ構造は下記のようになります。</p>
+<pre><code>cmd/  
+  loaddb.go  
+csv/  
+  anthology.csv  
+  bookoff_tokyo.csv  
+  eqmm.csv  
+  hardoff_tokyo.csv  
+db/  
+  ListDB.boltdb  
+listdb/  
+  boltmanager.go  
+  listdb.go  
+  manager.go  
+go.mod  
+go.sum  
+</code></pre><p>実行は下記のとおりです。</p>
+<pre><code>$ go run cmd/loaddb.go  
+FileName:csv/anthology.csv, RetCode:true  
+FileName:csv/bookoff_tokyo.csv, RetCode:true  
+FileName:csv/eqmm.csv, RetCode:true  
+FileName:csv/hardoff_tokyo.csv, RetCode:true  
+</code></pre><p>次回は、BoltManagerの機能を拡充していきます。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a id="source"></a><br>
+<a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section23" target="_blank">Section23</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-%E6%96%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E6%8E%A1%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その２　新データベースツールの採用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-boltmanager%E3%81%AE%E6%8B%A1%E5%85%85/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その４　BoltManagerの拡充 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

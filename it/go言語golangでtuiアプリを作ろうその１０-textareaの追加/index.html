@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その１０　TextAreaの追加 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その１０　TextAreaの追加 )" />
+<meta property="og:description" content="tviewのfork版を発見する。 [1] tviewの複数行編集サポートについて tviewにおける複数行編集サポート(TextArea)については" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91%EF%BC%90-textarea%E3%81%AE%E8%BF%BD%E5%8A%A0/" />
+<meta property="article:published_time" content="2022-05-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-26T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その１０　TextAreaの追加 )"/>
+<meta name="twitter:description" content="tviewのfork版を発見する。 [1] tviewの複数行編集サポートについて tviewにおける複数行編集サポート(TextArea)については"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その１　TUIアプリケーションの作成 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その１０　TextAreaの追加 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-05-26T00:00:00Z">May 26, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewのfork版を発見する">tviewのfork版を発見する。</h2>
+<br clear="left">
+<hr>
+<h3 id="1tviewの複数行編集サポートについて">[1]　tviewの複数行編集サポートについて</h3>
+<p><strong>tview</strong>における複数行編集サポート(TextArea)については、すでに課題として上がっていました。</p>
+<p><a href="https://github.com/rivo/tview/issues/594" target="_blank"><img src="/IT/Go言語(golang)でTUIアプリを作ろうその１０(01TextArea).png" style="margin-left:20px;margin-bottom:30px;width:600px;"></a></p>
+<p>これを見ますと、かなり積極的なやり取りがあったようですが、結局、<strong>tview</strong>に組み込まれることなく放置されてしまったようです。</p>
+<p>このような状況ですから、誰かが「これを引き継いで対応しているのではないか」と調べてみると、<strong>tviewからのfork版</strong>があることが判明。</p>
+<p><a href="https://github.com/kubemq-hub/tview" target="_blank"><img src="/IT/Go言語(golang)でTUIアプリを作ろうその１０(02fork01).png" style="margin-left:30px;margin-bottom:30px;width:600px;"></a></p>
+<p><strong>Forked from Konstantin8105/tview</strong>とありますから、さらなる<strong>Fork</strong>なのでしょう。<a href="https://pkg.go.dev/github.com/kubemq-hub/tview" target="_blank">ドキュメント</a>を見ると、確かにTextAreaが含まれています</p>
+<h4 id="textarea-a-minimal-text-multiline-editor">TextArea: A minimal text multiline editor.</h4>
+<p>という表示が目を引きます。</p>
+<hr>
+<h3 id="2textareaの利用について">[2]　TextAreaの利用について</h3>
+<p>この<strong>tview</strong>をそのまま使うことも考えたのですが、本家のほうが進んでしまっている部分(例えばFlexのメソッド)などもあって、全面的に置き換えることは出来ないと判断しました。しかたがないので、この<strong>Fork版のソース</strong>を切り出して、別メソッドとして使用することとします。</p>
+<p>ソースを見ると、<strong>TextArea</strong>は<strong>TextView</strong>と連動しており、また<strong>util.go</strong>の関数の一部を使用しているようなので、この3ファイルを切り出して、<strong>mytview</strong>パッケージ内にマージすることで対応しました。ファイル名は下記のとおり。</p>
+<pre><code>mytview/  
+  mytextarea.go  
+  mytextview.go  
+  myutil.go  
+</code></pre><p>下記を修正しました。</p>
+<h4 id="1バグ対応">(1)　バグ対応</h4>
+<ul>
+<li><strong>TextArea</strong>設定行数以上のテクストがある場合、上カーソルキーで上部にスクロールした時、<strong>Text</strong>が崩れてしまう。</li>
+<li><strong>TextAreaにFocusがない状態</strong>でも、カーソルが表示されてしまう。</li>
+</ul>
+<h4 id="2メソッドの追加">(2)　メソッドの追加</h4>
+<p>カーソルキーによる<strong>Focus</strong>移動サポートのため、下記のメソッドを追加。</p>
+<pre><code>func (f *MyTextArea) FirstLine() bool  
+func (f *MyTextArea) LastLine() bool  
+</code></pre><p>その他、別パッケージするための辻褄合わせなど。</p>
+<hr>
+<h3 id="3プログラムでの利用">[3]　プログラムでの利用</h3>
+<p>今回は、<a href="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">その８</a>で作成した<strong>Detail</strong>画面の最下部に複数行を表示、編集する<strong>TextArea</strong>フィールドを追加します。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその１０(03Detail).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>プログラムへの組み込みは、下記のようなコードとなります。</p>
+<pre><code>// -------------------------------------------------  
+//  detail body  
+// -------------------------------------------------  
+func (self *Detail) detailBody(pages *tview.Pages, header *tview.Flex, footer *tview.Flex, common *Common) *tview.Flex {  
+	var focusPrimitives []tview.Primitive  
+	body := tview.NewFlex().SetDirection(tview.FlexRow)  
+	btnCategory := myButton(&quot;Category&quot;)  
+	editField01 := myEdit(&quot;フィールド01&quot;, common.cols)  
+	editField02 := myEdit(&quot;フィールド02&quot;, common.cols)  
+	// --&gt; TextArea  
+	editNote := mytview.NewMyTextArea().SetText(&quot;FirstLine\nNextLine&quot;)  
+                    :  
+                    :  
+</code></pre><p><strong>Focus</strong>移動については、<strong>TextArea</strong>内の現在行位置によって判断を行います。あまりスマートではないですけどね。</p>
+<pre><code>		case tcell.KeyDown:  
+			if !editNote.HasFocus() {  
+				mySetFocus(self.app, focusPrimitives, false)  
+				return nil  
+			} else if editNote.LastLine() {  
+				mySetFocus(self.app, focusPrimitives, false)  
+				return nil  
+			}  
+		case tcell.KeyUp:  
+			if btnCategory.HasFocus() {  
+				myFlexFocus(self.app, header, false)  
+				return nil  
+			} else if !editNote.HasFocus() {  
+				mySetFocus(self.app, focusPrimitives, true)  
+				return nil  
+			} else if editNote.FirstLine() {  
+				mySetFocus(self.app, focusPrimitives, true)  
+				return nil  
+			}  
+</code></pre><p>以上で、TextAreaによる複数行編集がサポートされました。</p>
+<hr>
+<h3 id="4プログラムの構造と実行">[4]　プログラムの構造と実行</h3>
+<p>プログラムのディレクトリ構造は下記のようになります。</p>
+<pre><code>cmd/  
+  main.go  
+tui/  
+  application.go  
+  common.go  
+  list.go  
+  mywidget.go  
+mytview  
+  mydialog.go  
+  mytextarea.go  
+  mytextview.go  
+  myutil.go  
+go.mod  
+go.sum  
+</code></pre><p>実行は前回までと同様です。</p>
+<pre><code>go run cmd/main.go  
+</code></pre><p>以上で、懸案だった複数行入力を実装することが出来ました。</p>
+<p>ここまで数回に渡って、<strong>tview</strong>の概要と主な<strong>Primitive</strong>を説明してきました。紹介した部品を活用することで、<strong>golangによるTUIアプリケーション開発は可能</strong>になると思います。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section10" target="_blank">Section10</a>となります。</p>
+<p><a href="https://github.com/kubemq-hub/tview" target="_blank"><a href="https://github.com/kubemq-hub/tview">https://github.com/kubemq-hub/tview</a></a>のコードを改変して使用しています。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%99-dialogbox%E3%81%AE%E5%88%A9%E7%94%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その９　DialogBoxの利用 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その１　TUIアプリケーションの作成 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

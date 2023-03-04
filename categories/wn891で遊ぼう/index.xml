@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WN891で遊ぼう on TORIO&#39;s blog</title>
+    <link>https://rsn604.github.io/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/</link>
+    <description>Recent content in WN891で遊ぼう on TORIO&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 08 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rsn604.github.io/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その６　純正ChromsOSをインストール、Android、Linuxまで動かしてみる )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-%E7%B4%94%E6%AD%A3chromsos%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABandroidlinux%E3%81%BE%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>最近、Chromebookが流行のようです。その背景には、文部科学省の「GIGAスクール構想」や「テレワークの拡大」にあると言われてますが、</description>
+    </item>
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>前回は、WN891にXubuntu20.04をインストールしてみました。 モバイルLinuxマシンとして、なんとか使えるレベルではと思いますが</description>
+    </item>
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/</guid>
+      <description>さて、ここまでWN891へのWindows10クリーンインストールと、ちょっとしたチューニングをしてきたわけですが、『「WN891」で遊ぼう</description>
+    </item>
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/</link>
+      <pubDate>Sun, 02 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/</guid>
+      <description>WN891は、Atomプロセッサに2GBのメモリという極めて脆弱な環境で、どちらもアップグレードすることはできません。できることは限られてい</description>
+    </item>
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/</link>
+      <pubDate>Wed, 29 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/</guid>
+      <description>2015年に購入した「WN891」ですが、2018年以降は、ほとんど使用実績がなくなっていました。その後、Windows10では、2018、</description>
+    </item>
+    
+    <item>
+      <title>マウスコンピューター「WN891」で遊ぼう ( その１　雨降りだから、古いマシンで遊んでみよう )</title>
+      <link>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-%E9%9B%A8%E9%99%8D%E3%82%8A%E3%81%A0%E3%81%8B%E3%82%89%E5%8F%A4%E3%81%84%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%88%E3%81%86/</link>
+      <pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-%E9%9B%A8%E9%99%8D%E3%82%8A%E3%81%A0%E3%81%8B%E3%82%89%E5%8F%A4%E3%81%84%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%88%E3%81%86/</guid>
+      <description>2020年も、もう7月の終わり。また、例のウィルスが蔓延してきました。大阪でも１日の感染者が200名を越えそうな勢い。6月には、少し外出でき</description>
+    </item>
+    
+  </channel>
+</rss>

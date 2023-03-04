@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )" />
+<meta property="og:description" content="ページング処理を追加しよう。 今回は、前回のプログラムにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-list%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" />
+<meta property="article:published_time" content="2022-04-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-21T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )"/>
+<meta name="twitter:description" content="ページング処理を追加しよう。 今回は、前回のプログラムにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-list%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-21T00:00:00Z">April 21, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="ページング処理を追加しよう">ページング処理を追加しよう。</h2>
+<br clear="left">
+<p>今回は、前回のプログラムにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの追加はありません。処理は極めて簡単で、ページング対応ロジックの追加が中心になります。</p>
+<hr>
+<h3 id="画面イメージ">画面イメージ</h3>
+<p>まずは、<strong>最終画面イメージ</strong>を示します。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその６(paging).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p><strong>Header部に、ページングボタンを2つ配置</strong>しています。このボタンがクリックされることで、ページング表示を行っていくという形となるわけです。</p>
+<hr>
+<h3 id="プログラムの分割">プログラムの分割</h3>
+<p>その前にプログラムを整理しましょう。<br>
+今までは、1つのプログラムに全ての処理を記述していましたが、だいぶ長くなってきたので、下記の2ファイルに分割し、ページングに対応した処理を追加していきます。</p>
+<p>(1)　Widget関係(mywidget.go)<br>
+(2)　メイン部(list.go)</p>
+<p>それでは、個々のスクリプトを見ていきましょう。</p>
+<hr>
+<h3 id="1mywidget">（1)　mywidget</h3>
+<p><strong>tview</strong>の基本<strong>Widget</strong>を拡張している部分を抜き出します。</p>
+<pre><code>package main  
+  
+import (  
+	&quot;fmt&quot;  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+)  
+  
+var cols, rows = GetScreenSize()  
+  
+func GetScreenSize() (int, int) {  
+	s, _ := tcell.NewScreen()  
+	s.Init()  
+	cols, rows := s.Size()  
+	s.Fini()  
+	return cols, rows  
+}  
+  
+var listData = createListData()  
+  
+func createListData() []string {  
+	var listData []string  
+	var s string  
+	for i := 0; i &lt; 100; i++ {  
+		s = &quot;テストデータ&quot; + fmt.Sprintf(&quot;%d&quot;, i)  
+		for j := len(s); j &lt; cols; j++ {  
+			s = s + &quot; &quot;  
+		}  
+		listData = append(listData, s)  
+	}  
+	return listData  
+}  
+  
+func getListData(from int) []string {  
+	return listData[from-1 : from+rows-2]  
+}  
+  
+// -----------------------------------------------  
+func mySetFocus(app *tview.Application, elements []tview.Primitive, reverse bool) {  
+	for i, el := range elements {  
+		if !el.HasFocus() {  
+			continue  
+		}  
+  
+		if reverse {  
+			i = i - 1  
+			if i &lt; 0 {  
+				i = len(elements) - 1  
+			}  
+		} else {  
+			i = i + 1  
+			i = i % len(elements)  
+		}  
+  
+		app.SetFocus(elements[i])  
+		return  
+	}  
+	app.SetFocus(elements[0])  
+}  
+  
+func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.Box = tview.NewBox().SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+  
+</code></pre><hr>
+<h3 id="2list">(2)　list</h3>
+<p>一覧処理なので、<strong>List</strong>という名称に変更しました。</p>
+<h4 id="1ページングボタンの追加">1)　ページングボタンの追加</h4>
+<p><strong>headerにページングボタンを追加</strong>します。＜N＞ボタンで次ページ、＜P＞ボタンで前ページ画面に移行することとします。</p>
+<h4 id="2ボタンの処理">2)　ボタンの処理</h4>
+<p>表示開始レコードをページングボタンの動作に合わせて増減することで<strong>画面ページング</strong>を行います。今回は、１ページめの＜P＞ボタンを、最終ページの＜N＞ボタン表示の抑制には手を抜いて、そのままにしてあります。</p>
+<p>下記にコードを示します。</p>
+<pre><code>package main  
+  
+import (  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+	&quot;strconv&quot;  
+)  
+  
+func setList(list *tview.List, from int) *tview.List {  
+	list.Clear()  
+	item := getListData(from)  
+	for i := 0; i &lt; rows-2; i++ {  
+		list.AddItem(item[i], &quot;&quot;, 0, nil)  
+	}  
+	return list  
+}  
+  
+func nextPage(list *tview.List, from int) (*tview.List, int) {  
+	if from+(rows-2) &lt; len(listData) {  
+		from = from + (rows - 2)  
+		list = setList(list, from)  
+	}  
+	return list, from  
+}  
+  
+func priorPage(list *tview.List, from int) (*tview.List, int) {  
+	if from &gt; 1 {  
+		from = from - (rows - 2)  
+		list = setList(list, from)  
+	}  
+	return list, from  
+}  
+  
+func doformat(app *tview.Application, from int) tview.Primitive {  
+	list := tview.NewList().ShowSecondaryText(false).SetSelectedTextColor(tcell.ColorWhite).SetSelectedBackgroundColor(tcell.ColorAqua).SetSelectedFocusOnly(true)  
+	list = setList(list, from)  
+  
+	pages := tview.NewPages()  
+	footer := tview.NewTextView().SetText(&quot;これはフッター&quot;)  
+	header := tview.NewFlex()  
+	btnN := myButton(&quot;&lt;N&gt;&quot;).SetSelectedFunc(func() {  
+		list, from = nextPage(list, from)  
+	})  
+	btnP := myButton(&quot;&lt;P&gt;&quot;).SetSelectedFunc(func() {  
+		list, from = priorPage(list, from)  
+	})  
+	btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+		app.Stop()  
+	})  
+	buttons := []tview.Primitive{  
+		btnN,  
+		btnP,  
+		btnQ,  
+	}  
+	header.AddItem(btnN, 0, 1, true)  
+	header.AddItem(btnP, 0, 1, true)  
+	header.AddItem(btnQ, 0, 1, true)  
+  
+	body := tview.NewFlex().SetDirection(tview.FlexRow).AddItem(list, 0, 1, true)  
+  
+	main := tview.NewFlex().SetDirection(tview.FlexRow).  
+		AddItem(header, 1, 0, true).  
+		AddItem(body, 0, 1, true).  
+		AddItem(footer, 1, 0, false)  
+	pages.AddPage(&quot;main&quot;, main, true, true)  
+  
+	header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRight:  
+			mySetFocus(app, buttons, false)  
+		case tcell.KeyLeft:  
+			mySetFocus(app, buttons, true)  
+		case tcell.KeyDown:  
+			app.SetFocus(list)  
+			return nil  
+		}  
+		return event  
+	})  
+	body.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyUp:  
+			if list.GetCurrentItem() == 0 {  
+				mySetFocus(app, buttons, true)  
+				return nil  
+			}  
+		}  
+		return event  
+	})  
+	pages.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRune:  
+			switch event.Rune() {  
+			case 'q':  
+				app.Stop()  
+			case 'n':  
+				list, from = nextPage(list, from)  
+			case 'p':  
+				list, from = priorPage(list, from)  
+			}  
+		}  
+		return event  
+	})  
+  
+	list.SetSelectedFunc(func(index int, s string, secondary string, code rune) {  
+		footer.SetText(&quot;pos:&quot; + strconv.Itoa(index) + &quot; data:&quot; + s)  
+	})  
+  
+	return pages  
+}  
+  
+func main() {  
+	app := tview.NewApplication()  
+	pages := doformat(app, 1)  
+	if err := app.SetRoot(pages, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+</code></pre><hr>
+<h3 id="動作確認">動作確認</h3>
+<p>では、実際に動かしてみましょう。<strong>mywidget.go</strong>、<strong>list.go</strong>の2ファイルを同一ディレクトリに入れておきます。<br>
+今回以降、モジュール名は<strong>listdbg</strong>に統一します。</p>
+<pre><code>go mod init listdbg  
+go mod tidy  
+</code></pre><p>環境を設定したら、実行します。</p>
+<pre><code>go run list.go mywidget.go  
+</code></pre><p>先に示した画面が表示されたでしょうか。<br>
+＜N＞ボタン、＜P＞ボタンでページング処理が行われます。また、データを<strong>Enter</strong>キーで選択すると、レコードの内容がfotter部に表示されることも確認してください。</p>
+<p>これで、<strong>tview</strong>の<strong>List</strong>を使用した一覧リスト画面の雛形は完成です。<br>
+次回以降、この画面から選択されたレコードの詳細(<strong>Detail</strong>)を表示するプログラムを作成していくことになりますが、その前に「<strong>プログラム全体の構造を見直したい</strong>」と考えています。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section06" target="_blank">Section06</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-list%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

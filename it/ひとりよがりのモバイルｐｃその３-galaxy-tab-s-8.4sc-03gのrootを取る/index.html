@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )" />
+<meta property="og:description" content="まずは、つまらない前説 このところの日韓関係は、史上最悪と言われています。２０１９年半ばの日本の輸出管理強化に対抗した、韓国の不買運動「No J" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%93-galaxy-tab-s-8.4sc-03g%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B/" />
+<meta property="article:published_time" content="2020-03-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-03-15T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )"/>
+<meta name="twitter:description" content="まずは、つまらない前説 このところの日韓関係は、史上最悪と言われています。２０１９年半ばの日本の輸出管理強化に対抗した、韓国の不買運動「No J"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%92-%E5%B0%82%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その２　専用キーボード編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その４　AndroidでLinux環境を動かす３つの手法 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ひとりよがりのモバイルＰＣ ( その３　Galaxy Tab S 8.4（SC-03G）のrootを取る )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-15T00:00:00Z">March 15, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/" rel="category">ひとりよがりのモバイルPC</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<h3 id="まずはつまらない前説">まずは、つまらない前説</h3>
+<p>　このところの日韓関係は、史上最悪と言われています。２０１９年半ばの日本の輸出管理強化に対抗した、韓国の不買運動「No Japan」の盛り上がりは、なかなか凄かったですね。しかし結局、一番大きな影響を受けたのが「自国の航空会社や旅行業界だった」というオチ。このセルフ制裁は、いささか残念でしたけど。一方、日本は韓国から輸入しているものは極めて少ないので、あえて不買対象を挙げれば「キムチ、タピオカ、朝鮮海苔」ぐらいか、とまで揶揄されていました。<br>
+その中で、現代（ヒュンダイ）自動車が日本への販売台数を「前年（2018年）比３倍に伸ばした」というニュースを聞いたときには、いささか驚いたものです。やるではないか。<br>
+よくよく聞いてみると、なんと「<strong>７台が２１台になった</strong>」という（笑）。いやいやそうではなく「<strong>９台が２７台になった</strong>」のだ、という説もあるようですけど、誰かが<strong>大人買い</strong>でもしたんか（笑）。<br>
+どうも、日本は東京五輪を控え、バスが足りなかったらしい。国内生産が間に合わないので、しかたなく輸入した、というのが真相とのこと。現代（ヒュンダイ）のためにも、台数は後者であることを祈念しております。</p>
+<p>さて、２０１９年半ばのこのようなムードの中で、わたしが韓国Samsung製のGalaxy Tabを購入したのは、</p>
+<h5 id="この緊張関係をなんとか解消すべく微力ながら貢献したいという強い思いである">「この緊張関係をなんとか解消すべく、微力ながら貢献したい」という強い思いである</h5>
+<p>なんていうことは全くありません（笑）。<br>
+一番の理由は、この機種がグローバルに展開されており、開発者によるハッキングが進んでいるということです。<br>
+今回は、その成果の一つを利用させて頂き、<strong>Galaxy Tab S 8.4（SC-03G）のrootを取りましょう。</strong></p>
+<hr>
+<h3 id="rootを取るメリット">rootを取るメリット</h3>
+<p>いまさら、rootが何か、なんて説明はしません。<strong>何でもできるようになる</strong>、基本的にそれが大きな目的です。<br>
+例えば、このタブレットは正式にはAndroid6までしか対応されていませんが、世の中にはAndroid７以上のバージョンに対応したROMが配布されています。今のバージョンが時代遅れになった場合には、そちらに乗り換えて延命を図ることも可能になります。いわゆるROM焼きというやつですね。<br>
+また、Super userにならないと実行できない機能もあるでしょう。プリインストールされている余計なツール（ドコモ関係ね）を削除できる、なんてこともメリットのひとつです。<br>
+ただ、なんでもできるということは、<strong>壊すリスクも高い</strong>ということです。誰にも文句は言えません。あくまでオウンリスク、これが大原則です。</p>
+<hr>
+<h3 id="前準備">前準備</h3>
+<h4 id="1-sc-03gデベロッパーモードの有効化">(1) SC-03G　デベロッパーモードの有効化</h4>
+<p>[設定]→[一般]→[端末情報]とタップし、表示されている「ビルド番号」を７回タップすると、「デベロッパーモードが有効になりました」となります。再度「設定」を開くと、「開発者向けオプション」が選択可能となりますので、これをタップ、「USBデバッグ」を有効にしておきます。</p>
+<h4 id="2-windowspcusbドライバーの導入">(2) WindowsPC　USBドライバーの導入</h4>
+<p>root化には、「CF Auto Root」というWindows専用のツールを使いますので、WindowsPCが必要です。また、SC-03GとUSB接続するドライバー<a href="https://developer.samsung.com/mobile/android-usb-driver.html" target="_blank">SAMSUNG_USB_Driver_for_Mobile_Phones</a>をダウンロードし、導入しておきます。<br>
+Windowsは、機種ごとにUSBドライバーが必要なのは面倒ですね。Linuxだと、何もなしで繋がりますので。</p>
+<hr>
+<h2 id="root化の手順">root化の手順</h2>
+<p>CF-Auto-Rootのダウンロードからroot化までの手順は、<a href="https://drfone.wondershare.com/root/cf-auto-root.html" target="_blank">Full Guide to CF Auto Root and Its Best Alternative</a>という記事が図入りでわかりやすいので、これに従いましょう。</p>
+<h4 id="1-cf-auto-rootのダウンロード">(1) CF-Auto-Rootのダウンロード</h4>
+<p>CF-Auto-Rootは汎用ツールではなく、機種ごとに設定ファイルがあります。まずは、対応するファイルを選択しないといけません。<br>
+上の記事の<strong>Step3</strong>ですが、2020年3月現在、やり方が変わっていましたので、簡単にフォローしておきます。<a href="https://autoroot.chainfire.eu/" target="_blank">CF Auto Root site </a>に移動すると、画面は下記のようになってしまいます。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(01Deprecated).png" alt="SC-03G root"></p>
+<p>ここは古くなったから、<a href="https://desktop.firmware.mobi/" target="_blank">Firmware.Mobi</a>に行け、ということですね。リンクをクリックします。</p>
+<p>firmware.mobiでは、まず対象機種を選択します。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(02SelectDevice).png" alt="SC-03G root"></p>
+<p>ここでは、Deviceに&quot;SC-03G&quot;と入力し、候補を絞ります。1つしか出て来ないので、これを選びSUBMITボタンを押します。</p>
+<p>下記の画面になるので、自分の機種に対応するFirmwareを選択します。<br>
+SC-03Gの[設定]→[一般]→[端末情報]の「<strong>ビルド番号</strong>」に表示されているものを選びます。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(03Result).png" alt="SC-03G root"></p>
+<p>出てきた画面を下にスクロールし、<strong>CF-Auto-Root</strong>というボタンをクリック。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(05ClickCF).png" alt="SC-03G root"></p>
+<p>確認画面が出てくるので、最下部の<strong>GENERATE CF-AUTO-ROOT Package</strong>というボタンをクリック。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(06GenerateAutoRoot).png" alt="SC-03G root"></p>
+<p>ジョブがキューイングされ、指定された時間待っていると、ダウンロードが始まります。</p>
+<p><img src="/IT/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BC%B0%EF%BC%A3%E3%81%9D%E3%81%AE%EF%BC%93%E3%80%80SC-03G%E3%81%AEroot%E3%82%92%E5%8F%96%E3%82%8B(07Download).png" alt="SC-03G root"></p>
+<hr>
+<h3 id="2-root化の実行">(2) root化の実行</h3>
+<p>ここからは、<a href="https://drfone.wondershare.com/root/cf-auto-root.html" target="_blank">Full Guide to CF Auto Root and Its Best Alternative</a>の<strong>Step4〜Step9</strong>を実行するだけです。<br>
+注意点はひとつだけ。SC-03Gをダウンロードモードにする前に、指をよくあたためておくこと。冷たい手でやると攣るよ（笑）。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%92-%E5%B0%82%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その２　専用キーボード編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その４　AndroidでLinux環境を動かす３つの手法 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

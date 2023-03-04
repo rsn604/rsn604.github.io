@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )" />
+<meta property="og:description" content="10年ぶりにインストールしてみよう [1] 事前準備など まずは、今後必要となるツールを事前に準備しましょう。 (1)nvflash Dynabook AZへのインストールは、内部パーティ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/" />
+<meta property="article:published_time" content="2021-01-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-15T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )"/>
+<meta name="twitter:description" content="10年ぶりにインストールしてみよう [1] 事前準備など まずは、今後必要となるツールを事前に準備しましょう。 (1)nvflash Dynabook AZへのインストールは、内部パーティ"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%97-dynabook-az%E3%81%AB%E3%81%AFlinux/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その７　Dynabook AZにはLinux )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-01-15T00:00:00Z">January 15, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="10年ぶりにインストールしてみよう">10年ぶりにインストールしてみよう</h2>
+<br clear="left">
+<hr>
+<h3 id="1-事前準備など">[1] 事前準備など</h3>
+<p>まずは、今後必要となるツールを事前に準備しましょう。</p>
+<h4 id="1nvflash">(1)nvflash</h4>
+<p>Dynabook AZへのインストールは、内部パーティションに直接データを書き込む形式で行われます。それを実行するのが、nvflashというツールです。まずは、これをインストールします。</p>
+<ul>
+<li>Windows<br>
+後述する「ロシアンROM」に含まれているので、それを利用しましょう。</li>
+<li>Linux（Debian/Ubuntu）<br>
+”nvflash_20110628-2_all.deb”で検索してみてください。2021/01現在では、<a href="https://code.google.com/archive/p/phablet-paz00/downloads" target="_blank">このあたり</a>からダウンロードできそうです。完了後、dpkgでインストールします。</li>
+</ul>
+<pre><code>$ sudo dpkg -i nvflash_20110628-2_all.deb  
+</code></pre><h4 id="2adb">(2)adb</h4>
+<p>Android Debug Bridge（adb）は、PCとAndroidデバイスを接続、通信を行うためのツールで、本来は開発ツール（Android SDK）に含まれているものです。しかし、一般にはapkファイルのインストール、shellの実行に使う用途がほとんどなので、別途単体でインストールできるツールが用意されています。</p>
+<ul>
+<li>Windows<br>
+使ったことがありませんが、”15 seconds ADB Installer”というツールで、簡単にインストールできるとのことです。</li>
+<li>Debian/Ubuntu<br>
+Packageがあるようです。</li>
+</ul>
+<pre><code>$ sudo apt-get install android-tools-adb  
+</code></pre><h4 id="3miniusbケーブル">（3）miniUSBケーブル</h4>
+<img src="/IT/Android黎明期のクラムシェルたち(その６)(00miniUSB).jpg" style="float:left;margin-right:50px;margin-bottom:30px;width:200px;">  
+<p>Dynabook AZとPCの接続には、miniUSBケーブルが必要です。現在主流のmicroUSBケーブルではありませんので、注意が必要です。こちら側から見て、左がmicroUSB、右がminiUSBです。<br>
+<br clear="left"></p>
+<h4 id="4リカバリーモード">（4）リカバリーモード</h4>
+<p>これはツールでも何でもありませんが、nvflashでデータを書き込む場合は、Dynabook AZを「<strong>リカバリーモード</strong>」にしておかないといけません。<br>
+具体的に言うと、</p>
+<ul>
+<li><strong>ESCとControlキーを押しながら</strong>、電源オン。</li>
+<li>すると、画面は真っ暗なままですが、Powerボタンのみが点灯。</li>
+<li>この状態で、microUSBケーブルでPCと接続。</li>
+<li>nvflashでデータを書き込む</li>
+</ul>
+<p>という手順を踏みます。</p>
+<hr>
+<h3 id="2-ロシアンromandroid22のインストール">[2] ロシアンROM（Android2.2）のインストール</h3>
+<p>さて、それでは早速”ロシアンROM”をインストールしてみましょう。<br>
+これについての情報は、2021年現在でも”ロシアンROM”、”ac100_flash_v4b.z”あたりで検索すれば、いくつものサイトが見つかります。</p>
+<p>例えば、<a href="https://twg92.blog.ss-blog.jp/_pages/user/iphone/article?name=2011-09-10-2" target="_blank">こちらのサイト</a>では、ロシアンROMのダウンロードから、Windowsでのインストール方法まで、丁寧に説明されています。説明では、ロシアのサイトにアクセスすることになっていますが、現状では直接ダウンロードできるようです。</p>
+<h4 id="1windowsでのインストール">（1）Windowsでのインストール</h4>
+<p>先のサイトの説明に従ってください。116と117のちがいですが、どちらか一つしかインストールできませんので、うまくいった方を使います。ちなみに、わたしのAZは、”<strong>116</strong>”でした。たぶん日本で流通しているのは、こちらでしょう。</p>
+<h4 id="2linuxdebianubuntuでのインストール">（2）Linux(Debian/Ubuntu）でのインストール</h4>
+<p>上記の”ロシアンROM”パッケージはWindows用なので、Linux(Debian/Ubuntu）ではそのまま使えませんので、スクリプト”flash_full_116.cmd”をLinux用に書き換えます。もちろん、先に”nvflash_20110628-2_all.deb”をインストールしておく必要があります。</p>
+<pre><code>#!/bin/bash  
+nvflash --bl /usr/lib/nvflash/fastboot.bin --go  
+nvflash -r --rawdevicewrite 0 1536 img/116/2_BCT_raw.img  
+nvflash -r --rawdevicewrite 1536 256 img/116/3_PT_raw.img  
+nvflash -r --rawdevicewrite 1792 1024 img/116/4_EBT_raw.img  
+nvflash -r --rawdevicewrite 2816 2560 img/116/5_SOS_raw.img  
+nvflash -r --rawdevicewrite 5376 4096 img/6_LNX_raw_v3_uni.img  
+nvflash -r --rawdevicewrite 9472 512 img/7_MBR_raw.img  
+nvflash -r --rawdevicewrite 9984 153600 img/8_APP_raw.img  
+nvflash -r --rawdevicewrite 163584 204800 img/9_CAC_raw.img  
+nvflash -r --rawdevicewrite 368384 1024 img/10_MSC_raw.img  
+nvflash -r --rawdevicewrite 369408 256 img/11_EM1_raw.img  
+nvflash -r --rawdevicewrite 369664 632320 img/12_UDA_raw.img  
+nvflash -r --rawdevicewrite 1001984 256 img/13_EM2_raw.img  
+  
+</code></pre><p>ダウンロードディレクトリ内に、上記を”f116.sh”として作成、実行します。</p>
+<pre><code>$ chmod +x f116.sh  
+$ ./f116.sh  
+</code></pre><p>完了後、電源を入れ直すと、Android2.2が立ち上がります。</p>
+<hr>
+<h3 id="3android22で使えるソフトウエア">[3]Android2.2で使えるソフトウエア</h3>
+<img src="/IT/Android黎明期のクラムシェルたち(その６)(01ロシアンROM初期画面).png" style="float:left;margin-right:50px;margin-bottom:30px;width:400px;">  
+<p>さて、インストール完了後のリスタートで各種設定が始まりますが、Google Market（Playの前身）は、異常終了してしまいます。仮に立ち上がったとしても、2.2レベルで動くソフトウエアはほとんど登録されていませんから、あまり意味はありません。<br>
+<br clear="left"></p>
+<p>したがって、この環境で使えるソフトウエアは、apkファイルを捜してきて手動でインストールするしか道はありません。IS01用のツールが登録されている<a href="https://ux.getuploader.com/is01/" target="_blank">IS01用アップローダー</a>から、ダウンロードすると良いと思います。そのなかで、使えそうなものを上げておきましょう。</p>
+<ul>
+<li>ESファイルエクスプローラー<br>
+まずは、これをadbでインストールします。</li>
+</ul>
+<pre><code>$ adb install 'ES ファイルエクスプローラ_3.2.5.3.apk'  
+</code></pre><p>これを入れてしまえば、apkファイルは、ESファイルエクスプローラーからインストールすることができるようになります。ネットワークにも対応しているので、母艦にダウンロードしたapkに直接アクセスし、インストールすることも可能です。</p>
+<ul>
+<li>Jota Editor<br>
+”IS01用アップローダー”にあるapkはロックがかかっているので、適当なサイトから持ってきてください。このツールがあるだけで、Dynabook AZも文書入力マシンとして蘇るかもしれません。</li>
+<li>Opera Mini<br>
+ブラウザは、セキュリティの関係でほとんど使えなくなっていますが、Opera Miniはプロキシ経由でアクセスしているので、その問題がありません。</li>
+<li>Rock Player<br>
+動画を見たいならこのツールしかなさそうです。</li>
+</ul>
+<p>こんなところでしょうが、今ひとつぱっとしません。<br>
+<a href="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/">Android黎明期のクラムシェルたち(その２　LifeTouch NoteでLinuxを使おう)</a>で説明したDebianもインストールは出来ますが、”/data”に割り当てられているストレージが少なく、ツールの追加が難しい状況です。</p>
+<p>以上から、ロシアンROM（Android2.2）での使用は、極めて限定的と言わざる得ません。まあ、最初からわかっていたことですけどね。</p>
+<hr>
+<h3 id="4-android41cyanogenmod101をインストール">[4] Android4.1（CyanogenMod10.1）をインストール</h3>
+<p>Dynabook AZには、<a href="https://code.google.com/archive/p/cm-paz00/" target="_blank">Android4.1</a>もインストールすることが出来ます。カスタムROMで有名な<a href="https://ja.wikipedia.org/wiki/CyanogenMod" target="_blank">CyanogenMod</a>の10.1をベースにしたものです。このサイトには、10.1、10.2、11.0に対応したファイルが用意されていますが、<strong>10.1しかまともに動かない</strong>ので注意してください。</p>
+<p>また、</p>
+<blockquote>
+<p>Kernel/Nvec problems: Suspend/Resume not working. No longpress on power button event.</p>
+</blockquote>
+<p>とあるように、電源関係が全くインプレメントされていないようです。スリープが出来ないとかいうレベルではなく、電源OFFのダイアログすら出てきません。終了するには、<strong>電源スイッチ超長押しの強制終了しかない</strong>レベルなのです。</p>
+<p>それでもAndroid4レベルなら、Google Playは動きますし、対応ソフトウエアもそれなりにあるので、ニーズによってはこちら選択もあるでしょう。ただ、レスポンスの悪さを十分覚悟しないといけません。インストールについては、<a href="https://helicalgear.blogspot.com/2014/01/dynabook-az-cyanobenmod-101-unofficial.html" target="_blank">こちらのサイト</a>を参考にすると良いでしょう。</p>
+<hr>
+<h3 id="まとめ">まとめ</h3>
+<p>以上、一通りのインストール作業をやってみました。一応の動作は確認できましたが、残念ながら使ってみたくなるようなレベルではありませんでしたね。10年という時間の経過によるものもありますが、それ以上に<strong>Dynabook AZというマシンにAndroidがフィットしない</strong>からだと思います。</p>
+<p>それならば汚名挽回ということで、次回は”Ubuntu13.10”をインストールして使ってみましょう。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%97-dynabook-az%E3%81%AB%E3%81%AFlinux/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その７　Dynabook AZにはLinux )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

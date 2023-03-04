@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 )" />
+<meta property="og:description" content="XDAの記事は、まさにズバリの内容だった。 前回、Yoga BookにWindows10をクリーンインストールして苦労した経緯をまとめてみました" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%93-yoga-book%E5%B0%82%E7%94%A8windows10%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AE%E4%BD%9C%E6%88%90/" />
+<meta property="article:published_time" content="2022-03-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-18T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 )"/>
+<meta name="twitter:description" content="XDAの記事は、まさにズバリの内容だった。 前回、Yoga BookにWindows10をクリーンインストールして苦労した経緯をまとめてみました"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-golang%E3%81%AE%E7%89%B9%E5%BE%B4/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その１　golangの特徴 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-03-18T00:00:00Z">March 18, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="xdaの記事はまさにズバリの内容だった">XDAの記事は、まさにズバリの内容だった。</h2>
+<br clear="left">
+<hr>
+<p><a href="https://rsn604.github.io/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/">前回</a>、Yoga BookにWindows10をクリーンインストールして苦労した経緯をまとめてみましたが、これはわたしのYoga Bookだけの問題ではなく、その悩みは万国共通のもので、XDAには、この問題解決にズバリ答えた内容の<a href="https://forum.xda-developers.com/t/guide-windows-creating-a-custom-windows-10-iso-yoga-book-driver-injection.3718823/" target="_blank">スレッド</a>がありました。</p>
+<img src="/IT/Yoga Bookに悪戦苦闘(その３)01.XDA01.png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>ようするに、「Yoga Bookに必要なドライバーをまとめて、それを含んだWindowsインストールメディアを作成しよう」という趣旨ですね。大変結構な内容なので、前回の段階でも注目したのですが、肝心の<strong>ダウンロードファイルがリンク切れ</strong>だったので、最後まで読まずに放置してしまったのです。<br>
+しかし、「<strong>続きを読まなかった</strong>」のは、大きな失着でした。このスレッド、何と16ページもあるのですが、その<a href="https://forum.xda-developers.com/t/guide-windows-creating-a-custom-windows-10-iso-yoga-book-driver-injection.3718823/page-14" target="_blank">14ページ</a>に改訂版への新たなリンクが貼られていたのでした。</p>
+<img src="/IT/Yoga Bookに悪戦苦闘(その３)02.XDA02.png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p><a href="https://forum.xda-developers.com/t/guide-windows-creating-a-custom-windows-10-iso-yoga-book-driver-injection.3718823/page-14" target="_blank">ここ</a>からは、ドキュメントも必要なファイルもしっかりダウンロードすることが出来ます。というわけなので、今回はこれを実行してみましょう。</p>
+<hr>
+<h3 id="1インストールメディア作成の概要">[1]　インストールメディア作成の概要</h3>
+<p><a href="https://drive.google.com/u/0/uc?id=1DOEkNJk3LrTKSF9-uyuAi8gDSttchK7P&export=download" target="_blank">PDFによるガイド</a>に、すべて書かれていますから、それで十分なのですが、以下日本語で簡単にまとめておきます。</p>
+<h4 id="必要ツール">必要ツール</h4>
+<p>まずは、</p>
+<ul>
+<li>ファイルの解凍に使う　<a href="https://www.7-zip.org/" target="_blank">7-Zip</a></li>
+<li>インストール媒体への書き込みに使用する　<a href="https://rufus.ie/en/" target="_blank">Rufus</a></li>
+</ul>
+<p>有名なツールですので、こんな作業をやる方はほとんどインストール済みでしょう。</p>
+<p>今回の作業に関わるのは、</p>
+<ul>
+<li>上記サイトからダウンロードする　<a href="https://drive.google.com/u/0/uc?id=12rhaZxYL21PzVWl1TWHgEg0Zo5ib5j8v&export=download" target="_blank">Yoga Book Setup Files</a></li>
+<li>インストールメディアのカスタムを行う　<a href="https://www.ntlite.com/" target="_blank">NTLite</a></li>
+</ul>
+<p>の2つです。</p>
+<p><strong>NTLite</strong>は簡単に言うと、「Windowsのインストールメディアに色々な変更を加えて、ニーズにあったものにカスタマイズ」するツールです。<br>
+今回の例で言えば、「Windows用インストールISOファイルに対し、事前にYoga Bookが必要とするドライバーなどをマージ、Yoga Book専用のインストールメディアを作成する」ということになります。</p>
+<hr>
+<h3 id="2手順">[2]　手順</h3>
+<p>まずは、ダウンロードした<strong>Windows10インストール用ISOファイル</strong>を、<strong>7-Zip</strong>で解凍します。ここを<strong>Windows10x64</strong>とでもしておきましょう。解凍済みのISOファイルは、他の場所に退避しておいてください。同様に<strong>Yoga Book Setup Files.zip</strong>も解凍します。</p>
+<p>手順としては、<strong>Windows10x64</strong>の中に<strong>Yoga Book Setup Files</strong>の内容をインジェクションしていくことになります。具体的には、<strong>Yoga Book Setup Files</strong>内のディレクトリにある以下のファイルを順番に導入していくわけです。</p>
+<pre><code>sources                   (1)  
+Boot.wim Drivers          (2)  
+Mount Directory Files     (3)  
+Install.wim Drivers       (4)  
+RegistryEntries.reg       (5)  
+</code></pre><p>それでは、上記の番号順に説明していきます。</p>
+<h4 id="1sources">(1)　sources</h4>
+<p>これは簡単。<strong>Windows10x64</strong>のルートに、<strong>Yoga Book Setup Files</strong>内の<strong>sources</strong>ディレクトリをコピーします。</p>
+<h4 id="2bootwim-drivers">(2)　Boot.wim Drivers</h4>
+<p>ここからの作業は、<strong>NTLIte</strong>上の作業になりますので、事前にインストールしたNTLiteを起動します。</p>
+<img src="/IT/Yoga Bookに悪戦苦闘(その３)03.NTLite.png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>下記の手順を実行します。</p>
+<ul>
+<li><strong>Windows10x64</strong>ディレクトリを、NTLite上にドラッグアンドドロップ。</li>
+<li>「起動/セットアップ | boot.wim」をダブルクリック。</li>
+<li>Microsoft Windows Setup (x64)をダブルクリックし、待機。</li>
+<li>NTLite画面の左サイトにある「<strong>ドライバー</strong>」をクリック。</li>
+<li><strong>Yoga Book Setup Files</strong>内の<strong>Boot.wim Drivers</strong>ディレクトリをドラッグアンドドロップ。</li>
+<li>NTLite画面の左サイトにある「<strong>変更の適用</strong>」をクリック。</li>
+<li>「ログとプリセットをバックアップしないでください」を選択し、残りはデフォルトのままにしておく。</li>
+<li>トップにある「<strong>プロセス</strong>」をクリックし、終わるまで待機。</li>
+</ul>
+<h4 id="3mount-directory-files">(3)　Mount Directory Files、</h4>
+<ul>
+<li>左サイドの「<strong>ソース</strong>」をクリック。</li>
+<li>「オペレーティングシステム | install.wim」の下にある該当するWindowsのバージョン(通常はHome Edition)をダブルクリックし、完了まで待機。</li>
+<li>ロード完了後、先のWindowsのバージョンを右クリックして、「マウントディレクトリをエクスプローラーで表示」を選択。</li>
+<li>ディレクトリが表示されるので、ここに<strong>Yoga Book Setup Files</strong>の<strong>Mount Directory Files</strong>内のファイルをすべて選択し、NTLiteが表示している画面に貼り付ける。</li>
+</ul>
+<h4 id="4installwim-drivers">(4)　Install.wim Drivers</h4>
+<ul>
+<li>左サイドの「<strong>ドライバー</strong>」をクリック。</li>
+<li><strong>Yoga Book Setup Files</strong>内の<strong>Install.wim Drivers</strong>ディレクトリをドラッグアンドドロップ。</li>
+</ul>
+<h4 id="5registryentriesreg">(5)　RegistryEntries.reg</h4>
+<ul>
+<li>左サイドの「<strong>レジストリ</strong>」をクリック。</li>
+<li><strong>Yoga Book Setup Files</strong>内の<strong>RegistryEntries.reg</strong>ファイルをドラッグアンドドロップ。</li>
+<li>「<strong>変更の適用</strong>」をクリック。</li>
+<li>「保存モード」は「イメージを保存してエディションをトリミングする」を選択。</li>
+<li>「イメージ形式」は「標準、編集可能(WIM)」が選択されていることを確認。</li>
+<li>「ログとプリセットをバックアップしないでください」が選択されていることを確認。</li>
+<li>「ISOを作成する」をクリック。NTLiteが保存ファイル名を聞いてくるので、<strong>Win10Yoga.iso</strong>のような適当な名前を入力。同様にラベルにも名前を入力。</li>
+<li>「<strong>プロセス</strong>」をクリック。結構な時間がかかるが待機。</li>
+</ul>
+<p>以上で、ISOファイルが作成されるので、後はこれを<strong>Rufus</strong>でUSBあるいはSDカードに焼けば、<strong>Yoga Book専用Windows10インストールディスク</strong>の完成です。</p>
+<hr>
+<h3 id="3windows10のインストール">[3]　Windows10のインストール</h3>
+<p>ここからは、<a href="https://rsn604.github.io/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/">前回</a>と同じ手順でインストールを行います。<br>
+ISOファイルを替えたからと行って、「<strong>Yoga分身の術</strong>」は変わリませんので、HDMIで外部ディスプレイに接続しないと満足な作業を行うことは出来ません。</p>
+<p>ただ、ここからの動作は大幅に改善しています。<br>
+Windows10標準のインストールでは、Windows Update適用まで、Haloキーボードが使用できませんでした。ところが、今回のインストールでは複数回の再起動を繰り返した後に、Haloキーボードは自動的に有効化、使用可能となりました。</p>
+<p>下記にインストール完了後の「<strong>デバイスマネージャー</strong>」の画面を示します。</p>
+<img src="/IT/Yoga Bookに悪戦苦闘(その３)04.Device.png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>バイブレータ、キーボード、センサーなど必要なドライバーがインストールされており、「不明なデバイス」は一つもありません。</p>
+<hr>
+<p>前回釈然としない形で実施したWindows10のクリーンインストールでしたが、今回はなんとかきっちり完了できたので、気分的にスッキリしました。<br>
+しかし、このYoga Bookですが、結局積極的に使う気にはなれませんね。Haloキーボードの革新性は認めますが、何といっても使いづらくて違和感を拭えません。また、BIOSレベルでは認識しないので、他のOSをインストールするような遊びが出来ないのも残念です。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-golang%E3%81%AE%E7%89%B9%E5%BE%B4/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その１　golangの特徴 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

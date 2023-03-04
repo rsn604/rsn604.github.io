@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )" />
+<meta property="og:description" content="ListDBPのデータベースにMySQLを使用してみる。 今回は、まず「Pythonとデータベース」について説明したうえで、「ListDBPに" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/" />
+<meta property="article:published_time" content="2021-10-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-28T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )"/>
+<meta name="twitter:description" content="ListDBPのデータベースにMySQLを使用してみる。 今回は、まず「Pythonとデータベース」について説明したうえで、「ListDBPに"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-andorid%E3%81%A7listdbp%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%91-%E8%B3%BC%E5%85%A5%E7%B7%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その１　購入編 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう 第二部入魂編 ( その７　Pythonのデータアクセス機能 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-28T00:00:00Z">October 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="listdbpのデータベースにmysqlを使用してみる">ListDBPのデータベースにMySQLを使用してみる。</h2>
+<br clear="left">
+<p>今回は、まず「Pythonとデータベース」について説明したうえで、「<strong>ListDBP</strong>における複数データベース対応」について記述します。</p>
+<hr>
+<h3 id="1pythonによるdbアクセス">[1]　PythonによるDBアクセス</h3>
+<p>データを格納するには、何らかのデータベースが必要ですが、<strong>RDB</strong>(Relational Database)を使用するのが一般的でしょう。<br>
+<strong>Python</strong>では、<a href="https://docs.python.org/ja/3/library/sqlite3.html" target="_blank">DB-API</a>と呼ばれるものが標準ライブラリとして含まれており、<strong>SQLite3</strong>というシングルユーザー用データベースが使用可能です。</p>
+<p>上記のサイトによると、</p>
+<blockquote>
+<p>SQLite は、軽量なディスク上のデータベースを提供する C ライブラリです。別のサーバプロセスを用意する必要なく、 SQL クエリー言語の非標準的な一種を使用してデータベースにアクセスできます。一部のアプリケーションは内部データ保存に SQLite を使えます。また、SQLite を使ってアプリケーションのプロトタイプを作り、その後そのコードを PostgreSQL や Oracle のような大規模データベースに移植するということも可能です。</p>
+</blockquote>
+<p>とのこと。<br>
+なにゆえ、移植が可能かといえば、Pythonによるデータベースアクセスには、事前に決められたインターフェース<a href="https://www.python.org/dev/peps/pep-0249/" target="_blank">&quot;PEP 249&quot;</a>があり、ほとんどのモジュールは、この標準にしたがって設計されているからです。</p>
+<p><strong>PEP</strong>に従った<strong>DB-API</strong>では、importするモジュール以外は、同じような構造になります。<strong>SQLite3以外のデータベース</strong>も、上記PEPに従ったインタフェースモジュールが提供されていますので、スクリプトは下記のような構造になるでしょう。</p>
+<pre><code># Importするモジュールは、それぞれのDB用  
+  
+# これは標準DBのSQLite3用  
+import sqlite3  
+  
+# MySQLの場合  
+import pymysql  
+  
+# Postgresの場合  
+import psycopg2  
+  
+</code></pre><p>ここからは、同じようなコードとなるはずです。<strong>Sqlite3</strong>であれば、こんな感じです。</p>
+<pre><code>con = sqlite3.connect('example.db')  
+cur = con.cursor()  
+cur.execute('''CREATE TABLE stocks  
+               (date text, trans text, symbol text, qty real, price real)''')  
+cur.execute(&quot;INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)&quot;)  
+  
+con.commit()  
+con.close()  
+</code></pre><p>ここでは、DB-APIや各データベースモジュールの詳細は説明はしません。様々なサイトがありますから、そちらを参照してください。</p>
+<hr>
+<h4 id="db-apiの限界">DB-APIの限界</h4>
+<p>個人用のデータ管理ならSQLite3が最適ですが、あくまでシングルユーザー用ですから、Webアプリのように、マルチユーザーからアクセスする場合には、MySQLやPostgressなどを使うのが一般的です。<br>
+理想を言えば、「<strong>1つのスクリプトで複数データベースをサポートしたい</strong>」わけですが、現実的には無理があります。DB-APIの基本的な流れは、先に述べたように標準化されていますが、あくまで関数が共通化されただけで、SQLレベルまで合わされているわけではないからです。<br>
+例えば、Prepareステートメントで使われるバインド変数は、SQLite3では’?’で表しますが、他のDBでは’%s’だったりします。また、標準SQL以外の関数は、それぞれのRDBの仕様に依存してしまいます。<br>
+このようにRDBによる違いが少なくないので、「<strong>共通性の追求には限界がある</strong>」わけなのです。</p>
+<hr>
+<h3 id="2listdbpをmysql上で動かす">[2]　ListDBPをMySQL上で動かす。</h3>
+<p>そこで、今回のアプリケーション<strong>ListDBP</strong>では、「データベースによって異なる部分を抜き出し、個別対応する」という泥臭い施策になっています。<br>
+以下、簡単に説明しておきます。</p>
+<h4 id="1データベースの選択">(1)　データベースの選択</h4>
+<p>実行時にパラメータとして、データベース名と接続文字列を取得します。</p>
+<pre><code>if __name__==&quot;__main__&quot;:  
+    if len(sys.argv) == 3:  
+        database_name = sys.argv[1]  
+        database_connect = sys.argv[2]  
+    else:  
+        database_name = 'SQLITE3'  
+        database_connect = './db/ListDB.sqlite3'  
+        #database_name = 'MYSQL'  
+        #database_connect = 'mysql://user01:pass01@localhost/ListDB'  
+    main(database_name, database_connect)  
+</code></pre><h4 id="2データベースモジュールでの処理">(2)　データベースモジュールでの処理</h4>
+<p><strong>ListDBInterfaceクラス</strong>で、対応するデータベースモジュールを<strong>Import</strong>、それぞれの処理を委譲していくという仕組みで、複数データベースに対応します。<br>
+<strong>SQLite3</strong>対応は<strong>dbsqlite3.py</strong>に、<strong>MySQL</strong>用は<strong>dbmysql.py</strong>に記述してあります。今回はスクリプトに組み入れていませんが、<strong>Postgress</strong>用のものを<strong>dbpostgres.py</strong>として残しておきました。</p>
+<pre><code>class ListDBInterface:  
+    def __init__(self, database_name, database_connect):  
+        if (database_name == &quot;SQLITE3&quot;):  
+            from . import dbsqlite3  
+            self.db = dbsqlite3.ListDBSQLite3(database_connect)  
+        elif (database_name == &quot;MYSQL&quot;):  
+            from . import dbmysql  
+            self.db = dbmysql.ListDBMySQL(database_connect)  
+  
+        self.connection = self.db.connection  
+        self.cursor = self.db.cursor  
+  
+    # --------------------------------------------------------  
+    def get_drop_meta_sql(self):  
+        return self.db.get_drop_meta_sql()  
+    def get_define_sql(self):  
+        return self.db.get_define_sql()  
+    def get_insert_meta_sql(self):  
+        return self.db.get_insert_meta_sql()  
+    def get_update_meta_sql(self, dbName):  
+                     :  
+                     :  
+</code></pre><hr>
+<h3 id="3mysql環境の整備">[3]　MySQL環境の整備</h3>
+<p>アプリケーションを実行するには、まず<strong>MySQL</strong>環境をセットアップする必要があります。以下、<strong>Ubuntu</strong>環境での実行について記述します。</p>
+<h4 id="1mysqlのインストール">(1)　MySQLのインストール</h4>
+<p>何はともあれ、<strong>MySQL</strong>本体をインストールしないと始まりません。</p>
+<pre><code>$ sudo apt-get install mysql-server  
+</code></pre><h4 id="2セットアップ">(2)　セットアップ</h4>
+<p><strong>MySQL</strong>環境をセットアップしていきます。</p>
+<h5 id="1rootのパスワードを設定">1.　rootのパスワードを設定</h5>
+<pre><code>$ sudo mysql -u root  
+</code></pre><pre><code>mysql&gt; alter user 'root'@'localhost'  identified by 'xxxx' ;  
+mysql&gt; flush privileges;  
+</code></pre><h5 id="2listdbデータベースの作成">2.　ListDBデータベースの作成</h5>
+<pre><code>mysql&gt; create database ListDB;  
+</code></pre><h5 id="3ユーザーの作成">3.　ユーザーの作成</h5>
+<p>作成した<strong>ListDB</strong>データベースについて、全権限を持つユーザーを作成します。ここでは、ユーザー「<strong>user01</strong>」をパスワード「<strong>pass01</strong>」で設定しました。</p>
+<pre><code>mysql&gt; create user 'user01'@'%' identified by 'pass01';  
+mysql&gt; create user 'user01'@'localhost' identified by 'pass01';  
+mysql&gt; grant all privileges on ListDB.* to user01@'%';  
+mysql&gt; grant all privileges on ListDB.* to 'user01'@'localhost';  
+</code></pre><h5 id="4外部接続の許可">4.　外部接続の許可</h5>
+<p>外部からの接続を許可するには、<strong>/etc/mysql/mysql.conf.d/mysqld.cnf</strong>に設定が必要なようです。</p>
+<pre><code>bind-address = 127.0.0.1  
+     ↓  
+bind-address = (接続したいマシンのIPアドレス)  
+#どのIPからも接続許可する場合は、bind-address行をコメントアウト。  
+</code></pre><h5 id="5python-mysqlモジュールのインストール">5.　Python MySQLモジュールのインストール</h5>
+<p>いくつかの<strong>MySQL</strong>対応モジュールがあるようですが、ここでは<strong>PyMySQL</strong>を使用していますので、<strong>pip</strong>でインストールします。</p>
+<pre><code>$ pip3 install PyMySQL  
+</code></pre><hr>
+<h3 id="5スクリプトの変更と実行">[5]　スクリプトの変更と実行</h3>
+<p>環境が整備されたら、まずはMySQLにデータをロードします。その後、スクリプトを実行、内容を確認していきます。</p>
+<h4 id="1データロード">(1)　データロード</h4>
+<p><strong>load_db.sh</strong>スクリプトを下記のように書き換えて実行します。</p>
+<pre><code>python3 load_db.py 'MYSQL' 'mysql://user01:pass01@localhost/ListDB' './csv'  
+#python3 load_db.py 'SQLITE3' './db/ListDB.sqlite3' './csv'  
+</code></pre><h4 id="2スクリプトの実行">(2)　スクリプトの実行</h4>
+<p><strong>list.py</strong>の起動部を下記のように書き換えて実行します。</p>
+<pre><code>if __name__==&quot;__main__&quot;:  
+    if len(sys.argv) == 3:  
+        database_name = sys.argv[1]  
+        database_connect = sys.argv[2]  
+    else:  
+        #database_name = 'SQLITE3'  
+        #atabase_connect = './db/ListDB.sqlite3'  
+        database_name = 'MYSQL'  
+        database_connect = 'mysql://user01:pass01@localhost/ListDB'  
+    main(database_name, database_connect)  
+</code></pre><p>以上となります。<br>
+なお、今回説明した<strong>MySQL対応</strong>は、あくまで「Pythonおける複数データベース対応」のテスト用に作成したものですから、一つの参考としてご理解ください。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/ListDBP" target="_blank">ListDBP</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-andorid%E3%81%A7listdbp%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その６　AndoridでListDBPを動かす )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%91-%E8%B3%BC%E5%85%A5%E7%B7%A8/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その１　購入編 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

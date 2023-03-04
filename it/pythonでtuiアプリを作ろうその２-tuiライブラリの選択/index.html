@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )" />
+<meta property="og:description" content="日本語（ユニコード）対応で評価しよう。 Pythonの公式ドキュメントでは、「ターミナルアプリケーションの意義」について、下記のように指摘して" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-tui%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%AE%E9%81%B8%E6%8A%9E/" />
+<meta property="article:published_time" content="2021-05-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-24T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )"/>
+<meta name="twitter:description" content="日本語（ユニコード）対応で評価しよう。 Pythonの公式ドキュメントでは、「ターミナルアプリケーションの意義」について、下記のように指摘して"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その１　TUIアプリとは )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その２　TUIライブラリの選択 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-05-24T00:00:00Z">May 24, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="日本語ユニコード対応で評価しよう">日本語（ユニコード）対応で評価しよう。</h2>
+<br clear="left">
+<hr>
+<p><a href="https://docs.python.org/ja/3/howto/curses.html" target="_blank">Pythonの公式ドキュメント</a>では、「<strong>ターミナルアプリケーションの意義</strong>」について、下記のように指摘しています。</p>
+<blockquote>
+<p>グラフィカルなディスプレイが当たり前の今となっては、「なんでわざわざ？」と疑問に思うかもしれません。確かに文字表示端末は時代遅れな技術ではありますが、ニッチな領域が存在していて、意匠を凝らすことができるため、いまだに価値のあるものとなっています。</p>
+</blockquote>
+<p>それゆえ、Pythonには標準ライブラリとして、<strong>curses</strong>が装備されているわけです。<strong>cursesライブラリ</strong>は、下記の機能をPythonに付加します。</p>
+<blockquote>
+<p>curses ライブラリは、VT100s や Linux コンソール、さまざまなプログラムが提供するエミュレーション端末といったテキストベースの端末（ターミナル）のために、端末に依存しないスクリーン描画や、キーボードの処理を提供します。端末はカーソルの移動や、画面のスクロール、領域の消去といった共通の操作を行うための様々な制御コードをサポートします。</p>
+</blockquote>
+<p>しかしながら、</p>
+<blockquote>
+<p>cursesが提供するユーザーインターフェースのコンセプトは限られています。ボタン、チェックボックス、ダイアログ等は含まれておりません。そのような機能が必要な場合は、Urwidのようなユーザーインターフェースライブラリーの使用を検討してください。</p>
+</blockquote>
+<p>とのこと。ようするに、</p>
+<h4 id="python標準のcursesだけで開発するのは無理がある">Python標準の”curses&quot;だけで開発するのは無理がある。</h4>
+<p>そういうことですね。</p>
+<hr>
+<h3 id="pythontuiライブラリの選択">Python　TUIライブラリの選択</h3>
+<p>というわけで、まずはTUIアプリ開発をサポートするライブラリを選定していきましょう。<br>
+Web上の情報などを調べていくと、なんと言ってもニッチな環境なので、候補は多くありません。現状では、下記の2つに絞って構わないと思います。</p>
+<h4 id="1urwid">(1)　Urwid</h4>
+<p>第一候補は、Pythonの標準ドキュメントにも出てくる”<strong>Urwid</strong>”でしょう。</p>
+<p><a href="http://urwid.org/index.html" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その２urwid).png" style="margin-left:50px;margin-bottom:30px;width:500px;"></a></p>
+<p><a href="http://urwid.org/changelog.html" target="_blank">公式サイトのChangelog</a>を見ると、最初のバージョン<strong>0.8.0</strong>が2004年8月、最新の<strong>2.1.2</strong>が2020年9月のリリースですから、なんと17年に渡るキャリアを誇ります。</p>
+<h4 id="2npyscreen">（2）　npyscreen</h4>
+<p>これに対抗するのは、”<strong>npyscreen</strong>”となります。</p>
+<p><a href="http://www.npcole.com/npyscreen/" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その２npyscreen).png" style="margin-left:50px;margin-bottom:30px;width:500px;"></a></p>
+<p><a href="https://pypi.org/project/npyscreen/#history" target="_blank">ダウンロードサイトのRelease history</a>を見ると、最初のバージョン<strong>2.0pre48b</strong>が2012年4月、最新の<strong>4.10.5</strong>が2015年10月となっています。このところ動きがないのは、いささか気になるところですが、後発の強みはあるかもしれません。</p>
+<p>この２つが代表的なものでしょう。どちらも<strong>curses</strong>をベースに、その上にテキスト表示、ボタン、入力フィールド、リスト表示、チェックボックスなど、よく使われる部品を提供するものです。</p>
+<hr>
+<h3 id="日本語対応で評価しよう">日本語対応で評価しよう</h3>
+<p>さて、この2つのツール比較ですが、「<strong>極東の住人</strong>」にとって重要なのは、なんといってもローカル対応。<br>
+漢字が使えなければ使い物になりません。要するに、Unicode対応です。</p>
+<p>とりあえず、簡単な入力プログラムを作って、日本語処理についてテストしてみましょう。<br>
+処理は簡単。</p>
+<ul>
+<li>まずは、日本語で「お名前は?」と表示。</li>
+<li>定義した入力フィールドに、かな漢字変換で入力。ここでは「山田太郎」とします。</li>
+</ul>
+<h4 id="1urwid-1">(1)　Urwid</h4>
+<p>プログラムはこんな感じ。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# s02_urwid.py  
+#  
+import urwid  
+class MyEdit(urwid.Edit):  
+    def keypress(self, size, key):  
+        if key != 'enter':  
+            return super(MyEdit, self).keypress(size, key)  
+        else:  
+            raise urwid.ExitMainLoop()  
+  
+edit = MyEdit(u&quot;お名前は? &quot;)  
+loop = urwid.MainLoop(urwid.Filler(edit))  
+loop.run()  
+</code></pre><p>日本語入力後の画面がこちら。全く問題ありませんね。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その２urwid_test).png" style="margin-left:50px;margin-bottom:30px;width:500px;">  
+<p>ここで、矢印キーを動かして、適当な文字を挿入したり、削除したりしてみましたが、英数、漢字の区別なく正常に処理されました。</p>
+<h4 id="2npyscreen-1">(2)　npyscreen</h4>
+<p>同様に、テストしてみます。プログラムは下記。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# s02_npyscreen.py  
+#  
+import npyscreen  
+class TestApp(npyscreen.NPSApp):  
+    def main(self):  
+        F  = npyscreen.Form(name = &quot;Welcome to Npyscreen&quot;,)  
+        t  = F.add(npyscreen.TitleText, name = &quot;お名前は?&quot;,)  
+        F.edit()  
+  
+if __name__ == &quot;__main__&quot;:  
+    App = TestApp()  
+    App.run()  
+</code></pre><p>表示は出来ましたが、名前を漢字で入力すると、入力フィールドにうまく表示されません。</p>
+<img src="/IT/PythonでTUIアプリを作ろう(その２npyscreen_test).png" style="margin-left:50px;margin-bottom:30px;width:500px;">  
+<p>これはだめですね。<strong>npyscreen</strong>が、2015年以降メンテされていないことを考えると、今後対応される可能性は低いでしょうから、この段階で評価を終了します。</p>
+<p>非常に簡単な評価になってしまいましたが、ここでは</p>
+<h4 id="tuiアプリ開発にはurwidを採用する">TUIアプリ開発には、”Urwid”を採用する。</h4>
+<p>と決定しましょう。</p>
+<hr>
+<h3 id="urwidの稼働環境">Urwidの稼働環境</h3>
+<p>以下、Urwidの稼働に必要な環境やインストール方法について記述します。</p>
+<h4 id="1os">(1)　OS</h4>
+<p>Unix、あるいはそれの疑似環境で動作します。Linuxであれば、どのディストリビューションでも問題はないでしょう。</p>
+<p>注意点として、<strong>Windows用に配布されているPythonでは、Urwidは動かない</strong>ということが挙げられます。「NameError: name &lsquo;fcntl&rsquo; is not defined」というエラーで終了してしまいます。</p>
+<p>Windowsでの動作には、<strong>Cygwin、あるいはWSL（Windows10 64ビットのみ）上でPythonをインストールする</strong>必要があります。</p>
+<h4 id="2pythonのバージョン">(2)　Pythonのバージョン</h4>
+<p>Pythonのバージョンは、<strong>Urwid</strong>がサポートしているバージョンとします。<br>
+<a href="http://urwid.org/index.html" target="_blank">UrwidのRequirements</a>には、「<strong>Python 2.7, 3.5+ or PyPy</strong>」と書いてありますから、これを対象としましょう。</p>
+<p>プログラム開発は、<strong>Python3.8.5</strong>で行いますが、<strong>python2.7</strong>でも検証していきます。したがって、バージョン限定の断り書きがない限り、ほとんどのプログラムは<strong>python2.7</strong>でも動作します。</p>
+<p>ただ、今後の記事では、python3ベースに合わせて、Python起動コマンドを”<strong>python3</strong>”、pipを”<strong>pip3</strong>”と記述していきます。</p>
+<h4 id="3urwidのインストール">(3)　Urwidのインストール</h4>
+<p>pipでインストールするのが一番簡単です。</p>
+<pre><code>pip3 install urwid  
+</code></pre><p><a href="https://github.com/urwid/urwid" target="_blank">このサイト</a>から、ソースを入手しても良いでしょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section02" target="_blank">Section02</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%AF/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その１　TUIアプリとは )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-python-urwid%E3%81%AE%E5%9F%BA%E6%9C%AC%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その３　Python Urwidの基本オブジェクト構造 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

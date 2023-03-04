@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )" />
+<meta property="og:description" content="作成したListDB用CSVファイルで、データベースを作成します。 CSVデータのロード CSVファイルをデータベースにロードするには、「Lis" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/" />
+<meta property="article:published_time" content="2021-10-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-12T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )"/>
+<meta name="twitter:description" content="作成したListDB用CSVファイルで、データベースを作成します。 CSVデータのロード CSVファイルをデータベースにロードするには、「Lis"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションの作成 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-12T00:00:00Z">October 12, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="作成したlistdb用csvファイルでデータベースを作成します">作成したListDB用CSVファイルで、データベースを作成します。</h2>
+<br clear="left">
+<hr>
+<h3 id="csvデータのロード">CSVデータのロード</h3>
+<p>CSVファイルをデータベースにロードするには、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">「ListDBの構造について」</a>で説明したように、下記のメソッドを使用します。</p>
+<pre><code># 4.指定されたCSVファイルからデータをimport。問題なければ、’True'が返る。  
+ret_code = manager.import_csv(fname)  
+# fname　:　CSVファイル名  
+</code></pre><p>ただ、CSVファイルを１つずつ指定するのは面倒なので、<strong>ディレクトリ内のCSVファイル（.csv）全件を対象</strong>にしたスクリプトで対応します。CSVファイルが増加しても、ディレクトリにファイルを追加するだけで、もれなく処理することができます。</p>
+<pre><code>#! /usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# load_db.py  
+#  
+import os, sys  
+import time  
+  
+from listdb.manager import get_manager  
+  
+def reprDirInfo(dirpath, flist):  
+    for path in os.listdir(dirpath):  
+        full = os.path.join(dirpath,path)  
+        if os.path.isdir(full):  
+            reprDirInfo(full, flist)  
+        elif os.path.isfile(full):  
+            flist.append(full)  
+  
+def main(database_name, database_connect, csv_dir):  
+    manager = get_manager(database_name, database_connect)  
+    manager.define()  
+    flist = []  
+    reprDirInfo(csv_dir, flist)  
+    for full in flist:  
+        (root,ext) = os.path.splitext(full)  
+        if ext.lower()=='.csv':  
+            ret_code = manager.import_csv(full);  
+            print (&quot;Loaded &quot;+ full+&quot; ret:&quot;+str(ret_code))  
+    manager.close()  
+  
+if __name__ == '__main__':  
+    if len(sys.argv) &lt; 4:  
+        print (&quot;Specify &lt;databese name&gt; &lt;connect string&gt; &lt;CSV dir&gt;&quot;)  
+        sys.exit()  
+  
+    time1 = time.time()  
+    main(sys.argv[1], sys.argv[2], sys.argv[3])  
+    time2 = time.time() - time1  
+    print ('Elapse:'+str(time2) +&quot;sec&quot;)  
+</code></pre><p>実行パラメータは、「データベース名」「作成するデータベース名称」「CSVファイルのディレクトリ名」となります。</p>
+<pre><code>python3 load_db.py 'SQLITE3' './db/ListDB.sqlite3' './csv'  
+</code></pre><p>実行すると、下記のようにロード対象になったCSVファイル名が表示されます。</p>
+<pre><code>Loaded ./csv/bookoff_tokyo.csv ret:True  
+Loaded ./csv/anthology.csv ret:True  
+Loaded ./csv/eqmm.csv ret:True  
+Loaded ./csv/hardoff_tokyo.csv ret:True  
+Elapse:xxxxsec  
+</code></pre><hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section14" target="_blank">Section14</a>となります。</p>
+<ul>
+<li><strong>csv</strong>ディレクトリ<br>
+<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/">スクレイピングによるデータ収集</a>で説明した<a href="https://github.com/rsn604/python_tui/tree/main/Section13" target="_blank">Section13</a>をそのままコピーしたものになります。<br>
+<strong>CSV</strong>のデータについては、前回作成した「<strong>ブックオフ店舗情報(東京都)</strong>」「<strong>ハードオフ店舗情報(東京都)</strong>」の他に、わたしがこのブログ内で読み続けている「<strong>EQMM作品評価リスト(78号まで)</strong>」と「<strong>アンソロジー作品評価リスト</strong>」を加えてみました。</li>
+<li><strong>listdb</strong>ディレクトリ<br>
+<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">ListDBの構造について</a>で説明した<strong>ListDB</strong>パッケージのソースコードです。ソースの詳細についての説明は省きます。</li>
+</ul>
+<p>これでデータベース作成が完了しました。<br>
+次回は、ここまで作成してきた<strong>Python UrwidのTUI部品</strong>を組み合わせて、動作するアプリケーションを構築していきます。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションの作成 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

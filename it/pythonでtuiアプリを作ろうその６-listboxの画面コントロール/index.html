@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )" />
+<meta property="og:description" content="ページング処理を追加しよう。 今回は、前回のスクリプトにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" />
+<meta property="article:published_time" content="2021-06-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-12T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )"/>
+<meta name="twitter:description" content="ページング処理を追加しよう。 今回は、前回のスクリプトにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-12T00:00:00Z">June 12, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="ページング処理を追加しよう">ページング処理を追加しよう。</h2>
+<br clear="left">
+<p>今回は、前回のスクリプトにページコントロールを入れて、全件表示ができるよう変更していきます。新たなWidgetの追加はありません。処理は極めて簡単で、ページング対応ロジックの追加が中心になります。</p>
+<hr>
+<h3 id="画面イメージ">画面イメージ</h3>
+<p>まずは、<strong>最終画面イメージ</strong>を示します。</p>
+<p><img src="/IT/PythonでTUIアプリを作ろう(その６-image).png" style="margin-left:20px;margin-bottom:30px;width:500px;"></a><br>
+<strong>Header部に、ページングボタンを2つ配置</strong>しています。このボタンがクリックされることで、ページング表示を行っていくという形となるわけです。</p>
+<hr>
+<h3 id="スクリプトの分割">スクリプトの分割</h3>
+<p>その前にスクリプトを整理しましょう。<br>
+今までは、1つのスクリプトに全ての処理を記述していましたが、だいぶ長くなってきたので、下記の3ファイルに分割し、ページングに対応した処理を追加していきます。</p>
+<p>(1)　Widget関係(mywidget.py)<br>
+(2)　ListWalker(listwalker.py)<br>
+(3)　メイン部(list.py)</p>
+<p>それでは、個々のスクリプトを見ていきましょう。</p>
+<hr>
+<h3 id="1mywidget">（1)　mywidget</h3>
+<p>Urwidの基本Widgetを拡張している部分を抜き出します。<br>
+今回は新たに、「<strong>マウスのダブルクリック</strong>」に対応した<strong>MyFrame</strong>を追加しました。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# mywidget.py  
+#  
+import urwid  
+import time  
+  
+def get_items():  
+    items = []  
+    for i in range(100):  
+        items.append(&quot;テストデータ&quot;+str(i))  
+    return items  
+  
+my_palette = [  
+    ('body', 'default', 'default'),  
+    ('foot', 'white', 'dark blue'),  
+    ('button', 'yellow', 'default'),  
+    ('button_focus', 'black', 'yellow'),  
+    ('listwalker', 'black', 'light cyan')  
+]  
+  
+def create_mybutton(label, callback, user_data=None):  
+    button = urwid.Button(label, on_press=callback)  
+    return urwid.AttrMap(button, 'button', 'button_focus')  
+  
+class MyText(urwid.Text):  
+    def selectable(self):  
+        return True  
+    def keypress(self, size, key):  
+        if key in ('j', 'J'):  
+            return &quot;down&quot;  
+        elif key in ('k', 'K'):  
+            return &quot;up&quot;  
+        return key  
+  
+class MyFrame(urwid.Frame):  
+    last_time_clicked = None  
+    double_click = None  
+    def mouse_event(self, size, event, button, col, row, focus):  
+        if event == 'mouse press':  
+            now = time.time()  
+            if (self.last_time_clicked and (now - self.last_time_clicked &lt; 0.5)):  
+                if self.double_click:  
+                    self.double_click()  
+            else:  
+                urwid.Frame.mouse_event(self, size, event, button, col, row, focus)  
+            self.last_time_clicked = now  
+  
+</code></pre><hr>
+<h3 id="2listwalker">(2)　listwalker</h3>
+<p>処理件数(<strong>rows</strong>)にだけではなく、表示開始レコード(<strong>from_rec</strong>)をパラメータに追加しています。また、最終ページを示すフラグ(<strong>is_last</strong>)をプロパティとして設定しています。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# listwalker.py  
+#  
+import urwid  
+from mywidget import MyText  
+  
+class ListWalker(urwid.ListWalker):  
+    def __init__(self, items, from_rec, rows):  
+        self.focus = 0  
+        self.create_page(items, from_rec, rows)  
+  
+    def create_page(self,items, from_rec, rows):  
+        self.lines = []  
+        self.is_last = False  
+        for i in range(rows):  
+            if len(items) &lt; from_rec + i:  
+                self.is_last = True  
+                break  
+            text = MyText(items[from_rec+i-1])  
+            self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
+  
+    def last_page(self):  
+        return self.is_last  
+  
+    def get_focus(self):  
+        return self.get_at_pos(self.focus)  
+  
+    def set_focus(self, focus):  
+        self.focus = focus  
+        self._modified()  
+  
+    def get_next(self, start):  
+        return self.get_at_pos(start + 1)  
+  
+    def get_prev(self, start):  
+        return self.get_at_pos(start - 1)  
+  
+    def get_at_pos(self, pos):  
+        if pos &lt; 0:  
+            return None, None  
+  
+        if len(self.lines) &gt; pos:  
+            return self.lines[pos], pos  
+        return None, None  
+</code></pre><hr>
+<h3 id="3list">(3)　list</h3>
+<p>これまでは、<strong>Application</strong>という抽象的なクラス名にしていましたが、一覧処理なので、<strong>List</strong>という名称に変更しました。</p>
+<h4 id="1-ページングボタンの追加">1. ページングボタンの追加</h4>
+<p><strong>Headerにページングボタンを追加</strong>します。＜N＞ボタンで次ページ、＜P＞ボタンで前ページ画面に移行することとします。</p>
+<h4 id="2-ボタンの処理">2. ボタンの処理</h4>
+<p>表示開始レコード(<strong>from_rec</strong>)を、ページングボタンの動作に合わせて増減することで<strong>画面ページング</strong>を行います。<br>
+また、１ページめは＜P＞ボタンを、<strong>ListWalker</strong>が最終ページフラグ(<strong>is_last</strong>)を返した場合は＜N＞ボタンの表示を抑制するよう制御します。</p>
+<p>下記にコードを示します。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# list.py  
+#  
+import urwid  
+from listwalker import ListWalker  
+from mywidget import *  
+  
+class List:  
+    main_loop = None  
+    from_rec = 1  
+  
+    def __init__(self):  
+        pass  
+  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+  
+    def get_cols_rows(self):  
+        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
+        return cols, rows-2  
+  
+    def select_list(self):  
+        focus_widget, idx = self.listbox.get_focus()  
+        self.footer_text.set_text(&quot;pos:&quot;+str(idx)+&quot; data:&quot;+focus_widget.base_widget.text)  
+  
+    def next_page(self, ignored=None):  
+        if not self.last_page():  
+            self.from_rec += self.rows  
+            self.main_loop.widget = self.doformat()  
+  
+    def prior_page(self, ignored=None):  
+        if self.from_rec &gt; self.rows:  
+            self.from_rec -= self.rows  
+            self.main_loop.widget = self.doformat()  
+  
+    def first_page(self):  
+        return self.from_rec == 1  
+  
+    def last_page(self):  
+        return self.is_last  
+  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k in ('n', 'N'):  
+            self.next_page()  
+        elif k in ('p', 'P'):  
+            self.prior_page()  
+        elif k == 'enter':  
+            self.select_list()  
+        else:  
+            return  
+        return True  
+  
+    def doformat(self):  
+        self.cols, self.rows = self.get_cols_rows()  
+        walker = ListWalker(get_items(), self.from_rec, self.rows)  
+        self.is_last = walker.last_page()  
+        self.listbox = urwid.ListBox(walker)  
+  
+        if self.last_page():  
+            btn_next = urwid.Divider()  
+        else:  
+            btn_next = create_mybutton(&quot;N&quot;, self.next_page)  
+        if self.first_page():  
+            btn_prior = urwid.Divider()  
+        else:  
+            btn_prior = create_mybutton(&quot;P&quot;, self.prior_page)  
+  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_next, btn_prior, btn_q], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        #frame = urwid.Frame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame = MyFrame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame.double_click = self.select_list  
+        frame.focus_position = 'header'  
+        return frame  
+  
+    def run(self):  
+        self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+        self.main_loop.run()  
+  
+def main():  
+    List().run()  
+  
+if __name__==&quot;__main__&quot;:  
+    main()  
+  
+</code></pre><hr>
+<h3 id="動作確認">動作確認</h3>
+<p>では、実際に動かしてみましょう。<strong>mywidget.py</strong>、<strong>listwalker.py</strong>、<strong>list.py</strong>の3ファイルを同一ディレクトリに入れておきます。</p>
+<pre><code>python3 list.py  
+</code></pre><p>先に示した画面が表示されたでしょうか。<br>
+<strong>＜N＞ボタン、＜P＞ボタンでページング処理</strong>が行われます。また、データを<strong>マウスでダブルクリック</strong>すると、<strong>選択されたレコードの内容がfotter部に表示される</strong>ことも確認してください。</p>
+<p>これで、Urwid ListBoxを使用した一覧リスト画面(<strong>List</strong>)の雛形は完成です。<br>
+次回は、この画面から選択されたレコードの詳細(<strong>Detail</strong>)を表示するスクリプトを作成していきます。Urwidのようなツールキットで開発する場合、複数画面連携は大きなポイントとなります。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section06" target="_blank">Section06</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E8%A4%87%E6%95%B0%E7%94%BB%E9%9D%A2%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その７　複数画面間の連携について )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その６　クロスコンパイル環境の整備 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その６　クロスコンパイル環境の整備 )" />
+<meta property="og:description" content="コンパイル用のMakefileを作成する。 これまで、golangプログラムの実行は、 go run cmd/main.go のように実行してきましたが、これはプログラムのコン" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%AE%E6%95%B4%E5%82%99/" />
+<meta property="article:published_time" content="2022-08-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-28T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その６　クロスコンパイル環境の整備 )"/>
+<meta name="twitter:description" content="コンパイル用のMakefileを作成する。 これまで、golangプログラムの実行は、 go run cmd/main.go のように実行してきましたが、これはプログラムのコン"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%B8%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションへの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-%E6%A7%98%E3%80%85%E3%81%AA%E7%92%B0%E5%A2%83%E3%81%A7listdbg%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その７　様々な環境でListDBGを動かす )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その６　クロスコンパイル環境の整備 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-28T00:00:00Z">August 28, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="コンパイル用のmakefileを作成する">コンパイル用のMakefileを作成する。</h2>
+<br clear="left">
+<p>これまで、<strong>golang</strong>プログラムの実行は、</p>
+<pre><code>go run cmd/main.go  
+</code></pre><p>のように実行してきましたが、これはプログラムのコンパイルと実行を同時に行う便宜的なコマンドにすぎません。</p>
+<hr>
+<h3 id="golangのコンパイルコマンド">golangのコンパイルコマンド</h3>
+<p><strong>golang</strong>は、本来コンパイラ言語ですから、コンパイルと実行を下記のように別のプロセスで行う必要があります。</p>
+<pre><code>go build -o listdbg cmd/main.go  
+./listdbg  
+</code></pre><p><strong>go build</strong>コマンドが、<strong>golang</strong>のソースをオブジェクトにコンパイルするコマンドであり、<strong>ｰo</strong>オプションで指定した名前で実行ファイルを生成します。<br>
+この例の実行ファイル、<strong>listdbg</strong>は独立オブジェクトですので、実行時に必要になるのはこのファイルだけで、開発に使用した<strong>golang</strong>環境などは、すべて不要となります。このあたりが、<strong>Python</strong>のようなインタープリタとは大きく異なる特徴であり、コンパイラである<strong>golang</strong>の大きなメリットとなるわけです。</p>
+<hr>
+<h3 id="他環境のオブジェクトを生成">他環境のオブジェクトを生成</h3>
+<p>さらに<strong>golang</strong>では、他環境のオブジェクトを生成することができます。<br>
+例えば、<strong>Linux amd64</strong>環境で、<strong>ARM</strong>用のオブジェクトや、<strong>Windows</strong>環境(32ビット、64ビット)用の実行オブジェクトを生成することが可能なのです。<br>
+このように、1つのソースコードから様々なOS向けのバイナリを生成する機能を<strong>クロスコンパイル</strong>と呼びます。</p>
+<p><strong>golang</strong>コンパイラで実行オブジェクトを生成できるアーキテクチャーは、下記のコマンドで確認できます。</p>
+<pre><code>$ go tool dist list  
+aix/ppc64  
+android/386  
+android/amd64  
+android/arm  
+android/arm64  
+darwin/amd64  
+darwin/arm64  
+dragonfly/amd64  
+freebsd/386  
+freebsd/amd64  
+freebsd/arm  
+freebsd/arm64  
+illumos/amd64  
+ios/amd64  
+ios/arm64  
+js/wasm  
+linux/386  
+linux/amd64  
+      :  
+      :  
+</code></pre><p>上記の組み合わせを、環境変数<strong>GOOS</strong>と<strong>GOARCH</strong>で指定することで、異なる環境のオブジェクトをコンパイルすることが可能です。<br>
+例えば、<strong>Windows64ビット</strong>向けのオブジェクトを生成したい場合は、下記となります。</p>
+<pre><code>GOOS=windows GOARCH=amd64 go build -o listdbg cmd/main.go  
+</code></pre><hr>
+<h3 id="クロスコンパイルの実行">クロスコンパイルの実行</h3>
+<p>各環境のクロスコンパイルを容易に実行するため、今回は<strong>Makefile</strong>を用意しました。下記のコマンで各環境のオブジェクト生成ができます。なお、開発環境は<strong>Linux amd64</strong>を前提にしています。</p>
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>環境</th>
+<th>ファイルの配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>make build</strong></td>
+<td>GOOS=linux GOARCH=amd64</td>
+<td>ディレクトリに実行ファイルとShellを生成。同時にtargetディレクトリに、<strong>listdbg.tgz</strong>を作成</td>
+</tr>
+<tr>
+<td><strong>make build-win64</strong></td>
+<td>GOOS=Windows GOARCH=amd64</td>
+<td>targetディレクトリに、<strong>listdbg_win64.tgz</strong>を作成</td>
+</tr>
+<tr>
+<td><strong>make build-win32</strong></td>
+<td>GOOS=Windows GOARCH=386</td>
+<td>targetディレクトリに、<strong>listdbg_win32.tgz</strong>を作成</td>
+</tr>
+<tr>
+<td><strong>make build-arm6</strong></td>
+<td>GOOS=Linux GOARCH=arm GOARM=6</td>
+<td>targetディレクトリに、<strong>listdbg_arm6.tgz</strong>を作成</td>
+</tr>
+<tr>
+<td><strong>make build-arm7</strong></td>
+<td>GOOS=Linux GOARCH=arm GOARM=7</td>
+<td>targetディレクトリに、<strong>listdbg_arm7.tgz</strong>を作成</td>
+</tr>
+<tr>
+<td><strong>make build-arm64</strong></td>
+<td>GOOS=Linux GOARCH=arm64</td>
+<td>targetディレクトリに、<strong>listdbg_arm64.tgz</strong>を作成</td>
+</tr>
+</tbody>
+</table>
+<p>他環境での実行に当たっては、上記で作成されたアーカイブファイル(<strong>tgz</strong>)を適当なディレクトリ内にコピーし、<strong>tar</strong>で解凍します。</p>
+<p>次回は、様々な環境での実行例を紹介します。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><strong>Makefile</strong>は、前回の<a href="https://github.com/rsn604/golang_tui/tree/main/ListDBG" target="_blank">ListDBG</a>に登録されています。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%95-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%B8%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その５　TUIアプリケーションへの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-%E6%A7%98%E3%80%85%E3%81%AA%E7%92%B0%E5%A2%83%E3%81%A7listdbg%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その７　様々な環境でListDBGを動かす )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

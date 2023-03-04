@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ハヤカワ・ポケット・ミステリの分析結果 ( まとめ ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="ハヤカワ・ポケット・ミステリの分析結果 ( まとめ )" />
+<meta property="og:description" content="前回の「ハヤカワ・ポケット・ミステリを分析する」では、ポケミスの刊行リストをPython pandasに読み込み、簡単な分析を行ってみました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/book/%E3%83%8F%E3%83%A4%E3%82%AB%E3%83%AF%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%81%AE%E5%88%86%E6%9E%90%E7%B5%90%E6%9E%9C%E3%81%BE%E3%81%A8%E3%82%81/" />
+<meta property="article:published_time" content="2020-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-12T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ハヤカワ・ポケット・ミステリの分析結果 ( まとめ )"/>
+<meta name="twitter:description" content="前回の「ハヤカワ・ポケット・ミステリを分析する」では、ポケミスの刊行リストをPython pandasに読み込み、簡単な分析を行ってみました。"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/book/%E3%83%9E%E3%83%AA%E3%83%B3%E3%82%BC%E3%83%BC%E5%B3%B6%E9%80%A3%E7%B6%9A%E6%AE%BA%E4%BA%BA%E4%BA%8B%E4%BB%B6%E3%83%87%E3%83%8B%E3%82%B9%E3%83%9B%E3%82%A4%E3%83%BC%E3%83%88%E3%83%AA%E3%83%BC/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マリンゼー島連続殺人事件 ( デニス・ホイートリー )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/book/%E3%83%95%E3%82%A3%E3%83%AB%E3%83%9D%E3%83%83%E3%83%84%E4%BA%95%E4%B8%8A%E8%89%AF%E5%A4%AB%E3%81%9D%E3%81%97%E3%81%A6%E4%B9%B1%E6%AD%A9%E8%B5%A4%E6%AF%9B%E3%81%AE%E3%83%AC%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%AE%B6%E3%82%92%E8%AA%AD%E3%82%80/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">フィルポッツ、井上良夫、そして乱歩 ( 「赤毛のレドメイン家」を読む )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ハヤカワ・ポケット・ミステリの分析結果 ( まとめ )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-05-12T00:00:00Z">May 12, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/" rel="category">ポケミス</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>前回の<a href="https://rsn604.github.io/it/%E3%83%8F%E3%83%A4%E3%82%AB%E3%83%AF%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%82%92%E5%88%86%E6%9E%90%E3%81%99%E3%82%8Bpython-pandas%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86/">「ハヤカワ・ポケット・ミステリを分析する」</a>では、ポケミスの刊行リストをPython pandasに読み込み、簡単な分析を行ってみました。</p>
+<p>今回は、そのデータをミステリファンの視点から見ていきましょう。</p>
+<hr>
+<h3 id="全体を俯瞰する">全体を俯瞰する</h3>
+<p>ハヤカワ・ポケット・ミステリ（以下ポケミス）、今回対象になった全作品数は1864作。作家数は542名、訳者は397名に及びます。<br>
+作家別、訳者別の刊行数ベスト10を見てみましょう。</p>
+<table>
+<thead>
+<tr>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Ｅ・Ｓ・ガードナー</td>
+<td align="right">100</td>
+<td align="left">田中小実昌</td>
+<td align="right">62</td>
+</tr>
+<tr>
+<td align="left">アガサ・クリスティー</td>
+<td align="right">79</td>
+<td align="left">井上一夫</td>
+<td align="right">59</td>
+</tr>
+<tr>
+<td align="left">エド・マクベイン</td>
+<td align="right">66</td>
+<td align="left">宇野利泰</td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td align="left">カーター・ブラウン</td>
+<td align="right">64</td>
+<td align="left">尾坂力</td>
+<td align="right">35</td>
+</tr>
+<tr>
+<td align="left">エラリイ・クイーン</td>
+<td align="right">41</td>
+<td align="left">村崎敏郎</td>
+<td align="right">35</td>
+</tr>
+<tr>
+<td align="left">ジョン・ディクスン・カー</td>
+<td align="right">31</td>
+<td align="left">小倉多加志</td>
+<td align="right">35</td>
+</tr>
+<tr>
+<td align="left">Ａ・Ａ・フェア</td>
+<td align="right">29</td>
+<td align="left">高橋豊</td>
+<td align="right">32</td>
+</tr>
+<tr>
+<td align="left">レジナルド・ヒル</td>
+<td align="right">25</td>
+<td align="left">菊池光</td>
+<td align="right">30</td>
+</tr>
+<tr>
+<td align="left">ミッキー・スピレイン</td>
+<td align="right">24</td>
+<td align="left">青木久惠</td>
+<td align="right">27</td>
+</tr>
+<tr>
+<td align="left">Ｐ・Ｄ・ジェイムズ</td>
+<td align="right">20</td>
+<td align="left">山本俊子</td>
+<td align="right">24</td>
+</tr>
+<tr>
+<td align="left">全作家数</td>
+<td align="right">542</td>
+<td align="left">全訳者数</td>
+<td align="right">397</td>
+</tr>
+<tr>
+<td align="left">HPB全作品数</td>
+<td align="right">1864</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>まずは、作家から。<br>
+<strong>ガードナー</strong>が1位なのは、ミステリファンなら常識でしょうが、2位以降もビッグネームが並んでいます。<br>
+その中で輝いているのは、<strong>カーター・ブラウン</strong>でしょう。その作風から軽く見る人もいますが、やはりポケミスを支えた作家の一人ですね。<br>
+6位の<strong>ジョン・ディクスン・カー</strong>には、<strong>カーター・ディクスン名義</strong>の作品が18作ありますので、これを加えると5位の<strong>エラリイ・クイーン</strong>を上回る結果となります。<br>
+予想外だったのが、<strong>ミッキー・スピレイン</strong>。24冊もあるとは知りませんでした。<br>
+1970年以降に紹介された作家からは、<strong>レジナルド・ヒル</strong>と<strong>Ｐ・Ｄ・ジェイムズ</strong>上位10位に入っています。</p>
+<p>個人的に興味があったのは、訳者の方です。<br>
+<strong>井上一夫</strong>だろうと予想していたのですが、何と1位は、「コミさん」こと<strong>田中小実昌</strong>でした。これもブラウン効果なのかもしれません。<br>
+<strong>宇野利泰</strong>には、あまりポケミスのイメージはないのですが、やはりミステリの翻訳ならこの人という感じですね。<br>
+5位の<strong>村崎敏郎</strong>は、ジョン・ディクスン・カーの翻訳を数多く手がけた人。その訳文はあまり評判が良くありませんが、個人的にはそれほどひどいと思ったことはありません。不器用な感じはありますが、真面目に訳していると思います。ただ、いかにも都筑道夫には嫌われそうだ（笑）。<br>
+9位、10位には女流翻訳家が入っています。<strong>青木久惠</strong>はＰ・Ｄ・ジェイムズ、<strong>山本俊子</strong>はポーラ・ゴズリング などの女流作家を中心に訳されているようです。</p>
+<hr>
+<h3 id="年代別に見る">年代別に見る</h3>
+<h4 id="ビッグネーム揃い踏みの50年代">ビッグネーム揃い踏みの50年代</h4>
+<p>1953（昭和28）年創刊ですから、当初の2年間は、ほぼ週1冊（月4冊）のペースで出していることになります。50年代の作家はビッグネームばかりですね。<br>
+先に村崎敏郎の訳に触れましたが、個人的に訳文に問題があると思っているのが、4位に入った<strong>西田政治</strong>です。ハーバート・ブリーンの「ワイルダー一家の失踪」は西田訳であまり印象が良くなかったのですが、後年原書で読んでみると、すごく面白いのにびっくりしました。カーの「囁く影」や「プレーグ・コートの殺人」も同様。この2作は改訳されているから良いものの、ブリーンは不幸でしたね。</p>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1950年〜</td>
+<td align="left">Ｅ・Ｓ・ガードナー</td>
+<td align="right">59</td>
+<td align="left">村崎敏郎</td>
+<td align="right">25</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">アガサ・クリスティー</td>
+<td align="right">52</td>
+<td align="left">宇野利泰</td>
+<td align="right">19</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エラリイ・クイーン</td>
+<td align="right">23</td>
+<td align="left">高橋豊</td>
+<td align="right">19</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョン・ディクスン・カー</td>
+<td align="right">23</td>
+<td align="left">西田政治</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">カーター・ディクスン</td>
+<td align="right">14</td>
+<td align="left">田村隆一</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョルジュ・シムノン</td>
+<td align="right">12</td>
+<td align="left">砧一郎</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">コーネル・ウールリッチ</td>
+<td align="right">8</td>
+<td align="left">妹尾韶夫</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">クリスチアナ・ブランド</td>
+<td align="right">8</td>
+<td align="left">中田耕治</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ｓ・Ｓ・ヴァンダイン</td>
+<td align="right">8</td>
+<td align="left">青田勝</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ａ・Ａ・フェア</td>
+<td align="right">8</td>
+<td align="left">尾坂力</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">124</td>
+<td align="left">全訳者数</td>
+<td align="right">110</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">420</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="カーターブラウンの60年代">カーター・ブラウンの60年代</h4>
+<p>さて、60年代になって彗星のように飛び出して来たのが、<strong>カーター・ブラウン</strong>。この10年間で60作ですから、年6作、2ヶ月に1冊ですね。本家Signet Booksは月に1冊出していたようなので、それには及びませんが、やはりすごい刊行ペースです。<br>
+<strong>田中小実昌</strong>の翻訳52冊も目立ちます。カーター・ブラウン、ブレット・ハリデイといったハードボイルド作品の増加に、彼の文章がフィットしたということでしょう。</p>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1960年〜</td>
+<td align="left">カーター・ブラウン</td>
+<td align="right">60</td>
+<td align="left">田中小実昌</td>
+<td align="right">52</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ｅ・Ｓ・ガードナー</td>
+<td align="right">36</td>
+<td align="left">宇野利泰</td>
+<td align="right">27</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エド・マクベイン</td>
+<td align="right">21</td>
+<td align="left">井上一夫</td>
+<td align="right">25</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ａ・Ａ・フェア</td>
+<td align="right">19</td>
+<td align="left">小倉多加志</td>
+<td align="right">23</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ブレット・ハリデイ</td>
+<td align="right">16</td>
+<td align="left">尾坂力</td>
+<td align="right">18</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">アガサ・クリスティー</td>
+<td align="right">14</td>
+<td align="left">佐倉潤吾</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ミッキー・スピレイン</td>
+<td align="right">13</td>
+<td align="left">菊池光</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エラリイ・クイーン</td>
+<td align="right">10</td>
+<td align="left">宇野輝雄</td>
+<td align="right">14</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ロス・マクドナルド</td>
+<td align="right">10</td>
+<td align="left">小笠原豊樹</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">アンドリュウ・ガーヴ</td>
+<td align="right">10</td>
+<td align="left">高橋豊</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">163</td>
+<td align="left">全訳者数</td>
+<td align="right">130</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">569</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="70年代後半からのミステリ出版状況の変化">70年代後半からのミステリ出版状況の変化</h4>
+<p>この時代は、高校、大学在学時と重なるため、かなり鮮明に覚えています。</p>
+<p>まず、70年中盤からミステリ出版の状況に大きな変化が見られました。<br>
+従来、海外ミステリ出版といえば、早川書房、東京創元社の2社でしたが、70年中盤に大手である角川書店が「ジャッカルの日」で参入、映画化もあってベストセラーになりました。文藝春秋が続いたのは、もう少し後だったと思いますが、従来、ほぼ寡占状態で海外新作ミステリの版権を握っていた早川書房の根幹を揺るがす状態になっていくわけです。</p>
+<p>また、角川文庫は横溝正史を始めとし、国内ミステリを続々と文庫化、これまた映画とのタイアップもあって、大きなブームとなりました。文庫化の波には、講談社や新潮社など大手出版社も追随していきます。翻訳ミステリも文庫化に進んでいくことのは自明で、80年代になると集英社、サンケイ出版などもミステリ関係に参入、多数刊行していくようになります。</p>
+<p>このなかで、早川書房もポケミス一本では対抗できなくなってきたようで、まず、「<strong>売れる作家はポケミスではなく、ハードカバー単行本で出版</strong>」に方針を変更。また、文庫ブームへの対応として、「<strong>ハヤカワミステリ文庫を創刊</strong>」します。</p>
+<p>こういう状況もあって、70年代中盤から、ポケミスの刊行ベースは60年代の半分以下に低下していきます。1970年代のディック・フランシスが10位に留まっているのも、途中からハードカバーでの出版に変更されたからです。ロバート・B・パーカーなどもハードカバーで出るようになりました。ようするに、<strong>ポケミスの位置付けが低下した</strong>ということです。</p>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1970年〜</td>
+<td align="left">アガサ・クリスティー</td>
+<td align="right">13</td>
+<td align="left">岡村孝一</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョイス・ポーター</td>
+<td align="right">9</td>
+<td align="left">皆藤幸蔵</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ボアロー、ナルスジャック</td>
+<td align="right">9</td>
+<td align="left">菊池光</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エド・マクベイン</td>
+<td align="right">8</td>
+<td align="left">青木久惠</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ハリイ・ケメルマン</td>
+<td align="right">8</td>
+<td align="left">井上一夫</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エラリイ・クイーン</td>
+<td align="right">8</td>
+<td align="left">村杜伸</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ミッキー・スピレイン</td>
+<td align="right">6</td>
+<td align="left">大庭忠男</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョン・ラング</td>
+<td align="right">6</td>
+<td align="left">渡辺栄一郎</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ニック・カーター</td>
+<td align="right">6</td>
+<td align="left">工藤政司</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ディック・フランシス</td>
+<td align="right">6</td>
+<td align="left">乾信一郎</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">112</td>
+<td align="left">全訳者数</td>
+<td align="right">98</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">257</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="80年以降はシリーズ物頼りか">80年以降はシリーズ物頼りか</h4>
+<p>1980年に就職、真面目に働いていたこともあって、これ以後の動向を適切にコメントする能力を持ちません（笑）。80年前半は田舎の工場にいたので、ポケミスどころか本屋にいくのも一苦労、そんな時代でしたね。</p>
+<p>1970年代からのミステリ出版状況の変化もあり、80年以降のポケミスは、ハードボイルド物を中心としたシリーズ物に頼る傾向にあったようです。その中心が<strong>エド・マクベイン</strong>の「87分署」シリーズということでしょうか。個人的には<strong>スティーヴン・グリーンリーフ</strong>の「ジョン・タナー物」が好きでした。</p>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1980年〜</td>
+<td align="left">エド・マクベイン</td>
+<td align="right">15</td>
+<td align="left">秋津知子</td>
+<td align="right">12</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョゼフ・ハンセン</td>
+<td align="right">9</td>
+<td align="left">木村二郎</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">レジナルド・ヒル</td>
+<td align="right">8</td>
+<td align="left">田口俊樹</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">マイクル・Ｚ・リューイン</td>
+<td align="right">7</td>
+<td align="left">井上一夫</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">リチャード・スターク</td>
+<td align="right">7</td>
+<td align="left">山本俊子</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ローレンス・ブロック</td>
+<td align="right">7</td>
+<td align="left">青木久惠</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">パトリシア・モイーズ</td>
+<td align="right">6</td>
+<td align="left">石田善彦</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">スティーヴン・グリーンリーフ</td>
+<td align="right">6</td>
+<td align="left">大久保康雄</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">アーサー・コナン・ドイル</td>
+<td align="right">6</td>
+<td align="left">嵯峨静江</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジェイムズ・マクルーア</td>
+<td align="right">5</td>
+<td align="left">伏見威蕃</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">80</td>
+<td align="left">全訳者数</td>
+<td align="right">81</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">206</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1990年〜</td>
+<td align="left">エド・マクベイン</td>
+<td align="right">10</td>
+<td align="left">黒原敏行</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">レジナルド・ヒル</td>
+<td align="right">8</td>
+<td align="left">松下祥子</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">フランセス・ファイフィールド</td>
+<td align="right">7</td>
+<td align="left">堀内静子</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">スティーヴン・グリーンリーフ</td>
+<td align="right">6</td>
+<td align="left">井上一夫</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジェレマイア・ヒーリイ</td>
+<td align="right">6</td>
+<td align="left">長野きよみ</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">コリン・デクスター</td>
+<td align="right">6</td>
+<td align="left">大庭忠男</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ギリアン・ロバーツ</td>
+<td align="right">5</td>
+<td align="left">菊地よしみ</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ｐ・Ｄ・ジェイムズ</td>
+<td align="right">5</td>
+<td align="left">青木久惠</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジュリー・スミス</td>
+<td align="right">4</td>
+<td align="left">鈴木啓子</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">サイモン・ブレット</td>
+<td align="right">4</td>
+<td align="left">猪俣美江子</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">73</td>
+<td align="left">全訳者数</td>
+<td align="right">55</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">145</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2000年以降には沈黙を">2000年以降には沈黙を．．</h4>
+<p>これまでは未読ではあっても、作者名ぐらいは知っていたのですが、以後のリストには名前さえ知らない作家も少なくない（笑）。<br>
+そんなわけで、すみません、全く何も言えません。</p>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2000年〜</td>
+<td align="left">ロバート・ファン・ヒューリック</td>
+<td align="right">14</td>
+<td align="left">和爾桃子</td>
+<td align="right">16</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">エド・マクベイン</td>
+<td align="right">11</td>
+<td align="left">松下祥子</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ポール・アルテ</td>
+<td align="right">8</td>
+<td align="left">山本俊子</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">レジナルド・ヒル</td>
+<td align="right">8</td>
+<td align="left">平岡敦</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">イアン・ランキン</td>
+<td align="right">5</td>
+<td align="left">山本博</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">レックス・スタウト</td>
+<td align="right">5</td>
+<td align="left">延原泰子</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">レイモンド・ベンスン</td>
+<td align="right">4</td>
+<td align="left">野口雄司</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">マイクル・Ｚ・リューイン</td>
+<td align="right">4</td>
+<td align="left">田口俊樹</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ｐ・Ｄ・ジェイムズ</td>
+<td align="right">3</td>
+<td align="left">仁賀克雄</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ポーラ・ゴズリング</td>
+<td align="right">3</td>
+<td align="left">小林浩子</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">82</td>
+<td align="left">全訳者数</td>
+<td align="right">60</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">147</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">年代</th>
+<th align="left">作家</th>
+<th align="right">作品数</th>
+<th align="left">訳者</th>
+<th align="right">翻訳数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010年〜</td>
+<td align="left">ユッシ・エーズラ・オールスン</td>
+<td align="right">8</td>
+<td align="left">青木千鶴</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">デニス・ルヘイン</td>
+<td align="right">4</td>
+<td align="left">鈴木恵</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ヨハン・テオリン</td>
+<td align="right">4</td>
+<td align="left">東野さやか</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">イアン・ランキン</td>
+<td align="right">4</td>
+<td align="left">延原泰子</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョン・ハート</td>
+<td align="right">3</td>
+<td align="left">三角和代</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">ジョナサン・ホルト</td>
+<td align="right">3</td>
+<td align="left">奥村章子</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">モー・ヘイダー</td>
+<td align="right">3</td>
+<td align="left">加賀山卓朗</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">デイヴィッド・ゴードン</td>
+<td align="right">3</td>
+<td align="left">稲村文吾</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">陸秋槎</td>
+<td align="right">2</td>
+<td align="left">田口俊樹</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">トマス・Ｈ・クック</td>
+<td align="right">2</td>
+<td align="left">北野寿美枝</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作者数</td>
+<td align="right">84</td>
+<td align="left">全訳者数</td>
+<td align="right">59</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">全作品数</td>
+<td align="right">119</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>ちなみに、2000年以降発行のポケミスで、購入したのは<strong>ポール・アルテ</strong>だけでした。</p>
+<p>熱心にポケミスを探していたのは70年代までなので、近年の状況には全く疎く、後半はひどい内容になってしまいました。まあ、一つの分析例として見てください。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/book/%E3%83%9E%E3%83%AA%E3%83%B3%E3%82%BC%E3%83%BC%E5%B3%B6%E9%80%A3%E7%B6%9A%E6%AE%BA%E4%BA%BA%E4%BA%8B%E4%BB%B6%E3%83%87%E3%83%8B%E3%82%B9%E3%83%9B%E3%82%A4%E3%83%BC%E3%83%88%E3%83%AA%E3%83%BC/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マリンゼー島連続殺人事件 ( デニス・ホイートリー )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/book/%E3%83%95%E3%82%A3%E3%83%AB%E3%83%9D%E3%83%83%E3%83%84%E4%BA%95%E4%B8%8A%E8%89%AF%E5%A4%AB%E3%81%9D%E3%81%97%E3%81%A6%E4%B9%B1%E6%AD%A9%E8%B5%A4%E6%AF%9B%E3%81%AE%E3%83%AC%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%AE%B6%E3%82%92%E8%AA%AD%E3%82%80/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">フィルポッツ、井上良夫、そして乱歩 ( 「赤毛のレドメイン家」を読む )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

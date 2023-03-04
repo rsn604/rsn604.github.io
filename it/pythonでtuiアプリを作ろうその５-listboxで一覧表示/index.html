@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )" />
+<meta property="og:description" content="UrwidのListBoxオブジェクトを使ってみよう。 「画面に複数行を一覧表形式で表示する」のは、アプリケーションでは標準的な仕組みですが、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-listbox%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" />
+<meta property="article:published_time" content="2021-06-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-09T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )"/>
+<meta name="twitter:description" content="UrwidのListBoxオブジェクトを使ってみよう。 「画面に複数行を一覧表形式で表示する」のは、アプリケーションでは標準的な仕組みですが、"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう ( その５　ListBoxで一覧表示 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-09T00:00:00Z">June 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="urwidのlistboxオブジェクトを使ってみよう">UrwidのListBoxオブジェクトを使ってみよう。</h2>
+<br clear="left">
+<p>「<strong>画面に複数行を一覧表形式で表示する</strong>」のは、アプリケーションでは標準的な仕組みですが、Urwidでは、<a href="http://urwid.org/manual/widgets.html#listbox-contents" target="_blank">ListBox</a>がこの機能を担います。今回は、その概要について説明しましょう。</p>
+<hr>
+<h3 id="単純なlistboxを作ってみる">単純なListBoxを作ってみる</h3>
+<p>まずは、前回も使用したクラスのbodyに、<a href="http://urwid.org/reference/widget.html#listbox" target="_blank">ListBox</a>を作成していきます。ListBoxクラスの生成は、下記のようになります。</p>
+<h5 id="class-urwidlistboxlistwalker">class urwid.ListBox(ListWalker)</h5>
+<p><a href="http://urwid.org/reference/list_walkers.html?highlight=listwalker" target="_blank">ListWalker</a>は、<strong>SimpleListWalker</strong>のように、事前に用意されているクラスを使用するのが簡単ですが、ここでは応用の効くListWalkerを自前で書いてみましょう。と言っても難しい話ではなく、</p>
+<ul>
+<li>get_focus()</li>
+<li>set_focus()</li>
+<li>get_next()</li>
+<li>get_prev()</li>
+</ul>
+<p>の4メソッドを実装したクラスを用意して、適切なデータを引き渡せば良いだけです。</p>
+<p>スクリプトを下記に示します。<br>
+データは、仮のものを100件ほど渡すこととします（get_items()メソッド）。</p>
+<hr>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# s05_01.py（ListBoxを使ってみる）  
+#  
+import urwid  
+  
+def get_items():  
+    items = []  
+    for i in range(100):  
+        items.append(&quot;テストデータ&quot;+str(i))  
+    return items  
+  
+my_palette = [  
+    ('body', 'default', 'default'),  
+    ('foot', 'white', 'dark blue'),  
+    ('button', 'yellow', 'default'),  
+    ('button_focus', 'black', 'yellow'),  
+    ('listwalker', 'black', 'light cyan')  
+]  
+  
+def create_mybutton(label, callback, user_data=None):  
+    button = urwid.Button(label, on_press=callback)  
+    return urwid.AttrMap(button, 'button', 'button_focus')  
+  
+class ListWalker(urwid.ListWalker):  
+    def __init__(self, items):  
+        self.focus = 0  
+        self.create_page(items)  
+  
+    def create_page(self, items):  
+        self.lines = []  
+        for item in items:  
+            text = urwid.Text(item)  
+            self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
+  
+    def get_focus(self):  
+        return self.get_at_pos(self.focus)  
+  
+    def set_focus(self, focus):  
+        self.focus = focus  
+        self._modified()  
+  
+    def get_next(self, start):  
+        return self.get_at_pos(start + 1)  
+  
+    def get_prev(self, start):  
+        return self.get_at_pos(start - 1)  
+  
+    def get_at_pos(self, pos):  
+        if pos &lt; 0:  
+            return None, None  
+        if len(self.lines) &gt; pos:  
+            return self.lines[pos], pos  
+        return None, None  
+  
+class Application:  
+    main_loop = None  
+    def __init__(self):  
+        pass  
+  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+  
+    def unhandled_keypress(self, k):  
+        '''  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+        '''  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        else:  
+            return  
+        return True  
+  
+    def doformat(self):  
+        walker = ListWalker(get_items())  
+        self.listbox = urwid.ListBox(walker)  
+  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_q], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = urwid.Frame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame.focus_position = 'header'  
+        return frame  
+  
+    def run(self):  
+        self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+        self.main_loop.run()  
+  
+def main():  
+    Application().run()  
+  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><p>では、実際に動かしてみましょう。</p>
+<pre><code>python3 s05_01.py  
+</code></pre><p><a href="" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その５-01).png" style="margin-left:20px;margin-bottom:30px;width:500px;"></a></p>
+<h5 id="カーソルがlistboxに移らないですね">カーソルがListBoxに移らない．．．．ですね。</h5>
+<p>これは、headerからbodyへの移動が出来ない状態になっているからです。</p>
+<pre><code>    def unhandled_keypress(self, k):  
+        '''  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+        '''  
+</code></pre><p>この部分のコメントを削除してみてください。見ればわかると思いますが、headerとbody間での移動を記述しています。<br>
+再度実行してみましょう。今度は、ListBox部にFocusが移動しました。</p>
+<p>しかし、まだ動きがおかしいですね。今回は、header部からdownキーを押すとListBoxの最初のデータには移動できますが、もう一度downキーを押すと最終行に移動してしまいます。<br>
+これは、ListBox内部のWidgetである<strong>Textオブジェクトが、選択可能ではない</strong>からです。考えてみると、Textの基本は表示機能ですから、Focusが当たるような処理を想定していないわけで、こうなるのは極めて当然なのです。</p>
+<hr>
+<h3 id="listbox内のtextを選択可能にしよう">ListBox内のTextを選択可能にしよう。</h3>
+<p>Urwidでは、<strong>WidgetがSelectbaleでないとFocusを受け取れない</strong>という仕様になっています。可能にするためには、選択可能なTextクラスを作成すればよいのです。<br>
+それでは、Textのサブクラスを定義しましょう。ここでは、<strong>MyText</strong>クラスとしておきます。このクラスでは、<strong>selectable</strong>メソッドで<strong>True</strong>を返し、入力を受け取れるよう<strong>keypress</strong>メソッドを追加、選択可能なWidgetとして定義するわけです。</p>
+<p>先程のスクリプトに、MyTextクラスを追加します。また、ListBoxに追加するWidgetを、<strong>TextからMyTextに変更</strong>しましょう。</p>
+<pre><code># MyTextクラスを追加する  
+class MyText(urwid.Text):  
+    def selectable(self):  
+        return True  
+  
+    def keypress(self, size, key):  
+        return key  
+  
+class ListWalker(urwid.ListWalker):  
+    def __init__(self, items):  
+        self.focus = 0  
+        self.create_page(items)  
+  
+    def create_page(self,items):  
+        self.lines = []  
+        for item in items:  
+            # MyTextクラスに変更する。  
+            #text = urwid.Text(item)  
+            text = MyText(item)  
+            self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
+</code></pre><p>これを実行します。</p>
+<p><a href="" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その５-02).png" style="margin-left:20px;margin-bottom:30px;width:500px;"></a></p>
+<p>これで、カーソルキーによるデータ選択機能は問題がなくなりました。<br>
+しかし、下部にカーソルを移動していくと、画面に表示できなかったデータが、スクロールして出てきてしまいます。<br>
+これでもいいのかもしれませんが、TUIでは適切でないインタフェースでしょう。やはり、ここは画面のサイズに適切な行数分だけを表示したいものです。</p>
+<hr>
+<h3 id="画面サイズに合わせた表示とデータ選択">画面サイズに合わせた表示とデータ選択</h3>
+<p>それでは、さらに先に進みましょう。<br>
+今回のアプリケーションでは、データは100件ほど用意していますが、通常のターミナルは24行が標準です。headerとfooterに1行ほど使用しますから、body部は22行ほどになるわけです。もちろん、決め打ちするのではなく、ターミナルのサイズに従って表示行を決定しないといけません。</p>
+<h4 id="画面サイズの取得">画面サイズの取得</h4>
+<p>画面サイズは、<a href="http://urwid.org/reference/display_modules.html?highlight=screen#urwid.raw_display.Screen" target="_blank">raw_display</a>のScreenオブジェクトから取得します。</p>
+<h5 id="cols-rows--urwidraw_displayscreenget_cols_rows">cols, rows = urwid.raw_display.Screen().get_cols_rows()</h5>
+<p>今回のアプリケーションでは、<strong>rows</strong>からheaderとfooterの2行を引いた行数が、bodyの使用できる行数となるわけです。これをスクリプトにくわえます（get_cols_rowsメソッド）。</p>
+<h5 id="さらにデータ選択結果の表示を追加します">さらに、データ選択結果の表示を追加します。</h5>
+<p>ListBox内の行を’enter'キーで選択したときに、取得した内容をfooterに表示してみましょう。<strong>select_list</strong>というメソッドがそれにあたります。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# s05_03.py（ListBox内に表示できるText件数を考慮する）  
+#  
+import urwid  
+  
+def get_items():  
+    items = []  
+    for i in range(100):  
+        items.append(&quot;テストデータ&quot;+str(i))  
+    return items  
+  
+my_palette = [  
+    ('body', 'default', 'default'),  
+    ('foot', 'white', 'dark blue'),  
+    ('button', 'yellow', 'default'),  
+    ('button_focus', 'black', 'yellow'),  
+    ('listwalker', 'black', 'light cyan')  
+]  
+  
+def create_mybutton(label, callback, user_data=None):  
+    button = urwid.Button(label, on_press=callback)  
+    return urwid.AttrMap(button, 'button', 'button_focus')  
+  
+class MyText(urwid.Text):  
+    def selectable(self):  
+        return True  
+  
+    def keypress(self, size, key):  
+        if key in ('j', 'J'):  
+            return &quot;down&quot;  
+        elif key in ('k', 'K'):  
+            return &quot;up&quot;  
+        return key  
+  
+class ListWalker(urwid.ListWalker):  
+    def __init__(self, items, rows):  
+        self.focus = 0  
+        self.create_page(items, rows)  
+  
+    def create_page(self,items, rows):  
+        self.lines = []  
+        self.is_last = False  
+        for i in range(rows):  
+            text = MyText(items[i])  
+            self.lines.append(urwid.AttrMap(text, None, 'listwalker'))  
+  
+    def get_focus(self):  
+        return self.get_at_pos(self.focus)  
+  
+    def set_focus(self, focus):  
+        self.focus = focus  
+        self._modified()  
+  
+    def get_next(self, start):  
+        return self.get_at_pos(start + 1)  
+  
+    def get_prev(self, start):  
+        return self.get_at_pos(start - 1)  
+  
+    def get_at_pos(self, pos):  
+        if pos &lt; 0:  
+            return None, None  
+        if len(self.lines) &gt; pos:  
+            return self.lines[pos], pos  
+        return None, None  
+  
+class Application:  
+    main_loop = None  
+    def __init__(self):  
+        pass  
+  
+    def exit(self, button=None):  
+        raise urwid.ExitMainLoop()  
+  
+    def get_cols_rows(self):  
+        cols, rows = urwid.raw_display.Screen().get_cols_rows()  
+        return cols, rows-2  
+  
+    def select_list(self):  
+        focus_widget, idx = self.listbox.get_focus()  
+        self.footer_text.set_text(&quot;pos:&quot;+str(idx)+&quot; data:&quot;+focus_widget.base_widget.text)  
+  
+    def unhandled_keypress(self, k):  
+        if self.main_loop.widget.focus_position == 'header' and k == 'down':  
+            self.main_loop.widget.focus_position = 'body'  
+        elif self.main_loop.widget.focus_position == 'body' and k == 'up':  
+            self.main_loop.widget.focus_position = 'header'  
+  
+        if k in ('q', 'Q'):  
+            self.exit()  
+        elif k == 'enter':  
+            self.select_list()  
+        else:  
+            return  
+  
+    def doformat(self):  
+        cols, rows = self.get_cols_rows()  
+        walker = ListWalker(get_items(), rows)  
+        self.listbox = urwid.ListBox(walker)  
+  
+        btn_q = create_mybutton(&quot;Q&quot;, self.exit)  
+        header = urwid.GridFlow([btn_q], 6, 1, 1, 'left')  
+  
+        self.footer_text = urwid.Text(u&quot;これはフッター&quot;)  
+        footer = urwid.AttrWrap(self.footer_text, &quot;foot&quot;)  
+  
+        frame = urwid.Frame(urwid.AttrWrap(self.listbox, 'body'), header=header, footer=footer)  
+        frame.focus_position = 'header'  
+        return frame  
+  
+    def run(self):  
+        urwid.set_encoding('UTF-8')  
+        self.main_loop = urwid.MainLoop(self.doformat(), my_palette, unhandled_input=self.unhandled_keypress)  
+        self.main_loop.run()  
+  
+def main():  
+    Application().run()  
+  
+if __name__==&quot;__main__&quot;:  
+    main()  
+</code></pre><p>では、実際に動かしてみましょう。</p>
+<pre><code>python3 s05_03.py  
+</code></pre><p><a href="" target="_blank"><img src="/IT/PythonでTUIアプリを作ろう(その５-03).png" style="margin-left:20px;margin-bottom:30px;width:500px;"></a></p>
+<p>これで、想定した動きになりました。<br>
+矢印キーでListBox内を移動できますし、Enterキーを叩くと、footer部に選択されたデータが表示されています。</p>
+<p>しかし、画面上には22行のデータだけが表示されています。実際のデータは100件ほどあるわけですから、表示されないデータがあるのは困りものです。<br>
+次回は<strong>ページング処理</strong>を入れて、この部分を追加していきましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section05" target="_blank">Section05</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-listbox%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう ( その６　ListBoxの画面コントロール )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

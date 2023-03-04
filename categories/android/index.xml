@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on TORIO&#39;s blog</title>
+    <link>https://rsn604.github.io/categories/android/</link>
+    <description>Recent content in Android on TORIO&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 25 Jul 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rsn604.github.io/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TermuxのRepositoryが使えなくなっている ( その対処法について )</title>
+      <link>https://rsn604.github.io/it/termux%E3%81%AErepository%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%9D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</link>
+      <pubDate>Sun, 25 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/termux%E3%81%AErepository%E3%81%8C%E4%BD%BF%E3%81%88%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%9D%E3%81%AE%E5%AF%BE%E5%87%A6%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/</guid>
+      <description>Android6では、Termuxは使えないのか？ (2022/03追記) 下記の手法は、現在では使えなくなっています。メインリポジトリにもアク</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その９　IS01でもLinuxを使おう )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%99-is01%E3%81%A7%E3%82%82linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%99-is01%E3%81%A7%E3%82%82linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</guid>
+      <description>IS01で、Debian Wheezyを動かしてみる。 さて、久しぶりに取り出したIS01なのですから､何もしないのはもったいない。なんとかの一</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その８　IS01の思い出 )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%98-is01%E3%81%AE%E6%80%9D%E3%81%84%E5%87%BA/</link>
+      <pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%98-is01%E3%81%AE%E6%80%9D%E3%81%84%E5%87%BA/</guid>
+      <description>ベンダーに見捨てられながらも、ユーザーに愛されたIS01 2010年代のAndroidクラムシェルを振り返る場合、Sharpが開発したIS01</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その７　Dynabook AZにはLinux )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%97-dynabook-az%E3%81%AB%E3%81%AFlinux/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%97-dynabook-az%E3%81%AB%E3%81%AFlinux/</guid>
+      <description>Dynabook AZにUbuntu 13.04、13.10をインストールする。 なんとUbuntuが消えている．．． Android黎明期のクラムシェルたち(そ</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/</link>
+      <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/</guid>
+      <description>10年ぶりにインストールしてみよう [1] 事前準備など まずは、今後必要となるツールを事前に準備しましょう。 (1)nvflash Dynabook AZへのインストールは、内部パーティ</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/</link>
+      <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/</guid>
+      <description>不良Androidマシン、ロシアとUbuntuに救われる。 Dynabook AZは東芝が2010年8月に発表したAndoridマシン。 Android黎明期の</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その４　LifeTouch Noteを98Noteに )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/</link>
+      <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/</guid>
+      <description>LifeTouch Noteで、DOSエミュレーションを動かす さて、LifeTouch Noteの用途として一番面白いのは、DOSのエミュレータではないでしょう</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%93-lifetouch-note%E3%81%A7python%E6%9C%80%E6%96%B0%E7%89%88%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</link>
+      <pubDate>Fri, 30 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%93-lifetouch-note%E3%81%A7python%E6%9C%80%E6%96%B0%E7%89%88%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</guid>
+      <description>LifeTouch Noteで、Python3.8.6をコンパイルしてみる 前回で、一通りの環境を構築できたのですが、実はPython環境に問題があります。 ”p</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</link>
+      <pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/</guid>
+      <description>LifeTouch Noteで、Debian Wheezyを動かそう NECは過去に、大型キーボードも搭載する端末としてモバイルギアシリーズを発売しており、快適な</description>
+    </item>
+    
+    <item>
+      <title>Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</title>
+      <link>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/</guid>
+      <description>．．．そして誰もいなくなった。 10年前の2010年と言えば、Androidが普及し始めた黎明期と言えるでしょう。Android1.0が登場し</description>
+    </item>
+    
+  </channel>
+</rss>

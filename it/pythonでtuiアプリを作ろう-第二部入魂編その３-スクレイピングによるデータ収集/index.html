@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )" />
+<meta property="og:description" content="今回は、前回説明したListDBに使用するデータを作成していきます。 スクレイピングによるデータ収集 いろいろ考えてみたのですが、このBlogに" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%93-%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%AB%E3%82%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E5%8F%8E%E9%9B%86/" />
+<meta property="article:published_time" content="2021-10-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-09T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )"/>
+<meta name="twitter:description" content="今回は、前回説明したListDBに使用するデータを作成していきます。 スクレイピングによるデータ収集 いろいろ考えてみたのですが、このBlogに"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その２　ListDBの構造について )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">PythonでTUIアプリを作ろう 第二部入魂編 ( その３　スクレイピングによるデータ収集 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-09T00:00:00Z">October 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/python%E3%81%A7tui/" rel="category">PythonでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="今回は前回説明したlistdbに使用するデータを作成していきます">今回は、前回説明した<strong>ListDB</strong>に使用するデータを作成していきます。</h2>
+<br clear="left">
+<hr>
+<h3 id="スクレイピングによるデータ収集">スクレイピングによるデータ収集</h3>
+<p>いろいろ考えてみたのですが、このBlogに関係のあるデータを使ってみるのが一番ですので、みんな大好き（かどうかは知りませんが、)ブックオフおよびハードオフの店舗情報を使ってみることにします。<br>
+どちらもWebサイトに店舗情報がありますから、有効性は疑わしいですが、あくまでデータの一例ということで了承ください。</p>
+<p>さて、これらのデータ収集については、<a href="https://ja.wikipedia.org/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0" target="_blank">スクレイピング</a>という手法を使ってみることにしました。</p>
+<blockquote>
+<p>ウェブスクレイピング（英: Web scraping）とは、ウェブサイトから情報を抽出するコンピュータソフトウェア技術のこと。通常このようなソフトウェアプログラムは低レベルのHTTPを実装することで、もしくはウェブブラウザを埋め込むことによって、WWWのコンテンツを取得する。ウェブスクレイピングはユーザーが手動で行なうこともできるが、一般的にはボットやクローラ(英: Web crawler)を利用した自動化プロセスを指す。</p>
+</blockquote>
+<p>とありますが、要するに「<strong>プログラムからWebサイトにアクセス、返ってきたHTMLを解析して必要な情報を抜き出す</strong>」という技術です。<br>
+本来、ブラウザからのアクセスを想定しているサイトに、PCからコードでアクセスするわけですから、下手をすると<strong>DDoS攻撃</strong>になりかねません。したがって、使用する際には過度なアクセスを避け、適当なウェイトを入れるなどの配慮が必要でしょう。<br>
+また、サイトに表示されている情報からデータを抜き出しているので、デザインの変更などによって動作しなくなる場合も少なくありません。今回紹介するスクリプトも現在(2021年10月初旬)は動いていますが、今後の保証は何もありません。</p>
+<hr>
+<h3 id="pythonによるスクレイピング手法">Pythonによるスクレイピング手法</h3>
+<p>これについては、書籍やWebサイトで様々な情報が提供されているので、そちらを参考にしてください。ここでは、簡単に概要を説明するにとどめておきます。</p>
+<h4 id="1使用するモジュール">(1)　使用するモジュール</h4>
+<p>Pythonでスクレイピングを行う場合、下記の3つのモジュールを使用するのが一般的なようです。</p>
+<h5 id="1requests">1)　requests</h5>
+<p>WebサイトにHTTPでアクセスする機能を提供します。Python標準ライブラリの<strong>urlib</strong>でもできますが、<strong>requests</strong>の利用を強くお薦めします。わたしは<strong>urlib</strong>でスクリプトをいくつか書いた後に<strong>requests</strong>の存在を知り、「これがあったのか」と嘆息した経験があります。</p>
+<h5 id="2beautifulsoup">2)　BeautifulSoup</h5>
+<p>Webから送られてきたHTMLを、<strong>BeautifulSoup</strong>で解析します。XML Parserみたいなものですね。APIはSAXに近いかな。</p>
+<h5 id="3selenium">3)　selenium</h5>
+<p>単にHTMLを返すだけのサイトであれば、上記2つのモジュールで処理できますが、JavaScriptを使用するサイトではうまく行きません。動的にHTMLが書き換えられますので、実際にブラウザを起動させ、生成されたHTMLを都度受け取る必要があるからです。<br>
+このようなサイトでは、まず<strong>selenium</strong>でブラウザを起動します。次に起動したブラウザからHTMLを受け取り、<strong>BeautifulSoup</strong>で解析していく、という手順を踏まないといけません。</p>
+<hr>
+<h3 id="モジュールとドライバーのインストール">モジュールとドライバーのインストール</h3>
+<p>それでは、必要なモジュールをインストールしていきましょう。</p>
+<h4 id="1pythonモジュールのインストール">(1)　Pythonモジュールのインストール</h4>
+<p>先ほど説明した、3つのモジュールを<strong>pip</strong>でインストールします。以下の説明は、すべて<strong>Python3環境</strong>を想定しています。</p>
+<pre><code>pip3 install requets  
+pip3 install beautifulsoup4  
+pip3 install selenium  
+</code></pre><h4 id="2webdriverのインストール">(2)　WebDriverのインストール</h4>
+<p>次に、<strong>seleinum</strong>が起動するブラウザに対応する<strong>WebDriver</strong>が必要になります。<br>
+ここではChromeを使っているものと仮定します。使用しているバージョンに対応する<a href="https://chromedriver.chromium.org/downloads" target="_blank">Driver</a>をダウンロードします。例えば、Chromeのバージョンが<strong>94</strong>であれば、<strong>ChromeDriver 94.0.4606.61</strong>を選択します。また、この<strong>Driver</strong>は実行時に起動されるので、<strong>Pathを通しておく</strong>必要があります。</p>
+<hr>
+<h3 id="スクレイピングの実行">スクレイピングの実行</h3>
+<p>それでは、実際にスクリプトを書いていきましょう。<br>
+まずは、<a href="https://www.bookoff.co.jp/shop/search-result.html#opt_prefecture=13_%E6%9D%B1%E4%BA%AC%E9%83%BD/opt_and_or=and" target="_blank">ブックオフの東京店舗一覧</a>にアクセスして、HTMLを取得してみます。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# s13_01.py  
+#  
+from selenium import webdriver  
+from bs4 import BeautifulSoup  
+  
+driver = webdriver.Chrome()  
+driver.get(&quot;https://www.bookoff.co.jp/shop/search-result.html#opt_prefecture=13_%E6%9D%B1%E4%BA%AC%E9%83%BD/opt_and_or=and&quot;)  
+  
+bs = BeautifulSoup(driver.page_source, &quot;html.parser&quot;)  
+print(bs.prettify())  
+driver.quit()  
+</code></pre><p>このコードを実行すると、画面上には下図のようにChromeブラウザが自動起動され、その後、取得されたHTMLがTerminal上に表示されるはずです(下記のようにファイルにリダイレクトして、エディタで見るのが得策です)。</p>
+<pre><code>python3 s13_01.py &gt;s13_01.html  
+</code></pre><p><img src="/IT/Python%E3%81%A7TUI%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8(%E3%81%9D%E3%81%AE3Chrome).png" alt="Chrome"></p>
+<p>さて、取得したHTMLを見ていくと、下記の部分から店舗情報が始まっています。</p>
+<pre><code>　　　　:  
+　　　　:  
+  &lt;!-- /shop-serch-result-info --&gt;  
+  &lt;div class=&quot;shop-detail-lists&quot;&gt;  
+   &lt;div class=&quot;shop-detail-item&quot;&gt;  
+    &lt;a class=&quot;shop-detail-item__name&quot; href=&quot;/shop/shop20396.html&quot;&gt;  
+     BOOKOFF 秋葉原駅前店  
+    &lt;/a&gt;  
+    &lt;div class=&quot;shop-detail-item__grid&quot;&gt;  
+     &lt;dl class=&quot;shop-detail-item__data&quot;&gt;  
+      &lt;dt class=&quot;shop-detail-item__title shop-detail-item__title--address&quot;&gt;  
+       所在地  
+      &lt;/dt&gt;  
+      &lt;dd class=&quot;shop-detail-item__detail&quot;&gt;  
+       東京都千代田区神田佐久間町1-6-4  
+      &lt;/dd&gt;  
+     &lt;/dl&gt;  
+     &lt;dl class=&quot;shop-detail-item__data&quot;&gt;  
+      &lt;dt class=&quot;shop-detail-item__title shop-detail-item__title--phone&quot;&gt;  
+       電話番号  
+      &lt;/dt&gt;  
+      &lt;dd class=&quot;shop-detail-item__detail&quot;&gt;  
+       03-5207-6206  
+      &lt;/dd&gt;  
+      &lt;dt class=&quot;shop-detail-item__title shop-detail-item__title--open&quot;&gt;  
+       営業時間  
+      &lt;/dt&gt;  
+      &lt;dd class=&quot;shop-detail-item__detail&quot;&gt;  
+       10:00～21:00  
+      &lt;/dd&gt;  
+     &lt;/dl&gt;  
+    &lt;/div&gt;  
+　　　　:  
+</code></pre><p>&ldquo;<strong>shop-detail-lists</strong>&ldquo;が店舗一覧の始まりで、その下の&rdquo;<strong>shop-detail-item</strong>&ldquo;が各店舗情報だということがわかります。そのタグに店舗名、住所などがありますから、これらの情報を抜き出せば良いということになります。<br>
+こんなコードで抜き出してみました。(詳細は、<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank">Beautiful Soup Documentation</a>などを参照してください。)</p>
+<pre><code>    bs = BeautifulSoup(html, &quot;html.parser&quot;)  
+    shops = bs.find('div', class_=&quot;shop-detail-lists&quot;).find_all('div', class_=&quot;shop-detail-item&quot;)  
+    for shop in shops:  
+        shop_name = shop.find('a').get_text()  
+        ss = shop.find_all('dd')  
+        shop_address = ss[0].get_text()  
+　　　　　　:  
+  
+</code></pre><hr>
+<h3 id="listdbデータの作成">ListDBデータの作成</h3>
+<p>次に、抽出したデータを加工して、<strong>ListDB</strong>用のデータにしていきます。<br>
+下記に全コードを示します。Categoryは、住所から抜き出した東京23区名にしています。また、検索結果は複数ページに渡っているので、1ページ取得後、次ページに画面を遷移させないといけません。このあたりの対応も行っています。</p>
+<pre><code>#!/usr/bin/env python  
+# -*- coding: utf-8 -*-  
+#  
+# bookoff.py  
+#  
+from selenium import webdriver  
+from bs4 import BeautifulSoup  
+import time  
+  
+categories = []  
+rows = []  
+  
+def get_category(address):  
+    if address[:len('東京都')] != '東京都':  
+        return  
+    pos = address.find('区')  
+    if pos == -1:  
+        pos = address.find('市')  
+        if pos == -1:  
+            return  
+    category = address[len('東京都'):pos+1]  
+    if category not in categories:  
+        categories.append(category)  
+    return category  
+  
+def put_shop(html):  
+    bs = BeautifulSoup(html, &quot;html.parser&quot;)  
+    shops = bs.find('div', class_=&quot;shop-detail-lists&quot;).find_all('div', class_=&quot;shop-detail-item&quot;)  
+    for shop in shops:  
+        shop_name = shop.find('a').get_text()  
+        ss = shop.find_all('dd')  
+        shop_address = ss[0].get_text()  
+        category = get_category(shop_address)  
+        del ss[0]  
+        row = category+&quot;,&quot;+shop_name+&quot;,&quot;+shop_address  
+        for s in ss:  
+            t = s.get_text().strip()  
+            if len(t) &gt; 0:  
+                row += &quot;,&quot;+t  
+        rows.append(row)  
+  
+driver = webdriver.Chrome()  
+driver.get(&quot;https://www.bookoff.co.jp/shop/search-result.html#opt_prefecture=13_%E6%9D%B1%E4%BA%AC%E9%83%BD/opt_and_or=and&quot;)  
+time.sleep(1)  
+  
+while True:  
+    put_shop(driver.page_source)  
+    try:  
+        element = driver.find_element_by_link_text(&quot;次のページ&quot;)  
+    except :  
+        break  
+    element.click()  
+    time.sleep(3)  
+driver.quit()  
+#  
+print(&quot;ブックオフ店舗情報(東京都),name,address&quot;, end=&quot;&quot;)  
+for category in categories:  
+    print(&quot;,&quot;+category, end=&quot;&quot;)  
+print()  
+for row in rows:  
+    print(row)  
+</code></pre><p>これを実行します。</p>
+<pre><code>python3 bookoff.py &gt; bookoff_tokyo.csv  
+</code></pre><p>すると、下記のような<strong>ListDB</strong>用CSVファイルが作成されます。</p>
+<pre><code>ブックオフ店舗情報(東京都),name,address,千代田区,港区,新宿区,文京区,台東区,墨田区,江東区,品川区,目黒区,大田区,世田谷区,渋谷区,中野区,杉並区,豊島区,北区,板橋区,練馬区,足立区,江戸川区,八王子市,立川市,武蔵野市,青梅市,府中市,昭島市,調布市,町田市,小平市,国立市,福生市,東大和市,東久留米市,多摩市,西東京市  
+千代田区,BOOKOFF 秋葉原駅前店,東京都千代田区神田佐久間町1-6-4 ,03-5207-6206,10:00～21:00  
+港区,BOOKOFF総合買取窓口 田町駅西口店,東京都港区芝5丁目32-3 1F,03-5439-4131,11:00～20:00  
+　　　:  
+　　　:  
+</code></pre><p>ハードオフについても、同様な手法で<strong>ListDB</strong>用CSVファイルを作成できます。詳細はソースコードを見てください。実行スクリプトは、<strong>x.sh</strong>となります。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/python_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/python_tui/tree/main/Section13" target="_blank">Section13</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その２　ListDBの構造について )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%94-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">PythonでTUIアプリを作ろう 第二部入魂編 ( その４　データのロード )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

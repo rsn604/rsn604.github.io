@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )" />
+<meta property="og:description" content="tviewのButtonオブジェクトとイベントを理解しよう。 それでは、最初のWidgetとしてButtonを使ってみましょう。ユーザーインタ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" />
+<meta property="article:published_time" content="2022-04-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-17T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )"/>
+<meta name="twitter:description" content="tviewのButtonオブジェクトとイベントを理解しよう。 それでは、最初のWidgetとしてButtonを使ってみましょう。ユーザーインタ"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-list%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-17T00:00:00Z">April 17, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewのbuttonオブジェクトとイベントを理解しよう">tviewのButtonオブジェクトとイベントを理解しよう。</h2>
+<br clear="left">
+<p>それでは、最初のWidgetとして<strong>Button</strong>を使ってみましょう。ユーザーインタフェースにおいて、Buttonは、特に説明する必要もない一般的な構成部品です。</p>
+<hr>
+<h3 id="1buttonオブジェクトの生成">[1]　Buttonオブジェクトの生成</h3>
+<p>tviewの<strong>Button</strong>は、下記のように生成します。</p>
+<h5 id="func-newbuttonlabel-string-button">func NewButton(label string) *Button</h5>
+<pre><code>// 使用例  
+button := tview.NewButton(label).SetSelectedFunc(func() {  
+   footer.SetText(&quot;Pushed T&quot;)  
+})  
+</code></pre><p><strong>label</strong>は、Button上に表示するテキストになります。<strong>SetSelectedFunc</strong>で、押されたときの処理を記述できます。</p>
+<p>また、カラーなどの属性も指定することが出来ます。今回は、下記のようなButton作成処理を定義しておきます。<strong>tview</strong>では、メソッドチェーン形式を採用していますので、連続して属性を設定することが出来ます。</p>
+<pre><code>func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+</code></pre><p>なぜ、&quot;<strong>button.SetBackgroundColor(tcell.ColorBlack)</strong>&rdquo; だけを独立させているかは、最後に説明しましょう。</p>
+<hr>
+<h3 id="2画面に配置してみる">[2]　画面に配置してみる。</h3>
+<p>それでは、<strong>Header部</strong>（1行を想定）に<strong>Button</strong>を3つ配置してみます。こんな画面を作成していきます。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその４(s04_01).png" style="margin-left:30px;margin-bottom:30px;width:600px;">  
+<p><strong>label</strong>は、画面幅が小さくなっても1行に入るよう、1文字に限定してみました。</p>
+<p>同時に、Buttonの<strong>Event</strong>に対応するルーティンもそれぞれ用意しておきます。Button生成とEventは、こんなコーディングになるでしょう。</p>
+<pre><code>btnT := myButton(&quot;&lt;T&gt;&quot;).SetSelectedFunc(func() {  
+	footer.SetText(&quot;Pushed T&quot;)  
+})  
+btnS := myButton(&quot;&lt;S&gt;&quot;).SetSelectedFunc(func() {  
+	footer.SetText(&quot;Pushed S&quot;)  
+})  
+btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+	app.Stop()  
+})  
+</code></pre><hr>
+<h4 id="1header上のコンテナにbuttonを配置する">(1)　Header上のコンテナにButtonを配置する。</h4>
+<p>それでは、3つのButoonをHeader部に追加していきます。<br>
+今回の処理では、コンテナとして”<strong>Flex</strong>”を使用することとします。Flexでは縦、あるいは横の方向を選択して、Primitiveを配置していきます。</p>
+<h5 id="func-newflex-flex">func NewFlex() *Flex</h5>
+<p>Flexコンテナ上には、Buttonを<strong>AddItemメソッド</strong>で載せていきます。</p>
+<h5 id="func-f-flex-additemitem-primitive-fixedsize-proportion-int-focus-bool-flex">func (f *Flex) AddItem(item Primitive, fixedSize, proportion int, focus bool) *Flex</h5>
+<pre><code>// 使用例  
+header := tview.NewFlex()  
+header.AddItem(btnT, 0, 1, true)  
+header.AddItem(btnS, 0, 1, true)  
+header.AddItem(btnQ, 0, 1, true)  
+</code></pre><ul>
+<li>&ldquo;<strong>fixedSize</strong>&rdquo; は、表示幅を指定します。&quot;<strong>0</strong>&rdquo; を指定した場合、次のパラメータに従い、tviewが決定します。</li>
+<li>&ldquo;<strong>proportion</strong>&rdquo; は、重みです。上の例では、すべて &ldquo;<strong>1</strong>&rdquo; ですので、画面の幅を三等分するようにButtonが表示されます。</li>
+<li>最後の &ldquo;<strong>focus</strong>&rdquo; は言うまでもなく、選択可能という意味です。</li>
+</ul>
+<p>Flexの表示方向は、Defaultで<strong>横</strong>(FlexColumn)ですので、今回は指定しませんが、縦に表示したい場合は、</p>
+<h5 id="func-f-flex-setdirectiondirection-int-flex">func (f *Flex) SetDirection(direction int) *Flex</h5>
+<p>で、 &ldquo;<strong>FlexRow</strong>&rdquo;　を指定します。</p>
+<pre><code>// 使用例  
+body := tview.NewFlex().SetDirection(tview.FlexRow)  
+</code></pre><hr>
+<h4 id="2footer部にメッセージ表示する">(2)　Footer部にメッセージ表示する。</h4>
+<p>Frameの下部（1行を想定）に<strong>Footer</strong>を用意し、Buttonが押されたときには「&ldquo;Pushed &lsquo;T&rsquo;&quot;」のようなメッセージを表示することとしましょう。</p>
+<p>以上をまとめると、下記のコードとなります。</p>
+<pre><code>//  
+// s04_01.go  
+//  
+package main  
+import (  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+)  
+func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+func doformat() {  
+	app := tview.NewApplication()  
+	header := tview.NewFlex()  
+	footer := tview.NewTextView().SetText(&quot;これはフッター&quot;)  
+	body := tview.NewTextView().SetText(&quot;Buttonテスト&quot;).SetTextAlign(tview.AlignCenter)  
+  
+	btnT := myButton(&quot;&lt;T&gt;&quot;).SetSelectedFunc(func() {  
+		footer.SetText(&quot;Pushed T&quot;)  
+	})  
+	btnS := myButton(&quot;&lt;S&gt;&quot;).SetSelectedFunc(func() {  
+		footer.SetText(&quot;Pushed S&quot;)  
+	})  
+	btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+		app.Stop()  
+	})  
+	header.AddItem(btnT, 0, 1, true)  
+	header.AddItem(btnS, 0, 1, true)  
+	header.AddItem(btnQ, 0, 1, true)  
+  
+	main := tview.NewFlex().SetDirection(tview.FlexRow).  
+		AddItem(header, 1, 0, true).  
+		AddItem(body, 0, 1, false).  
+		AddItem(footer, 1, 0, false)  
+  
+	if err := app.SetRoot(main, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+  
+func main() {  
+	doformat()  
+}  
+</code></pre><p>では、実際に動かしてみましょう。</p>
+<pre><code>go run s04_01.go  
+</code></pre><img src="/IT/Go言語(golang)でTUIアプリを作ろうその４(s04_01).png" style="margin-left:30px;margin-bottom:30px;width:600px;">  
+<h5 id="あれれ矢印キーやtabでbuttonのfocusが移りませんね">あれれ、矢印キーやTabでButtonのFocusが移りませんね。</h5>
+<p>&ldquo;<strong>＜Q＞</strong>&rdquo; を選択できないので、終了することも出来ません。仕方がないので、 &ldquo;<strong>CTRL+C</strong>&rdquo; で処理を中断してください。</p>
+<h5 id="実はtviewではfocusの移動はコーディングが必要なのです">実は、tviewでは「Focusの移動はコーディングが必要」なのです。</h5>
+<p><strong>Python Urwid</strong>では自動で出来るので、<strong>tview</strong>でも出来るものと思いこんでいたのですが、これには意表を突かれました。また、ひとつ<strong>tview</strong>の問題点が出てしまいましたね。<strong>Auto focusが効かない</strong>のは辛いなあ（笑）。</p>
+<hr>
+<h4 id="3focus設定メソッドを追加する">(3)　Focus設定メソッドを追加する。</h4>
+<p>しかたがないので、コードを追加しましょう。focusを移動するメソッド &ldquo;<strong>mySetFocus</strong>&ldquo;と、矢印キーの入力処理になります。</p>
+<pre><code>func mySetFocus(app *tview.Application, elements []tview.Primitive, reverse bool)  
+</code></pre><p><strong>elements</strong>には、Focus対象オブジェクトの配列を渡します。<br>
+<strong>reverse</strong>は、Focusの移動方向です。&quot;<strong>false</strong>&ldquo;で進み、”<strong>true</strong>”で戻るわけです。</p>
+<p>Buttonが配置されてるコンテナ(ここではheaderオブジェクト)の<strong>SetInputCapture</strong>メソッドに、<strong>矢印キーによるFocus移動処理</strong>を記述します。</p>
+<pre><code>header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+	switch event.Key() {  
+	case tcell.KeyRight:  
+		mySetFocus(app, buttons, false)  
+	case tcell.KeyLeft:  
+		mySetFocus(app, buttons, true)  
+           :  
+		   :  
+</code></pre><p>最終的なコードを下記に示します。</p>
+<pre><code>//  
+// s04_02.go  
+//  
+package main  
+import (  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+)  
+func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+  
+func mySetFocus(app *tview.Application, elements []tview.Primitive, reverse bool) {  
+	for i, el := range elements {  
+		if !el.HasFocus() {  
+			continue  
+		}  
+		if reverse {  
+			i = i - 1  
+			if i &lt; 0 {  
+				i = len(elements) - 1  
+			}  
+		} else {  
+			i = i + 1  
+			i = i % len(elements)  
+		}  
+		app.SetFocus(elements[i])  
+		return  
+	}  
+	app.SetFocus(elements[0])  
+}  
+  
+func doformat() {  
+	app := tview.NewApplication()  
+	header := tview.NewFlex()  
+	footer := tview.NewTextView().SetText(&quot;これはフッター&quot;)  
+	body := tview.NewTextView().SetText(&quot;Buttonテスト&quot;).SetTextAlign(tview.AlignCenter)  
+  
+	btnT := myButton(&quot;&lt;T&gt;&quot;).SetSelectedFunc(func() {  
+		footer.SetText(&quot;Pushed T&quot;)  
+	})  
+	btnS := myButton(&quot;&lt;S&gt;&quot;).SetSelectedFunc(func() {  
+		footer.SetText(&quot;Pushed S&quot;)  
+	})  
+	btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+		app.Stop()  
+	})  
+  
+	buttons := []tview.Primitive{  
+		btnT,  
+		btnS,  
+		btnQ,  
+	}  
+	header.AddItem(btnT, 0, 1, true)  
+	header.AddItem(btnS, 0, 1, true)  
+	header.AddItem(btnQ, 0, 1, true)  
+	header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRight:  
+			mySetFocus(app, buttons, false)  
+		case tcell.KeyLeft:  
+			mySetFocus(app, buttons, true)  
+		case tcell.KeyRune:  
+			switch event.Rune() {  
+			case 'q', 'Q':  
+				app.Stop()  
+			}  
+		}  
+		body.SetText(string(event.Rune()))  
+		return event  
+	})  
+  
+	main := tview.NewFlex().SetDirection(tview.FlexRow).  
+		AddItem(header, 1, 0, true).  
+		AddItem(body, 0, 1, false).  
+		AddItem(footer, 1, 0, false)  
+  
+	if err := app.SetRoot(main, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+  
+func main() {  
+	doformat()  
+}  
+</code></pre><p>では、再度動かしてみましょう。</p>
+<pre><code>go run s04_02.go  
+</code></pre><p>左右矢印キーで、フォーカスを移動してみましょう。また、Enterキーを叩くとFooter部にメッセージが表示されることも確認しておきます。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその４(s04_02).png" style="margin-left:30px;margin-bottom:30px;width:600px;">  
+<p>これで、所定の動作になりましたね。</p>
+<hr>
+<h3 id="3golangの継承について">[3]　golangの継承について</h3>
+<p>先にButton生成メソッドを下記のように記述していました。</p>
+<pre><code>func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+</code></pre><p>上記をメソッドチェーンで1つにまとめると、どうなるでしょうか。</p>
+<pre><code>func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label).SetBackgroundColor(tcell.ColorBlack).SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+</code></pre><p>実行してみましょう。</p>
+<pre><code>$ go run s04_02.go  
+# command-line-arguments  
+./s04_02.go:16:71: tview.NewButton(label).Box.SetBackgroundColor(tcell.ColorBlack).SetLabelColor undefined (type *tview.Box has no field or method SetLabelColor)  
+</code></pre><p>エラーになりますね。<br>
+先に、<a href="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/">tviewの基本構造</a>を説明した際、基本的にすべてのオブジェクトは、<strong>Box</strong>を継承していると述べました。<br>
+実は、 &ldquo;<strong>SetBackgroundColor</strong>&rdquo; というメソッドは、<strong>Boxのメソッド</strong>なのです。このSetterは、Boxオブジェクトを返しますから、次の「&quot;<strong>SetLabelColor</strong>”なんてメソッドは、Boxにないぞ」と言っているわけです。このあたりは、「<strong>golangが純粋のオブジェクト指向ではない</strong>」所以ですね。</p>
+<p>これで、Buttonオブジェクトの説明はおしまい。次回は、tviewの<strong>List</strong>について説明しましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section04" target="_blank">Section04</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-tview%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その３　tviewの基本構造 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-list%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

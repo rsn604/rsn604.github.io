@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )" />
+<meta property="og:description" content="前回は、WN891にXubuntu20.04をインストールしてみました。 モバイルLinuxマシンとして、なんとか使えるレベルではと思いますが" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" />
+<meta property="article:published_time" content="2020-08-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-10T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )"/>
+<meta name="twitter:description" content="前回は、WN891にXubuntu20.04をインストールしてみました。 モバイルLinuxマシンとして、なんとか使えるレベルではと思いますが"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-10T00:00:00Z">August 10, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/" rel="category">WN891で遊ぼう</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p><a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">前回</a>は、WN891にXubuntu20.04をインストールしてみました。<br>
+モバイルLinuxマシンとして、なんとか使えるレベルではと思いますが、<strong>同時にWindows10としても使いたい</strong>というニーズがあるかもしれません。MS Officeはもちろんですが、最近ではテレワークが注目されていますから、「SkypeやZoomを内蔵カメラ経由で活用したい」というケースも想定されます。<br>
+今回は、これらに答えるべく、<strong>Windwos10とXubuntu20.04のデュアルブート環境</strong>にチャレンジしてみましょう。</p>
+<h4 id="1-ディスクの縮小">(1) ディスクの縮小</h4>
+<p>まずは、<a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/">クリーンインストール</a>を再度実施します。完了後、Windows10を縮小して、Xubuntuインストール用のディスクを確保します。</p>
+<p>［スタート］ボタンを右クリックし、メニューから「ディスクの管理」を選択します。[C]ドライブの部分を右クリックし、表示されるメニューから「ボリュームの縮小」をクリックします。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95(D01).png" alt="WN891"></p>
+<p>「縮小する領域のサイズ」という項目に、確保したいサイズをMBで入力します。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95(D02).png" alt="WN891"></p>
+<p>今回は、”8500MB”を指定しました。前回のXubuntu20.04インストール完了後が7G強ですから、この程度にしておきます。</p>
+<hr>
+<h4 id="2-インストールの実行">(2) インストールの実行</h4>
+<p>ここからの作業は、<a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">前回</a>の「Xubuntu 20.04をインストールしてみる」と、下記を除いて同一です。</p>
+<ul>
+<li>途中の「インストールの種類」の画面では、今回はすでにWindows10が入っているので、「ディスクを削除してXubuntuをインストール」ではなく、「<strong>それ以外</strong>」を選択する。</li>
+<li>次画面で、先に作成した”8500MGのディスク”を選択、利用方法を「ext4ジャーナリングシステム」、「パーティションの初期化」をチェック、「マウントポイント」には”/”を設定する。</li>
+</ul>
+<p>下部の「ブートローダのインストールデバイス」の設定には、悩みました。<br>
+WN891は”GPT/EFI”ですから、先頭パーティションであるESP（EFI System Partition）にブート情報を入れるのですが、このパーティションを指定するべきのか、あるいはマウントポイントを設定しないといけないのか、などなど。<br>
+結論から言ってしまうと、「<strong>何もしなくても、インストーラが適切に処理してくれる</strong>」ということです。インストール完了後の、”/etc/fstab”を覗いてみましょう。</p>
+<pre><code># /etc/fstab: static file system information.  
+#  
+# Use 'blkid' to print the universally unique identifier for a  
+# device; this may be used with UUID= as a more robust way to name devices  
+# that works even if disks are added and removed. See fstab(5).  
+#  
+# &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;  
+# / was on /dev/mmcblk1p5 during installation  
+UUID=bb8eca36-a36b-40ad-a47d-4bd606dbd513 /               ext4    errors=remount-ro 0       1  
+# /boot/efi was on /dev/mmcblk1p1 during installation  
+UUID=B0BB-E925  /boot/efi       vfat    umask=0077      0       1  
+/swapfile                                 none            swap    sw              0       0  
+</code></pre><p>下から3行目にありますように、<strong>インストーラがESPを ”/boot/efi”にmount</strong>してくれています。</p>
+<hr>
+<h4 id="3-スタートアップ">(3) スタートアップ</h4>
+<p>インストール完了後に再起動すると、grubの画面が縦画面として現れます。（下の画像は、回転させています。）</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95(Boot).jpg" alt="WN891"></p>
+<p>見づらいですが、Windows10のエントリもありますので、そちらを選択すれば、Windows10も起動可能です。なんとか、デュアルブートの環境が構築できました。</p>
+<hr>
+<h4 id="4-ツールの削除と導入">(4) ツールの削除と導入</h4>
+<p>ここからは、自分なりの環境を整備します。<a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%98-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%B0%8E%E5%85%A5/">ひとりよがりのモバイルＰＣ ( その８　Linux DeployによるDebianのインストール　アプリケーションの導入 )</a>と同様の処理を行ってみました。</p>
+<h5 id="4-1-不要ツールの削除">(4)-1 不要ツールの削除</h5>
+<p>LibreOfficeとThunderbirdを削除して、使えるディスク容量を増やします。</p>
+<pre><code>~$ sudo apt-get remove --purge libreoffice*  
+~$ sudo apt-get remove --purge thunderbird*  
+~$ sudo apt-get clean  
+~$ sudo apt-get autoremove  
+</code></pre><h5 id="4-2-基本ツールのインストール">(4)-2 基本ツールのインストール</h5>
+<p>Emacsと、gccなどの開発ツールを導入します。</p>
+<pre><code>~$ sudo apt update  
+~$ sudo apt -y install emacs emacs-mozc  
+~$ sudo apt -y install build-essential gparted nkf rar git curl  
+</code></pre><h5 id="4-3-python3環境の構築">(4)-3 python3環境の構築</h5>
+<p>python3は、pyenvを使用してhomeディレクトリに導入、python2との競合を防ぎます。</p>
+<pre><code>~$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv  
+~$ sudo apt install -y libffi-dev libssl-dev zlib1g-dev liblzma-dev  
+~$ sudo apt install -y libbz2-dev libreadline-dev libsqlite3-dev  
+</code></pre><p>~/.bashrcに下記を追加します。</p>
+<pre><code>export PYENV_ROOT=$HOME/.pyenv  
+export PATH=$PYENV_ROOT/bin:$PATH  
+eval &quot;$(pyenv init -)&quot;  
+</code></pre><p>上記を反映。</p>
+<pre><code>~$ source .bashrc  
+</code></pre><p>python3のバージョンを選択、インストールします。</p>
+<pre><code>~$ pyenv install --list  
+</code></pre><p>候補一覧が出力されるので、3.8.5を選択</p>
+<pre><code>~$ pyenv install 3.8.5  
+</code></pre><p>pyenvによるインストールは、ソースコードをコンパイルしているので、それなりの時間がかかります。完了後、全体に適用します。</p>
+<pre><code>~$ pyenv global 3.8.5  
+</code></pre><p>pandasも導入しましょう。</p>
+<pre><code>~$ pip install pandas  
+</code></pre><hr>
+<h4 id="最後に">最後に</h4>
+<p>なんとか環境を作ってみましたが、やはり32Gのディスクでは辛いですね。Xubuntu環境では、Java辺りを追加で導入すると、ディスク使用率は80%以上になってしまいます。今回はこのブログをメンテできる環境を目標にデータまで入れてみましたが、これをSDカードに逃がせば、もう少し空きますが。<br>
+Windows10は残り4Gほどですが、大型アップデートに対応できるのでしょうか。USBメモリを使って、なんとかなることを祈りましょう。</p>
+<p>あまり、実用的な環境ではないかもしれませんが、こういう不自由な環境で遊んでみるのは楽しいものです。今年（2020年）の5月に出た<a href="https://ascii.jp/elem/000/004/016/4016477/" target="_blank"><strong>ドンキのNANOTE</strong></a>なんかが恵まれた環境に見えるくらいです。このマシンも面白そうなので、入手したかったのですが、売り切れのようですね。年末に新版が出るという噂もあるようなので、期待しています。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">ひとりよがりのモバイルＰＣ ( その９　SC-03Gでも Mozc が使いたい )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

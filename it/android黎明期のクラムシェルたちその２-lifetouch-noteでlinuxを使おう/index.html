@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )" />
+<meta property="og:description" content="LifeTouch Noteで、Debian Wheezyを動かそう NECは過去に、大型キーボードも搭載する端末としてモバイルギアシリーズを発売しており、快適な" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%92-lifetouch-note%E3%81%A7linux%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" />
+<meta property="article:published_time" content="2020-10-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-29T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )"/>
+<meta name="twitter:description" content="LifeTouch Noteで、Debian Wheezyを動かそう NECは過去に、大型キーボードも搭載する端末としてモバイルギアシリーズを発売しており、快適な"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%93-lifetouch-note%E3%81%A7python%E6%9C%80%E6%96%B0%E7%89%88%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android黎明期のクラムシェルたち ( その２　LifeTouch NoteでLinuxを使おう )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-10-29T00:00:00Z">October 29, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="lifetouch-noteでdebian-wheezyを動かそう">LifeTouch Noteで、Debian Wheezyを動かそう</h2>
+<br clear="left">
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(21LTN%E5%85%A8%E4%BD%93).jpg" alt="LTN"></p>
+<p>NECは過去に、大型キーボードも搭載する端末として<strong>モバイルギア</strong>シリーズを発売しており、快適な文字入力ができる端末として人気を集めていました。特に、裏技としてDOS化して超小型のMS-DOSマシンとして活用できることが発見されてからは、その手のガジェット好きからも多大なる支持を集めていたものです。<br>
+かく言うわたしも、モバイルギア”MK22”を愛用しておりました。いまやヒンジ折れして見る影もありませんが。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(20MobileGear).jpg" alt="MK22"></p>
+<p>そういった経過から、LifeTouch Noteは、モバイルギアの後継モデルという印象が非常に強く、ユーザーの期待も小さくなかったのですが、残念ながらあまり評判は芳しくありませんでした。マシンの概要と評価は、<a href="http://wzero3.iinaa.net/LifeTouch%20NOTE.html" target="_blank">このあたりのレビュー</a>を参考にして下さい。</p>
+<p>立派なキーボードを持っている点は評価出来ますが、7インチでありながら”800×480”という解像度は、この時代でもぱっとしません。5インチのIS01が”960x480”であることを考えれば、一目瞭然でしょう。重量700gもこのサイズにしては鈍重な感は否めず、常時携帯したくなるようなマシンとはとても思えません。<br>
+言ってみれば、「<strong>Androidの特性と全く正反対</strong>」なのが、このマシンなのです。そりゃ、売れないよね（笑）。</p>
+<p>また、IS01やDynabook AZがROM焼きや、Ubuntuインストールで盛り上がっていたことと比較すると、極めて地味で遊びがいのないマシンという印象が強く、ほとんど盛り上がりませんでした。わたし自身も購入はしたものの、あまり熱心に触った記憶がありません。</p>
+<p>それならば、LifeTouch Noteの特徴を活かした使い方を考えてみましょう。</p>
+<h3 id="唯一の長所はキーボードならばlinuxだ">唯一の長所は「キーボード」、ならば”Linux”だ。</h3>
+<p>そう、まずはLinuxでしょう。．．．我田引水だな（笑）。</p>
+<p>今回は、このぱっとしなかった”LifeTouch Note”にDebianをインストールして、遊んでみましょう。「今更感」は強いですけど。</p>
+<hr>
+<h3 id="0-始める前に">(0) 始める前に</h3>
+<p>Android2.2レベルのマシンに、”Google Playストア”は全く役に立ちません。殆んどのツールが、サポート対象外になっているからです。<br>
+したがって、ツールをインストールするには、インターネット上にある他のサイトから、”.apk”ファイルを見つけてきて、手動で行う必要があります。<br>
+通常は、”Android SDK”をダウンロードして、その中に含まれるツール”adb”で、apkのインストールを行います。やり方については、<a href="https://tech.la-fra.com/2018/07/29/post-204/" target="_blank">この記事</a>などを参考にして下さい。</p>
+<p>また、LifeTouch NoteとPCを接続するUSBケーブルの端子は、「<strong>MiniUSB</strong>」です。現在主流の「MicroUSB」ではありませんので、注意して下さい。</p>
+<hr>
+<h3 id="1-android22で使えるlinuxを見つける">(1) Android2.2で使える”Linux”を見つける。</h3>
+<p>さて、それでは始めましょう。</p>
+<p><a href="https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%94-android%E3%81%A7linux%E7%92%B0%E5%A2%83%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%EF%BC%93%E3%81%A4%E3%81%AE%E6%89%8B%E6%B3%95/">ひとりよがりのモバイルＰＣ(その４　AndroidでLinux環境を動かす３つの手法)</a>を紹介いたしましたが、これらはどれも「<strong>Android5.0以上</strong>」が対象なので、今回はどれも使えません。</p>
+<p>そんな中で選択したのが、UserLAndの前身である”GnuRoot”です。このツールの古いバージョンなら、2.2レベルをサポートしてくれそうです。今どきGoogle Playにあるわけがないので、ネットワーク上から”apk”を探してきてインストールしてみましょう。</p>
+<p>こちらを見つけました。</p>
+<p><a href="https://m.apkpure.com/nl/gnuroot/champion.gnuroot">https://m.apkpure.com/nl/gnuroot/champion.gnuroot</a><br>
+<img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(00APKGnuRoot).png" alt="Lifetouch"></p>
+<p>ここから、&ldquo;GNURoot_v0.1.5_apkpure.com.apk&rdquo; をダウンロード。インストールしてみると、問題なく完了。<br>
+まずは、最初の関門はクリア致しました。</p>
+<hr>
+<h3 id="2-gnurootのダウンロードエラーを回避して起動する">(2) GnuRootのダウンロードエラーを回避して、起動する。</h3>
+<p>次に、”GNURoot”を起動すると、下記の画面になりますので、まずは「<strong>Create New Rootfs</strong>」をクリックします。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(01StartGnuRoot).png" alt="Lifetouch"></p>
+<p>残念ながら、この処理はうまくいきません。どうも、RootfsをGoogle Playからダウンロードしに行ってしまうようなのです。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(02FailWheezy).png" alt="Lifetouch"></p>
+<p>なるほど。それなら、”Debian Wheezy”を事前にインストールしておけば動くかもしれません。探してみると、それらしい”apk”が、同じサイトにありました。</p>
+<p><a href="https://m.apkpure.com/jp/gnuroot-wheezy/champion.gnuroot.wheezy">https://m.apkpure.com/jp/gnuroot-wheezy/champion.gnuroot.wheezy</a><br>
+<img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(00APKGnuWheezy).png" alt="Lifetouch"></p>
+<p>&ldquo;GNURoot Wheezy_v0.0.5_apkpure.com.apk&quot;をダウンロード、インストールを行います。</p>
+<p>完了後、再度”GNURoot”を起動、「Create New Rootfs」クリックすると、実行が始まりました。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(04InstallWheezy1).png" alt="Lifetouch"></p>
+<p>なんとか導入が完了したようです。</p>
+<p>次に、「Launch as Fake Root」にチェックを入れて、「Launch Rootfs」をクリックします。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(05StartWheezy).png" alt="Lifetouch"></p>
+<p>ターミナルが起動して、プロンプトが現れるはずです。</p>
+<hr>
+<h3 id="3-ターミナルを設定する">(3) ターミナルを設定する。</h3>
+<p>この環境は、Debianがバックエンドで起動しており、そのSSHサーバーにターミナルでアクセスするようになっているようです。ターミナルは、おなじみの「Android Terminal」ですので、まずはその設定を行います。</p>
+<p>「MENU」を押して、「その他」→「設定」を選択します。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(06Settings01).png" alt="Lifetouch"></p>
+<p>まずは、画面の文字が小さいので、「フォントサイズ」を16ポイント程度にしておきましょう。「Default to UTF-8」にもチェックを入れておきます。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(06Settings02).png" alt="Lifetouch"></p>
+<p>また、「Back Button」の挙動は、”ESC&quot;にしておいたほうが便利です。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(06Settings03).png" alt="Lifetouch"></p>
+<p>漢字を通したいので、「インプットメソッド」を「単語ベース」に設定します。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(06Settings04).png" alt="Lifetouch"></p>
+<p>以上で、ターミナルの設定は終了です。</p>
+<hr>
+<h3 id="4-debianの環境を整備する">(4) Debianの環境を整備する。</h3>
+<p>ここからは、Debian本体の設定に移ります。現在導入されているDebianは、Wheezyという古いバージョンなので、現行のRepositoryからはツールの導入が出来ません。</p>
+<h4 id="1-repositoryの変更">1. Repositoryの変更</h4>
+<p>/etc/apt/sources.listを変更します。以下のような設定がされていますが、現在このサイトは使えません。</p>
+<pre><code>deb http://ftp.jp.debian.org/debian/ wheezy main contrib non-free  
+deb-src http://ftp.jp.debian.org/debian/ wheezy main contrib non-free  
+</code></pre><p><a href="https://qiita.com/ryo511/items/e6878293832d6d60fc4c" target="_blank">こちらの情報</a>によると、”archive.jp.debian.org”にあるようなので、sources.listを変更します。</p>
+<pre><code># cd /etc/apt  
+# sed -i -e 's/ftp./archive./' sources.list  
+</code></pre><p>システムを更新します。それなりの時間がかかります。</p>
+<pre><code># apt-get update  
+# apt-get upgrade  
+</code></pre><p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(08AptUpgrade).png" alt="Lifetouch"></p>
+<h4 id="2-日本語環境を整備する">2. 日本語環境を整備する。</h4>
+<p>続けて、日本語環境を設定します。<br>
+まずは、localesを導入。</p>
+<pre><code># apt-get install locales  
+</code></pre><p>ここで、localeを”ja_JP.UTF-8”に設定します。</p>
+<pre><code># dpkg-reconfigure locales  
+</code></pre><p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(09Locale01).png" alt="Lifetouch"></p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(09Locale02).png" alt="Lifetouch"></p>
+<p>また、~/.bashrcの最後に</p>
+<pre><code>export LANG=C  
+</code></pre><p>と書かれていますので、<strong>これを”ja_JP.UTF-8” に変更</strong>しないといけません。これに気が付かず、少し悩みました。これで、漢字の表示は問題ないはずです。</p>
+<p>一方、漢字の入力ですが、<strong>LifeTouch Noteの場合、標準のATOKがターミナル上でも使える</strong>ので、何もする必要はありません。これは嬉しい。</p>
+<hr>
+<h3 id="5-ツールをインストールする">(5) ツールをインストールする。</h3>
+<p>後は、適当なツールをインストールすれば環境設定完了です。</p>
+<h4 id="1-エディタ">1. エディタ</h4>
+<pre><code># apt-get install vim emacs  
+</code></pre><p>使い慣れた”Emacs”ですが、このターミナル上では、Controlキーの挙動が今ひとつで、勝手がよくありません。Controlを押しただけで、”Mark activated&rdquo;、”Mark deactivated”がトグルで動いてしまうなど、いささかイライラが募ります。この環境では、”Vim”を使ったほうが良いかもしれません。</p>
+<hr>
+<p>（2021/12/28 追記）<br>
+これについては、キーレイアウトを変更することで対応できます。<br>
+ただし、/systemデレクトリを書き換えるので、<strong>LifeTouch Noteをroot化する</strong>必要があります。危険を伴う処置なので、自己責任でお願いします．．。<br>
+と言っても、ここまでの処理、すべてそうですけどね（笑）。</p>
+<h5 id="1root化">1)　root化</h5>
+<p><strong>SuperOneClick</strong>というツールを使用します。Webサイトを検索してみてください。<br>
+「<strong>バージョンを選ぶ</strong>」ということですが、わたしはかなり前に<strong>1.7</strong>で実行しました。<strong>1.9.5</strong>でも動くという情報もありましたが、<strong>2.3.3</strong>はだめとのこと。</p>
+<h5 id="2layoutファイルの取り出し">2)　layoutファイルの取り出し</h5>
+<p>PCとLifeTouch NoteをUSBケーブルで接続、<strong>adb</strong>でアクセス、layoutファイル「<strong>nvec_keyboard.kl</strong>」を取り出します。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(10adbpull).png" alt="Lifetouch"></p>
+<pre><code>$ adb pull /system/usr/keylayout/nvec_keyboard.kl nvec_keyboard.kl  
+</code></pre><h5 id="3layoutファイルの変更">3)　layoutファイルの変更</h5>
+<p>PC上で、<strong>nvec_keyboard.kl</strong>を変更します。<strong>ESCAPE</strong>(key 1)と<strong>CTRL_LEFT</strong>(key 29)が対象です。</p>
+<pre><code>#key 1     ESCAPE     ### &lt;---  
+key 1     BACK  
+key 87    F11  
+key 88    F12  
+key 85    ZENKAKUHANKAKU  
+key 124   YEN  
+key 89    RO  
+#key 29    CTRL_LEFT  ### &lt;---  
+key 29    DPAD_CENTER  
+</code></pre><p>なお、Ctrlキー(key 29)とFnキー(key 464)を入れ替えたい場合は、下記とします。</p>
+<pre><code>key 464    DPAD_CENTER  
+key 29   INTERNAL_FN  
+</code></pre><p>変更後、<strong>nvec_keyboard.kl</strong>を、LifeTouch NoteのSDCARD（/mnt/sdcard）に転送しておきます。</p>
+<pre><code>$ adb push nvec_keyboard.kl /mnt/sdcard/nvec_keyboard.kl  
+</code></pre><h5 id="4layoutファイルの更新">4)　layoutファイルの更新</h5>
+<p><strong>adb shell</strong>で、LifeTouch Noteの内部に入り、/systemディレクトリの位置を確認します。「<strong>suコマンドで、rootになれる</strong>」こともチェックしておきます。これが出来ていないとファイルの更新は出来ません。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(12mount).png" alt="Lifetouch"></p>
+<p><strong>/dev/block/mmcblk3p6</strong>が、systemパーティションなので、ここを書き込み可で再マウント、layoutファイルを転送します。</p>
+<pre><code># mount -o rw,remount -t ext2 /dev/block/mmcblk3p6 /system  
+# cd /system/usr/keylayout  
+# cp /mnt/sdcard/nvec_keyboard.kl .  
+# chmod 644 nvec_keyboard.kl  
+# exit  
+$ exit  
+</code></pre><h5 id="5ターミナルでの設定">5)　ターミナルでの設定</h5>
+<p>ターミナルから「Menu」→「その他」→「設定」に入り、「コントロールキー」を「トラックボール」に設定します。</p>
+<p><img src="/IT/Android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB(LifetouchNote)(14control02).png" alt="Lifetouch"></p>
+<p>ESCは「(3) ターミナルを設定する。」で述べたように、「Back Button」の挙動を”ESC&quot;にしておくことが必要です。</p>
+<p>以上で、<strong>Cotrol</strong>が普通に使えるので、Emacsの操作性が一挙に上がりますし、<strong>ESC</strong>は、Vimで効果的でしょう。<br>
+ただ、<strong>Control</strong>が「トラックボール」になってしまうので、他のツールに影響があるかもしれません。まあ、AndroidでControlキーを使うアプリは殆どないので、深く考えないことにします。<br>
+（ここまで追記）<br>
+（さらに追記）<br>
+やはり、Controlが使えないのは問題があるので、［無変換キー］を［CTRL_LEFT］に割り当てました。必要な場合、<strong>4) layoutファイルの変更</strong>に追加してください。</p>
+<pre><code>#key 94    MUHENKAN  
+key 94    CTRL_LEFT  
+</code></pre><p>（ここまで追記）</p>
+<hr>
+<h4 id="2-開発ツール">2. 開発ツール</h4>
+<p>適当なツールを入れておきます。gcc、pythonなどを入れておきます。SSHも当然使用できますので、リモートマシンへのアクセスも可能です。</p>
+<pre><code># apt-get install git  
+# apt-get install build-essential  
+# apt-get install python3 python3-pip  
+</code></pre><p>以上で環境設定は終了です。</p>
+<p>「X環境」ですが、LifeTouch Noteは、Bluetoothはサポートされていますが、マウス接続はできないようですし、<a href="https://faq.nec-lavie.jp/qasearch/1007/app/servlet/relatedqa?QID=012977" target="_blank">USBにも接続できない</a>とのことなので、とても使い物にならないと思います。<br>
+Terminalでの使用にとどめておくのが現実的でしょう。</p>
+<hr>
+<p>今回、LifeTouch Noteを”Linuxターミナル”として動作させることが出来ました。「今更」とは思いましたが、色々やってみると、なかなか楽しい作業でした。</p>
+<p>次回は、Python3の環境を整備してみましょう。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その１　2010年、こんなマシンがでていた )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%93-lifetouch-note%E3%81%A7python%E6%9C%80%E6%96%B0%E7%89%88%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その３　LifeTouch NoteでPython最新版を使おう )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

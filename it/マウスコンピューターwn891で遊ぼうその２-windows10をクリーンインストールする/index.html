@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )" />
+<meta property="og:description" content="2015年に購入した「WN891」ですが、2018年以降は、ほとんど使用実績がなくなっていました。その後、Windows10では、2018、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/" />
+<meta property="article:published_time" content="2020-07-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-29T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )"/>
+<meta name="twitter:description" content="2015年に購入した「WN891」ですが、2018年以降は、ほとんど使用実績がなくなっていました。その後、Windows10では、2018、"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-%E9%9B%A8%E9%99%8D%E3%82%8A%E3%81%A0%E3%81%8B%E3%82%89%E5%8F%A4%E3%81%84%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%88%E3%81%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その１　雨降りだから、古いマシンで遊んでみよう )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">マウスコンピューター「WN891」で遊ぼう ( その２　Windows10をクリーンインストールする )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-07-29T00:00:00Z">July 29, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/" rel="category">WN891で遊ぼう</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>2015年に購入した「WN891」ですが、2018年以降は、ほとんど使用実績がなくなっていました。その後、Windows10では、2018、2019年と大型のアップデートが実施されており、このマシンレベルとでは大きな隔たりがあるでしょう。これを地道に更新するのは、非常に面倒なので、ここは、クリーンインストールに挑みます。<br>
+実験的な意味合いもあるので、DoubleDriveなどで現状使用しているドライバのコピーを取るようなこともやめておきましょう。まったくの新規状態でトライします。</p>
+<hr>
+<h3 id="事前準備">事前準備</h3>
+<p>とは言っても、単にWindows10を入れただけでは、満足に動かないでしょう。まずは、マウスコンピュータのサイトから情報を仕入れます。</p>
+<h4 id="1マウスコンピューターのサイトにアクセス">(1)　マウスコンピューターのサイトにアクセス</h4>
+<p>マウスコンピューターの<a href="https://www2.mouse-jp.co.jp/ssl/user_support2/sc_download.asp" target="_blank">サポートサイト</a>にアクセスします。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(00Mouse01).png" alt="WN891"></p>
+<p>ここでは、&ldquo;WN891のシリアルNO.&rdquo; 入力を要求されるので、実機の裏にある番号を入力します。</p>
+<p>2件の記事が登録されています。</p>
+<pre><code>検索結果 （2件）  
+No 	タイトル 	更新日  
+1	WN891 Windows10 にアップグレードする方法	2016/02/16  
+2	WN891 / MPro-P089AP Windows8.1 32bit 用デバイスドライバ	2015/11/17  
+</code></pre><h5 id="1wn891-windows10-にアップグレードする方法を参照">「1　WN891 Windows10 にアップグレードする方法」を参照</h5>
+<p>説明されている手順は、下記の3つです。</p>
+<ul>
+<li>(1)BIOSのアップデート</li>
+<li>(2)MSサイトから&quot;Media Creation Tool”をダウンロードして、「このPCを今すぐアップグレードする」を選択し、アップグレードを実行。</li>
+<li>(3)ドライバの適用<br>
+「無線LAN」、「Bluetooth」、「傾きセンサー」のドライバをダウンロードして適用。</li>
+</ul>
+<p>という順番になっていますが、これは「<strong>Windwos8.1からWindows10にアップグレードする方法</strong>」ですので、そのまま適用することは出来ません。今回は、クリーンインストールなので、これは参考にとどめ、下記の手順で実行します。</p>
+<p>(1)のBIOSアップデートは、やりません。今どきBIOSなんて、PCの起動に使われるだけで、Windows10の動作には何の影響もありません。そもそも、いままで古いBIOSで動いていたのだから、無視して良いでしょう。(2)の&quot;Media Creation Tool”による処理は、後でメディア作成を実行します。ここでは、(3)で示されている<strong>ドライバ3種をダウンロードしておく</strong>だけにとどめます。</p>
+<p>終了後、前画面に戻って、</p>
+<h5 id="2wn891--mpro-p089ap-windows81-32bit-用デバイスドライバ">「2　WN891 / MPro-P089AP Windows8.1 32bit 用デバイスドライバ」</h5>
+<p>にアクセス。ここからWindows8用ドライバをダウンロードしておきましょう。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(00Mouse03).png" alt="WN891"></p>
+<hr>
+<h4 id="2media-creation-toolによるインストールメディアの作成">(2)　Media creation toolによるインストールメディアの作成</h4>
+<p>まず、<a href="https://www.microsoft.com/ja-jp/software-download/windows10" target="_blank">MSのサイト</a>にアクセス。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(10MS).png" alt="WN891"></p>
+<p>MediaCreationTool.exeをダウンロードし、実行します。環境は、Windows10が動いているマシンなら、何でも構いません。当然、USBメモリを装着しておきます。</p>
+<p>実行オプションを聞かれますので、「このPCを今すぐアップグレードする」ではなく、「<strong>別のPCのインストールメディアを作成する</strong>」を選択します。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(10Media01).png" alt="WN891"></p>
+<p>つぎに、Windows10の選択画面になります。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(10Media).png" alt="WN891"></p>
+<p>ここでは、「このPCにおすすめのオプションを使う」のチェックを外したうえて、<strong>必ず”32ビット”を選択</strong>します</p>
+<p>これで、Windwos10インストール用のUSBメディアが作成されました。</p>
+<hr>
+<h3 id="実インストール作業">実インストール作業</h3>
+<p>ここから、実際に”WN891”にWindows10をインストールしていきます。上で作成したUSBメモリを装着し、電源を入れます。</p>
+<h4 id="1bios設定の変更">(1)　BIOS設定の変更</h4>
+<p>まずは、BIOSの設定を変更します。<br>
+&ldquo;WN891&quot;では、電源投入後、”Intelのロゴ”が出てくる辺りのタイミングで、”ESC”キーを押すと、設定画面に入れます。このキーボードの”ESC”は、下図のように、3つのキーを同時に押す必要がありますので、事前に確認しておいてください。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91(01keyboard).jpg" alt="WN891"></p>
+<p>BIOSの画面は縦画面になってしまいます。やりづらいですが、PCを横向きにするなりして頑張ってください。</p>
+<p>メニュー”BOOT”から、「Boot Option Priorities」まで降りていき、「Boot Option #1」に、先に作成したUSBメディアを設定します。ブランクキーを押すと、上にあがっていくようですなので、一番上に持ってきてください。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(22Bios).jpg" alt="WN891"></p>
+<p>終了後、メニューの&quot;Save &amp; Boot”を選択、”Yes&quot;で、インストールを開始します。</p>
+<hr>
+<h4 id="2windows10-クリーンインストール">(2)　Windows10 クリーンインストール</h4>
+<p>マシンがブートされ、Windows10のインストール画面になりますが、ここからも縦向きでの作業が続きます。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(30Install00).jpg" alt="WN891"></p>
+<p>注意点は2つだけ。<br>
+必ず、”カスタムインストール”を選択します。<br>
+<img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(30Install01).jpg" alt="WN891"></p>
+<p>現在あるパーティションは、すべて削除し、空の状態にします。<br>
+<img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(30Install02).jpg" alt="WN891"></p>
+<p>マウスカーソルを動かすのに苦労しますが、基本的にガイダンスに従っていくだけです。問題なく完了するでしょう。</p>
+<hr>
+<h4 id="3インストール後の処理">(3)　インストール後の処理</h4>
+<p>まず、何はともあれ、画面を横向きにします。</p>
+<pre><code>設定-&gt;システム-&gt;ディスプレイ-&gt;画面の向き　”横”  
+</code></pre><p>これで、なんとか普通に作業ができるようになりました。</p>
+<h4 id="ドライバのインストール">ドライバのインストール</h4>
+<p>デバイス マネージャーでは、不明なデバイスが複数出ているので、「事前準備」でマウスコンピュータからダウンロードしたドライバを適用していきます。</p>
+<ul>
+<li>Windows10用のドライバ、「無線LAN」、「Bluetooth」、「傾きセンサー」を適用。<br>
+ただ、これだけでは不十分です。</li>
+<li>Windows8.1用の「Intel」ドライバを適用<br>
+マウスコンピューターのWeb上で「①ジェネリック」と表示されているものです。<br>
+これは、実行時のダイアログによると、「Intel MRD7 Driver Package　PV Release with LED」というものらしい。これを実行すると、途中で画面が勝手に横向き回転して再起動するうえ、「タブレットモード」になって起動する、という面倒なやつですが、これも再起動後「設定」で直しましょう。</li>
+<li>Windows8.1用の「Camera」ドライバを適用<br>
+次に「④カメラ」のドライバを適用。これで、デバイスマネージャーから「不明のデバイス」が消えるでしょう。”カメラアプリ”も問題なく使えるようになります。</li>
+<li>Windows8.1用の「傾きセンサー」ドライバを適用<br>
+厄介だったのが、「傾きセンサー」。Windows10用のドライバーでは、「回転をオフ」にすると、画面回転はしますが、90度ずれてしまいます。試しに、Windows8用の「②傾きセンサー」を適用すると、ノーマルに動いてしまいました。このあたりはよくわかりません。</li>
+<li>wifiはインストール時から使えていましたし、Bluetoothも問題なく接続できます。</li>
+</ul>
+<p>以上の作業で、”WN891”にWindows10をクリーンインストール、使えるレベルまで持って来ることができました。<br>
+次回は、実行環境をチューニングしてみましょう。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%91-%E9%9B%A8%E9%99%8D%E3%82%8A%E3%81%A0%E3%81%8B%E3%82%89%E5%8F%A4%E3%81%84%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%88%E3%81%86/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その１　雨降りだから、古いマシンで遊んでみよう )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

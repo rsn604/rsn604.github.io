@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 )" />
+<meta property="og:description" content="Yogiの秘術に翻弄される。 それでは、Windows10のクリーンインストールを進めましょう。 [1] インストール用USBの作成 Windows10" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/" />
+<meta property="article:published_time" content="2021-12-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-09T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 )"/>
+<meta name="twitter:description" content="Yogiの秘術に翻弄される。 それでは、Windows10のクリーンインストールを進めましょう。 [1] インストール用USBの作成 Windows10"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%91-%E8%B3%BC%E5%85%A5%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その１　購入編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%93-yoga-book%E5%B0%82%E7%94%A8windows10%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Yoga Bookに悪戦苦闘 ( その２　Windows10クリーンインストール編 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-12-09T00:00:00Z">December 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="yogiの秘術に翻弄される">Yogiの秘術に翻弄される。</h2>
+<br clear="left">
+<hr>
+<p>それでは、Windows10のクリーンインストールを進めましょう。</p>
+<h3 id="1インストール用usbの作成">[1]　インストール用USBの作成</h3>
+<p>Windows10クリーンインストール用USBドライブの作成については、<a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/">マウスコンピューター「WN891」で遊ぼう(その２　Windows10をクリーンインストールする)</a>の「<strong>(2)　Media creation toolによるインストールメディアの作成</strong>」を参照してください。WN891では、「<strong>32ビット</strong>」を選択していますが、<strong>Yoga Book</strong>の場合は、「<strong>64ビット</strong>」を選びます。</p>
+<hr>
+<h3 id="2インストール用usbからの起動">[2]　インストール用USBからの起動</h3>
+<p>インストールの前に注意が必要です。Bootの段階では、Haloキーボードは使えません。こんなキーボードをBIOSが認識するはずもありませんね。<br>
+まずは、USBハブを用意し、USBメモリ、マウス、キーボードをつなげておく必要があります。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-00-00Setup).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>Yoga Bookでは、</p>
+<h5 id="ボリュームアップを押しながら電源を入れる">ボリュームアップを押しながら電源を入れる</h5>
+<p>とBIOSメニューに入ることが出来ます。<br>
+このような画面が出てくるはずです。ここで、「<strong>Boot Menu</strong>」を選択。タッチが効くようですね。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-00-01BIOS).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>続けて、USBメモリを選択するとWindowsのインストーラーが起動します。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-00-02Boot).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>そうなるはずでしたが．．．。</p>
+<hr>
+<h3 id="インストーラーまさかの挙動">インストーラー、まさかの挙動．．</h3>
+<p>ところが、Lenovoのロゴが出てから少し経つと、そのロゴが5つに分解されてしまい、アンテナの外れたテレビのような状態になってしまうのでありました。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-01-00Logo).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<h4 id="これはyogiの秘儀分身の術か笑">これはYogiの秘儀、『分身の術』か（笑）。</h4>
+<p>次に出てきたのがこれ。どうやら、Windowsインストールの初期画面で、「言語」や「種類」を選択する画面らしいのですが、全く認識できません。どうも画面が縦になっているような気もします。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-01-01WinInst).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>マウスは何とか使えるようなのですが、こんな画面では何をクリックしていいかわかりません。途方に暮れながら、数時間外部情報を検索してみますが、該当するような事象は報告されていない模様。さてどうしよう。ディスプレイの不良でしょうか。そうなると、どうしようもありませんね。</p>
+<h4 id="外部ディスプレイに接続してみる">外部ディスプレイに接続してみる</h4>
+<p>半日悩んだ末、諦めかけたのですが、このマシンには<strong>HDMI出力</strong>があることに気が付きました。外部ディスプレイに繋げてみたら、どうなるでしょう。<br>
+接続後ブートをかけてみると、ちゃんと読める画面が出てくるではありませんか。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-01-02ExtDisplay).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>左が<strong>Yoga Book</strong>本体（縦に表示されています）、右がHDMI接続した外部ディスプレイです。<br>
+ここまで来ればこっちのもの。いつものやり方で、Windows10をインストールしていきます。</p>
+<hr>
+<h3 id="3ドライバーの設定に苦労する">[3]　ドライバーの設定に苦労する</h3>
+<p>インストール完了後、Windows Updateを適用すると、<strong>Haloキーボード</strong>が使えるようになりました。ただし、まだクリック音も出ませんし、バイブレーションも動きません。不完全な状態ですが、使えるだけでも御の字、贅沢は言えません。これでなんとかUSBハブから解放され、自立できたわけです。</p>
+<p>さて、<strong>デバイスマネージャー</strong>を開いてみると、「<strong>不明なデバイス</strong>」が複数あるようです。まずは、これに対応せねばなりません。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-03-00Device).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>Lenovoには、「Lenovo Vantage」という自動更新ツールがあるのですが、Yoga Bookには対応していない模様。<a href="https://pcsupport.lenovo.com/hr/ja/products/tablets/yoga-series/yoga-book/downloads/driver-list/" target="_blank">Lenovoのサイト</a>から、必要なファイルを取得、ドライバーの更新処理を行わないといけないようです。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-03-01LenoVoSite).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>「BIOS／UEFI」、「製品ファームウェア」はここでは無視して良いでしょう。<br>
+それぞれのファイルをダウンロードして、USBドライブに書き込んでおきます。</p>
+<h4 id="1チップセット">(1)　チップセット</h4>
+<p>「<strong>Intel チップセット ドライバー Windows 10 (64bit) - YOGA Book (Lenovo YB1-X91F/L)</strong>」を適用します。<strong>デバイスマネージャー</strong>上の、「<strong>不明なデバイス</strong>」を右クリック。ドライバーの更新を選択、さらに「コンピュータを参照してドライバーを検索(R)」を選び、USBドライブを指定します。</p>
+<h4 id="2blutoothオーディオソフトウエアネットワーキング電源管理">(2)　Blutooth、オーディオ、ソフトウエア、ネットワーキング、電源管理</h4>
+<p>ディレクトリ内のインストーラ(<em>.exe、</em>.inf、*.msiなど)を適用していきます。</p>
+<h4 id="3キーボード">(3)　キーボード</h4>
+<p>「Installation Guideline.txt」に書かれている手順を実行します。</p>
+<ul>
+<li>デバイスマネージャで、ヒューマン インターフェース デバイスの&quot;Goodix Touch HID&rdquo; をアンインストール。</li>
+<li>KeyboardDriver 2.0.7.exeを実行し、再起動。</li>
+<li>HaloKeyboard 2.0.7.msiとMulti-mode service 1.0.2.7.msiを実行し、再起動。</li>
+</ul>
+<p>以上の作業で、環境整備が完了だったはずなのですが、</p>
+<h5 id="センサーが効いていないようで画面を動かしても自動回転しない">センサーが効いていないようで、画面を動かしても自動回転しない</h5>
+<p>のです。色々調べてみても、該当のドライバーは見つかりません。しかたがないので、本日の作業は、ここまで。</p>
+<hr>
+<h3 id="なんとか完動だが">なんとか完動だが．．．。</h3>
+<p>翌日。<br>
+こうなったら「ドライバーを当てまくってやる」ということで、マシンを立ち上げて<strong>Windows Update</strong>を開き、オプションのドライバーもどんどん適用していきます。全然論理的ではないので、半信半疑に進めていたとき、とあるドライバーを当てると画面が90°回転、再起動を促されました。これはイケるのではないかと、再起動。なんとか画面も回転するようになり、一件落着。</p>
+<p>しかし、適当にやっていたらうまくいってしまったわけで、もう一度やってもうまく行く保証が全くありません。要するに再現性がないのです。これは、コンピュータを運用していく上で、一番イヤな状態です。<br>
+このあたり、何か論理的な進め方があるのでしょうか。わたしはWindows環境に疎いので、よくわかりませんわ。</p>
+<hr>
+<h3 id="回復ドライブを作成する">回復ドライブを作成する。</h3>
+<p>回復ドライブなんで、今まで一度も作ったことがなかったのですが、クリーンインストールは二度とやりたくないので、USBに作成しておきます。やりかたについては、<a href="https://www.pc-koubou.jp/magazine/24666" target="_blank">こちらのサイト</a>などを参照してください。<br>
+また、これもうまく行かない場合を考えて、デバイスドライバーのバックアップ（C:\Windows\System32\FileRepositoryをコピー）を取っておきました。</p>
+<hr>
+<p>以上、なんとかWindows10クリーンインストールを完了。一日半もかかってしまった。</p>
+<img src="/IT/YogaBookに悪戦苦闘(その２-99-00Windows10).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%91-%E8%B3%BC%E5%85%A5%E7%B7%A8/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その１　購入編 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%93-yoga-book%E5%B0%82%E7%94%A8windows10%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AE%E4%BD%9C%E6%88%90/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Yoga Bookに悪戦苦闘 ( その３　Yoga Book専用Windows10インストールメディアの作成 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

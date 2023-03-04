@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )" />
+<meta property="og:description" content="tviewをベースとしたオブジェクト構造を考える。 今回は単純なアプリケーションなので、あまり気にする必要はないのかもしれませんが、少し構造を" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%97-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97/" />
+<meta property="article:published_time" content="2022-05-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-07T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )"/>
+<meta name="twitter:description" content="tviewをベースとしたオブジェクト構造を考える。 今回は単純なアプリケーションなので、あまり気にする必要はないのかもしれませんが、少し構造を"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-list%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その７　プログラム構造の見直し )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-05-07T00:00:00Z">May 07, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewをベースとしたオブジェクト構造を考える">tviewをベースとしたオブジェクト構造を考える。</h2>
+<br clear="left">
+<p>今回は単純なアプリケーションなので、あまり気にする必要はないのかもしれませんが、少し構造を見直したいと思います。画面が複数になった場合、連携部分が重要になるわけですが、それにはプログラム構造が標準化されていないといけません。</p>
+<hr>
+<h3 id="1プログラムクラス構造の階層化">[1]　プログラム（クラス）構造の階層化</h3>
+<p>一般的にプログラム構造は階層化すると理解しやすいものです。いわゆるオブジェクト指向は、その代表的なコンセプトです。golangは「オブジェクト指向言語ではない」ので、<strong>クラス</strong>という概念はありませんが、それに近い構造を作ることができます。今回は、この機能を利用してプログラム構造を見直していきます。(以下、用語として<strong>クラス</strong>という表現を用いることを了承ください)</p>
+<h4 id="1階層構造">(1)　階層構造</h4>
+<p><strong>tview</strong>をベースにしたTUIアプリケーションですから、親クラスは<strong>tview</strong>とするのが一般的でしょう。この親クラスと実クラスの中間に共通メソッドを配置したいので、<strong>Abstract</strong>的な層を設け、その下に<strong>Concrete</strong>（実装）部分を配置する階層構造とします。（<strong>Detail</strong>部は、次回実装予定)<br>
+下記に、概念図を示します。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその７(00class).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<h4 id="2メソッド">(2)　メソッド</h4>
+<p><strong>Abstract</strong>クラスである<strong>MyApplication</strong>には、３つのメソッドを配置します。</p>
+<h5 id="1アプリケーションの終了処理">1)　アプリケーションの終了処理</h5>
+<pre><code>func (self *MyApplication) exit()  
+</code></pre><h5 id="2画面作成または再描画処理の呼び出し">2)　画面作成、または再描画処理の呼び出し。</h5>
+<pre><code>func (self *MyApplication) display(primitive tview.Primitive)  
+</code></pre><h5 id="3プログラムの起動appがnilだったらtviewの初期処理を行う">3)　プログラムの起動。appがnilだったら、tviewの初期処理を行う。</h5>
+<pre><code>func (self *MyApplication) run(app *tview.Application, primitive tview.Primitive)  
+</code></pre><p><strong>tview</strong>からの継承部分と、<strong>Abstract</strong>層のコード（application.go)を示しておきます。</p>
+<pre><code>type MyApplication struct {  
+	app *tview.Application  
+}  
+  
+func (self *MyApplication) exit() {  
+	self.app.Stop()  
+}  
+  
+func (self *MyApplication) display(primitive tview.Primitive) {  
+	self.app.SetRoot(primitive, true)  
+}  
+  
+func (self *MyApplication) run(app *tview.Application, primitive tview.Primitive) {  
+	if app == nil {  
+		self.app = tview.NewApplication()  
+		if err := self.app.SetRoot(primitive, true).EnableMouse(true).Run(); err != nil {  
+			panic(err)  
+		}  
+	} else {  
+		self.app = app  
+		self.display(primitive)  
+	}  
+}  
+                  :  
+                  :  
+</code></pre><hr>
+<h3 id="2パッケージディレクトリ構造の見直し">[2]　パッケージ（ディレクトリ）構造の見直し</h3>
+<p>golangには、<a href="https://github.com/golang-standards/project-layout" target="_blank">プロジェクト構造に対する標準指針（Standard Go Project Layout）</a>というものがあるようです。<br>
+さすがに、「すべてのプログラムが<strong>main</strong>パッケージ」ではまずいと思いますが、今回のような単純なアプリケーションに全面適用するのは、いささか複雑すぎるように思われます。すこし外れているかもしれませんが、今回は下記の構成にしてみました。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその７(01program).jpg" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>エントリポイントを<strong>cmd</strong>へ、<strong>UI</strong>部分を<strong>tui</strong>としています。</p>
+<p>プログラムのディレクトリ構造は下記のようになります。</p>
+<pre><code>cmd/  
+  main.go  
+tui/  
+  application.go  
+  common.go  
+  list.go  
+  mywidget.go  
+go.mod  
+go.sum  
+</code></pre><hr>
+<h3 id="3プログラムの見直し">[3]　プログラムの見直し</h3>
+<p>次にプログラム個々の実装を修正していきます。</p>
+<h4 id="1applicationgo">(1)　application.go</h4>
+<p>先に<strong>Abstract</strong>層のコードを示しましたが、それに続けて<strong>Concrete</strong>層である<strong>MainList</strong>の設定を行います。</p>
+<ul>
+<li><strong>Abstract</strong>層との継承関係を確立しておき、<strong>MainList</strong>生成部分である<strong>NewMainList</strong>を、<strong>Singleton</strong>で実装。</li>
+<li>画面作成部分を<strong>doFormat</strong>というメソッド名に統一、最終処理は<strong>Abstract</strong>層に委譲。</li>
+<li>Entry部分として、<strong>init</strong>メソッドを定義。</li>
+<li>画面間で連携するデータは、<strong>common.go</strong>に記述。</li>
+</ul>
+<p>下記に、追加コード（<strong>application.go</strong>）を示します、</p>
+<pre><code>                  :  
+// ------------------------------------------------------  
+type MainList struct {  
+	MyApplication  
+}  
+  
+var mainList *MainList = nil  
+  
+func NewMainList() *MainList {  
+	if mainList == nil {  
+		abstract := MyApplication{}  
+		mainList = &amp;MainList{MyApplication: abstract}  
+	}  
+	return mainList  
+}  
+  
+func (self *MainList) display(common *Common) {  
+	self.MyApplication.display(self.doformat(common))  
+}  
+  
+func (self *MainList) run(app *tview.Application, common *Common) {  
+	self.MyApplication.run(app, self.doformat(common))  
+}  
+  
+func (self *MainList) Init(databaseName string, connectString string, cols int, rows int) {  
+	common := NewCommon()  
+	common.reset()  
+	common.databaseName = databaseName  
+	common.connectString = connectString  
+	common.cols = cols  
+	common.rows = rows  
+	self.run(nil, common)  
+}  
+  
+</code></pre><h4 id="2maingo">(2)　main.go</h4>
+<p>アプリケーションの起動は、別プログラム（<strong>main.go</strong>）に分割しました。<br>
+<strong>tcell</strong>でターミナルの画面サイズを取得後、MainListのinit処理を呼び出す形にしています。</p>
+<pre><code>                  :  
+func getScreenSize() (int, int) {  
+	s, _ := tcell.NewScreen()  
+	s.Init()  
+	cols, rows := s.Size()  
+	s.Fini()  
+	return cols, rows  
+}  
+  
+// -------------------------------------------------  
+func main() {  
+	cols, rows := getScreenSize()  
+	if len(os.Args) == 3 {  
+		tui.NewMainList().Init(os.Args[1], os.Args[2], cols, rows)  
+	} else {  
+		tui.NewMainList().Init(&quot;&quot;, &quot;&quot;, cols, rows)  
+	}  
+}  
+  
+</code></pre><h4 id="3listgo">(3)　list.go</h4>
+<p><strong>list.go</strong>の関数は全て、<strong>MainList</strong>のメソッドに変更します。</p>
+<pre><code>                  :  
+func (self *MainList) firstPage(common *Common) bool {  
+	return common.from == 1  
+}  
+func (self *MainList) lastPage() bool {  
+	return isLast  
+}  
+func (self *MainList) nextPage(common *Common) {  
+	if !self.lastPage() {  
+		common.from += (common.rows - 2)  
+		self.display(common)  
+	}  
+}  
+                  :  
+</code></pre><h4 id="4commongo">(4)　common.go</h4>
+<p>複数画面間の連携データを格納するプログラムです。今回は、画面サイズの取得とページングコントロール部分のみ使用しています。</p>
+<h4 id="5mywidgetgo">(5)　mywidget.go</h4>
+<p>下記のメソッドを追加しました。</p>
+<h5 id="func-myflexfocusapp-tviewapplication-flex-tviewflex-reverse-bool-">func myFlexFocus(app *tview.Application, flex *tview.Flex, reverse bool) {</h5>
+<p><strong>Flex</strong>コンテナ内の<strong>Primitive</strong>に対し、<strong>focus</strong>移動を行うメソッドです。</p>
+<hr>
+<h3 id="4プログラムの実行">[4]　プログラムの実行</h3>
+<p>下記のコマンドを入力します。</p>
+<pre><code>go run cmd/main.go  
+</code></pre><p>以上で、プログラム構造の見直しは終了です。</p>
+<p>次回は、一覧画面（<strong>list</strong>）から選択されたレコードの詳細(<strong>Detail</strong>)表示プログラムを作成、連携処理を行います。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section07" target="_blank">Section07</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-list%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%98-%E7%94%BB%E9%9D%A2%E9%96%93%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その８　画面間データ連携について )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

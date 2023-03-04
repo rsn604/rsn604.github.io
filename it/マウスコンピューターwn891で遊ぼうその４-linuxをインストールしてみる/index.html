@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )" />
+<meta property="og:description" content="さて、ここまでWN891へのWindows10クリーンインストールと、ちょっとしたチューニングをしてきたわけですが、『「WN891」で遊ぼう" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-linux%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" />
+<meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )"/>
+<meta name="twitter:description" content="さて、ここまでWN891へのWindows10クリーンインストールと、ちょっとしたチューニングをしてきたわけですが、『「WN891」で遊ぼう"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">マウスコンピューター「WN891」で遊ぼう ( その４　Linuxをインストールしてみる )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-05T00:00:00Z">August 05, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/wn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86/" rel="category">WN891で遊ぼう</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>さて、ここまでWN891へのWindows10クリーンインストールと、ちょっとしたチューニングをしてきたわけですが、『「WN891」で遊ぼう』という内容ではなかったですね。ここからは、すこし方向を変えて、Linuxをインストールして遊びましょう。前回、<a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/">クリーンインストール</a>で元に戻ることを確認していますので、気楽に作業が出来ます。</p>
+<p>まずは、Xubuntu 20.04を最初のターゲットにします。本家のUbuntuは、ウィンドウマネージャが”Gnome”なので、Windows10と変わらないメモリを消費することは明らかですから、ここは軽量な”Xfce4”を使用しているXubuntuにしましょう。<br>
+ただ、Ubuntu 20.04系は、すべて64ビットで32ビット版はありません。WN891には、いささかオーバースペックのような気もしますが、とりあえずここから始めることにします。</p>
+<hr>
+<h3 id="1-前準備">1. 前準備</h3>
+<h4 id="1-インストールusbの準備">(1) インストールUSBの準備</h4>
+<p>まずは、<a href="https://Xubuntu.org/download" target="_blank">このサイト</a>から、Xubuntu 20.04のISOファイルをダウンロードします。終了後、ISOファイルからブート用のUSBを作成します。ツールはWindows上で、<a href="https://rufus.ie/" target="_blank">Rufus</a>を使うのが一番でしょう。</p>
+<h4 id="2-32ビットefiへの対応">(2) 32ビットEFIへの対応</h4>
+<p>2015年前後に発売されていたWindowsタブレットは、基本的に64bitアーキテクチャであるにもかかわらず、UEFIブートは32bitという変な仕様になっているとのこと。WN891もその例に漏れないようです。<br>
+その対応として、32ビット用のブートローダー”bootia32.efi”をインストールメディアに入れておく必要があります。<a href="https://github.com/jfwells/linux-asus-t100ta/blob/master/boot/bootia32.efi" target="_blank">このサイト</a>からダウンロードしておきましょう。完了後、<strong>”bootia32.efi”を、USBメモリの”/EFI/BOOT”にコピー</strong>しておきます。</p>
+<h4 id="3-bios設定">(3) BIOS設定</h4>
+<p>まずは、BIOSの設定を変更します。</p>
+<p>&ldquo;WN891&quot;では、電源投入後、”Intelのロゴ”が出てくる辺りのタイミングで、”ESC”キーを押すと、設定画面に入れます。このキーボードの”ESC”は、下図のように、3つのキーを同時に押す必要がありますので、事前に確認しておいてください。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(00keyboard).jpg" alt="WN891"></p>
+<p>先に実行したWindows10の<a href="https://rsn604.github.io/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92-windows10%E3%82%92%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B/">クリーンインストール</a>と同じ作業ですが、ひとつだけ<strong>追加設定項目</strong>があります。</p>
+<p>メニュー”Security”から、「Secure Boot Menu」まで降りてEnter、次画面の「<strong>Secure Boot</strong>」を、「<strong>Disabled</strong>」に設定します。<br>
+”Secure Boot”というのはEFIの機能で、事前に登録されていないコードはブートできないようにするものです。今回は、Linuxをブートするわけですから、この機能をDisableに設定しないといけません。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(20SecureBoot).jpg" alt="WN891"></p>
+<p>上位にESCキーでもどり、メニュー”BOOT”から、「Boot Option Priorities」まで降りていき、「Boot Option #1」に、先に作成したUSBメディアを設定します。ブランクキーを押すと、上にあがっていくようですなので、最初に持ってきてください。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%92(22Bios).jpg" alt="WN891"></p>
+<p>終了後、メニューの&quot;Save &amp; Boot”を選択、”Yes&quot;で、USBからのブートを開始します。</p>
+<hr>
+<h3 id="2-インストール">2. インストール</h3>
+<h4 id="1-画面を回転させる">(1) 画面を回転させる</h4>
+<p>画面上に、”Xubuntu”のロゴが現れ、USBメモリからのロードが始まります。しばらくすると完了し、X-Windowの画面が表示されます。立ち上がるのは、ライブ画面というもので、簡単なテスト使用ができるようになっているだけで、実際にインストールされたわけではありません。</p>
+<p>画面が、縦向きになっていますね。まずはこれをなんとかしましょう。<br>
+左下のメニューをクリック、ターミナルを起動させます</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(11InvokeTerminal).png" alt="WN891"></p>
+<p>ターミナルが起動したら、<strong>下記のコマンドで画面を右に回転させます。</strong></p>
+<pre><code>$ xrandr -o right  
+</code></pre><p>これで通常のPCと同じ状態になります。</p>
+<p>それでは、画面左下のアイコンをクリックして、実際のインストール作業を開始しましょう。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(00Try).jpg" alt="WN891"></p>
+<h4 id="2-インストールの実行">(2) インストールの実行</h4>
+<p>ここからの作業は、通常のインストール設定ですので、<a href="https://lovely910.com/2020/04/25/2020-04-Xubuntu-20-04-lts-focal%E3%82%92%E3%80%81coer2duo%E6%90%AD%E8%BC%89%E3%81%AEsony-vaio-typec-vgn-c90hs%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" target="_blank">このあたり</a>の情報を参考にしてください。<br>
+上のサイトでは、「インストールの種類」で独自のパーティション設定をしていますが、今回は、「ディスクを削除してXubuntuをインストール」を選択してください。<br>
+インストール完了まで、約40分ほどかかります。その後、上記サイトを参考に、日本語設定を行ってください。</p>
+<p>なお、起動毎に都度画面を右回転させるのは面倒なので、自動化しておきます。<br>
+メニュー -&gt; 「設定」 -&gt; 「ディスプレイ」から、”回転”を「右」に設定しておきます。これで、次回の再起動から<strong>自動的に横向きになる</strong>はずです。</p>
+<p>以上で、日本語化を含めてインストール作業は完了です。</p>
+<hr>
+<h3 id="3-xubuntuのリソース使用について">3. Xubuntuのリソース使用について</h3>
+<p>今回インストールしたXubuntu 20.04がどの程度マシンリソースを消費するかを、Windows10との対比から見てみましょう。</p>
+<h4 id="1-初期メモリ使用量">(1) 初期メモリ使用量</h4>
+<p>これは、スタートアップ直後の、何も動いていない状態のメモリ使用量です。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(01Free).png" alt="WN891"></p>
+<p>約490MG占有しています。Windows10のクリーンインストール時が1.2G、少しチューニングした後が1.0G程度ですから、半分以下の使用率であることがわかります。</p>
+<h4 id="2-初期cpu使用量">(2) 初期CPU使用量</h4>
+<p>まずは、何も動いていない状態でのCPUとメモリの推移を見てみましょう。</p>
+<p>下記は、Xubuntuのタスクマネージャのグラフです。基本的にCPU（左）,メモリ（右）とも一定値で推移しており、定期的に動いている処理が若干CPUを使用していますが、極めて安定したレベルを維持しています。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(30CPU01).png" alt="WN891"></p>
+<p>一方、Windows10では、何も動かしていないにもかかわらず、CPUを極端に消費する処理が不定期に大きな波を作っています。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(30CPUMS).png" alt="WN891"></p>
+<h4 id="3-プログラム動作時のcpu使用量">(3) プログラム動作時のCPU使用量</h4>
+<p>次にXubuntuで、ブラウザを立ち上げ、Yahooなどのサイトを2つ、同時にYoutubeで動画を再生してみました。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(30CPU02).png" alt="WN891"></p>
+<p>同様の処理を行うと、Windows10ではメモリ使用量が95%になってしまいましたが、Xubuntuでは60%程度で安定しています。CPU使用量は、当然かなり増加しますが、上に張り付いている状態ではなく、まだ若干の余裕があります。</p>
+<p>以上の状況から判断すると、XubuntuはWindows10に比べ、リソース環境面では良好と言えるでしょう。<br>
+それでも、実際に使ってみて「動きが今ひとつ」と感じるのは、抜本的にプロセッサ自体の能力が低いからです。いくら環境を良くしても、実力以上のことはできません。それは、マシンも人間も同じですね。</p>
+<h4 id="4-初期ディスク使用量">(4) 初期ディスク使用量</h4>
+<p>ディスクは、日本語環境構築後で、7.6G。Windows10が、同様の状況で16G程度ですから、ここでも半分程度の消費量ということがわかります。</p>
+<p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(30DF).png" alt="WN891"></p>
+<h4 id="5-起動時間">(5) 起動時間</h4>
+<p>電源を入れIntelのロゴがでてから、画面が出るまでの起動時間は、約31秒でした。<br>
+一般に、Linuxの起動時間はWindows10より遅いと思います。Ubuntuでは、起動プロセスがSystemdになってから、悪くなったような気がするのですが。</p>
+<h4 id="6-その他">(6) その他</h4>
+<p>wifiは、インストールの段階でつながります。Bluetoothは、マウスを接続してみましたが、問題なく使えます。音声も問題なし。バッテリは、100%充電で3時間48分使用可能と表示され、スリープも効きます。当然でしょうが、カメラやセンサーは使えません。</p>
+<hr>
+<p>(2021/09/21追記)</p>
+<h4 id="7-タッチスクリーンの設定">(7) タッチスクリーンの設定</h4>
+<p>WN891は、曲がりなりにもタッチパッドがありますから、それほどの必要性は感じないかもしれませんが、画面タッチが使えると何かと便利です。本来はタブレットマシンですしね。<br>
+残念ながら、Xubuntuインストール後に画面を回転しても、タッチスクリーンの座標はそのままになっています。これを対応させましょう。</p>
+<p>まずは、タッチスクリーンの名称を確認します。下記のように入力します。</p>
+<pre><code>$ xinput  
+</code></pre><p><img src="/IT/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%80%8CWN891%E3%80%8D%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94(40TouchScreen).png" alt="WN891"></p>
+<p>上記画面の、’Goodix Capacitive TouchScreen’がデバイス名なので、これを画面横向きに対応させます。</p>
+<pre><code>xinput set-prop 'pointer:Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1  
+</code></pre><p>これで、タッチスクリーンの座標が合ってくれます。上のコマンドを、「設定」→「セッションと起動」の「自動開始アプリケーション」に登録しておくと良いでしょう。</p>
+<p>ちなみに、縦向きに戻す場合は、下記のように入力します、</p>
+<pre><code>xinput set-prop 'pointer:Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' 1 0 0 0 1 0 0 0 1  
+</code></pre><h5 id="firefoxをタッチスクリーンに対応させる">Firefoxをタッチスクリーンに対応させる</h5>
+<p>Firefoxの起動コマンドに、環境変数’MOZ_USE_XINPUT2=1’を与えると、タッチスクリーンに対応してくれます。</p>
+<pre><code>sudo sed -i &quot;s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g&quot; /usr/share/applications/firefox.desktop  
+</code></pre><p>上記コマンドによる変更で、タッチによる画面スクロールや、ピンチイン／アウトでの画面の縮小、拡大ができるようになります。これは、結構便利ですよ。</p>
+<hr>
+<h3 id="最後に">最後に</h3>
+<p>Xubuntu 20.04、案外簡単に入ってしまいました。<br>
+WN891は専用キーボードが、Bluetoothではなく物理接続なのが良いですね。他のタブレットでは、USBにハブを付け、そこにキーボード、マウスを装着しないとインストールできませんが、WN891ではBIOS設定から専用キーボードが使えます。非常に作業が楽でした。</p>
+<p>ここまで検証したように、Xubuntu20.04はWindows10のほぼ半分のリソースで動きます。Windows関係に未練がないなら、この環境に全面移行するのも良いかもしれません。770グラムのLinuxマシンが手に入ります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%93-windows10%E3%82%92%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その３　Windows10をチューニングする )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/%E3%83%9E%E3%82%A6%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BCwn891%E3%81%A7%E9%81%8A%E3%81%BC%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-windows10%E3%81%A8linux%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">マウスコンピューター「WN891」で遊ぼう ( その５　Windows10とLinuxのデュアルブートにしてみる )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

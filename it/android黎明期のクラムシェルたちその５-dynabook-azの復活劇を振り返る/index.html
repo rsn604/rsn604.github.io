@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )" />
+<meta property="og:description" content="不良Androidマシン、ロシアとUbuntuに救われる。 Dynabook AZは東芝が2010年8月に発表したAndoridマシン。 Android黎明期の" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%95-dynabook-az%E3%81%AE%E5%BE%A9%E6%B4%BB%E5%8A%87%E3%82%92%E6%8C%AF%E3%82%8A%E8%BF%94%E3%82%8B/" />
+<meta property="article:published_time" content="2021-01-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-02T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )"/>
+<meta name="twitter:description" content="不良Androidマシン、ロシアとUbuntuに救われる。 Dynabook AZは東芝が2010年8月に発表したAndoridマシン。 Android黎明期の"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その４　LifeTouch Noteを98Noteに )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android黎明期のクラムシェルたち ( その５　Dynabook AZの復活劇を振り返る )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-01-02T00:00:00Z">January 02, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="不良androidマシンロシアとubuntuに救われる">不良Androidマシン、ロシアとUbuntuに救われる。</h2>
+<br clear="left">
+<p>Dynabook AZは東芝が2010年8月に発表したAndoridマシン。</p>
+<img src="/IT/Android黎明期のクラムシェルたち(その１)(DynabookAZ).jpg" style="float:left;margin-right:50px;margin-bottom:30px;width:300px;">  
+<p><a href="https://rsn604.github.io/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%91-2010%E5%B9%B4%E3%81%93%E3%82%93%E3%81%AA%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%8C%E3%81%A7%E3%81%A6%E3%81%84%E3%81%9F/">Android黎明期のクラムシェルたち(その１　2010年、こんなマシンがでていた)</a>では、このように紹介しています。</p>
+<p>「10インチのディスプレイを採用しているので、一見普通のノートPCに見えます。<br>
+そのため、わざわざパームレストに「本製品はWindows OS搭載機ではありません。Android2.1搭載　クラウドブック」との注意書きがなされていました。<br>
+わたしが購入したのは、発表から半年程度経過した2011年の4月だったと思います。発売当時の価格は4万4〜5000円だったと記憶していますが、この段階で21000円まで暴落しておりました。」<br>
+<br clear="left"></p>
+<p>暴落したのにはそれ相応の理由があるのです。</p>
+<h4 id="--googleアプリなしのaz">- Googleアプリなしの”AZ”</h4>
+<p>実はこのマシン、Googleのライセンスを受けることができなかったのようで、Google Market（今のPlay）、Gmail、Mapsという肝心のアプリケーションを搭載することが出来ない状態で発売されてしまったのです。</p>
+<h4 id="--眠らないマシンaz">- 眠らないマシン”AZ”</h4>
+<p>これだけでも大きな問題でしょうが、AZにはさらに欠陥がありました。なんとスリープが出来なかったのです。なぜか途中で起きだしてしまい、バッテリーを消費してしまうという始末。画面を閉じて、次の日起きてみると放電していると有様ですから、とても携帯できるマシンではなかったのでした。</p>
+<h4 id="これ売れるわけないでしょう">これ、売れるわけないでしょう。</h4>
+<p>誰が見ても「<strong>よくこんな状態で市場に出したなあ</strong>」と呆れてしまうというレベルですから、東芝の管理能力を疑わざるえませんでした。<br>
+しかし、こんな状態のマシンでも価格が半分以下になると、それに釣られるオッチョコチョイが出てくるわけです。<br>
+かく言うわたしもその一人。少しだけ弁解させてもらうと、当時Androidの開発、というとおこがましい、まあスタディのようなものをやっていてのですが、開発ツール（Android SDK）に付いてくるテスト用エミュレータのレスポンスがひどくて参ってしまい、実機が欲しかった、そういう経緯があったりもしたんです．．。</p>
+<p>さて、このAZが日本市場だけの製品だったら、<strong>これでおしまい</strong>になっていた可能性が高いのですが、なんと、このマシン、グローバル展開されていて海外では「Toshiba AC100」という名称で販売されていたのでした。そこから思わぬ展開を見せ始めるわけですから、世の中わからないものです。</p>
+<hr>
+<h3 id="ロシアンromに救われる">「ロシアンROM」に救われる</h3>
+<p>まず最初は、ロシアのグループが、「”Dynabook AZ”こと”Toshioba　AC100”」の不具合を解消し、Googleアプリまで動作するファームウエアを独自開発してしまったことから始まります。今までの問題点をきれいにクリアしてしまったというのですから、これはすごい快挙です。<br>
+これは、ネット上で大きな話題になり、わたしも早速いそいそとインストールしたことを思い出します。このROMの登場で、<strong>Dynabook AZの相場が上がった</strong>というのですから、大したものです。</p>
+<p>しかし、考えてみると、</p>
+<h4 id="ロシアが日本を助けるなんて有史以来はじめてじゃないか笑">ロシアが日本を助けるなんて、有史以来はじめてじゃないか（笑）。</h4>
+<p>そういえば、東芝は1980年代後半に、違法にソ連に工作機械を輸出してココム違反に問われたことがありましたね。この中の部品によって､ソ連のスクリュー技術が大幅に向上し､それまで<strong>太鼓を叩いたような大音声</strong>で移動していたソ連の潜水艦が、やたら静音化してしまい、軍事上の一大事としてアメリカが激怒したという一件です。</p>
+<p>もしかすると､</p>
+<h4 id="ロシアンromはその恩返しだったのかもしれん笑">「ロシアンROM」は、その恩返しだったのかもしれん（笑）。</h4>
+<p>まあ、なにはともあれ、これのおかげでDynabook AZは、まともに動くAndroid2.2マシンとなったわけです。</p>
+<hr>
+<h3 id="こんどはubuntuがやって来る">こんどはUbuntuがやって来る</h3>
+<p>｢ロシアンROM｣は、AZの欠陥を補う素晴らしいツールではありましたが､あくまでAndroidであり，AZの本来の長所を活かすOSとは言えませんでした｡<br>
+やはり、10インチのディスプレイとキーボードとなれば、Linuxこそ最適のOSと言えるでしょう。当然、Linuxを移植する複数の動きが見られていたのですが、なんとUbuntuの開発元Canonical社が、Ubuntuをポーティングしてしまったのです。当時、ARMのチップが注目されていたこともあって、Canonical社もその分野に色気を見せていたということなのでしょう。そのターゲットマシンに、「”Dynabook AZ”こと”Toshiba　AC100”」が選ばれたというわけです。</p>
+<p><a href="http://armdevices.net/2010/11/01/mark-shuttleworth-loves-the-toshiba-ac100/" target="_blank"><img src="/IT/Android黎明期のクラムシェルたち(その５)(Carnicalの会長).png" style="float:left;margin-right:50px;margin-bottom:30px;width:300px;"></a></p>
+<p>Carnicalの会長の映像が残っています。</p>
+<blockquote>
+<p>The CEO of Canonical, Mark Shuttleworth, highlighted ARM Servers by Smooth-stone and Tegra2 Powered Toshiba AC100 at his keynote speech at the Ubuntu Developer Conference. He mentions the cool work done to port Ubuntu 10.10</p>
+</blockquote>
+<br clear="left">  
+<p>Carnicalは、その言に違わず、Ubuntu11.04から､13.10まで、まる3年に渡って正規対応版をリリースしており、今でも入手することが可能です。</p>
+<p>わたしは､この時代をほぼリアルタイムに経験していますが，このUbuntuは非常に気に入っていました。<br>
+AZのボディは、プラスティック製で決して高級とは言えませんが，手に馴染む質感と870グラムという軽量さが持ち歩くには手頃であり、キーボードの軽いタッチも程良くフィットして、ちょっとした文書入力には最適だったからです。このマシンも、思い出の一台ですね。</p>
+<p>結局、2015年あたりで使用をやめてしまいましたが、今回、LifeTouch Noteに続いて取り出してみました。数年ぶりに、上記のツールをインストールでもして、遊んでみましょう。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%94-lifetouch-note%E3%82%9298note%E3%81%AB/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その４　LifeTouch Noteを98Noteに )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/android%E9%BB%8E%E6%98%8E%E6%9C%9F%E3%81%AE%E3%82%AF%E3%83%A9%E3%83%A0%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%9F%E3%81%A1%E3%81%9D%E3%81%AE%EF%BC%96-dynabook-az%E3%81%AB%E3%83%AD%E3%82%B7%E3%82%A2%E3%83%B3rom%E3%81%A8android4.1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Android黎明期のクラムシェルたち ( その６　Dynabook AZにロシアンROMとAndroid4.1 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

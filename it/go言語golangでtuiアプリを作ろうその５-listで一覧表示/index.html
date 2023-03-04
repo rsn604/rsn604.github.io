@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )" />
+<meta property="og:description" content="tviewのListを使ってみよう。 今回は、「画面に複数行を一覧表形式で表示する」アプリケーションを作成していきます。tviewでは、Lis" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%95-list%E3%81%A7%E4%B8%80%E8%A6%A7%E8%A1%A8%E7%A4%BA/" />
+<meta property="article:published_time" content="2022-04-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-19T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )"/>
+<meta name="twitter:description" content="tviewのListを使ってみよう。 今回は、「画面に複数行を一覧表形式で表示する」アプリケーションを作成していきます。tviewでは、Lis"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-list%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIアプリを作ろう ( その５　Listで一覧表示 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-19T00:00:00Z">April 19, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="tviewのlistを使ってみよう">tviewのListを使ってみよう。</h2>
+<br clear="left">
+<p>今回は、「<strong>画面に複数行を一覧表形式で表示する</strong>」アプリケーションを作成していきます。<strong>tview</strong>では、<strong>List</strong>がこの機能を担いますので、その概要について説明しましょう。</p>
+<hr>
+<h3 id="1listの設定">[1]　Listの設定</h3>
+<p>下記のメソッドで定義します。</p>
+<pre><code>func NewList() *List  
+</code></pre><h4 id="1list標準構造">(1)　List標準構造</h4>
+<p>定義した<strong>List</strong>に対し、下記の<strong>AddItem</strong>メソッドで項目を追加していきます。<br>
+<strong>tview</strong>の<strong>List</strong>構造は少し変わっていて、二行構成でショートカットキーまで指定する形になっています。</p>
+<pre><code>func (l *List) AddItem(mainText, secondaryText string, shortcut rune, selected func()) *List  
+</code></pre><p>下記は、tviewの<a href="https://github.com/rivo/tview/wiki/List" target="_blank">Listサンプル</a>にある例です。</p>
+<pre><code>//  
+// s05_00.go  
+//  
+package main  
+import (  
+	&quot;github.com/rivo/tview&quot;  
+)  
+func main() {  
+	app := tview.NewApplication()  
+	list := tview.NewList().  
+		AddItem(&quot;List item 1&quot;, &quot;Some explanatory text&quot;, 'a', nil).  
+		AddItem(&quot;List item 2&quot;, &quot;Some explanatory text&quot;, 'b', nil).  
+		AddItem(&quot;List item 3&quot;, &quot;Some explanatory text&quot;, 'c', nil).  
+		AddItem(&quot;List item 4&quot;, &quot;Some explanatory text&quot;, 'd', nil).  
+		AddItem(&quot;Quit&quot;, &quot;Press to exit&quot;, 'q', func() {  
+			app.Stop()  
+		})  
+	if err := app.SetRoot(list, true).SetFocus(list).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+</code></pre><p>これを実行すると、下のように表示されるわけです。</p>
+<img src="/IT/Go言語(golang)でTUIアプリを作ろうその５(s05_00).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<h4 id="2一行指定したい場合">(2)　一行指定したい場合</h4>
+<p>こちらが一般的な形態と思いますが、<strong>AddItem</strong>メソッドを下記のように指定します。</p>
+<pre><code>list.AddItem(item, &quot;&quot;, 0, nil)  
+</code></pre><h4 id="3属性">(3)　属性</h4>
+<p>属性は、下記のように適宜設定していきます。一行指定の場合は、ShowSecondaryText(false)を設定します。</p>
+<pre><code>list := tview.NewList().ShowSecondaryText(false).SetSelectedTextColor(tcell.ColorWhite).SetSelectedBackgroundColor(tcell.ColorAqua).SetSelectedFocusOnly(true)  
+</code></pre><hr>
+<h3 id="2listの使用方法">[2]　Listの使用方法</h3>
+<p>以下、具体的な例を示していきましょう。</p>
+<h4 id="1list使用のプログラム例">(1)　List使用のプログラム例</h4>
+<p>ここでは、ベースに<strong>Pages</strong>コンテナを指定し、その上に<strong>Flex</strong>コンテナを配置します。さらに、その<strong>Flex</strong>コンテナ上に、一行の<strong>header</strong>、複数行の<strong>body</strong>、一行の<strong>footer</strong>という形で構成します。(ちなみに以後の例は、すべてこれを標準として採用していきます。)</p>
+<p>まずは、<strong>body</strong>部に、<strong>List</strong>データを設定していきましょう。データは、仮のものを100件ほど渡すこととします（createListData()メソッド）。</p>
+<pre><code>//  
+// s05_01.go  
+//  
+package main  
+import (  
+	&quot;fmt&quot;  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+)  
+  
+var listData = createListData()  
+func createListData() []string {  
+	var listData []string  
+	var s string  
+	for i := 0; i &lt; 100; i++ {  
+		s = &quot;テストデータ&quot; + fmt.Sprintf(&quot;%d&quot;, i)  
+		listData = append(listData, s)  
+	}  
+	return listData  
+}  
+func getListData() []string {  
+	return listData  
+}  
+func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+func setList(list *tview.List) *tview.List {  
+	list.Clear()  
+	items := getListData()  
+	for _, item := range items {  
+		list.AddItem(item, &quot;&quot;, 0, nil)  
+	}  
+	return list  
+}  
+func doformat(app *tview.Application) tview.Primitive {  
+	pages := tview.NewPages()  
+	footer := tview.NewTextView().SetText(&quot;これはフッター&quot;)  
+	header := tview.NewFlex()  
+	btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+		app.Stop()  
+	})  
+	header.AddItem(btnQ, 6, 0, true)  
+	list := tview.NewList().ShowSecondaryText(false).SetSelectedTextColor(tcell.ColorWhite).SetSelectedBackgroundColor(tcell.ColorAqua).SetSelectedFocusOnly(true)  
+	list = setList(list)  
+	main := tview.NewFlex().SetDirection(tview.FlexRow).  
+		AddItem(header, 1, 0, true).  
+		AddItem(list, 0, 1, false).  
+		AddItem(footer, 1, 0, false)  
+	pages.AddPage(&quot;main&quot;, main, true, true)  
+	pages.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRune:  
+			switch event.Rune() {  
+			case 'q':  
+				app.Stop()  
+			}  
+		}  
+		return event  
+	})  
+	return pages  
+}  
+func main() {  
+	app := tview.NewApplication()  
+	pages := doformat(app)  
+	if err := app.SetRoot(pages, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+</code></pre><p>実行してみましょう。</p>
+<pre><code>$ go run s05_01.go  
+</code></pre><img src="/IT/Go言語(golang)でTUIアプリを作ろうその５(s05_01).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>カーソルが<strong>header</strong>部の<strong>Button</strong>から、<strong>body</strong>部の<strong>List</strong>に移らない．．．．ですね。<br>
+これは、<strong>header</strong>から<strong>body</strong>への「<strong>フォーカス移動が出来ない状態</strong>」になっているからです。</p>
+<hr>
+<h4 id="2listにフォーカスを移動させる">(2)　Listにフォーカスを移動させる</h4>
+<p><strong>header</strong>部と<strong>body</strong>部のキー入力部分に以下のコードを追加します。メソッドは、お馴染みの<strong>SetInputCapture</strong>です。</p>
+<pre><code>//  
+// s05_02.go  
+//  
+                 :  
+                 :  
+func doformat(app *tview.Application) tview.Primitive {  
+                 :  
+                 :  
+	header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyDown:  
+			app.SetFocus(list)  
+			return nil  
+		}  
+		return event  
+	})  
+	body.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyUp:  
+			if list.GetCurrentItem() == 0 {  
+				app.SetFocus(btnQ)  
+				return nil  
+			}  
+		}  
+		return event  
+	})  
+                 :  
+</code></pre><p>実行してみましょう。</p>
+<pre><code>$ go run s05_02.go  
+</code></pre><img src="/IT/Go言語(golang)でTUIアプリを作ろうその５(s05_02).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>今回は問題なくフォーカスが移動しました。<strong>body</strong>部の<strong>List</strong>から、<strong>header</strong>部の<strong>Button</strong>への移動も問題ないでしょう。<br>
+しかし、下部にカーソルを移動していくと、画面に表示できなかったデータが、スクロールして出てきてしまいます。これでもいいのかもしれませんが、<strong>TUI</strong>では適切でないインタフェースでしょう。やはり、ここは画面のサイズに適切な行数分だけを表示したいものです。</p>
+<hr>
+<h3 id="3画面サイズに合わせた表示">[3]　画面サイズに合わせた表示</h3>
+<p>さらに先に進みましょう。<br>
+今回のアプリケーションでは、データは100件ほど用意していますが、通常のターミナルは<strong>24</strong>行が標準です。<strong>header</strong>と<strong>footer</strong>に1行ほど使用しますから、<strong>body</strong>部は<strong>22</strong>行ほどになるわけです。もちろん、決め打ちするのではなく、ターミナルのサイズに従って表示行を決定しないといけません。</p>
+<h4 id="1画面サイズの取得">(1)　画面サイズの取得</h4>
+<p>実は、<strong>tviewでは「画面サイズを取得するメソッド」がない</strong>のです。これは大きな抜けだと思います。<br>
+<strong>tview.application</strong>のコードを見ると、内部で<strong>tcell.Screen</strong>オブジェクトを持っているので、下記のようなメソッドを用意してくれれば済むことなんですけどね。</p>
+<pre><code>func (a *Application) GetScreenSize() (width, height int){  
+	cols, rows := screen.Size()  
+	return cols, rows  
+}  
+</code></pre><p>しかたがないので、自前で作成します。アプリケーションの起動前に、<strong>tcell</strong>で<strong>Screen</strong>を作成して、サイズを取得しておきます。このやり方だと画面のリサイズには対応できませんが、これは<strong>tview.application</strong>が起動以降、サイズの再取得が出来ないのですから致し方ありません。</p>
+<pre><code>var cols, rows = GetScreenSize()  
+func GetScreenSize() (int, int) {  
+	s, _ := tcell.NewScreen()  
+	s.Init()  
+	cols, rows := s.Size()  
+	s.Fini()  
+	return cols, rows  
+}  
+  
+</code></pre><p>下記のメソッド内で、画面サイズにあった件数（row-2）を<strong>List</strong>に格納するよう変更します。</p>
+<pre><code>func setList(list *tview.List) *tview.List {  
+	list.Clear()  
+	item := getListData()  
+	for i := 0; i &lt; rows-2; i++ {  
+		list.AddItem(item[i], &quot;&quot;, 0, nil)  
+	}  
+	return list  
+}  
+</code></pre><h4 id="2最終コード">(2)　最終コード</h4>
+<p>下記のコードとなりました。</p>
+<pre><code>//  
+// s05_03.go  
+//  
+package main  
+  
+import (  
+	&quot;fmt&quot;  
+	&quot;github.com/gdamore/tcell/v2&quot;  
+	&quot;github.com/rivo/tview&quot;  
+	&quot;strconv&quot;  
+)  
+  
+var cols, rows = GetScreenSize()  
+func GetScreenSize() (int, int) {  
+	s, _ := tcell.NewScreen()  
+	s.Init()  
+	cols, rows := s.Size()  
+	s.Fini()  
+	return cols, rows  
+}  
+  
+var listData = createListData()  
+  
+func createListData() []string {  
+	var listData []string  
+	var s string  
+	for i := 0; i &lt; 100; i++ {  
+		s = &quot;テストデータ&quot; + fmt.Sprintf(&quot;%d&quot;, i)  
+		for j := len(s); j &lt; cols; j++ {  
+			s = s + &quot; &quot;  
+		}  
+		listData = append(listData, s)  
+	}  
+	return listData  
+}  
+  
+func getListData() []string {  
+	return listData  
+}  
+  
+func myButton(label string) *tview.Button {  
+	button := tview.NewButton(label)  
+	button.Box = tview.NewBox().SetBackgroundColor(tcell.ColorBlack)  
+	button.SetLabelColor(tcell.ColorYellow).SetLabelColorActivated(tcell.ColorBlack).SetBackgroundColorActivated(tcell.ColorYellow)  
+	return button  
+}  
+  
+func setList(list *tview.List) *tview.List {  
+	list.Clear()  
+	item := getListData()  
+	for i := 0; i &lt; rows-2; i++ {  
+		list.AddItem(item[i], &quot;&quot;, 0, nil)  
+	}  
+	return list  
+}  
+  
+func doformat(app *tview.Application) tview.Primitive {  
+	list := tview.NewList().ShowSecondaryText(false).SetSelectedTextColor(tcell.ColorWhite).SetSelectedBackgroundColor(tcell.ColorAqua).SetSelectedFocusOnly(true)  
+	list = setList(list)  
+  
+	pages := tview.NewPages()  
+	footer := tview.NewTextView().SetText(&quot;これはフッター&quot;)  
+	header := tview.NewFlex()  
+	btnQ := myButton(&quot;&lt;Q&gt;&quot;).SetSelectedFunc(func() {  
+		app.Stop()  
+	})  
+	header.AddItem(btnQ, 6, 0, true)  
+  
+	body := tview.NewFlex().SetDirection(tview.FlexRow).AddItem(list, 0, 1, true)  
+  
+	main := tview.NewFlex().SetDirection(tview.FlexRow).  
+		AddItem(header, 1, 0, true).  
+		AddItem(body, 0, 1, true).  
+		AddItem(footer, 1, 0, false)  
+	pages.AddPage(&quot;main&quot;, main, true, true)  
+  
+	header.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyDown:  
+			app.SetFocus(list)  
+			return nil  
+		}  
+		return event  
+	})  
+	body.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyUp:  
+			if list.GetCurrentItem() == 0 {  
+				app.SetFocus(btnQ)  
+				return nil  
+			}  
+		}  
+		return event  
+	})  
+	pages.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {  
+		switch event.Key() {  
+		case tcell.KeyRune:  
+			switch event.Rune() {  
+			case 'q':  
+				app.Stop()  
+			}  
+		}  
+		return event  
+	})  
+  
+	list.SetSelectedFunc(func(index int, s string, secondary string, code rune) {  
+		footer.SetText(&quot;pos:&quot; + strconv.Itoa(index) + &quot; data:&quot; + s)  
+	})  
+  
+	return pages  
+}  
+  
+func main() {  
+	app := tview.NewApplication()  
+	pages := doformat(app)  
+	if err := app.SetRoot(pages, true).EnableMouse(true).Run(); err != nil {  
+		panic(err)  
+	}  
+}  
+  
+</code></pre><p>実行してみましょう。</p>
+<pre><code>$ go run s05_03.go  
+</code></pre><img src="/IT/Go言語(golang)でTUIアプリを作ろうその５(s05_03).png" style="margin-left:20px;margin-bottom:30px;width:600px;">  
+<p>これで、想定した動きになりました。<br>
+矢印キーで<strong>List</strong>内を移動できますし、<strong>Enter</strong>キーを叩くと、<strong>footer</strong>部に選択されたデータが表示されています。</p>
+<p>しかし、画面上には22行のデータだけが表示されています。実際のデータは100件ほどあるわけですから、表示されないデータがあるのは困りものです。次回は「<strong>ページング処理</strong>」を入れて、この部分を追加していきましょう。</p>
+<hr>
+<h3 id="ソースコードについて">ソースコードについて</h3>
+<p><a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a>に登録しました。今回のコードは、<a href="https://github.com/rsn604/golang_tui/tree/main/Section05" target="_blank">Section05</a>となります。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%94-button%E3%82%92%E9%85%8D%E7%BD%AE%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その４　Buttonを配置する )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86%E3%81%9D%E3%81%AE%EF%BC%96-list%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIアプリを作ろう ( その６　Listの画面コントロール )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
