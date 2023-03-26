@@ -2321,7 +2321,7 @@
       <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/</guid>
-      <description>用意するもの Busybox、 VNC、Android Terminal Emulator まずは前提となるツールを導入します。 (1) Busybox https://play.google.com/store/apps/details?id=stericson.busybox&amp;amp;hl=ja https://play.google.com/store/apps/details?id=ru.meefik.busybox&amp;amp;hl=ja どちらでも動きましたが、2番めのBusyb</description>
+      <description>用意するもの Busybox、 VNC、Android Terminal Emulator まずは前提となるツールを導入します。 (1) BusyBox https://play.google.com/store/apps/details?id=stericson.busybox&amp;amp;hl=ja https://play.google.com/store/apps/details?id=ru.meefik.busybox&amp;amp;hl=ja どちらでも動きましたが、2番めのBusyB</description>
     </item>
     
     <item>
@@ -3357,6 +3357,15 @@
       
       <guid>https://rsn604.github.io/fbook/%E4%BD%9C%E5%AE%B6%E5%88%A5%E6%8E%A1%E7%82%B9%E8%A1%A8a-b%EF%BC%91%EF%BC%99%EF%BC%99%EF%BC%98%E5%B9%B4%EF%BC%92%EF%BC%90%EF%BC%91%EF%BC%90%E5%B9%B4/</guid>
       <description>Author Title Publisher Point Comment Date Anthony Abbot The Creeps Dell Books 7.0 予想外に面白く読めた。過去の殺人がもう少しサスペンスフルならよかったが。 2000/05/09 ATMOT Night Club Lady Grosett &amp;amp; Dunlap 6.5 少し古臭いが、1931年</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://rsn604.github.io/search/data.js</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/search/data.js</guid>
+      <description></description>
     </item>
     
   </channel>
