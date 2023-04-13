@@ -2,22 +2,40 @@
 
 var data = [
   {
-    url: "https://rsn604.github.io/anthology/",
-    title: "ANTHOLOGYs",
-    date: "2023-04-10T00:00:00Z",
-    body: "ANTHOLOGYs"
-  },
-  {
     url: "https://rsn604.github.io/categories/",
     title: "Categories",
-    date: "2023-04-10T00:00:00Z",
+    date: "2023-04-13T00:00:00Z",
     body: "Categories"
+  },
+  {
+    url: "https://rsn604.github.io/it/",
+    title: "ITs",
+    date: "2023-04-13T00:00:00Z",
+    body: "ITs"
   },
   {
     url: "https://rsn604.github.io/",
     title: "TORIO's blog",
-    date: "2023-04-10T00:00:00Z",
+    date: "2023-04-13T00:00:00Z",
     body: "TORIO's blog"
+  },
+  {
+    url: "https://rsn604.github.io/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/",
+    title: "ひとりよがりのモバイルPC",
+    date: "2023-04-13T00:00:00Z",
+    body: "ひとりよがりのモバイルPC"
+  },
+  {
+    url: "https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E7%95%AA%E5%A4%96%E7%B7%A8-galaxy-tab-s-8.4-sc-03g-%E6%96%87%E9%8E%AE%E3%81%8B%E3%82%89%E3%81%AE%E5%BE%A9%E6%B4%BB/",
+    title: "ひとりよがりのモバイルＰＣ ( 番外編 Galaxy Tab S 8.4 ( SC-03G ) 文鎮からの復活 )",
+    date: "2023-04-13T00:00:00Z",
+    body: "ひとりよがりのモバイルＰＣ ( 番外編 Galaxy Tab S 8.4 ( SC-03G ) 文鎮からの復活 ) SC-03Gのアプリケーション一覧を見ると、どう考えても使わないDocomoのクソ、もとい、Docomo謹製のアプリが多数を存在することに気が付きます。幸か不幸か、このマシンはRootを取っているので、これらのアプリを削除したくなるのが人情というものでしょう。最初は順調、ツールで削除し再起動してディスクを整理していたわけです しかし好事魔多し、とある日のことでありました。作業時に少しアルコールが入っていたので、注意力散漫だったのかもしれません。 調子に乗って不要と思われるアプリを削除、再起動してみると、．．． そう、表題にあるように悲劇が起こったのであります。 起動時にSamsungのロゴが出た状態から進まず、時々ジーという小さな異音が聞こえるという状態に陥ってしまったのでした。完全にループ状態ですね。しかたがないので、まずは電源を落とそうとしたのですが、なんと電源キーも効かない。そう、電源を切ることすら出来ないのです。 やっちまった。SC-03G、文鎮となりはててしまった。 英語では、Brickになると言うらしい、レンガ化ですね。まあ、どうでもいいですけど。 電源も切れないので、そのまま放電するまで放置するしかありません。 さてどうする 放電されるまでに、これからの手順を考えます。この状態になってしまったら復旧は難しいので、工場出荷時のROMを探し出し、それを書き込むしかないでしょう。また、そのROMを焼くツールも必要です。早速、ツールを探索していきましょう。 (1)　ODINの入手 まず、ROM焼きですが、ありがたいことにSamsung製のハードウエアには、メーカー純正のROM焼きツールがあります。 その名もODIN。有名なツールなので、WIKIPEDIAに説明まであります。 Odin is a utility software program developed and used by Samsung internally which is used to communicate with Samsung devices in Odin mode (also called download mode). It can be used to flash a custom recovery firmware image (as opposed to the stock recovery firmware image) to a Samsung Android device. Odin is also used for unbricking certain Android devices. 最後に書いてありますね。「ODINは文鎮からの復活にも使用される」とね。 下記からダウンロードしておきます。Windows用のツールなので、実行にはWindowsマシンが必要になります。 ダウンロードした下記のZipファイルを適当な場所に展開しておきます。 Odin3_v3.14.4.zip (2)　USB Driverの入手 WindowsマシンにUSBケーブルをつないで実行するので、USBドライバーが必要になります。これもSamsung用のものがありますので、下記からダウンロードします。 下記のファイルがダウンロードされるので、実行しインストールしておきます。 SAMSUNG_USB_Driver_for_Mobile_Phones.exe (3)　ROMの入手 SC-03GのROMは下記から入手します。 ボックスにSC-03Gと入力すると候補が出てくるので、それをクリック。 すると、一覧が出てくるので、一番上にあるFull Filesを選択します。 下記の画面になるので、Download on Browserをクリックすると、ダウンロードが始まります。 Samfw.com_SC-03G_DCM_SC03GOMU1CQL1_fac.zip このファイルがダウンロードされるので、適当な場所に解凍しておきます。 ROM焼きの手順 (1) ODIN まず、ODINを起動します。特別なインストールは不要で解凍したファイル内にあるEXEファイルを実行するだけです。下記のような画面が出てくるはずです。 ODINでは、下記のようなAndroidマシンの各部分にイメージを書き込みます。 BL　:　Boot Loader AP　:　Android Partition CP　:　Core Processor CSC　:　Consumer Software Custamization USERDATA :　User data 先にダウンロードしたSamfw.com_SC-03G_DCM_SC03GOMU1CQL1_fac.zipを解凍すると、下記の4ファイルが出てきますので、ODINの各部分(USERDATAを除く)にこれらのファイルを設定していきます。何を指定するかはファイル名を見れば明らかですね。 AP_SC03GOMU1CQL1_CL12630263_QB15934754_REV00_user_low_ship_MULTI_CERT.tar.md5 BL_SC03GOMU1CQL1_CL12630263_QB15934754_REV00_user_low_ship_MULTI_CERT.tar.md5 CP_SC03GOMU1CPL5_CL10055159_QB11922761_REV00_user_low_ship_MULTI_CERT.tar.md5 CSC_DCM_SC03GDCM1CQL1_CL12630263_QB15934754_REV00_user_low_ship_MULTI_CERT.tar.md5 下記のような画面にしておきます。 (2)　SC-03G 放置しておいたSC-03Gは、放電完了したようで画面が消灯しているようなので、まずは再度充電しておきます。途中で軽く電源ボタンを押すと、充電状態が表示されるので、ハードウエア的な問題はないようです。 バッテリーが十分に充電できたら、Home+Volume Downを押した状態で電源ボタンを押します。 すると、上の画面になるので、続けてVolume Upで、Downloadモードに入り、USBケーブルでWindowsマシンと接続します。 ここまで来たらあとは、Windowsマシン上のODINにて、Startボタンをクリック、ROM焼き処理を実行します。完了すると、自動的にSC-03Gが起動、初期設定の画面になるはずです。 復活しました なんとかなりました。やはり、グローバルなモデルはこのあたりが充実しているのがありがたいですね。SC-03Gを所有されている方は、上記のツールを入手しておくと、何かあった時に安心です。 さて、このSC-03Gですが、2019年の暮に入手、もう3年以上使用しておりますが、この時期がコロナ禍まっただ中だったということで、モバイル用途に使ったことはほんの数回にすぎません。しかしながら、このマシンはYoutubeやPrime Videoなどの動画観賞用として非常に重宝しており、極めて満足度の高いマシンとして評価しています。SC-03Gの発表は2014年12月のようですので、すでに10年近く前のものなのですが、8.4インチの有機ELデイスプレイ搭載、解像度はWQXGA(1600x2560)というスペックは、動画マシンとしては現在でも通用するレベルでしょう。8インチを超える大きさにも関わらず、重さは300グラムを切っていますので、ブックリーダーとしての用途にも最適です。 まあ、Androidのバージョンは6どまり、メモリ3G、ストレージ32Gというスペックに時代を感じることは否定できませんけどね。"
+  },
+  {
+    url: "https://rsn604.github.io/anthology/",
+    title: "ANTHOLOGYs",
+    date: "2023-04-10T00:00:00Z",
+    body: "ANTHOLOGYs"
   },
   {
     url: "https://rsn604.github.io/anthology/%E6%80%AA%E5%A5%87%E5%82%91%E4%BD%9C%E9%81%B8-%E8%A1%80%E6%9F%93%E3%82%81%E3%81%AE%E6%80%A8%E9%9C%8A%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/",
@@ -312,12 +330,6 @@ var data = [
     title: "Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その７　様々な環境でListDBGを動かす )",
     date: "2022-08-29T00:00:00Z",
     body: "Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その７　様々な環境でListDBGを動かす ) 前回説明したクロスコンパイル環境で作成したプログラムを、実際の環境で動かしてみましょう。 (1)　Raspberry PI まずは、Raspberry PI。購入したのは2014年ですから、Raspberry Pi 1Bでしょう。現在もファイルサーバーとして無休で活躍中。今年(2022年)で丸8年目を迎えます。 下記の情報を見ると、2017年にOSを入れ直しているようなので、そこからでも5年経過しています。ハードな使い方はしていませんが、それでもそのアベイラビリティーには感心します。 $ uname -a Linux raspberrypi 4.9.41+ #1023 Tue Aug 8 15:47:12 BST 2017 armv6l GNU/Linux $ cat /proc/version Linux version 4.9.41+ (dc4@dc4-XPS13-9333) (gcc version 4.9.3 (crosstool-NG crosstool-ng-1.22.0-88-g8460611) ) #1023 Tue Aug 8 15:47:12 BST 2017 このマシンの片隅を借りて、動作テストをしてみます。まずは、開発マシン上でクロスコンパイルしておきます。 make build-arm6 makeで生成したlistdbg_arm6.tgzを適当なディレクトリにコピー。sshで接続し、下記のコマンドで解凍します。 $ tar xzvf listdbg_arm6.tgz listdbg_arm6 loaddb_arm6 csv/ csv/bookoff_tokyo.csv csv/anthology.csv csv/eqmm.csv csv/hardoff_tokyo.csv db/ db/ListDB.boltdb listdbg_arm6.sh loaddb_arm6.sh 実行します。 $ ./listbbg_arm6.sh まあ、ターミナルなのでローカルとの違いがよくわからないですが、動きました。 (2)　Lifetouch Note 次に、「Android黎明期のクラムシェルたち(その２　LifeTouch NoteでLinuxを使おう)」で紹介したNECのAndroid 2.2マシンであるLifetouch NoteにGNU Root Debianをインストールした環境で動かしてみます。アーキテクチャは、(1)のRaspberry PIと同じarm6になります。 これは実機なので、問題なく動いているのがわかります。 (3)　ASUS Zenfone Max M2 ちょっと変なマシンが続いてしまったので、現在使っているスマートフォンにも入れてみました。CPUは、Qualcomm Snapdragon632とのことで、アーキテクチャはarm64になります。実行環境は、Android 9.0上のTermuxです。 オブジェクトは、 make build-arm64 で作成しました。 画面はちゃんと表示されキーボード入力も出来ます。 問題なのは、「タッチが効かない」こと。 これは痛い。Python Urwidでは、ちゃんと使えたんですけどね。ここでも差がついてしまいました。 (4)　Windows64 最後に、Windows10の環境でテストしておきます。 make build-win64 で作成したものを実行します。 ちょっと画面が乱れますね。Windowsのコマンドプロンプトなので、致し方ないかな。 Windows64の環境であれば、WSL2を使うと問題なく表示されます。この場合は当然ですが、Linux amd64用のlistdbg.tgzを使用します。 以上で、検証を終了します。 最後に 若干の不具合はありましたが、当初の TUIアプリを様々な環境で、「前提条件なしでの動作を可能にしたい」 という目標は達成できたようです。 これにて「Go言語(golang)でTUIアプリを作ろう」のテーマは完了といたします。つまらないプログラムですが、何かの参考になれば幸いです。"
-  },
-  {
-    url: "https://rsn604.github.io/it/",
-    title: "ITs",
-    date: "2022-08-29T00:00:00Z",
-    body: "ITs"
   },
   {
     url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%96-%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E7%92%B0%E5%A2%83%E3%81%AE%E6%95%B4%E5%82%99/",
@@ -1314,12 +1326,6 @@ var data = [
     title: "日本代表ミステリー選集０５　殺しの方法教えます ( 中島河太郎　権田萬治編 )",
     date: "2020-10-15T00:00:00Z",
     body: "日本代表ミステリー選集０５　殺しの方法教えます ( 中島河太郎　権田萬治編 ) この巻も読ませる作品が多かった。\u0026ldquo;清張以降\u0026quot;の作品レベルが上がっていることを体感できました。 題名 作者 評点 コメント 外出した死体 結城昌治 7.5 [オール読物 四十八年二月]紺野弁護士物の一作。短いながら、正統派ハードボイルドならではのムードと展開が良い。 朝の来訪者 笹沢佐保 6.5 [オール読物 四十七年十月]笹沢らしい虚無的な人物設定で読ませるが、ミステリ的な面白さはない。 暗い春 大薮春彦 5.0 [発表年、初出記述なし]大藪の短篇なら、もっと良い作品がたくさんある。これは、単なる習作ではなかろうか。 奈落殺人事件 戸板康二 5.5 [オール読物 三十五年四月]単品としてみるとあまり面白くないミステリ。シリーズ物だから許されるレベル。 六条執念 木々高太郎 5.0 [別冊文芸春秋 二十九年一月]源氏物語の人物に見立てた女に一生を支配された男。暗くて古臭い話。 牙 西村寿行 7.5 [小説現代 四十九年十月]妻を殺された男は老犬と共に捜査に当る。西村に\u0026quot;犬\u0026quot;を書かせたら右に出るものはない。 赤い靴 山田風太郎。 8.5 [講談倶楽部 二十八年八月]現代の推理小説（第１巻）　本格派の系譜(I)で読了済。 空巣専門 原田康子 6.5 [別冊宝石 三十九年二月]殺人現場に居合わせた、こそ泥の語り口が軽快で面白い。 巫女 朝山蜻一 4.0 [別冊宝石 二十七年六月]つまらないSM小説。 青い火花 黒岩重吾 6.5 [宝石 三十五年一月]キャバレーのゴンドラから墜落した踊り子の謎を追う支配人。まとまってはいるが、ひねりのない平板な結末が残念。 日焼けのあと 佐野洋 7.0 [別冊文芸春秋 三十八年一月]妻を亡くした男とその愛人の緊張感あるやり取りが面白い。 解説では、権田萬治が「日本推理作家協会賞受賞作家とその作品」と題し、第一回(昭和二十三年）から第二十七回（昭和四十九年）までの経過を解説しています。 昭和五十年十一月三十日初版発行　434ページ　定価380円"
-  },
-  {
-    url: "https://rsn604.github.io/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/",
-    title: "ひとりよがりのモバイルPC",
-    date: "2020-10-07T00:00:00Z",
-    body: "ひとりよがりのモバイルPC"
   },
   {
     url: "https://rsn604.github.io/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%99-sc-03g%E3%81%A7%E3%82%82-mozc-%E3%81%8C%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84/",
