@@ -180,7 +180,7 @@ if (!doNotTrack) {
 <p>ダウンロードシタISOファイルに、<a href="https://rsn604.github.io/it/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98%E3%81%9D%E3%81%AE%EF%BC%93-yoga-book%E5%B0%82%E7%94%A8windows10%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%81%AE%E4%BD%9C%E6%88%90/">前回</a>説明した方法で、Yoga Bookのドライバー関係を追加した後、インストールを行ってみましたが、導入されているコンポーネントは最低限になっているので、使用するディスク、メモリの容量が大幅に削減されています。</p>
 <p>実際に使ってみると、なかなか調子が良く満足していたのですが、ひとつ問題がありました。このISOのベースとなるバージョンが、<strong>Windows Enterprise Edition</strong>なのです。こんなバージョンは個人ベースで使われるものではないですから、ライセンス認証ができません。まあ、認証なしでも継続的に使用することはできるようですが、これは常識として避けるべきでしょう。</p>
 <p>少し話がずれてしまいますが、現状このTiny10は開発が終了していて、<strong>Windows11</strong>を対象にした <strong>Tiny11</strong>に移行している模様です。このバージョンではISOを提供するのではなく、MSからダウンロードしたISOファイルに変更を加えるスクリプト<a href="https://github.com/ntdevlabs/tiny11builder" target="_blank">Tiny11 Builder</a>として提供されているようです。ベースは、<strong>Windows11 Pro</strong>になっていますし、MSからダウンロードしたISOをベースにしているので、セキュリティ上の問題もありません。もちろん、<strong>TPM2.0などの要件をスキップ</strong>しているので、Windows11対象外のPCでも使えるでしょう。Windows7から成り上がったWindows10 Proマシンを持っている方にお薦めです。</p>
-<p>話が少しずれてしまいましたが、Yoga Bookは<strong>Windows10 Home Edition</strong>であり、このマシンにライセンスを追加する気は全くありません。したがって、この方法も使えませんね。</p>
+<p>いずれにしても、Yoga Bookは<strong>Windows10 Home Edition</strong>であり、どちらも当てはまりません。このマシンに追加ライセンスを支払う気は全くありませんから、この方法も使えませんね。</p>
 <hr>
 <h2 id="4ならばカスタムisoに挑戦だ">(4)　ならば、カスタムISOに挑戦だ。</h2>
 <p>それならば、Tiny10がやっているような方法で、自分なりの<strong>Custom ISO</strong>を作ってしまえば良いではないか。 すなわち、自前でWindows10のインストールISOから不要なパッケージを削除してしまえば良いということです。調べてみると、これにはいくつかの手法があるようですが、前回使った<strong>NTLite</strong>でできるようなのでこれを使ってみましょう。</p>
