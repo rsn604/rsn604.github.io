@@ -6,10 +6,19 @@
     <description>Recent content in Categories on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 03 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jan 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EQMM-HMM総括</title>
+      <link>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</link>
+      <pubDate>Sat, 13 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>「幻想と怪奇」を読む</title>
@@ -26,15 +35,6 @@
       <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://rsn604.github.io/categories/yoga-book%E3%81%AB%E6%82%AA%E6%88%A6%E8%8B%A6%E9%97%98/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>EQMM-HMM総括</title>
-      <link>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</link>
-      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</guid>
       <description></description>
     </item>
     
