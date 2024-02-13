@@ -166,7 +166,7 @@ if (!doNotTrack) {
 <p>まずは、QEMUをインストール</p>
 <pre><code>sudo apt -y install qemu qemu-utils qemu-system-x86  
 </code></pre><h3 id="2ハードディスクイメージの作成">(2)　ハードディスクイメージの作成</h3>
-<p>　まず、FreeDOSをインストールするハードディスクイメージを作成します。DOSですので、128MBもあれば十分でしょう。<br>
+<p>　次に、FreeDOSをインストールするハードディスクイメージを作成します。DOSですので、128MBもあれば十分でしょう。<br>
 適当なディレクトリ(以下 <strong>/home/xxxx/freedos</strong> とする)を用意し、下記のコマンドでファイル(<strong>fd13.img</strong>とする)を作成します。</p>
 <pre><code>cd /home/xxxx/freedos  
 qemu-img create -f raw fd13.img 128M  
@@ -180,7 +180,7 @@ qemu-img create -f raw fd13.img 128M
 <h3 id="1インストールの実行">1)　インストールの実行</h3>
 <p>　最初に下記の画面が出るので、ここからガイダンスに従って進めていくだけです。</p>
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(00Install).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
-<p>まずは、 &ldquo;<strong>Install to Harddisk</strong>&rdquo; を選択します。注意すべき点は、完了後 <strong>Reboot</strong> を選ぶと、再度この画面に戻ってきますので、ここでもう一度 &ldquo;<strong>Install to Harddisk</strong>を&rdquo; を選択して進めることです。<strong>Language</strong> や <strong>Keyboard</strong> も、後から再設定できるので、<strong>English</strong> のままで構いません。</p>
+<p>まずは、 &ldquo;<strong>Install to harddisk</strong>&rdquo; を選択します。注意すべき点は、完了後 <strong>Reboot</strong> を選ぶと、再度この画面に戻ってきますので、ここでもう一度 &ldquo;<strong>Install to harddisk</strong>を&rdquo; を選択して進めることです。<strong>Language</strong> や <strong>Keyboard</strong> も、後から再設定できるので、<strong>English</strong> のままで構いません。</p>
 <p>導入する <strong>Package</strong> は、英語版のツールに興味はないので、<strong>Plain DOS system</strong> だけにしておきます。</p>
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(01PlainDOS).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <p><strong>Full installation</strong> を選択すると、ディスク容量が128Mでは足りないと思いますので、その場合は、(2)で作成するディスクイメージ容量を512M程度にしておくと良いでしょう。</p>
@@ -195,8 +195,7 @@ qemu-img create -f raw fd13.img 128M
 <p>　英語圏の方は、前項までの作業で終了。楽で良いですな。<br>
 しかし、極東に住む大和民族はそうはいかないので、ここから日本語環境を構築していきます。</p>
 <p>　日本語環境設定には、日本語フォント、Font Driver、Display Driverなどのインストールとセットアップが必要です。<br>
-しかし、これは何回やっても面倒、というか、毎回やり方を忘れてしまっているので、調べ直しに時間がかかり、そのうえ設定ミスをしたりするなどなど、いつもイライラが募ります。<br>
-そんなつまらない作業を避けるべく、今回は「<strong>日本語環境構築を一括で行うスクリプト</strong>」を作成しました。日本語環境だけでなく、ついでにDOSの基本ツールも同時にインストールしてしまいます。<br>
+しかし、これは何回やっても面倒、というか、毎回やり方を忘れてしまっているので、調べ直しに時間がかかり、そのうえ設定ミスをしたりするなどなど、いつもイライラが募ります。そんなつまらない作業を避けるべく、今回は「<strong>日本語環境構築を一括で行うスクリプト</strong>」を作成しました。日本語環境だけでなく、ついでにDOSの基本ツールも同時にインストールしてしまいます。<br>
 まあ、<strong>wget</strong> でダウンロード後、<strong>lha</strong> や <strong>unzip</strong> で解凍し適当なディレクトリにコピー、FreeDOSの設定ファイルである <strong>FDCONFIG.SYS</strong> と <strong>FDAUTO.BAT</strong> を修正してしまうだけなんですけどね。</p>
 <h3 id="1準備">1)　準備</h3>
 <p>　必要なツール、<strong>wget</strong> と <strong>lhasa</strong> をインストールしておきます。また、FreeDOSのハードディスクイメージを <strong>Loopback device</strong> としてMountするディレクトリ(<strong>/mnt/freedos</strong>)を作成しておきます。</p>
@@ -379,6 +378,7 @@ chmod +x jp.sh
 <p>日本語モードを選択すると、下記のような画面となります。</p>
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(02FreeDOSJPN02).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <p>なお、<strong>-drive file=fat:rw:/active/freedos/programs/</strong> のようにディレクトリを追加しておくと、ここが <strong>Dドライブ</strong> となり、ファイルのコピーなどに利用できます。ただし、プログラムの実行は出来ないようです。</p>
+<p>残念ながら、日本語入力はフリーのツールだけではできません。刀(<strong>KTN4</strong>)で日本語入力ができることは確認していますが。</p>
 <hr>
 <h3 id="3導入ツール">3)　導入ツール</h3>
 <p>　下記のツールもインストールしてみました。</p>
