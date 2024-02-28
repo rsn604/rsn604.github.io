@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCC7KFXF3W"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GCC7KFXF3W');
+	</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )" />
+<meta property="og:description" content="前回は、Linux上のQEMUにて、FreeDOS 1.3をインストール、日本語環境構築まで実行してみました。 今回は、先にインストールしたFr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/freedos-1.3%E3%82%92dosbox%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E3%83%96%E3%83%BC%E3%83%88%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A7%A3%E6%B6%88%E3%81%99%E3%82%8B/" />
+<meta property="article:published_time" content="2024-02-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-02-27T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )"/>
+<meta name="twitter:description" content="前回は、Linux上のQEMUにて、FreeDOS 1.3をインストール、日本語環境構築まで実行してみました。 今回は、先にインストールしたFr"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM-HMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/freedos-1.3%E3%82%92qemu%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%92%B0%E5%A2%83%E3%82%84%E3%83%84%E3%83%BC%E3%83%AB%E3%82%82%E4%B8%80%E6%8B%AC%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">FreeDOS 1.3をQEMU上で動かそう ( 自動化スクリプトで日本語環境やツールも一括導入してみる )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-02-27T00:00:00Z">February 27, 2024</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/dos/" rel="category">DOS</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p><a href="https://rsn604.github.io/it/freedos-1.3%E3%82%92qemu%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%92%B0%E5%A2%83%E3%82%84%E3%83%84%E3%83%BC%E3%83%AB%E3%82%82%E4%B8%80%E6%8B%AC%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">前回</a>は、<strong>Linux</strong>上の<strong>QEMU</strong>にて、<strong>FreeDOS 1.3</strong>をインストール、日本語環境構築まで実行してみました。</p>
+<p>今回は、先にインストールしたFreeDOSを、<strong>DOSBOX</strong>上で動かしてみます。<br>
+<strong>QEMU</strong>は、<strong>Windows</strong>や<strong>Android</strong>にもポーティングはされていますが、動作が重く快適な環境とは言えません。そこで、DOSBOXをコンテナのように使用、その上でFreeDOSを起動させ、LinuxだけではなくWindowsやAndroid上でも軽快に動かそう、というわけです。また、ゲームを動かしたい場合、DOSBOXにサウンド処理などを任せておくと設定が楽になるでしょう。</p>
+<hr>
+<h3 id="1freedosのディスクイメージをマウントしてみる">(1)　FreeDOSのディスクイメージをマウントしてみる</h3>
+<p>DOSBOXは、<a href="https://www.dosbox.com/download.php?main=1" target="_blank">ここ</a>からダウンロードし、インストールしておいてください。DOSBOXには<strong>imgmount</strong>という機能があるので、これを利用して先にインストールしたFreeDOS環境をブートしてみます。</p>
+<p>早速やってみましょう。<br>
+まずは、環境設定を行います。DOSBOXの設定ファイル(<strong>dosbox-{version}.conf</strong>という形式になっています)は、<a href="https://www.dosbox.com/wiki/Dosbox.conf" target="_blank">このディレクトリ</a>にありますので、これを編集し実行していきます。</p>
+<p>FreeDOSをマウントするために、上記設定ファイル最後尾にある[<strong>autoexec</strong>]セクションに下記を追加します。今回は、<strong>/active/freedos</strong>というディレクトリに、FreeDOSインストールディスク<strong>fd13.img</strong>を配置しています。</p>
+<pre><code>[autoexec]  
+# Lines in this section will be run at startup.  
+# You can put your MOUNT lines here.  
+imgmount c /active/freedos/fd13.img -size 512,63,16,260  
+boot -l c  
+</code></pre><p><strong>imgmount</strong>では、サイズを指定しなければいけませんが、<strong>-size 512,63,16,X</strong>のような形式になります。<strong>X</strong>は、イメージファイルのメガバイト数に、<strong>2.03125</strong>をかけた数字になるようです。<strong>fd13.img</strong>の容量は128Mですので、Xは260となります。詳細は<a href="https://www.dosbox.com/wiki/IMGMOUNT#Loading_a_regular_hard_disk_image" target="_blank">こちら</a>を参照のこと</p>
+<h4 id="さてdosboxを起動してみると">さて、DOSBOXを起動してみると．．．</h4>
+<img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(01BOOTERR).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<h4 id="なんとブートしてくれません">なんと、ブートしてくれません。</h4>
+<p>「<strong>read error</strong>」と表示されてしまいました。<br>
+しかし、このイメージファイルは、<strong>FDISK</strong>で内容が確認できますし、Linuxでも<strong>Mount</strong>できましたから、ディスクが壊れているわけではありません。<strong>MBR部</strong>(最初の512バイト)のDUMPも見ましたが、パーティションテーブルとブートシグニチャー(<strong>55AA</strong>)もちゃんとセットされています。</p>
+<h4 id="dosbox-xではブートできる">DOSBOX-Xでは、ブートできる．．</h4>
+<p>思い立って、DOSBOXの派生である<strong>DOSBOX-X</strong>をインストールしてみました。同一の設定で起動したところ、こちらはなんと問題なくブートしてくれたのです。</p>
+<p>以上から、</p>
+<h4 id="dosboxはfreedosのmbr内にあるブートストラップが気に入らないらしい">「DOSBOXはFreeDOSのMBR内にあるブートストラップが気に入らないらしい」</h4>
+<p>という仮説が導かれました。</p>
+<hr>
+<h3 id="2pc-dos63でmbrを書き換えてみる">(2)　PC DOS6.3で、MBRを書き換えてみる</h3>
+<p>　次のステップとして上の仮説を検証してみましょう。</p>
+<p>ここでは、<strong>PC DOS6.3</strong>を使ってみます。なぜ、PC DOSを持ち出したのかと言いますと、随分前になりますが、DOSBOX上でPC DOS3をインストールした経験があり、問題なくブートしてくれた実績があるからです。</p>
+<p>まずは、DOSBOX.confを下記のように書き換え、PC DOS6.3のFDD 1枚めをイメージファイル化した<strong>dos63_1.img</strong>でブートします。</p>
+<pre><code>[autoexec]  
+imgmount c fd13.img -size 512,63,16,260  
+boot dos63_1.img  
+</code></pre><img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(02PCDOS).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>上記画面となるので、ここで<strong>F3</strong>を押し、インストールは終了します。<br>
+<strong>A&gt;プロンプト</strong> になるので、下記のコマンドでMBRを書き換えてしまいます。</p>
+<pre><code>A&gt;FDISK /MBR  
+</code></pre><p>以上で、PC DOSの役割はおしまい。終了して、DOSBOX.confを再度下記のように書き換えて、FreeDOSを起動します。</p>
+<pre><code>[autoexec]  
+imgmount c /active/freedos/fd13.img -size 512,63,16,260  
+boot -l c  
+</code></pre><h4 id="今回はfreedos-13が問題なく立ち上がりました">今回は、FreeDOS 1.3が問題なく、立ち上がりました。</h4>
+<p>確認のため、FreeDOSのFDISKでMBRを書き換えてみましょう</p>
+<pre><code>C&gt;FDISK /MBR  
+</code></pre><p>再起動すると、当然ですが立ち上がらなくなりました。</p>
+<p>これにて、先の仮説「<strong>DOSBOXはFreeDOSのMBR内にあるブートストラップが気に入らないらしい</strong>」ということが検証されたことになります。</p>
+<hr>
+<h3 id="3代替fdiskの利用">(3)　代替FDISKの利用</h3>
+<p>　さすがに、PC DOSのFDDイメージでMBRを書き換えるというのは一般的でないので、<strong>FDISKの代替品</strong>を探してみました。見つけたのが、<a href="http://hp.vector.co.jp/authors/VA012947/pcat/fdsk.html" target="_blank">FDSK</a>というツールです。実は、<a href="https://rsn604.github.io/it/freedos-1.3%E3%82%92qemu%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%92%B0%E5%A2%83%E3%82%84%E3%83%84%E3%83%BC%E3%83%AB%E3%82%82%E4%B8%80%E6%8B%AC%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">前回</a>紹介した自動スクリプトの中に、この<strong>FDSK</strong>をすでに組み込んであります。</p>
+<p>これを使用して、FreeDOSのブートストラップを書き換えましょう。<br>
+再度<strong>QEMUでFreeDOSをブート</strong>し、FDSKを起動します。</p>
+<pre><code>C&gt;FDSK  
+</code></pre><p>起動すると下記の画面になるので、”<strong>機能5</strong>”を選択します。</p>
+<img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(04FDSK).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>以上で、<strong>DOSBOXにおけるFreeDOSロード問題は解消</strong>しました。</p>
+<hr>
+<h3 id="4androidで動かす">(4)　Androidで動かす</h3>
+<p>　<a href="https://rsn604.github.io/it/%E3%81%93%E3%82%93%E3%81%AA%E3%81%A8%E3%81%8D%E3%81%AF%E8%87%AA%E5%AE%85%E3%81%A7%E9%89%84%E9%81%93%E6%97%85%E8%A1%8C%E3%81%A7%E3%82%82%E3%83%97%E3%83%A9%E3%83%B3%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%97%E3%82%88%E3%81%86%EF%BC%93galaxy-tab-sc-03g-%E3%81%A7%E3%82%82-mars-%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99/">「こんなときは、自宅で鉄道旅行でもプランニングしよう（３）(Galaxy Tab ( SC-03G ) でも MARS を動かす)」</a>で紹介した<strong>Magic DOSBOX</strong>上で、今回インストールした<strong>FreeDOS 1.3</strong>を動かしてみましょう。</p>
+<p>Magic DOSBOXのインストールなどは上記を参照してください。変更点は、<strong>[autoexec]セクション</strong>を下記のように設定するだけです。</p>
+<pre><code>[autoexec]  
+imgmount c /storage/emulated/0/dosbox/fd13.img -size 512,63,16,260  
+boot -l c  
+</code></pre><p><strong>Galaxy SC-03G(Android6)<strong>を使用、FreeDOSの英語モードで</strong>Turbo Pascal 5.5</strong>を動かしてみました。</p>
+<img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(05TP55).jpg" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<p>このバージョンはフリーになっていたはずですが、現在のダウンロード先がわかりません。動作確認と認識ください。</p>
+<hr>
+<h3 id="5freedosでのビデオモード">(5)　FreeDOSでのビデオモード</h3>
+<p>　DOSのディスプレイ入出力は、<strong>BIOS</strong>の<strong>INT 10H</strong>で行うのが一般的ですが、FreeDOSで感心したのは、<strong>モード 73H</strong>(エミュレート拡張CGAテキスト・モード)をちゃんとサポートしていることです。<br>
+「DOS/V BIOS インターフェース技術解説編」では、</p>
+<blockquote>
+<p>モード73H(エミュレート拡張CGAテキスト・モード)は、以下の文字属性を指定することができます。属性バイトの1と2は「文字ブロックの読み取り(INT10H,AX=131xH)」と「文字ブロックの書き込み(INT10H, AX=132xH)」の機能により読み出しおよび書き込みを行うことができます。この2つの機能を使用しない場合は、このモードは、モード03Hと同じ働きをすることになります。</p>
+</blockquote>
+<p>とあります。モード03Hとの違いは、属性を3バイト指定すること。属性バイト0は03Hと同様なのですが、属性バイト1には、下記が指定できます。</p>
+<pre><code>7 下線  
+6 反転用に予約済み(0に設定)  
+5 明滅用に予約済み(0に設定)  
+4 透過属性用に予約済み(0に設定)  
+3 罫線  
+2 横罫線  
+1 予約済み(0に設定)  
+0 予約済み(0に設定)  
+</code></pre><p>そう、ビット3と2を指定すると、テキストモードで罫線が引けるのです。事実上「罫線好きの日本人向け専用ではないか」と思われるこの機能、当時(1990年代)結構使用していたので、ちゃんとサポートされているのが妙に嬉しかったりします。DOSBOXだけでは動きません。</p>
+<p>自宅には、IBMの「<strong>PS/V 2405-YVB</strong>」というのマシン(1992年製)があるのですが、そのうち、FreeDOSを動かしたくなるかもしれません。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/freedos-1.3%E3%82%92qemu%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%92%B0%E5%A2%83%E3%82%84%E3%83%84%E3%83%BC%E3%83%AB%E3%82%82%E4%B8%80%E6%8B%AC%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">FreeDOS 1.3をQEMU上で動かそう ( 自動化スクリプトで日本語環境やツールも一括導入してみる )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
