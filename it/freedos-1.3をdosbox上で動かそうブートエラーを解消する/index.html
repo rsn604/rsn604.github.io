@@ -193,7 +193,8 @@ boot dos63_1.img
 <pre><code>[autoexec]  
 imgmount c /active/freedos/fd13.img -size 512,63,16,260  
 boot -l c  
-</code></pre><h4 id="今回はfreedos-13が問題なく立ち上がりました">今回は、FreeDOS 1.3が問題なく、立ち上がりました。</h4>
+</code></pre><img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(03BOOT).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
+<h4 id="今回はfreedos-13が問題なく立ち上がりました">今回は、FreeDOS 1.3が問題なく、立ち上がりました。</h4>
 <p>確認のため、FreeDOSのFDISKでMBRを書き換えてみましょう</p>
 <pre><code>C&gt;FDISK /MBR  
 </code></pre><p>再起動すると、当然ですが立ち上がらなくなりました。</p>
@@ -233,8 +234,8 @@ boot -l c
 2 横罫線  
 1 予約済み(0に設定)  
 0 予約済み(0に設定)  
-</code></pre><p>そう、ビット3と2を指定すると、テキストモードで罫線が引けるのです。事実上「罫線好きの日本人向け専用ではないか」と思われるこの機能、当時(1990年代)結構使用していたので、ちゃんとサポートされているのが妙に嬉しかったりします。DOSBOXだけでは動きません。</p>
-<p>自宅には、IBMの「<strong>PS/V 2405-YVB</strong>」というのマシン(1992年製)があるのですが、そのうち、FreeDOSを動かしたくなるかもしれません。</p>
+</code></pre><p>そう、ビット3と2を指定すると、テキストモードで罫線が引けるのです。事実上「罫線好きの日本人向け専用」ではないかと思われるこの機能、当時(1990年代前半)結構使用していたので、ちゃんとサポートされているのが妙に嬉しかったりします。DOSBOXだけでは動きません。</p>
+<p>自宅には、IBMの「<strong>PS/V 2405-YVB</strong>」というのマシン(1992年製)があるのですが、そのうち、FreeDOSを実機で動かしたくなるかもしれません。</p>
 
 		</div>
 	</article>
