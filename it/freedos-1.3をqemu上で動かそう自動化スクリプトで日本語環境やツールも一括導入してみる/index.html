@@ -355,7 +355,7 @@ alias reboot=fdapm warmboot
 alias halt=fdapm poweroff  
   
 set PATH=C:\FreeDOS\BIN;c:\chej;c:\pansi;c:\bin;c:\usr\mars;c:\usr\jed;c:\usr\fd55  
-loadhich pansi.com  
+loadhigh pansi.com  
 IF &quot;%config%&quot;==&quot;1&quot; chej jp  
 keyb jp  
 END  
@@ -380,7 +380,7 @@ chmod +x jp.sh
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(02FreeDOSJPN01).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <p>日本語モードを選択すると、下記のような画面となります。</p>
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(02FreeDOSJPN02).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
-<p>なお、<strong>-drive file=fat:rw:/active/freedos/programs/</strong> のようにディレクトリを追加しておくと、ここが <strong>Dドライブ</strong> となり、ファイルのコピーなどに利用できます。ただし、プログラムの実行は出来ないようです。</p>
+<p>なお、<strong>-drive file=fat:rw:/active/freedos/programs/</strong> のようにディレクトリを追加しておくと、ここが <strong>Dドライブ</strong> となり、ファイルのコピーなどに利用できます。</p>
 <p>残念ながら、日本語入力はフリーのツールだけではできません。刀(<strong>KTN4</strong>)で日本語入力ができることは確認していますが。</p>
 <img src="/IT/FreeDOS 1.3をQEMU上で動かそう(04Katana).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <hr>
