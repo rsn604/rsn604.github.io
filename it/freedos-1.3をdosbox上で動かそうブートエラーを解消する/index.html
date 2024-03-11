@@ -183,8 +183,8 @@ boot -l c
 <p>ここでは、<strong>PC DOS6.3</strong>を使ってみます。なぜ、PC DOSを持ち出したのかと言いますと、随分前になりますが、DOSBOX上でPC DOS3をインストールした経験があり、問題なくブートしてくれた実績があるからです。</p>
 <p>まずは、DOSBOX.confを下記のように書き換え、PC DOS6.3のFDD 1枚めをイメージファイル化した<strong>dos63_1.img</strong>でブートします。</p>
 <pre><code>[autoexec]  
-imgmount c fd13.img -size 512,63,16,260  
-boot dos63_1.img  
+imgmount c /active/freedos/fd13.img -size 512,63,16,260  
+boot /active/freedos/dos63_1.img  
 </code></pre><img src="/IT/FreeDOS 1.3をDOSBOX上で動かそう(02PCDOS).png" style="margin-left:20px;margin-bottom:30px;width:500px;">  
 <p>上記画面となるので、ここで<strong>F3</strong>を押し、インストールは終了します。<br>
 <strong>A&gt;プロンプト</strong> になるので、下記のコマンドでMBRを書き換えてしまいます。</p>
