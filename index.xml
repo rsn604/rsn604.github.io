@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 27 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Mar 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Song of a Dark Angel ( Paul Doherty )</title>
+      <link>https://rsn604.github.io/fbook/the-song-of-a-dark-angelpaul-doherty/</link>
+      <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/fbook/the-song-of-a-dark-angelpaul-doherty/</guid>
+      <description>荒涼とした海辺の暗い雰囲気のなか、不可能状況で発見された2つの死体。宝探しまで絡めて読ませてくれます。 最近のお気に入りPaul Doherty</description>
+    </item>
     
     <item>
       <title>FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )</title>
