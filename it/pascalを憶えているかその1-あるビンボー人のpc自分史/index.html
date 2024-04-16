@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCC7KFXF3W"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GCC7KFXF3W');
+	</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )" />
+<meta property="og:description" content="Pascal言語について 現在、Pascal言語を知っている方はあまり多くないと思いますが、かつてPascalは、一二を争う人気言語でありまし" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE1-%E3%81%82%E3%82%8B%E3%83%93%E3%83%B3%E3%83%9C%E3%83%BC%E4%BA%BA%E3%81%AEpc%E8%87%AA%E5%88%86%E5%8F%B2/" />
+<meta property="article:published_time" content="2024-04-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-15T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )"/>
+<meta name="twitter:description" content="Pascal言語について 現在、Pascal言語を知っている方はあまり多くないと思いますが、かつてPascalは、一二を争う人気言語でありまし"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM-HMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/freedos-1.3%E3%82%92dosbox%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E3%83%96%E3%83%BC%E3%83%88%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A7%A3%E6%B6%88%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-04-15T00:00:00Z">April 15, 2024</time></div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<hr>
+<h3 id="pascal言語について">Pascal言語について</h3>
+<p>　現在、Pascal言語を知っている方はあまり多くないと思いますが、かつてPascalは、一二を争う人気言語でありました。それを証明する動画がYouTubeにあったので、まずこれを紹介しましょう。<strong>Most Popular Programming Languages 1965 - 2022</strong>というのがタイトルです。</p>
+<p><a href="https://www.youtube.com/watch?v=qQXXI5QFUfw" target="_blank"><img src="/IT/Pascalを憶えているか？(その1)01PCLang.png" style="float:left;margin-right:50px;margin-bottom:30px;width:500px;"></a><br>
+<br clear="left"></p>
+<p>　これを見てもらえばわかるように、Pascalは1970年代からシェアを伸ばし、80年代にはトップランキングに位置していました。しかし、その後はC言語に人気を奪われたのか、ランキングからあっという間に消え失せてしまいます。2024年現在、Pascal言語を開発に使用しているユーザーは、どれだけいるのでしょうか。</p>
+<p>このような状況から見て、</p>
+<h4 id="pascalに現在はなくたぶん未来もないあるのは過去だけである">Pascalに現在はなく、(たぶん)未来もない、あるのは過去だけである。</h4>
+<p>と言い切って過言ではないでしょう。</p>
+<p>しかし、わたしのような古い人間にとって、Pascal言語には強い思い入れがあります。80年代にコンピューターを始めたわたしは、IBMのメインフレームがその業務対象だったのですが、その後の急激なPC普及の中にあって、そちらの勉強にも着手せざる得なくなったわけです。そこで、最初に出会ったのが<strong>Turbo Pascal 3.0</strong>でありました。</p>
+<hr>
+<h3 id="パーソナルワープロ文豪mini5hを買う">パーソナルワープロ「文豪mini5H」を買う</h3>
+<p>　その前に、その当時のパソコンの価格について触れておかないといけません、80年代後半、PCは非常に高価なものであり、安いPCでも20万円台、モニターを入れると軽く30万を超えていたと思います。これはその当時のボーナスがほとんど飛んでしまう金額ですから、そう簡単に購入できるものではありません。</p>
+<p>そんなビンボー人がまず手に入れたのは、ポータブルワープロ「<strong>文豪mini5H</strong>」いう機種でした。このマシンの面白いところは、ワードプロセッサーでありながら、<strong>CP/M</strong>をベースにしていたことです、実際にCP/Mシステムのみならず、外部コマンドの一部までROMに入っているという、フルスペックのCP/Mマシンだったわけです。しかも、バッテリー動作可能、プリンタまでついて実売9万円弱(正価は128000円だったかな)。これならなんとか手が出たわけです。</p>
+<img src="/IT/Pascalを憶えているか？(その1)03BHDOS.jpg" style="float:left;margin-right:50px;margin-bottom:30px;width:200px;">  
+<p>CP/Mマシンというだけでもインパクトとがあったのですが、なんと<strong>この文豪にMS-DOSを移植</strong>した人間が出てきてしまったのです。この<strong>パソコンワールド</strong>(1987年11月号)の記事がそれです。</p>
+<p>ベースとなった<strong>MS-DOS</strong>は<strong>PC98</strong>のものですが、だからと言って、98用のソフトウェアがそのまま動くわけではありません、その当時のプログラムは、MS-DOS標準機能(INT 21)だけで書かれたものはほとんどなく、PC98のVRAMやBIOSを直接コールしているものがほとんどでした。したがって、文豪MS-DOS上で使えるプログラムは極めて限られたものだったのです。<br>
+そういう状況下にあって、<strong>Turbo Pascal 3.0</strong>は、ほとんどDOS標準機能だけで動作する当時としては稀なツールであり、同時に実用的なツールだったのです。<br>
+<br clear="left"></p>
+<p>パソコン通信<strong>PC-VAN</strong>にあった「文豪フォーラム」では、CP/M時代から内部解析などが活発に行われていましたが、文豪MS-DOS登場以後はそれに拍車がかかり、いろいろなツールが発表されていました。その中にはTurbo Pacalで書かれたものも少なくなく、大いに参考にさせてもらったものです。</p>
+<p>少し話がずれてしまいますが、あの当時のPC-VANやNifty-Serverのログがパブリックに残っていないことには、いささか憤りを感じます。これらはPCの発展における貴重な歴史遺産とでも言うべきものですから、主催していた団体には保存する義務があったのでは、と今でも思っています。著作権の問題ということのようですが、残念としか言いようがありません。</p>
+<hr>
+<h3 id="謎のパームトップ機に手を出す">謎のパームトップ機に手を出す</h3>
+<img src="/IT/Pascalを憶えているか？(その1)04HP100LX.jpg" style="float:left;margin-right:50px;margin-bottom:30px;width:200px;">  
+<p>その後、1993年頃に<strong>IBMのPS/V</strong>というマシンを購入、メインはこちらになりましたが、同時にとある小型マシンに目を奪われました。そう、知る人ぞ知る<strong>HP100LX</strong>というマシンです。これは本来英語専用モデルで、日本語をサポートしていないのですが、有志が勝手に日本語環境を作ってしまったことで有名でした。<br>
+<strong>PC WAVE</strong>（1993年12月号)が最初に商業誌に載った記事だと思いますが、そのほとんどは<strong>Nifty Serve</strong>で活動された方々の成果です、<br>
+ここでもわたしはHP100LXが高くて手が出ませんでした。だいたいこのマシン本体が8万ぐらいしており、SRAMカードなどを入れると10万を軽く超えてしまいます。相変わらずのビンボー人には、これがまた買えない（笑）。<br>
+<br clear="left"></p>
+<img src="/IT/Pascalを憶えているか？(その1)05PTP20.jpg" style="float:left;margin-right:50px;margin-bottom:30px;width:300px;">  
+<p>そんなわけで、香港製の安物を買ってしまいました。<strong>PTP20</strong>というマシンですが、HP100LXのパチモンですね。<br>
+<a href="https://amzn.to/3UjA84w" target="_blank">「モバイルコンピューティング: 手のひらサイズの端末入門」</a>によると、「Gropu Sense Limitedが開発し、Instant Techブランドで発売したパームトップ・パソコンである」とのこと。本体が4万弱、SRAMカードを入れても5万円、HP100LXの半額でした。<br>
+しかし、「安かろう悪かろう」というのはこのことかもしれません。ディスプレイが不調で、2回ほど壊れたような記憶があります。保証期間だったので、なんとか修理してもらえたのですが、郵送料はかかったし使えない時間もそれなりでしたから、機会損失分を入れたら合いません。まさに「安物買いの銭失い」を地で行く有様でした。今も手元にありますが、液晶がへたって何も映りません。<br>
+　それでもこのマシン、けっこう使ってました。何をやってたかというと、メモ書き、スケジュール管理が主だったのですが、先の文豪mini5H上のTurbo Pascalで作った表計算ソフトを<strong>DOS/Cモード</strong>に移行して動かしてました。ベースはTurbo Pascal 3.0についていたサンプル <strong>Micro Calc</strong> に色々機能を追加したものですが、当時出張が多かったので旅費精算に結構重宝したものです。<br>
+PTP-20が壊れたあとは、NECのモバイルギア <strong>MK-22</strong> というマシンを使っていましたが、これもDOSマシン。ここでもTurbo Pascalにはお世話になっていました。<br>
+<br clear="left"></p>
+<hr>
+<h3 id="pascalを現環境で動かしたい">Pascalを現環境で動かしたい</h3>
+<p>　<a href="https://rsn604.github.io/it/freedos-1.3%E3%82%92qemu%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E8%87%AA%E5%8B%95%E5%8C%96%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%92%B0%E5%A2%83%E3%82%84%E3%83%84%E3%83%BC%E3%83%AB%E3%82%82%E4%B8%80%E6%8B%AC%E5%B0%8E%E5%85%A5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B/">前回</a>、FreeDOSの環境を構築してみましたが、実はこれ、その昔作成した<strong>Turbo Pascal</strong>のツールを動かしてみたいというニーズから出たものなのです。ところが色々やっていると、これらを現在の環境である「<strong>Linux</strong>や<strong>Windows</strong>でも動かせないか」という欲求が芽生えてしまったのです。<br>
+　そこで使ってみたのが、<a href="https://www.freepascal.org/" target="_blank">Free Pascal</a>というPascalコンパイラです。このツールは、<strong>Linux</strong>、<strong>Windows</strong>などの環境で動作、しかも <strong>Turbo Pascal 7.0コンパチ</strong> というなかなか魅力的なスペックです。早速、当時のプログラムをいくつか試してみると、意外なほど簡単に動いてしまいました。それなら、その昔使っていた表計算を頑張って移行してみようかと思ったわけです。</p>
+<p>次回は、それを紹介します。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/freedos-1.3%E3%82%92dosbox%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E3%83%96%E3%83%BC%E3%83%88%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A7%A3%E6%B6%88%E3%81%99%E3%82%8B/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
