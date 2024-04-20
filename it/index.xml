@@ -6,10 +6,19 @@
     <description>Recent content in ITs on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 15 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )</title>
+      <link>https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/</link>
+      <pubDate>Sat, 20 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/</guid>
+      <description>前回書いたように、Pascalはもはや過去の言語であり、これを今現在学習するメリットはほとんどない、と言って過言ではないでしょう。DOS時代</description>
+    </item>
     
     <item>
       <title>Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )</title>

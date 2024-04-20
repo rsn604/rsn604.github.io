@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCC7KFXF3W"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GCC7KFXF3W');
+	</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )" />
+<meta property="og:description" content="前回書いたように、Pascalはもはや過去の言語であり、これを今現在学習するメリットはほとんどない、と言って過言ではないでしょう。DOS時代" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/" />
+<meta property="article:published_time" content="2024-04-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-20T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )"/>
+<meta name="twitter:description" content="前回書いたように、Pascalはもはや過去の言語であり、これを今現在学習するメリットはほとんどない、と言って過言ではないでしょう。DOS時代"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM-HMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE1-%E3%81%82%E3%82%8B%E3%83%93%E3%83%B3%E3%83%9C%E3%83%BC%E4%BA%BA%E3%81%AEpc%E8%87%AA%E5%88%86%E5%8F%B2/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-04-20T00:00:00Z">April 20, 2024</time></div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>　<a href="https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE1-%E3%81%82%E3%82%8B%E3%83%93%E3%83%B3%E3%83%9C%E3%83%BC%E4%BA%BA%E3%81%AEpc%E8%87%AA%E5%88%86%E5%8F%B2/">前回</a>書いたように、Pascalはもはや過去の言語であり、これを今現在学習するメリットはほとんどない、と言って過言ではないでしょう。DOS時代のTurbo PascalやWindows95のDelphiにハマった人間だけが、残されたユーザーなのかもしれません。<br>
+　そんな言語で書いたプログラムを、いまさら公開する意義は殆どないような気もしますが、まあ書いちゃったものはしかたがない。<a href="https://github.com/rsn604/cv" target="_blank">こちら</a>にアップロードしました。</p>
+<p><strong>CV</strong>というターミナルで動作する表計算ツールです。CVは <strong>Calculator Vanced</strong> の略称なのですが、これは後付け。「<strong>渋い</strong>」と言って欲しい、そういう安易なネーミングです。</p>
+<p>以下、アップロードファイルに添付した <strong>READMEJP.md</strong> で、概要を説明しておきます。</p>
+<hr>
+<p>　CVは、Linuxのターミナル、あるいはWindowsのコマンドプロンプト上で動作する簡易スプレッドシートです。<br>
+Excelのようなオフィスソフトを立ち上げるまでもない計算処理を手軽に行うことが目的です。四則演算はもちろんのこと、よく使う関数を内蔵し、16進演算もサポートします。</p>
+<h2 id="起動">起動</h2>
+<p>実行ファイルは、<strong>cv</strong>（あるいはcv.exe）1本だけなので、適当なディレクトリに入れて起動します。</p>
+<pre><code>$ cv  
+</code></pre><p>下記のように使用するシートを指定することも可能です。</p>
+<pre><code>cv sample.cv2  
+</code></pre><p>終了は下記のメニューから<strong>Quit</strong>選択、あるいは <strong>CTRL+QQ</strong> (CTRLを押したままQを2回)を押します。</p>
+<p>以下、添付のサンプルシート（sample.cv2）を例に説明します。</p>
+<hr>
+<h2 id="データ入力">データ入力</h2>
+<p>特に記述するまでもないでしょう。文字を入力すれば左寄せ、数字入力は右寄せに表示されます。小数点は <strong>.</strong> を入力します。</p>
+<p>/ (or PF05)を入力すると、メニューが表示されます。</p>
+<p><img src="/IT/CV_02Menu.png" alt="MENU"></p>
+<p>セルの移動などの操作については、上記 <strong>H Help</strong> で下記の画面が出てきますので、参照してください。。</p>
+<p><img src="/IT/CV_01Help.png" alt="HELP"></p>
+<hr>
+<h3 id="1計算式">(1)　計算式</h3>
+<p>+(or PF06) を入力すると、計算式入力モードになります。各種四則演算(<strong>+ - * /</strong>)を指定します。</p>
+<p><img src="/IT/CV_03Formula.png" alt="Formula"></p>
+<p><strong>@INT</strong>、 <strong>@TRUNC</strong>、 <strong>@ROUND</strong> 関数による処理も可能です。</p>
+<p>等号（<strong>= &gt;= &lt;= &lt;&gt;</strong>）を含む式はその内容を評価、<strong>True</strong>の場合 <strong>1</strong>、<strong>False</strong>の場合 <strong>0</strong> となります。このような式を * で連結すれば、<strong>AND</strong>条件、+ で連結すれば、<strong>OR</strong>条件として評価できます。これは、次項で使用している@IF関数とともに使うことを想定しています。</p>
+<hr>
+<h3 id="2関数">(2)　関数</h3>
+<p>計算式入力モードでは、一般的な関数が使用できます。</p>
+<p><img src="/IT/CV_04Function.png" alt="FUNCTION"></p>
+<p>パラメータは、<strong>@SUM(A1..C3)</strong> のように <strong>Range</strong> を指定します。上記の例では、<strong>@MAX</strong>、<strong>@MIN</strong>、<strong>@AVG</strong>、<strong>@SUM</strong>を集計に、<strong>@VLOOKUP</strong>を他のセルからの読み込み、<strong>@IF</strong>を条件判断に使用しています。</p>
+<hr>
+<h3 id="316進数">(3)　16進数</h3>
+<p><strong>CV</strong>では、<strong>0x</strong>を文字列の最初に入力すると16進数と解釈します。</p>
+<p><img src="/IT/CV_05Hex.png" alt="HEX"></p>
+<p>16進数は演算にそのまま使用できます。結果は整数となるので、16進表示する場合は、<strong>@HEX</strong>関数を使用します。</p>
+<hr>
+<h3 id="4range">(4)　Range</h3>
+<p>Rangeは、各種設定や関数のパラメータとして事前に指定する必要があります。<br>
+始点セルで<strong>CTRL+B</strong>、終点セルで<strong>CTRL-&gt;KK</strong>(CTRLを押したままKを2回) とすると設定され、<strong>A1..C2</strong>のように画面右上に表示されます。</p>
+<p><img src="/IT/CV_06Range.png" alt="RANGE"></p>
+<p>この範囲が次に設定する処理の対象になります。</p>
+<hr>
+<h3 id="5その他">(5)　その他</h3>
+<p>メニューから各種処理を選択することができます。</p>
+<pre><code>File   -&gt;  Load  Save  Clear  
+  
+Trans  -&gt;  Text Write  CSV Write  CSV Read  
+  
+Cell   -&gt;  Width  Decimal  Center  Right  Left  Color  
+  
+Sort   -&gt;  Ascending  Desending  
+</code></pre><hr>
+<h2 id="日本語処理">日本語処理</h2>
+<p>LinuxではUTF-8、WindowsではShift-JISの漢字コードをサポートしています。</p>
+<p><img src="/IT/CV_07Kanji.png" alt="KANJI"></p>
+<hr>
+<h2 id="ソースコードとコンパイル">ソースコードとコンパイル</h2>
+<p><strong>CV</strong>は、<a href="https://www.freepascal.org/" target="_blank">Free Pascal</a>でコンパイルされています。ダウンロード、インストールしてください。</p>
+<p>各環境に複数のファイルがあるようですが、下記のファイルを使用しました。</p>
+<pre><code>Linux x86_64    fpc-3.2.2.x86_64-linux.tar  
+Linux ARM       fpc-3.2.2.arm-linux.tar  
+Windows         fpc-3.2.2.win32.and.win64.exe  
+</code></pre><p>コンパイル用のシェルを用意していますので、これを利用してください。</p>
+<pre><code>Linux    compunix.sh  
+Windows  compwin.bat  
+</code></pre><h3 id="binary">Binary</h3>
+<p>Binaryイメージ (<strong>cv-bin.tar.gz</strong>) を、アップロードしています。Releasesタグをクリックしてください。</p>
+<pre><code>bin - linux_x86_64 - cv  
+    - linux_arm    - cv  
+    - windows      - cv.exe  
+sample.cv2  
+</code></pre><p>上記の構造になっていますので、環境に合わせてファイルを使用してください。</p>
+<hr>
+<p>以上です。</p>
+<p>　なんやかんやで3、4ヶ月の間、Pascalばかり使って過去のコードを見直していると、脳裏に当時の情景が走馬灯のように浮かび感傷的な思いに浸ることができました。現在のPascalは、そんな意味しかない言語なのかもしれません。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE1-%E3%81%82%E3%82%8B%E3%83%93%E3%83%B3%E3%83%9C%E3%83%BC%E4%BA%BA%E3%81%AEpc%E8%87%AA%E5%88%86%E5%8F%B2/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -22,7 +22,7 @@
 <meta property="og:description" content="ミステリ書評と古本屋めぐりを中心とするサイト。メインテーマとして、EQMM（エラリイ・クイーンズ・ミステリ・マガジン）の全冊読破を進めています。また、カテゴリ別に分類した作品を随時紹介、「未訳ミステリを読む」コーナーもあります。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://rsn604.github.io/" />
-<meta property="og:updated_time" content="2024-04-15T00:00:00+00:00" />
+<meta property="og:updated_time" content="2024-04-20T00:00:00+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TORIO&#39;s blog"/>
@@ -139,6 +139,23 @@ if (!doNotTrack) {
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%96-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E7%B7%A8/" rel="bookmark">
+			ひとりよがりのモバイルＰＣ ( その６　Linux DeployによるDebianのインストール　インストール編 )
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-26T00:00:00Z">March 26, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%ABpc/" rel="category">ひとりよがりのモバイルPC</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Linux Deployをセットアップし、Debianをインストールする。 Linux Deployをダウンロード後、実行すると下記のような画面になります。 画面に
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/it/%E3%81%B2%E3%81%A8%E3%82%8A%E3%82%88%E3%81%8C%E3%82%8A%E3%81%AE%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%EF%BD%90%EF%BD%83%E3%81%9D%E3%81%AE%EF%BC%95-linux-deploy%E3%81%AB%E3%82%88%E3%82%8Bdebian%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99%E7%B7%A8/" rel="bookmark">
 			ひとりよがりのモバイルＰＣ ( その５　Linux DeployによるDebianのインストール　事前準備編 )
 			</a>
@@ -227,28 +244,6 @@ if (!doNotTrack) {
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		まずは、つまらない前説 このところの日韓関係は、史上最悪と言われています。２０１９年半ばの日本の輸出管理強化に対抗した、韓国の不買運動「No J
-	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/anthology/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E9%9B%86%EF%BC%92-%E6%8E%A8%E7%90%86%E7%B7%A8%EF%BC%92-%E3%83%A2%E3%83%80%E3%83%B3%E6%AE%BA%E4%BA%BA%E5%80%B6%E6%A5%BD%E9%83%A8%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/">
-		<img class="thumbnail__image" src="/ANTHOLOGY/%e6%96%b0%e9%9d%92%e5%b9%b4%e5%82%91%e4%bd%9c%e9%81%b8%e9%9b%86%ef%bc%92%20%e6%8e%a8%e7%90%86%e7%b7%a8%ef%bc%92%20%e3%83%a2%e3%83%80%e3%83%b3%e6%ae%ba%e4%ba%ba%e5%80%b6%e6%a5%bd%e9%83%a8%28%e4%b8%ad%e5%b3%b6%e6%b2%b3%e5%a4%aa%e9%83%8e%e7%b7%a8%29-01.jpg" alt="新青年傑作選集２ 推理編２ モダン殺人倶楽部 ( 中島河太郎編 )">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/anthology/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E9%9B%86%EF%BC%92-%E6%8E%A8%E7%90%86%E7%B7%A8%EF%BC%92-%E3%83%A2%E3%83%80%E3%83%B3%E6%AE%BA%E4%BA%BA%E5%80%B6%E6%A5%BD%E9%83%A8%E4%B8%AD%E5%B3%B6%E6%B2%B3%E5%A4%AA%E9%83%8E%E7%B7%A8/" rel="bookmark">
-			新青年傑作選集２ 推理編２ モダン殺人倶楽部 ( 中島河太郎編 )
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-03-15T00:00:00Z">March 15, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%96%B0%E9%9D%92%E5%B9%B4%E5%82%91%E4%BD%9C%E9%81%B8%E3%82%92%E8%AA%AD%E3%82%80/" rel="category">「新青年傑作選」を読む</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		後に名を残す作家の作品は面白い。当たり前か。 題名 作者 評点 コメント 死体昇天 角田喜久雄 5.5 [昭和４年８月号] 発端は面白いのだが、ラストが腰砕け。 精
 	</div>
 </article>
 </main>
@@ -997,11 +992,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/">Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )</a></li>
 			<li class="widget__item"><a class="widget__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE1-%E3%81%82%E3%82%8B%E3%83%93%E3%83%B3%E3%83%9C%E3%83%BC%E4%BA%BA%E3%81%AEpc%E8%87%AA%E5%88%86%E5%8F%B2/">Pascalを憶えているか？ ( その1　あるビンボー人のPC自分史 )</a></li>
 			<li class="widget__item"><a class="widget__link" href="/eqmm/1966-10-126/">HMM 1966/10 No.126</a></li>
 			<li class="widget__item"><a class="widget__link" href="/eqmm/1966-09-125/">HMM 1966/9 No.125</a></li>
 			<li class="widget__item"><a class="widget__link" href="/fbook/the-song-of-a-dark-angelpaul-doherty/">The Song of a Dark Angel ( Paul Doherty )</a></li>
-			<li class="widget__item"><a class="widget__link" href="/it/freedos-1.3%E3%82%92dosbox%E4%B8%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%9D%E3%81%86%E3%83%96%E3%83%BC%E3%83%88%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%92%E8%A7%A3%E6%B6%88%E3%81%99%E3%82%8B/">FreeDOS 1.3をDOSBOX上で動かそう ( ブートエラーを解消する )</a></li>
 		</ul>
 	</div>
 </div>
