@@ -2,6 +2,42 @@
 
 var data = [
   {
+    url: "https://rsn604.github.io/anthology/",
+    title: "ANTHOLOGYs",
+    date: "2024-09-17T00:00:00Z",
+    body: "ANTHOLOGYs"
+  },
+  {
+    url: "https://rsn604.github.io/categories/",
+    title: "Categories",
+    date: "2024-09-17T00:00:00Z",
+    body: "Categories"
+  },
+  {
+    url: "https://rsn604.github.io/",
+    title: "TORIO's blog",
+    date: "2024-09-17T00:00:00Z",
+    body: "TORIO's blog"
+  },
+  {
+    url: "https://rsn604.github.io/categories/%E5%AF%86%E5%AE%A4%E3%82%92%E8%AA%AD%E3%82%80/",
+    title: "「密室」を読む",
+    date: "2024-09-17T00:00:00Z",
+    body: "「密室」を読む"
+  },
+  {
+    url: "https://rsn604.github.io/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/",
+    title: "ポケミス",
+    date: "2024-09-17T00:00:00Z",
+    body: "ポケミス"
+  },
+  {
+    url: "https://rsn604.github.io/anthology/%E5%AF%86%E5%AE%A4%E6%AE%BA%E4%BA%BA%E5%82%91%E4%BD%9C%E9%81%B8%EF%BD%88%EF%BD%93%E3%82%B5%E3%83%B3%E3%83%86%E3%83%83%E3%82%B9%E3%83%B3%E7%B7%A8/",
+    title: "密室殺人傑作選 ( Ｈ・Ｓ・サンテッスン編 )",
+    date: "2024-09-17T00:00:00Z",
+    body: "密室殺人傑作選 ( Ｈ・Ｓ・サンテッスン編 ) 密室アンソロジーとして出色の出来。どの作品も楽しく読めます。 題名 作者 評点 コメント ある密室 ジョン・ディクスン・カー 7.0 不可能状態になってしまうという設定は面白いが、解決は今ひとつ。 クリスマスと人形 エラリイ・クイーン 6.0 エラリイ対怪盗コーマス。密室物ではないが、久しぶりにまともなクイーンの短編を読んだ。 世に不可能事なし クレイトン・ロースン 8.0 「天外消失」「この世の外から」と並ぶマーリニ登場の密室物。先の二作には劣るが、宇宙人のギミックが面白く良くできている。 うぶな心が張り裂ける クレイグ・ライス 7.5 トリックは見当がついてしまうが、テンポ良く進むマローン物。 犬のお告げ Ｇ・Ｋ・チェスタトン 7.0 殺人トリックは面白いが、筋立てがごたついていて分かりづらい。 囚人が友を求めるとき モリス・ハーシュマン 7.0 シリアスな不可能犯罪物の中に、こういう作品が一つあるのも趣向である。ラストには笑ってしまう。 ドゥームトーフの謎 メルヴィル・Ｄ・ポースト 7.5 アブナー伯父の一編。有名なトリックだが、時代背景の面白さと描かれる人物像がうまい。 ジョン・ディクスン・カーを読んだ男 Ｗ・ブルテン 7.0 再読(再々読かな？)ではオチがわかっているだけに辛い。 長い墜落 エドワード・Ｄ・ホック 8.0 不可能設定の凄さは抜群、それだけで価値がある。トリックは単純だが、それも悪くない。 時の網 ミリアム・アレン・ディフォード 6.0 悪魔との契約話。これも一編の清涼剤。 執行猶予 ローレンス・Ｇ・ブロックマン 7.0 ハードボイルド風ミステリ。密室トリックは大したものではないが、過去の事件を絡めてうまくまとめている。 たばこの煙の充満する部屋 アンソニイ・バウチャー 5.0 政治抗争の中での事件だが、出来はぱっとしない。 海児魂 ジョセフ・カミングズ 7.5 遭難した船を救助に行った中での殺人事件。舞台が面白いし、少し意外な犯人設定も効いている。 北イタリア物語 トマス・フラナガン 8.5 ボルジア統治時代のイタリアを舞台に宝石盗難事件を描く。舞台設定も筋書きも面白い。 　「密室」のアンソロジーといえば、まず念頭に浮かぶのが本書でしょう。作品のレベルが高いのはもちろんですが、セレクションもバラエティに富んでおり、読者を退屈させません。EQMMを通読してきていることもあり、中心となる作品はほとんど既読ですが、今回はあえて全編読み通してみましたが、やはりよく出来た作品は再読がきくものです。楽しい読書となりました。 個別の作品を見ると、やはり巻末のトマス・フラナガン「北イタリア物語」が秀逸。舞台設定、謎の面白さ、ラストで明かされる探偵と三拍子揃った秀作と言えるでしょう。 なお、原書ではイズレイル ザングウィル「ビッグ・ボウの殺人」、とHenry Kane「The Narrowing Lust」という長編二作が収録されていますが、ポケミス版では省略されています。 前者は翻訳されていまが、中盤が退屈、最後まで読み通すことが出来ませんでした。 後者は、 私立探偵 Peter Chambers 登場のハードボイルド物。「密室」とは異質のように思われますが、いかがなものでしょうか。時間を見て読んでみたいと思います。 　このアンソロジーには個人的な思い出があります。この本を新刊で購入したのは、まだ中学生だった1971年(昭和46年)の冬ですが、定価の550円はかなり高価だった記憶があります。当時の文庫本の価格といえば、ほぼ100円台。創元推理文庫から出ていた分厚いクイーンの「ギリシヤ棺の謎」が220円だった記憶がありますから、550円といえばその倍以上、購入には相当の覚悟が必要でした。よほど欲しかったのでしょうね。 早川書房　昭和46年11月10日印刷　昭和46年11月15日発行　345ページ　550円 ポケミスに特別なカバーがついているのは、映画化されたものがほとんどなのですが、本書は例外的に畑農照雄によるカバーがかかっていました。"
+  },
+  {
     url: "https://rsn604.github.io/eqmm/",
     title: "EQMMs",
     date: "2024-09-13T00:00:00Z",
@@ -12,12 +48,6 @@ var data = [
     title: "HMM 1967/8 No.136",
     date: "2024-09-13T00:00:00Z",
     body: "HMM 1967/8 No.136 「恐怖・怪奇小説特集」はどれも今ひとつ。巻末のブランドだけが輝いています。 題名 作者 評点 コメント ハリー ローズマリー・ティンパリイ 6.0 幼い少女が夢想する少年。母はその正体にたどり着くのだが．．。ラストはひねりもなく平凡。 ねずみ狩り ヘンリー・カットナー 6.0 ネズミの不気味さは伝わってくるが、それだけだ。 死人は憶えている ロバート・Ｅ・ハワード 4.0 呪いをかけられた男の末路。古臭い。 淋しい場所 オーガスト・ダーレス 7.0 「淋しい場所」が創り出す怖さの表現がうまい。 見えない金庫 アーサー・ポージス 6.0 室内に隠されたダイヤの所在を指摘する素人探偵。さほどの出来ではない。 ノーク博士の島 ロバート・ブロック 6.5 ノーク博士にインタビューへ行く記者。ハチャメチャな話。 待っている クリストファー・イシャーウッド 4.0 何が書きたいのかよくわからん。 ダマスカスへの道 マイケル・ギルバート 2.0 展開がよくわからないうえにくどい。 墓碑銘 ブラッドリイ・ストリックランド 6.0 死んだと思われた男が戦場から戻ってきたのだが．．。ラストは想定通り。 墓を愛した少年 フィッツ＝ジェイムズ・オブライエン 3.0 墓を守る少年の話のようだが、つまらない。 就職戦線異常なし チャールズ・マッキントッシュ 3.0 ショートショートだが、オチがわからない。 分裂症の神 クラーク・アシュトン・スミス 6.0 悪魔を呼び出し治療しようとする精神科医。妙におかしい展開。 婚姻飛翔 クリスチアナ・ブランド 8.0 婚前の食卓で毒物死の暴君。美貌の夫人と彼女に惹かれる三人の男。短い作品の中で二重、三重の展開はさすがである。 怪船マジック・クリスチャン号3 テリー・サザーン 馬に乗った水夫17 最終回 アーヴィング・ストーン 復帰妖怪変化夏 矢野浩三郎 怪奇小説の条件 ダシール・ハメット なぜ幽霊譚を書くか Ｈ・Ｒ・ウェイクフィールド ベルが鳴っている 福田淳 地獄の仏 石川喬司 私の好きなベスト5 星新一 ミステリ診察室 各務三郎 ディック・フランシス「穴」 翻訳権今昔20年(最終回) 宮田昇 ノンフィクションガイド 青木雨彦 著者と立ち話 「追いつめる」の生島治郎氏 名作ダイジェスト フランク・グルーバー「ドリス失踪事件」 海外ミステリ消息 怪談実話 響きと怒り ミステリ駒漫画　混合次元 梅田秀俊 表紙 表紙の言葉 真鍋博 目次・扉 真鍋博 イラスト 勝呂忠・真鍋博・金森達・新井苑子・杉村篤・池田拓・伊藤直樹・岩渕慶造 ページ 202ページ 定価 200円 今号は「恐怖・怪奇小説特集」ということです。本誌はその後、毎年8月号を「幻想と怪奇」特集としていますが、今年がその始まりだったようです。その編集には、仁賀克雄が中心に当たっていたと聞いたことがありますが、今回の巻頭言で『本号は矢野浩三郎氏にお世話になりました。』とあり、矢野も「復帰妖怪変化夏　文学史に観るヴァンパイアの系譜」という一文を投じているので、今号は彼がセレクションの中心だったのかもしれません。 さて、その「恐怖・怪奇小説特集」ですが、酷暑を吹き飛ばす寒気がするような作品を期待しましたが、全体として低調、ぱっとしませんでした。それを払拭したのが、巻末のクリスチアナ・ブランド「婚姻飛翔」。特集とは無縁の作品ですが、さすがブランド。ラストに二重三重の展開を仕掛け、本格ファンを満足させてくれました。"
-  },
-  {
-    url: "https://rsn604.github.io/",
-    title: "TORIO's blog",
-    date: "2024-09-13T00:00:00Z",
-    body: "TORIO's blog"
   },
   {
     url: "https://rsn604.github.io/eqmm/1967-07-135/",
@@ -36,12 +66,6 @@ var data = [
     title: "BOOKs",
     date: "2024-08-11T00:00:00Z",
     body: "BOOKs"
-  },
-  {
-    url: "https://rsn604.github.io/categories/",
-    title: "Categories",
-    date: "2024-08-11T00:00:00Z",
-    body: "Categories"
   },
   {
     url: "https://rsn604.github.io/book/%E4%B8%AD%E7%94%BA%E4%BF%A1%E3%82%92%E8%AA%AD%E3%82%80%E3%81%9D%E3%81%AE3/",
@@ -84,12 +108,6 @@ var data = [
     title: "真昼に別れるのはいや ( 笹沢左保 )",
     date: "2024-08-02T00:00:00Z",
     body: "真昼に別れるのはいや ( 笹沢左保 ) 「動機捜し」なのだが、少し無理がありすぎ説得力に乏しい。 引き続き、桃源社の「書き下ろし推理小説全集・第二期」の一冊として書き下ろされた笹沢左保(1930-2002)の「真昼に別れるのはいや」(1961)を読んでみます。笹沢は1960年の「招かれざる客」で登場、その後は「霧に溶ける」、「結婚って何さ」、「人喰い」と出来の良い作品を書き下ろしていますが、今回はどうでしょうか。 こんな話 　妻に先立たれた新倉春彦は、娘まで自動車事故で失って以来、失意の生活を送っていた。そんな兄を妹の多美子は心配していたのだが、ある時から春彦は自宅に女性を招き入れるようになる。兄の新たな恋人の出現を多美子は喜ぶのだが、その女性は春彦の親会社の社長令嬢で、親が決めた婚約が進んでいたのである。 そんなある日、春彦は旅行に出た後、ダムで死体で見つかってしまう。その死は状況から見て自殺として処理されたのだが、それに疑問を持った多美子は、自ら関係者に話を聞いて回っていた。 　この事件に興味を持ったのは多美子だけではなかった。新聞記者の富田は、「就職に不採用になったのは面接担当者の責任だ」という投書に目をやった。その担当者の氏名が、自殺者した新倉春彦と同一であることに気がついた富田は、好奇心に駆られ投書先に出向く。不採用になった青年は赤松といい、その決定に父の省三は激怒していたという。現在、省三は金策に向かっているというのだが、富田が調べてみると、その事実はなく彼は行方不明となっていたのである。その後、省三の毒物死体が発見された．．。 　捜査途中で出会った多美子と富田は、互いに惹かれ合いながら真相に迫る。彼らが疑いの目を向けたのは．．．。 読み終えると 　この作品のテーマは「動機捜し」です。犯人は中途でわかってしまうので、よほど意外な動機を持ってこないと高い評価は得られないでしょう。しかし、今回の設定は、殺人の動機としてはあまりに弱い。対象である人間だけでなく、自らのアリバイ作りのために共犯者を用意し、しかもその人間まで毒殺する動機がこれでは、あまりに説得力がありません。笹沢のストーリー展開の旨さには感心させられますが、如何せん無理がありすぎました。 桃源社　昭和36年6月15日再版　259ページ　280円 この本、再版がかかっている。さすが笹沢ですね。"
-  },
-  {
-    url: "https://rsn604.github.io/anthology/",
-    title: "ANTHOLOGYs",
-    date: "2024-08-01T00:00:00Z",
-    body: "ANTHOLOGYs"
   },
   {
     url: "https://rsn604.github.io/anthology/%E6%8E%A2%E5%81%B5%E5%B0%8F%E8%AA%AC%E5%90%8D%E4%BD%9C%E5%85%A8%E9%9B%8611%E7%9F%AD%E7%AF%87%E9%9B%86/",
@@ -168,12 +186,6 @@ var data = [
     title: "HMM 1967/1 No.129",
     date: "2024-05-26T00:00:00Z",
     body: "HMM 1967/1 No.129 フィッツジェラルドの都会小説一篇に感心。 題名 作者 評点 コメント ママ、アリアを唱う ジェイムズ・ヤッフェ 7.0 ヤッフェのママシリーズ。こういう本格物は貴重だ。 時はまぼろし ジェラルド・カーシュ 6.5 オチは決まっていないが、文中の話が面白い。 死の遊び レイ・ブラッドベリ 4.0 子供に恐怖する教師。つまらない。 鳩の中の猫 アンソニー・ギルバート 5.0 老人を介護する女は過去の事件の話を聞き出す。長すぎて退屈だし結末は平凡。 青いアネモネ サックス・ローマー 2.0 なんというつまらん話。 グランド・ナショナル・レースの殺人 ジュリアン・シモンズ 6.0 女たらしの毒殺事件をめぐる平凡な本格物。 古風なクリスマス リング・ラードナー 6.5 少し古臭いが世代間の違いを際立たせる手法が面白い。 ふるさとに帰る Ｆ・Ｓ・フィッツジェラルド 8.5 謎の男から幼馴染の女を守ろうとする主人公。一人称の語り口がうまく後味もよい。 誘拐課 こわれたT エラリイ・クイーン 4.0 よくわからないパズラー。「読者への挑戦」しても誰も解けないでしょうね。 来訪者 ロアルド・ダール 6.5 単なるエロ話のように見せておいて最後に皮肉な結末をつけるのはさすがだ。でも中盤が長すぎる。 馬に乗った水夫10 アーヴィング・ストーン 進化した猿たち 星新一 地獄の仏 石川喬司 紙上殺人現場(最終回) 大井広介 現代のアメリカ風物(最終回) 中内正則 デュッソー館を訪ねて 福島正実 私の好きなベスト5 樹下太郎 翻訳権今昔20年(6) 宮田昇 ノンフィクション・ガイド 青木雨彦 hmm５番館 大伴昌司 新着書紹介 ミステリ名簿 大伴昌司 響きと怒り いざ決闘 梅田秀俊 表紙 表紙の言葉 真鍋博 目次・扉 真鍋博 カット 勝呂忠・真鍋博・杉村篤・新井苑子・金森達・池田拓 ページ 202ページ 定価 200円 今号の目玉は、ロアルド・ダールの「来訪者」。この頃のダールはもはやミステリレベルを超越した作家でしたから、結構な翻訳料を払ったことでしょう。この作品、ラストのひねりは「さすがダール」と思わせますが、中盤は無駄話が続き冗長な印象を拭えません。解説によると、「アメリカの掲載先であるプレイボーイ誌は内容を書き換えている」とありますが、この部分をカットしたのかもしれません。 今回印象に残ったのは、Ｆ・Ｓ・フィッツジェラルドの「ふるさとに帰る」という作品。ヤクザ風の男につきまとわれているヒロインと、それを一途に守ろうとする主人公の正義感、幻想的なラストもマッチしてなかなか良い話でした。 また、この号でEQMM時代から長らく連載されていた大井広介「紙上殺人現場」と中内正則「現代のアメリカ風物」が最終回。紙面刷新の一環でしょうか。"
-  },
-  {
-    url: "https://rsn604.github.io/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/",
-    title: "ポケミス",
-    date: "2024-05-24T00:00:00Z",
-    body: "ポケミス"
   },
   {
     url: "https://rsn604.github.io/book/%E7%9C%9F%E5%AE%9F%E3%81%AE%E5%95%8F%E9%A1%8C%E7%94%9F%E3%81%8D%E3%81%A6%E3%81%84%E3%82%8B%E7%97%95%E8%B7%A1%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%88%E3%83%96%E3%83%AA%E3%83%BC%E3%83%B3/",
@@ -276,12 +288,6 @@ var data = [
     title: "FreeDOS 1.3をQEMU上で動かそう ( 自動化スクリプトで日本語環境やツールも一括導入してみる )",
     date: "2024-02-12T00:00:00Z",
     body: "FreeDOS 1.3をQEMU上で動かそう ( 自動化スクリプトで日本語環境やツールも一括導入してみる ) 　ときどき妙に、「MS-DOSが懐かしくなる」ことがあります。まあ、PCを使い始めた頃の環境がDOSだったのですから、これはある意味当然のことなのかもしれません。郷愁ですね。 その中には、「こんなときは、自宅で鉄道旅行でもプランニングしよう（２）(MARS を動かす環境を作る)」で紹介したMARSのように、現在でも使い続けているツールもありますから、MS-DOS環境は一定整備しておかねばなりません。前回は、先人の作った環境をそのまま拝借してしまいましたが、今回はハードディスクイメージを新規作成し、DOS環境を一からインストールしてみましょう。 　導入するOSは、「FreeDOS 1.3」となります。その名のとおり、フリーなDOS環境で、現在でも開発が続けられているという貴重な存在です。Wikipediaでは、下記のように紹介されています。 FreeDOSは、PC/AT互換機のためのオペレーティングシステム (OS) である。MS-DOS互換の自由な代替環境などを目的として作られた。現在の最新バージョンは2022年2月20日に公開された1.3である。 [1]　事前準備 (1)　QEMUのインストール 　DOSを動かすために実機を使うのは現実的でないので、仮想環境を使いましょう。今回は QEMU で386環境をエミュレート、そのうえで、FreeDOSを稼働させます。なお、実マシン環境は、Xubuntu 22.04 を使用しています。 まずは、QEMUをインストール sudo apt -y install qemu qemu-utils qemu-system-x86 (2)　ハードディスクイメージの作成 　次に、FreeDOSをインストールするハードディスクイメージを作成します。DOSですので、128MBもあれば十分でしょう。 適当なディレクトリ(以下 /home/xxxx/freedos とする)を用意し、下記のコマンドでファイル(fd13.imgとする)を作成します。 cd /home/xxxx/freedos qemu-img create -f raw fd13.img 128M (3)　FreeDOS 1.3 のダウンロード 　このサイトの中央に表示されている LiveCD をクリック、FD13-LiveCD.zipをダウンロードし、(2)と同じディレクトリ(/home/xxxx/freedos)に解凍しておきます。 [2]　FreeDOSのインストール 　先に解凍したFreeDOSのCDイメージからブートし、FreeDOSのインストールを開始します。下記のスクリプトを起動しましょう。 qemu-system-i386 -m 16 -rtc base=localtime -drive file=fd13.img,format=raw -cdrom FD13LIVE.iso -boot d 1)　インストールの実行 　最初に下記の画面が出るので、ここからガイダンスに従って進めていくだけです。 まずは、 \u0026ldquo;Install to harddisk\u0026rdquo; を選択します。注意すべき点は、完了後 Reboot を選ぶと、再度この画面に戻ってきますので、ここでもう一度 \u0026ldquo;Install to harddiskを\u0026rdquo; を選択して進めることです。Language や Keyboard も、後から再設定できるので、English のままで構いません。 導入する Package は、英語版のツールに興味はないので、Plain DOS system だけにしておきます。 Full installation を選択すると、ディスク容量が128Mでは足りないと思いますので、その場合は、(2)で作成するディスクイメージ容量を512M程度にしておくと良いでしょう。 2)　FreeDOSの起動 　完了後、ハードディスクにインストールしたFreeDOSを起動します。 qemu-system-i386 -m 16 -rtc base=localtime -device sb16 -device adlib -drive file=/home/xxxx/freedos/fd13.img,format=raw -boot order=c 下記の画面が出れば、FreeDOS 1.3のインストールは完了です。 [3]　日本語環境と基本ツールのインストール 　英語圏の方は、前項までの作業で終了。楽で良いですな。 しかし、極東に住む大和民族はそうはいかないので、ここから日本語環境を構築していきます。 　日本語環境設定には、日本語フォント、Font Driver、Display Driverなどのインストールとセットアップが必要です。 しかし、これは何回やっても面倒、というか、毎回やり方を忘れてしまっているので、調べ直しに時間がかかり、そのうえ設定ミスをしたりするなどなど、いつもイライラが募ります。そんなつまらない作業を避けるべく、今回は「日本語環境構築を一括で行うスクリプト」を作成しました。日本語環境だけでなく、ついでにDOSの基本ツールも同時にインストールしてしまいます。 まあ、wget でダウンロード後、lha や unzip で解凍し適当なディレクトリにコピー、FreeDOSの設定ファイルである FDCONFIG.SYS と FDAUTO.BAT を修正してしまうだけなんですけどね。 1)　準備 　必要なツール、wget と lhasa をインストールしておきます。また、FreeDOSのハードディスクイメージを Loopback device としてMountするディレクトリ(/mnt/freedos)を作成しておきます。 sudo apt -y install lhasa wget sudo mkdir -p /mnt/freedos 2)　一括処理スクリプト 　下記のスクリプトをコピーし、ディスクイメージと同一のディレクトリ(/home/xxxx/freedos)に、/home/xxxx/freedos/jp.sh という名称で作成しておきます。 if [ -d ./jpwork ]; then rm -rf jpwork fi mkdir jpwork cd jpwork mkdir chej cd chej wget http://www.mna.jp/natrium/software/CHEJ610.LZH lha e CHEJ610.LZH rm CHEJ610.LZH cd .. mkdir dispv cd dispv wget https://web.archive.org/web/20230502101432/http://www.hmsoft.co.jp/lepton/software/dosv/disp160a.lzh lha e disp160a.lzh rm disp160a.lzh cd .. mkdir font cd font wget http://web.archive.org/web/20160929103053/http://homepage3.nifty.com/silo/FONTV/VGON16.LZH lha e VGON16.LZH rm VGON16.LZH mv vgon16/*.tlf . rm -rf vgon16 cd .. mkdir fontn cd fontn wget https://www.nanshiki.co.jp/free/fontn10.lzh lha e fontn10.lzh rm fontn10.lzh cd .. mkdir pansi cd pansi wget https://ftp.vector.co.jp/19/70/374/pansi103.lzh lha e pansi103.lzh rm pansi103.lzh cd .. mkdir lpkkc cd lpkkc wget https://ftp.vector.co.jp/47/67/547/lpkkc107.zip unzip lpkkc107.zip rm *.zip cd .. mkdir adddev cd adddev wget http://hp.vector.co.jp/authors/VA003720/lpproj/dos/add255p1_20070904.zip unzip add255p1_20070904.zip rm *.zip cd .. wget https://www.gfd-dennou.org/library/cc-env/unixlike/uxtl411a.tgz tar xzf uxtl411a.tgz rm uxtl411a.tgz cd uxtl411a mv bin ../ cd .. rm -rf uxtl411a rm -rf appeal cd bin wget http://hp.vector.co.jp/authors/VA012947/software/fdsk136.lzh lha e fdsk136.lzh rm fdsk136.lzh rm fdsk.txt cd .. mkdir usr cd usr mkdir mars cd mars wget https://www.swa785.net/pub/mars/mars533.lzh lha e mars533.lzh rm mars533.lzh cd ../../ cd usr mkdir jed cd jed wget https://ftp.vector.co.jp/03/94/633/jed194v.lzh lha e jed194v.lzh rm jed194v.lzh cd ../../ cd usr mkdir fd55 cd fd55 wget https://ftp.vector.co.jp/04/52/554/fd55_313.lzh lha e fd55_313.lzh rm fd55_313.lzh cd ../../ cat \u0026gt; ./font/fontn.ini \u0026lt;\u0026lt;END [CODE] F040 F0FC [FONT] GONHN16X.TLF GONHN19X.TLF GONZN16X.TLF END cat \u0026gt; ./FDCONFIG.SYS \u0026lt;\u0026lt;END rem SET DOSDIR=C:\\FreeDOS !LASTDRIVE=Z !BUFFERS=20 !FILES=40 !MENUCOLOR=7,0 MENUDEFAULT=1,5 MENU 1 - Japanese Mode MENU 2 - English Mode MENU 3 - Load FreeDOS without drivers (Emergency Mode) 12?DOS=HIGH 12?DOS=UMB 12?DOSDATA=UMB 12?DEVICE=C:\\FreeDOS\\BIN\\JEMMEX.EXE NOEMS X=TEST I=TEST NOVME NOINVLPG 3?DEVICE=C:\\FreeDOS\\BIN\\HIMEMX.EXE 12?SHELLHIGH=C:\\FreeDOS\\BIN\\COMMAND.COM C:\\FreeDOS\\BIN /E:1024 /P=C:\\FDAUTO.BAT 3?SHELL=C:\\FreeDOS\\BIN\\COMMAND.COM C:\\FreeDOS\\BIN /E:1024 /P=C:\\FDAUTO.BAT 1?DEVICEHIGH=c:\\FONTN\\FONTNX.EXE /P=c:\\FONT\\\\ 1?DEVICEHIGH=c:\\DISPV\\DISPV.EXE 1?COUNTRY=081,932,C:\\FreeDOS\\BIN\\COUNTRY.SYS 23?COUNTRY=001,858,C:\\FreeDOS\\BIN\\COUNTRY.SYS rem 1?DEVICE=c:\\LPKKC\\LPKKC.SYS /S128 /V rem 1?DEVICE=c:\\KTN4\\KTN4.SYS /F=c:\\KTN4\\KTN4.CFG rem 1?DEVICE=c:\\KTN4\\KTN4C.SYS /F=c:\\KTN4\\KTN4.CFG END cat \u0026gt; ./FDAUTO.BAT \u0026lt;\u0026lt;END @ECHO OFF rem set DOSDRV=C: rem set DOSDIR=C:\\FreeDOS SET TZ=JST-9 set TEMP=C:\\FreeDOS\\TEMP set TMP=%TEMP% set BLASTER=A220 I5 D1 H5 P330 set OS_NAME=FreeDOS set OS_VERSION=1.3 alias reboot=fdapm warmboot alias halt=fdapm poweroff set PATH=C:\\FreeDOS\\BIN;c:\\chej;c:\\pansi;c:\\bin;c:\\usr\\mars;c:\\usr\\jed;c:\\usr\\fd55 loadhigh pansi.com IF \u0026quot;%config%\u0026quot;==\u0026quot;1\u0026quot; chej jp keyb jp END cd ../ sudo mount -t msdos -o loop,offset=32256,uid=$(id -u),gid=$(id -g) fd13.img /mnt/freedos mv /mnt/freedos/fdconfig.sys fdconfig.org mv /mnt/freedos/fdauto.bat fdauto.org cp -rf jpwork/* /mnt/freedos/ sudo umount /mnt/freedos 実行権限を付加し、実行します。スクリプト中の sudo mount で「パスワード」を聞かれますので、入力してください。 cd /home/xxxx/freedos chmod +x jp.sh ./jp.sh なお、このスクリプトはサイトが封鎖されたり、URLが変更された場合、動かなくなります。2024年2月でも、DISPVのサイト(http://www.hmsoft.co.jp/lepton/software/dosv/disp160a.lzh)が亡くなってしまったようなので、Internet Archiveからダウンロードする設定に変更せざる得ませんでした。 3)　FreeDOS 1.3 日本語環境の起動 　完了後、再度FreeDOSを起動します。 qemu-system-i386 -m 16 -rtc base=localtime -device sb16 -device adlib -drive file=/home/xxxx/freedos/fd13.img,format=raw -drive file=fat:rw:/home/xxxx/freedos/programs/ -boot order=c 起動メニューには、日本語モード(デフォルト)、英語モードが選択できるようになっています。 日本語モードを選択すると、下記のような画面となります。 なお、-drive file=fat:rw:/active/freedos/programs/ のようにディレクトリを追加しておくと、ここが Dドライブ となり、ファイルのコピーなどに利用できます。 残念ながら、日本語入力はフリーのツールだけではできません。刀(KTN4)で日本語入力ができることは確認していますが。 3)　導入ツール 　下記のツールもインストールしてみました。 Unix like tools ls、cp、mv、cat、tar、which などのUNIX系のツールが動作します。また、ディレクトリのセパレータには、 ”/” が使えます。正直言って、このツールがないとDOS上で満足な作業が出来ません。個人的に必須のツール。 mars JR運賃計算ツール。これのために、DOS環境を構築していると言っても過言ではありません。鉄旅ファンなら必携。 jed エディタ。本当は ”VZ Editor”を使いたいのですが、商業ツールであり現状入手も難しそうなので、フリーのエディタである ”JED”をインストール。これも良く出来たツールです。 fd55 有名なファイラーなので、とりあえず入れてみました。本当のことを言うと、全く使ったことがありません。今回、動かしてみましたが起動が遅いな。”DFX”あたりのほうが良いかもしれません。 4)　その他注意点 　QEMU が Mouse と Keyboard を Capture してしまい、「メインOS上で入力できなくなる」場合があります。その際には、慌てず騒がず Ctrl+Alt+g を押すこと。制御が戻ってきます。"
-  },
-  {
-    url: "https://rsn604.github.io/categories/%E5%AF%86%E5%AE%A4%E3%82%92%E8%AA%AD%E3%82%80/",
-    title: "「密室」を読む",
-    date: "2024-02-09T00:00:00Z",
-    body: "「密室」を読む"
   },
   {
     url: "https://rsn604.github.io/anthology/%E9%9D%92%E3%81%84%E5%AF%86%E5%AE%A4-%E5%90%8D%E6%8E%A2%E5%81%B5%E6%98%9F%E5%BD%B1%E9%BE%8D%E4%B8%89%E5%85%A8%E9%9B%86%E3%83%BC%E9%AE%8E%E5%B7%9D%E5%93%B2%E4%B9%9F/",
