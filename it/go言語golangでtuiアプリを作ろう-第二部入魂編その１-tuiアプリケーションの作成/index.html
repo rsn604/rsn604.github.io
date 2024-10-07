@@ -195,6 +195,32 @@ if (!doNotTrack) {
 <p>とあります。<br>
 すなわち、開発時にはその環境に<strong>gcc</strong>が必要であり、実行環境も<strong>gcc</strong>のライブラリ<strong>glibc</strong>に依存していることになり、バージョンが違うと動作しないと思われます。これは、今回のアプリケーション設計における初期ポリシーに反するものであり、<strong>golang</strong>のようなコンパイラを使うメリットがスポイルされることになってしまいます。</p>
 <hr>
+<h3 id="202410追記sqliteに対するpure-goのモジュールの利用">2024/10追記　SQLiteに対するPure Goのモジュールの利用</h3>
+<p>　これを書いていた同時期に <a href="https://github.com/glebarez/go-sqlite" target="_blank">「SQLiteに対するPure Goのモジュール」</a> が開発されていたようです。</p>
+<p>　2年近く経ってからようやく気がついくというお粗末な体たらくですが、今回当時開発していたコードをテストしてみましたが、<strong>database/sql</strong>標準に準拠されていますので、2箇所の変更だけで動作しました。</p>
+<pre><code>//import文  
+import (  
+      :  
+  
+	_ &quot;github.com/glebarez/go-sqlite&quot;  
+	//_ &quot;github.com/mattn/go-sqlite3&quot;  
+}  
+</code></pre><pre><code>// DB Open時の文字列  
+	//sqlite3.Db , err = sql.Open(&quot;sqlite3&quot;, connectString)  
+	sqlite3.Db, err = sql.Open(&quot;sqlite&quot;, connectString)  
+</code></pre><p>データアクセス機能検証のため、<a href="https://github.com/go-sql-driver/mysql" target="_blank">こちらのモジュール</a>を使用した <strong>MySQL</strong> 対応も入れておきます。<br>
+なお、MySQLの設定などは、<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%97-python%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A9%9F%E8%83%BD/">「PythonでTUIアプリを作ろう 第二部入魂編(その７　Pythonのデータアクセス機能)」</a>を参照してください。</p>
+<pre><code>ユーザーID           &quot;user01&quot;  
+パスワード           &quot;pass01&quot;  
+サーバーのアドレス    &quot;192.168.0.33&quot;  
+データベース          &quot;ListDB&quot;  
+</code></pre><p>の場合、接続文字列は下記となります。</p>
+<pre><code>user01:pass01@tcp(192.168.0.33:3306)/ListDB  
+  
+</code></pre><p>上記モジュールを使用したソースを <a href="https://github.com/rsn604/golang_tui" target="_blank">GitHub</a> に登録しました。コードは、<a href="https://github.com/rsn604/golang_tui/tree/main/ListDBG_SQLite" target="_blank">こちら</a> です。</p>
+<p>これがあれば、以下の苦労は必要なかったのでしょうが、まあ、いろいろな機能をテストするのは楽しいものですから良しとしておきます。なお、次項で取り上げた <strong>BoltDB</strong> は取っ付きは悪いですが、性能が良いので、Webアプリケーションなどでの採用も悪くない選択だと思っています。<br>
+(以上　追記)</p>
+<hr>
 <h3 id="5対応施策">[5]　対応施策</h3>
 <p>上記の課題を解決する施策は唯一つ、<strong>golang</strong>でスタティックにコンパイルできるデータベース、すなわち<strong>golang</strong>自身で書かれたデータベースを探し出し、使用することにつきます。</p>
 <p>次回はその対応について説明しましょう。</p>
