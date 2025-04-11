@@ -238,7 +238,7 @@ cd ..
   
 mkdir fontn  
 cd fontn  
-wget https://www.nanshiki.co.jp/free/fontn10.lzh  
+wget --no-check-certificate https://www.nanshiki.co.jp/free/fontn10.lzh  
 lha e fontn10.lzh  
 rm fontn10.lzh  
 cd ..  
@@ -259,7 +259,8 @@ cd ..
   
 mkdir adddev  
 cd adddev  
-wget http://hp.vector.co.jp/authors/VA003720/lpproj/dos/add255p1_20070904.zip  
+wget https://web.archive.org/web/20241218032531/http://hp.vector.co.jp/authors/VA003720/lpproj/dos/add255p1_20070904.zip  
+#wget http://hp.vector.co.jp/authors/VA003720/lpproj/dos/add255p1_20070904.zip  
 unzip add255p1_20070904.zip  
 rm *.zip  
 cd ..  
