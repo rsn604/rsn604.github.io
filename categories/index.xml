@@ -6,10 +6,19 @@
     <description>Recent content in Categories on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 25 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 May 2025 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>鉄道アンソロジー</title>
+      <link>https://rsn604.github.io/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/</link>
+      <pubDate>Tue, 20 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>「宝石傑作選」を読む</title>
@@ -80,15 +89,6 @@
       <pubDate>Tue, 27 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>https://rsn604.github.io/categories/dos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>鉄道アンソロジー</title>
-      <link>https://rsn604.github.io/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/</link>
-      <pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rsn604.github.io/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/</guid>
       <description></description>
     </item>
     
