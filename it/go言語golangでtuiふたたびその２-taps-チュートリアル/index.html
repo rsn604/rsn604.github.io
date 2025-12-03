@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCC7KFXF3W"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GCC7KFXF3W');
+	</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )" />
+<meta property="og:description" content="Taps を利用するプログラムは、入力パネルを TOML 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/" />
+<meta property="article:published_time" content="2025-12-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-12-02T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )"/>
+<meta name="twitter:description" content="Taps を利用するプログラムは、入力パネルを TOML 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォ"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM-HMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-12-02T00:00:00Z">December 02, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>　<strong>Taps</strong> を利用するプログラムは、入力パネルを <strong>TOML</strong> 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォーマットの1つです。詳細は、<a href="https://ja.wikipedia.org/wiki/TOML" target="_blank">こちら</a>などを参照してください。</p>
+<hr>
+<h2 id="1-入力プログラムの例-examples01_inputinputgo">[1] 入力プログラムの例 (<strong>examples/01_input/input.go</strong>)</h2>
+<p>　下記のような入力画面があるとします。</p>
+<p><img src="/IT/Go%E8%A8%80%E8%AA%9E(golang)%E3%81%A7TUI%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3(%E3%81%9D%E3%81%AE%EF%BC%92)01.input.png" alt="INPUT"></p>
+<h3 id="1-パネルの定義">(1) パネルの定義</h3>
+<p>　最初にフィールド属性定義がありますが、これは後述するとして、&quot;<strong>var doc</strong>&rdquo; 以下を見てください。<br>
+まずは、パネルの定義をします。<strong>StartX</strong>、<strong>StartY</strong> が始点、<strong>EndX</strong>、<strong>EndY</strong> が終点を示します。<br>
+&ldquo;<strong>9999</strong>&rdquo; には特別な意味があり、ターミナルサイズに置き換わります。例えば、サイズ <strong>80x24</strong> のターミナルならば、<strong>EndX</strong> は &ldquo;79&rdquo;、<strong>EndY</strong> は &ldquo;23&rdquo; となります。これにより、ターミナルのサイズによる違いを吸収するというわけです。</p>
+<pre><code>	var doc = `  
+StartX = 0  
+StartY = 0  
+EndX = 9999  
+EndY = 9999  
+</code></pre><h3 id="2-フィールドの定義">(2) フィールドの定義</h3>
+<p>　続けてフィールドの設定を行います。下記のように、<strong>[[Field]]</strong> タグを使用して、各フィールドを定義していきます。</p>
+<pre><code>[[Field]]  
+Name = &quot;L01&quot;  
+Data = &quot;E01　String(20)&quot;  
+X = 2  
+Y = 4  
+Style = &quot;label&quot;  
+FieldType = &quot;label&quot;  
+  
+[[Field]]  
+Name = &quot;E01&quot;  
+X = 20  
+Y = 4  
+Style = &quot;edit, edit_focus&quot;  
+FieldLen = 20  
+FieldType = &quot;edit&quot;  
+</code></pre><p>この例では、最初の表示フィールドと入力フィールドを設定しています。フィールドタイプは、<strong>FieldType</strong> で指定します。tapsでサポートしているフィールドタイプは、&quot;<strong>label</strong>&quot;、&quot;<strong>edit</strong>&quot;、&quot;<strong>select</strong>&rdquo; の3種類のみです。</p>
+<p>また、<strong>E02</strong>フィールドのように、**Attr = &ldquo;N&rdquo; **を指定すると、数字入力のみ(&ldquo;+&rdquo;、&quot;-&quot;、&quot;.&ldquo;を含む)が可能なフィールドとなります。この例では、<strong>DataLen = 6</strong> でデータの桁数も制限しています。</p>
+<pre><code>[[Field]]  
+Name = &quot;E02&quot;  
+X = 20  
+Y = 6  
+Style = &quot;edit, edit_focus&quot;  
+FieldLen = 6  
+DataLen = 6  
+Attr = &quot;N&quot;  
+FieldType = &quot;edit&quot;  
+</code></pre><h3 id="3-フィールドのスタイル定義">(3) フィールドのスタイル定義</h3>
+<p>　フィールドスタイルとは表示される際のアトリビュートのことで、単に表示されている場合と、フォーカスが当たっている場合の2つについて指定することができます。</p>
+<pre><code>	var styleMatrix = [][]string{  
+		{&quot;label&quot;, &quot;lightcyan&quot;, &quot;default&quot;},  
+		{&quot;select&quot;, &quot;yellow&quot;, &quot;default&quot;},  
+		{&quot;select_focus&quot;, &quot;red,bold&quot;, &quot;white&quot;},  
+		{&quot;edit&quot;, &quot;white, underline&quot;, &quot;black&quot;},  
+		{&quot;edit_focus&quot;, &quot;yellow&quot;, &quot;black&quot;},  
+		{&quot;note&quot;, &quot;white&quot;, &quot;black&quot;},  
+		{&quot;note_focus&quot;, &quot;yellow,underline&quot;, &quot;black&quot;},  
+	}  
+</code></pre><p>1項目目に、Styleで指定した文字列、2番めがForeGroundの属性、3番めにBackGroundの属性を指定します。色属性は、tcellが定数定義しているものなので、<a href="https://github.com/gdamore/tcell/blob/main/color.go" target="_blank">こちら</a>を参照ください。</p>
+<h3 id="4-パネルの登録">(4) パネルの登録</h3>
+<p>　すべてのフィールドを定義して、下記のように <strong>NewPanel</strong>関数にパラメータとして渡します。</p>
+<pre><code>func InputPanel() *taps.Panel {  
+	 :  
+	 :  
+	return taps.NewPanel(doc, styleMatrix, &quot;&quot;)  
+}  
+</code></pre><h3 id="5-入力フィールドの編集">(5) 入力フィールドの編集</h3>
+<p>　入力フィールドでは下記のキーを使用することができます。</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESC</td>
+<td>パネルの終了</td>
+</tr>
+<tr>
+<td>CTRL+B(ArrowR)</td>
+<td>カーソルを右に移動</td>
+</tr>
+<tr>
+<td>CTRL+F(ArrowL)</td>
+<td>カーソルを右に移動</td>
+</tr>
+<tr>
+<td>TAB</td>
+<td>フィールド間の移動</td>
+</tr>
+<tr>
+<td>CTRL+A</td>
+<td>カーソルを行頭に移動</td>
+</tr>
+<tr>
+<td>CTRL+E</td>
+<td>カーソルを行末に移動</td>
+</tr>
+<tr>
+<td>CTRL+K</td>
+<td>カーソル以下を削除</td>
+</tr>
+<tr>
+<td>CTRL+D(DEL)</td>
+<td>カーソル位置を削除</td>
+</tr>
+<tr>
+<td>CTRL+H(BS)</td>
+<td>カーソル前を削除。マルチラインの行頭では行連結</td>
+</tr>
+<tr>
+<td>ENTER</td>
+<td>&quot;edit&quot;の場合、次のフィールドへ。マルチラインでは行分割</td>
+</tr>
+</tbody>
+</table>
+<p>フィールドを <strong>Disbale/Enable</strong>、<strong>Browse</strong>モードに変更するには、関数を使用します。</p>
+<pre><code>m.panel.SetDisabled(&quot;E01&quot;)  
+m.panel.SetEnabled(&quot;E01&quot;)  
+  
+m.panel.SetBrowseMode(&quot;E03&quot;, true)  
+m.panel.SetBrowseMode(&quot;E03&quot;, false)  
+</code></pre><h3 id="6-プログラミングパターン">(6) プログラミングパターン</h3>
+<p>　通常のアプリケーションでは、複数のコードを使用することになると想定されるので、まずは <strong>struct</strong> を定義し、そこに使用するパネルを格納しておきます。</p>
+<pre><code>type Input struct {  
+	panel *taps.Panel  
+}  
+  
+func  (m *Input) Run() {  
+	if m.panel == nil {  
+		m.panel = InputPanel()  
+	}  
+  
+	m.panel.Store(&quot;Test Data&quot;, &quot;E01&quot;)  
+	m.panel.StoreList([]string{&quot;&quot;}, &quot;E03&quot;)  
+  
+	for {  
+		m.panel.Say()  
+		k, n := m.panel.Read()  
+		if k == tcell.KeyEscape || n == &quot;Q&quot;{  
+			break  
+		}  
+		if n == &quot;D&quot;{  
+			s := m.panel.Get(n)  
+  
+            :  
+</code></pre><p>　次に、データをパネル上のフィールドに設定しておきます。上記では、<strong>E01</strong> フィールドに、定数 &ldquo;Test Data&rdquo; を格納しています。フィールドにデータをセットする命令は <strong>Store</strong> となります。<br>
+その後に <strong>Say</strong> で画面に表示、<strong>Read</strong> で入力データを受け取るという手順が一般的でしょう。<strong>Read</strong> は、入力されたキーコードとフィールド名を返すので、その内容によってロジックを分岐させます。<br>
+　上の例では、&quot;<strong>Escape</strong>&ldquo;キーが押されたか、フィールド &ldquo;Q&rdquo; がセレクトされた場合、このループからブレイクすることになります。<br>
+また、フィールド &ldquo;D&rdquo; がセレクトされた場合には、<strong>Get</strong> によって、その内容を読み取っています。このようなパターンで、プログラムを構成することになります。</p>
+<hr>
+<h2 id="2-リスト形式の例-examples02_listlistgo">[2] リスト形式の例 (<strong>examples/02_list/list.go</strong>)</h2>
+<p>　リスト形式の構造について説明します。一般にListBoxと呼ばれる形式で、リスト表示した一覧からデータを選択する際に利用されることになるでしょう。</p>
+<p><img src="/IT/Go%E8%A8%80%E8%AA%9E(golang)%E3%81%A7TUI%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3(%E3%81%9D%E3%81%AE%EF%BC%92)02.list.png" alt="LIST"></p>
+<p>　パネルは、ターミナルの一部を指定します。また選択項目には、<strong>Rows = 12</strong> という行数を指定すれば、上記のような画面を定義できます。</p>
+<pre><code>StartX = 20  
+StartY = 4  
+EndX = 50  
+EndY = 17  
+Rect = true  
+  
+[[Field]]  
+Name = &quot;LIST&quot;  
+X = 2  
+Y = 1  
+Rows = 12  
+Style = &quot;list, list_focus&quot;  
+FieldType = &quot;select&quot;  
+</code></pre><p>この &ldquo;<strong>LIST</strong>&ldquo;フィールドには、<strong>StoreList</strong> で、stringの配列を渡すことで、実際のデータを設定できます。</p>
+<pre><code>func  (m *List) getList() []string {  
+	var listData []string  
+	for i := 0; i &lt; 30; i++ {  
+		listData = append(listData, &quot;Data&quot; + fmt.Sprintf(&quot;%d&quot;, i))  
+	}  
+	return listData  
+}  
+  
+func (m *List) Run() string {  
+	if m.panel == nil{  
+		m.panel = ListPanel()  
+	}  
+	m.panel.StoreList(m.getList(), &quot;LIST&quot;)  
+        :  
+</code></pre><p><strong>example</strong>では、適当なデータをセットしておきました。</p>
+<hr>
+<h3 id="3-godate-examples03_godategodatego">(3) GoDate (<strong>examples/03_godate/godate.go</strong>)</h3>
+<p>　次は少し複雑な構成のプログラムを見てみましょう。いわゆる <strong>Calendar</strong> プログラムです。</p>
+<p><img src="/IT/Go%E8%A8%80%E8%AA%9E(golang)%E3%81%A7TUI%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3(%E3%81%9D%E3%81%AE%EF%BC%92)03.godate.png" alt="GODATE"></p>
+<p>パネル定義に &ldquo;<strong>ExitKey</strong>&rdquo; という設定を追加しています。</p>
+<pre><code>StartX = 10  
+StartY = 2  
+EndX = 48  
+EndY = 16  
+Rect = true  
+ExitKey = [&quot;F2&quot;, &quot;F3&quot;, &quot;F4&quot;, &quot;F5&quot;, &quot;F6&quot;, &quot;F7&quot;, &quot;F8&quot;, &quot;F10&quot;, &quot;F12&quot;]  
+</code></pre><p>　<strong>Read関数</strong>は、通常では &ldquo;<strong>ESC</strong>&rdquo; と、 <strong>select</strong>フィールドで &ldquo;<strong>ENTER</strong>&rdquo; が叩かれた場合のみ制御を戻します。他のキーは無視されるので、<strong>Read</strong> から抜け出したいキーをここで指定します。<br>
+なお、キーは、tcellが定数定義しているものなので、<a href="https://github.com/gdamore/tcell/blob/main/key.go" target="_blank">こちら</a>を参照ください。</p>
+<p>　次に、<strong>Calendar</strong> 本体の定義は、下記になります。</p>
+<pre><code>[[Field]]  
+Name = &quot;CAL&quot;  
+X = 6  
+Y = 3  
+FieldLen = 4  
+Cols = 7  
+Rows = 6  
+Style = &quot;CAL, CAL_FOCUS&quot;  
+FieldType = &quot;select&quot;  
+</code></pre><p><strong>Cols =7</strong>、 <strong>Rows = 6</strong> <strong>7 x 6</strong> のselectフィールドとして定義されています。</p>
+<p>操作については、画面を見ていただければ解ると思いますが、日、月、年の増減が下記の操作で可能となっています。</p>
+<pre><code>カーソルを合わせて、&quot;Enter&quot;  
+キーを直接入力　(&quot;d&quot;、&quot;D&quot;、&quot;T&quot;、&quot;m&quot;、&quot;M&quot;、&quot;y&quot;、&quot;Y&quot;)  
+PFキー(F2からF8)  
+マウスで選択  
+</code></pre><hr>
+<h3 id="4-testappexamples04_testapptestappgo">(4) TestApp　(examples/04_testapp/testapp.go)</h3>
+<p>　最後に、ここまでのプログラム3つを組み合わせたアプリケーションを示します。</p>
+<p><img src="/IT/Go%E8%A8%80%E8%AA%9E(golang)%E3%81%A7TUI%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3(%E3%81%9D%E3%81%AE%EF%BC%92)04.testapp.png" alt="TESTAPP"></p>
+<p>このプログラムでは、下記の処理を行います。</p>
+<p>・ 入力データのエラーチェック</p>
+<pre><code>   if n == &quot;I&quot; {  
+    	msg, num := m.errCheck()  
+		if num &gt; NO_ERROR {  
+			m.panel.Store(msg, &quot;ERR_MSG&quot;)  
+			m.panel.SelectFocus = num  
+                :  
+</code></pre><p>この例のように、エラー時にはメッセージを表示し、該当フィールドに制御を移すには、<strong>SelectFocus</strong> にフィールドナンバーを代入します。</p>
+<p>・ ＜List＞フィールドからの選択入力</p>
+<p>・ ＜Date＞フィールドからの選択入力</p>
+<p>サブプログラムの起動は、下記のように実行します。</p>
+<pre><code>godate := &amp;GoDate{}  
+   :  
+  
+rs := godate.Run(time.Now())  
+  
+</code></pre><p>これにより、プログラムがポップアップし、必要なデータを取り出すことができます。</p>
+<p><img src="/IT/Go%E8%A8%80%E8%AA%9E(golang)%E3%81%A7TUI%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3(%E3%81%9D%E3%81%AE%EF%BC%92)05.testapp2.png" alt="TESTAPP2"></p>
+<hr>
+<p>　次回は、<strong>Taps</strong> で開発した、もう少し実用的なプログラム例を示していく予定です。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

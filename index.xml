@@ -6,10 +6,28 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 20 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Dec 2025 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )</title>
+      <link>https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</link>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</guid>
+      <description>Taps を利用するプログラムは、入力パネルを TOML 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォ</description>
+    </item>
+    
+    <item>
+      <title>Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )</title>
+      <link>https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/</guid>
+      <description>2022年に「Go言語(golang)でTUIアプリを作ろう」という記事を十数回に渡って書いてみたのですが、開発を進めるにつれてコードの冗長</description>
+    </item>
     
     <item>
       <title>The Great Insurance Murders ( Milton Propper )</title>

@@ -2,6 +2,42 @@
 
 var data = [
   {
+    url: "https://rsn604.github.io/categories/",
+    title: "Categories",
+    date: "2025-12-02T00:00:00Z",
+    body: "Categories"
+  },
+  {
+    url: "https://rsn604.github.io/categories/golang%E3%81%A7tui/",
+    title: "golangでTUI",
+    date: "2025-12-02T00:00:00Z",
+    body: "golangでTUI"
+  },
+  {
+    url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/",
+    title: "Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )",
+    date: "2025-12-02T00:00:00Z",
+    body: "Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル ) 　Taps を利用するプログラムは、入力パネルを TOML 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォーマットの1つです。詳細は、こちらなどを参照してください。 [1] 入力プログラムの例 (examples/01_input/input.go) 　下記のような入力画面があるとします。 (1) パネルの定義 　最初にフィールド属性定義がありますが、これは後述するとして、\u0026quot;var doc\u0026rdquo; 以下を見てください。 まずは、パネルの定義をします。StartX、StartY が始点、EndX、EndY が終点を示します。 \u0026ldquo;9999\u0026rdquo; には特別な意味があり、ターミナルサイズに置き換わります。例えば、サイズ 80x24 のターミナルならば、EndX は \u0026ldquo;79\u0026rdquo;、EndY は \u0026ldquo;23\u0026rdquo; となります。これにより、ターミナルのサイズによる違いを吸収するというわけです。 \tvar doc = ` StartX = 0 StartY = 0 EndX = 9999 EndY = 9999 (2) フィールドの定義 　続けてフィールドの設定を行います。下記のように、[[Field]] タグを使用して、各フィールドを定義していきます。 [[Field]] Name = \u0026quot;L01\u0026quot; Data = \u0026quot;E01　String(20)\u0026quot; X = 2 Y = 4 Style = \u0026quot;label\u0026quot; FieldType = \u0026quot;label\u0026quot; [[Field]] Name = \u0026quot;E01\u0026quot; X = 20 Y = 4 Style = \u0026quot;edit, edit_focus\u0026quot; FieldLen = 20 FieldType = \u0026quot;edit\u0026quot; この例では、最初の表示フィールドと入力フィールドを設定しています。フィールドタイプは、FieldType で指定します。tapsでサポートしているフィールドタイプは、\u0026quot;label\u0026quot;、\u0026quot;edit\u0026quot;、\u0026quot;select\u0026rdquo; の3種類のみです。 また、E02フィールドのように、**Attr = \u0026ldquo;N\u0026rdquo; **を指定すると、数字入力のみ(\u0026ldquo;+\u0026rdquo;、\u0026quot;-\u0026quot;、\u0026quot;.\u0026ldquo;を含む)が可能なフィールドとなります。この例では、DataLen = 6 でデータの桁数も制限しています。 [[Field]] Name = \u0026quot;E02\u0026quot; X = 20 Y = 6 Style = \u0026quot;edit, edit_focus\u0026quot; FieldLen = 6 DataLen = 6 Attr = \u0026quot;N\u0026quot; FieldType = \u0026quot;edit\u0026quot; (3) フィールドのスタイル定義 　フィールドスタイルとは表示される際のアトリビュートのことで、単に表示されている場合と、フォーカスが当たっている場合の2つについて指定することができます。 \tvar styleMatrix = [][]string{ {\u0026quot;label\u0026quot;, \u0026quot;lightcyan\u0026quot;, \u0026quot;default\u0026quot;}, {\u0026quot;select\u0026quot;, \u0026quot;yellow\u0026quot;, \u0026quot;default\u0026quot;}, {\u0026quot;select_focus\u0026quot;, \u0026quot;red,bold\u0026quot;, \u0026quot;white\u0026quot;}, {\u0026quot;edit\u0026quot;, \u0026quot;white, underline\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;edit_focus\u0026quot;, \u0026quot;yellow\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;note\u0026quot;, \u0026quot;white\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;note_focus\u0026quot;, \u0026quot;yellow,underline\u0026quot;, \u0026quot;black\u0026quot;}, } 1項目目に、Styleで指定した文字列、2番めがForeGroundの属性、3番めにBackGroundの属性を指定します。色属性は、tcellが定数定義しているものなので、こちらを参照ください。 (4) パネルの登録 　すべてのフィールドを定義して、下記のように NewPanel関数にパラメータとして渡します。 func InputPanel() *taps.Panel { : : return taps.NewPanel(doc, styleMatrix, \u0026quot;\u0026quot;) } (5) 入力フィールドの編集 　入力フィールドでは下記のキーを使用することができます。 Key function ESC パネルの終了 CTRL+B(ArrowR) カーソルを右に移動 CTRL+F(ArrowL) カーソルを右に移動 TAB フィールド間の移動 CTRL+A カーソルを行頭に移動 CTRL+E カーソルを行末に移動 CTRL+K カーソル以下を削除 CTRL+D(DEL) カーソル位置を削除 CTRL+H(BS) カーソル前を削除。マルチラインの行頭では行連結 ENTER \u0026quot;edit\u0026quot;の場合、次のフィールドへ。マルチラインでは行分割 フィールドを Disbale/Enable、Browseモードに変更するには、関数を使用します。 m.panel.SetDisabled(\u0026quot;E01\u0026quot;) m.panel.SetEnabled(\u0026quot;E01\u0026quot;) m.panel.SetBrowseMode(\u0026quot;E03\u0026quot;, true) m.panel.SetBrowseMode(\u0026quot;E03\u0026quot;, false) (6) プログラミングパターン 　通常のアプリケーションでは、複数のコードを使用することになると想定されるので、まずは struct を定義し、そこに使用するパネルを格納しておきます。 type Input struct { panel *taps.Panel } func (m *Input) Run() { if m.panel == nil { m.panel = InputPanel() } m.panel.Store(\u0026quot;Test Data\u0026quot;, \u0026quot;E01\u0026quot;) m.panel.StoreList([]string{\u0026quot;\u0026quot;}, \u0026quot;E03\u0026quot;) for { m.panel.Say() k, n := m.panel.Read() if k == tcell.KeyEscape || n == \u0026quot;Q\u0026quot;{ break } if n == \u0026quot;D\u0026quot;{ s := m.panel.Get(n) : 　次に、データをパネル上のフィールドに設定しておきます。上記では、E01 フィールドに、定数 \u0026ldquo;Test Data\u0026rdquo; を格納しています。フィールドにデータをセットする命令は Store となります。 その後に Say で画面に表示、Read で入力データを受け取るという手順が一般的でしょう。Read は、入力されたキーコードとフィールド名を返すので、その内容によってロジックを分岐させます。 上の例では、\u0026quot;Escape\u0026ldquo;キーが押されたか、フィールド \u0026ldquo;Q\u0026rdquo; がセレクトされた場合、このループからブレイクすることになります。 また、フィールド \u0026ldquo;D\u0026rdquo; がセレクトされた場合には、Get によって、その内容を読み取っています。このようなパターンで、プログラムを構成することになります。 [2] リスト形式の例 (examples/02_list/list.go) 　リスト形式の構造について説明します。一般にListBoxと呼ばれる形式で、リスト表示した一覧からデータを選択する際に利用されることになるでしょう。 　パネルは、ターミナルの一部を指定します。また選択項目には、Rows = 12 という行数を指定すれば、上記のような画面を定義できます。 StartX = 20 StartY = 4 EndX = 50 EndY = 17 Rect = true [[Field]] Name = \u0026quot;LIST\u0026quot; X = 2 Y = 1 Rows = 12 Style = \u0026quot;list, list_focus\u0026quot; FieldType = \u0026quot;select\u0026quot; この \u0026ldquo;LIST\u0026ldquo;フィールドには、StoreList で、stringの配列を渡すことで、実際のデータを設定できます。 func (m *List) getList() []string { var listData []string for i := 0; i \u0026lt; 30; i++ { listData = append(listData, \u0026quot;Data\u0026quot; + fmt.Sprintf(\u0026quot;%d\u0026quot;, i)) } return listData } func (m *List) Run() string { if m.panel == nil{ m.panel = ListPanel() } m.panel.StoreList(m.getList(), \u0026quot;LIST\u0026quot;) : exampleでは、適当なデータをセットしておきました。 (3) GoDate (examples/03_godate/godate.go) 　次は少し複雑な構成のプログラムを見てみましょう。いわゆる Calendar プログラムです。 パネル定義に \u0026ldquo;ExitKey\u0026rdquo; という設定を追加しています。 StartX = 10 StartY = 2 EndX = 48 EndY = 16 Rect = true ExitKey = [\u0026quot;F2\u0026quot;, \u0026quot;F3\u0026quot;, \u0026quot;F4\u0026quot;, \u0026quot;F5\u0026quot;, \u0026quot;F6\u0026quot;, \u0026quot;F7\u0026quot;, \u0026quot;F8\u0026quot;, \u0026quot;F10\u0026quot;, \u0026quot;F12\u0026quot;] 　Read関数は、通常では \u0026ldquo;ESC\u0026rdquo; と、 selectフィールドで \u0026ldquo;ENTER\u0026rdquo; が叩かれた場合のみ制御を戻します。他のキーは無視されるので、Read から抜け出したいキーをここで指定します。 なお、キーは、tcellが定数定義しているものなので、こちらを参照ください。 　次に、Calendar 本体の定義は、下記になります。 [[Field]] Name = \u0026quot;CAL\u0026quot; X = 6 Y = 3 FieldLen = 4 Cols = 7 Rows = 6 Style = \u0026quot;CAL, CAL_FOCUS\u0026quot; FieldType = \u0026quot;select\u0026quot; Cols =7、 Rows = 6 7 x 6 のselectフィールドとして定義されています。 操作については、画面を見ていただければ解ると思いますが、日、月、年の増減が下記の操作で可能となっています。 カーソルを合わせて、\u0026quot;Enter\u0026quot; キーを直接入力　(\u0026quot;d\u0026quot;、\u0026quot;D\u0026quot;、\u0026quot;T\u0026quot;、\u0026quot;m\u0026quot;、\u0026quot;M\u0026quot;、\u0026quot;y\u0026quot;、\u0026quot;Y\u0026quot;) PFキー(F2からF8) マウスで選択 (4) TestApp　(examples/04_testapp/testapp.go) 　最後に、ここまでのプログラム3つを組み合わせたアプリケーションを示します。 このプログラムでは、下記の処理を行います。 ・ 入力データのエラーチェック if n == \u0026quot;I\u0026quot; { msg, num := m.errCheck() if num \u0026gt; NO_ERROR { m.panel.Store(msg, \u0026quot;ERR_MSG\u0026quot;) m.panel.SelectFocus = num : この例のように、エラー時にはメッセージを表示し、該当フィールドに制御を移すには、SelectFocus にフィールドナンバーを代入します。 ・ ＜List＞フィールドからの選択入力 ・ ＜Date＞フィールドからの選択入力 サブプログラムの起動は、下記のように実行します。 godate := \u0026amp;GoDate{} : rs := godate.Run(time.Now()) これにより、プログラムがポップアップし、必要なデータを取り出すことができます。 　次回は、Taps で開発した、もう少し実用的なプログラム例を示していく予定です。"
+  },
+  {
+    url: "https://rsn604.github.io/it/",
+    title: "ITs",
+    date: "2025-12-02T00:00:00Z",
+    body: "ITs"
+  },
+  {
+    url: "https://rsn604.github.io/",
+    title: "TORIO's blog",
+    date: "2025-12-02T00:00:00Z",
+    body: "TORIO's blog"
+  },
+  {
+    url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/",
+    title: "Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )",
+    date: "2025-12-01T00:00:00Z",
+    body: "Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 ) 　2022年に「Go言語(golang)でTUIアプリを作ろう」という記事を十数回に渡って書いてみたのですが、開発を進めるにつれてコードの冗長度が上がり複雑化していく始末。とりあえず動くコードは書き上げたものの、その出来には極めて不満足、耐えられなくなって、メニュー上から削除してしまいました。 それから3年、まあ今年(2025年)の半ばから思い立って、新しくコードを考え始めました。今回は自分のアプリケーションにとって最適と思われる構造を考えて、それをフレームワークとして実装するところから初めています。ライブラリに比べて汎用性に乏しいですが、その分使い勝手は良いはず。 　とりあえず、\u0026quot;Taps\u0026rdquo; と名付けたフレームワークをGitHubにアップロードしました。以下、アップロードファイルに添付した READMEJP.md で、概要を説明しておきます。 Taps 　Taps とは、\u0026quot;Tcell and TOML based Terminal APplication Script\u0026rdquo; を意味しており、GolangでTUIアプリケーションを作成するためのフレームワークです。下記の特徴を持ちます。 (1) TOMLによる画面作成 　多くの UI ツールは、画面にオブジェクトを積み上げていく方式を採っています。この方法は汎用性はありますが、画面イメージを簡単に確認することができないという問題があります。部品の生成方法やオブジェクト間の関連付けなどの仕様を十分理解しておかないとコンパイルも通らないので、初期の学習コストは少なくありません。 　Taps では、画面定義に TOML を利用することで、フォーマット作成が用意に行えます。一般に、TOML は、プログラムの設定ファイルに使われる形式ですが、Tapsでは画面定義に利用、簡単に画面を定義することが可能です。 例えば、下記のような形で定義していきます StartX = 0 StartY = 0 EndX = 9999 EndY = 9999 [[Field]] Name = \u0026quot;L01\u0026quot; Data = \u0026quot;E01　String(20)\u0026quot; X = 2 Y = 4 Style = \u0026quot;label\u0026quot; FieldType = \u0026quot;label\u0026quot; [[Field]] Name = \u0026quot;E01\u0026quot; X = 20 Y = 4 Style = \u0026quot;edit, edit_focus\u0026quot; FieldLen = 20 FieldType = \u0026quot;edit\u0026quot; : (2) シンプルなプログラミングスタイル 　多くのUIアプリでは、入力フィールドやキーのイベントに合わせたロジックを各所に挿入することで動作を記述していきます。この形式では、どうしてもコードが各所に分散してしまい可読性を損ねる場合が少なくありません。 　今回のTapsでは、このようなイベントドリブンな構造を避け、シンプルなプログラム構造を目的としています。 それぞれのイベントは Read関数で吸収し、特定のキーが押されたときのみ、キーコードとそのフィールド名をプログラムに戻すという構成となり、コードは上から下に流れるシンプルな形となります。 \tm.panel.Store(\u0026quot;Test Data\u0026quot;, \u0026quot;E01\u0026quot;) for { m.panel.Say() k, n := m.panel.Read() if k == tcell.KeyEscape || n == \u0026quot;Q\u0026quot;{ break } if n == \u0026quot;D\u0026quot;{ s := m.panel.Get(n) : (3)Tutorial 　さらなる説明は、examplesディレクトリにあるプログラムを例とした 次の Tutorial を参考にしてください。"
+  },
+  {
     url: "https://rsn604.github.io/fbook/",
     title: "FBOOKs",
     date: "2025-11-20T00:00:00Z",
@@ -12,12 +48,6 @@ var data = [
     title: "The Great Insurance Murders ( Milton Propper )",
     date: "2025-11-20T00:00:00Z",
     body: "The Great Insurance Murders ( Milton Propper ) 連続殺人に試行錯誤する展開とラストの意外性が楽しめます。古典的なパズラーファンにお薦め。 　Milton Propper(1905-1962) は、フィラデルフィア生まれ。刑事 Tommy Rankin を主人公とした作品を14作発表。1930年代には本格物の作家として一定の評価を受けていたようですが、晩年は悲惨だった模様、1962年に自ら命を絶ってしまいました。 その生涯については、こちらのサイトで詳細に記述されています。 　これまで、Propperの作品は2作読んでいるようですが、どちらもミステリとして読ませる内容でした。(この頃の採点は少し厳しいので、+0.5 しても良いと思う。) Author Title Publisher Point Comment Date Milton Propper The Family Burial Murders Harpers 6.5 犯人の設定は楽しいが、冗長度が高い。2/3に縮小したら面白いかも。 2000/12/06 The Boudoir Murder Harper 7.5 良く考えられた構成で退屈しない。犯人の最後の行動はマヌケだが。 2004/02/18 今回は、「The Great Insurance Murders(1937)」という作品を読んでみます。 こんな話 　事件は、Polo の試合中に起きた殺人事件で幕を開けます。Polo というのは、『ウィキペディア（Wikipedia）』によれば、 ポロ（英語: polo、英語発音: [ˈpoulou]、ポウロウ）は、馬に乗って行う団体球技の一種。世界で最も古い歴史をもつ競技の一つである。漢字で馬球（ばきゅう）と表記される。 とのこと。 まあ、「騎馬ホッケー」みたいなものですか。イギリスの競技という印象がありますが、フィラデルフィアでも人気があったのでしょう。 　その試合中、Bruce Clinton という選手がサイレンサー付きの拳銃で射殺されたのである。 被害者の Clinton は少し前まで、Marion Belmont という女性と婚約まじかと言われていたのだが、それは現在破綻していた。その後、Marion は建築家の Alex Randolph と婚約するのだが、それを知ったClintonが強く詰ったため、二人は殴り合いの喧嘩をしたことが広く知られていた。Alex は、当然容疑者の一人である。 　しかし、もっと大きな動機を持つのが、Murray Stevens という男であった。彼は、Clintonと共同で事業を行っていたが、その際にお互いを受取人とする20万ドルの生命保険に入っていたのである。Crinton が亡くなった今、それを受け取るのは彼である。 Clintonの事業はうまく行っていないようで、財政的にも苦しんでいたようだ。Stevens は、そんな事業に多額の融資をし、共同経営者にまでなっているのである。 また、Stevens は、 Marion の財産後見人も務めていた。どうやら生前彼女の父親から信頼を得ていたらしい。しかし、Alexは、Stevens が Marion の財産を横領し、それを事業につぎ込んでいるのではないか、と強い疑いを持っており、事件当日に Stevens と会談する予定だったという。さらに、Stevens はサイレンサーが盗まれた店舗にいることが確認され、容疑はより強くなっていったのである。 　ところが、そんな中、その Stevens が撲殺されてしまう。これにより事件は振り出しに戻ってしまったのである。 Stevens 殺害には新たな容疑者が浮かんでくる。彼が受け取る予定の20万ドルは、唯一の親戚であるHal Bentleyが相続することになる。 また、Stevens は、かつて Elias Walton という会社経営者を追い込み、その財産を我がものとしていたという事実が明るみに出てくる。その結果、Elias は自殺、息子の Rufe Walton はそれを強く恨み、Stevens を付け狙ってたようであった。 事件を担当するのは、フィラデルフィア警察刑事 Tommy Rankin であった。彼は様々な角度から事件を検討するのだが．．。 読み終わると．．． 　Bill Pronzini の「1001 Midnights」や、森英俊編「世界ミステリ作家事典」でも指摘されていますが、殺人犯は「過去からの復讐者」というのが、Propper パターンのようですが、今回は意図的かどうかは知りませんが、それを逆手にとった意外な展開が楽しめます。 　探偵役の Tommy Rankin は、作者が設定したパズルを忠実に検討していくような存在であり名探偵とはとても言えませんが、彼が試行錯誤しながら真剣に取り組んでいく経過はなかなか面白いものがあります。ただ、今回の作品では、不審人物を待ち伏せして捕まえた瞬間、ようやく事件の全容を把握するという始末、いささかおそまつでしたね。 　ストーリー展開は要所で殺人が起きるので、読んでいて退屈しません。何より英語が平易なのがありがたい。それで点数が少し甘くなったかもしれません。 Harper \u0026amp; Brothers 1937 First Edition 274ページ"
-  },
-  {
-    url: "https://rsn604.github.io/",
-    title: "TORIO's blog",
-    date: "2025-11-20T00:00:00Z",
-    body: "TORIO's blog"
   },
   {
     url: "https://rsn604.github.io/eqmm/",
@@ -84,12 +114,6 @@ var data = [
     title: "BOOKs",
     date: "2025-08-04T00:00:00Z",
     body: "BOOKs"
-  },
-  {
-    url: "https://rsn604.github.io/categories/",
-    title: "Categories",
-    date: "2025-08-04T00:00:00Z",
-    body: "Categories"
   },
   {
     url: "https://rsn604.github.io/categories/%E3%83%9D%E3%82%B1%E3%83%9F%E3%82%B9/",
@@ -534,12 +558,6 @@ var data = [
     title: "暗黒の秘儀 ( H.P.ラヴクラフト )",
     date: "2024-04-22T00:00:00Z",
     body: "暗黒の秘儀 ( H.P.ラヴクラフト ) 中盤からの作品はラヴクラフトの魅力を伝える力作ぞろい。 題名 作者 評点 コメント 海神ダゴン H.P.ラヴクラフト 5.0 ありがちの展開で、いまひとつ響かない。 白い帆船 H.P.ラヴクラフト 5.0 エキゾティックな幻想譚。こんな作品も書くのか。 夢の都市セレファイス H.P.ラヴクラフト 5.0 ラヴクラフト自身の夢想なのだろう。 海底の神殿 H.P.ラヴクラフト 4.0 同じことの繰り返しで、読み進むのが辛い。 エーリッヒ・ツァンの音楽 H.P.ラヴクラフト 7.0 孤独の老音楽家の演奏には鬼気迫るものがある。 アウトサイダー H.P.ラヴクラフト 7.5 作者の内面の投影なのだろうが、題名を含めてうまく書かれている。 暗黒の秘儀 H.P.ラヴクラフト 6.5 深夜の儀式が印象的だ。 納骨所の中で H.P.ラヴクラフト 7.0 墓に閉じ込められた男の恐怖体験談。ラストのオチはなかなか強烈。 クートゥリュウの呼び声 H.P.ラヴクラフト 8.0 クートゥリュウ神話の中核となる話。地の文だけで恐怖を盛り上げる筆力に感心する。 戸口の怪物 H.P.ラヴクラフト 7.5 魂を奪われていく男の描写は迫力がある。 冷気 H.P.ラヴクラフト 6.0 冷え切った部屋に閉じこもる医師。結末は月並みで盛り上がらない。 超時間の影 H.P.ラヴクラフト 6.5 巨大遺跡のイメージには圧倒されるが、少し長すぎて退屈さを禁じ得ない。 月の沼 H.P.ラヴクラフト 6.5 呪われた沼の出来事がうまく描かれている。 恐怖小説の系譜 H.P.ラヴクラフト 約半分の訳出とのこと。 H.P.ラヴクラフトの生涯 仁賀克雄 作品解説 H.P.ラヴクラフト作品リスト 解説 荒俣宏 訳者あとがき 　仁賀克雄編集によるラヴクラフト傑作集で、帯に『怪奇の巨匠 本邦初出版』とあります。これ以前に、世界恐怖小説全集(全11巻 平井呈一編 東京創元社)の一巻としてアンブローズ・ビアスとラヴクラフトが三作ずつ収録された作品集がありますが、単独のアンソロジーとしては、これが最初のものになるようです。 この作品集の成立について仁賀克雄は、後にソノラマ文庫で復刊された際の『あとがき』で下記のように語っています。 ラヴクラフトの作品の魅力に取り憑かれた私は、『図書新聞』にアーカム・ハウスとラヴクラフトについての一文を書いた。これに目をとめられたのが、評論家山下武氏で、 氏も隠れたラヴクラフティアンで、彼の作品を邦訳して欲しい、出版社を紹介するからぜひというお手紙を戴いた。 全く一面識もなかった氏からの慫慂に感激した私は、ラヴクラフトの作品から全容のわかる諸傾向の中短編を選び、非才も省みず翻訳に取り組み、創土社の井田一衛氏の御尽力で出版にこぎつけた。 ラヴクラフトの愛した画家グスタフ・ドレの画集を所持していたので、内容にふさわしい絵を選び、表紙絵として函に印刷、帯には渋澤龍彦氏の序文を戴いた豪華本となり、千五百部限定、定価千二百円だった。 　収録された作品ですが、中盤の「エーリッヒ・ツァンの音楽」以降の作品は、どれも読み応えのある作品揃い。「クートゥリュウの呼び声」を頂点に、ラヴクラフトの魅力が十分堪能できる作品集と言って良いでしょう。 　ただ、作品の並びに一工夫あっても良かったかもしれません。基本的に年代順に並べているのでしょうが、前半の作品は10ページ足らずのもので、その内容も素材だけのものだったり、ラヴクラフトとは思えないファンタシーめいた作品であったりといささか物足りません。「本邦初」である読者を一気に掴むには、後半の作品を全面に押し出した並びのほうが良かったのではないでしょうか。 　こんなことを考えるのは、2年後に創元推理文庫でまとめられた「ラヴクラフト傑作集」のラインアップ(下記)が頭にあるからです。 インスマウスの影 壁のなかの鼠 死体安置所にて 闇に囁くもの そう、一作目が「インスマウスの影」。この作品が面白くなければ、ラヴクラフトに縁はないと思ったほうが良い、そんな作品ですから。まあ、創土社の本を購入するような人は、こんな些細なことにこだわらず全作読んだのでしょうけどね。 創土社　昭和47年5月30日初版発行　445ページ　1200円"
-  },
-  {
-    url: "https://rsn604.github.io/it/",
-    title: "ITs",
-    date: "2024-04-20T00:00:00Z",
-    body: "ITs"
   },
   {
     url: "https://rsn604.github.io/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/",

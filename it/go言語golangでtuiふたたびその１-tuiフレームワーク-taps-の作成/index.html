@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GCC7KFXF3W"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GCC7KFXF3W');
+	</script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 ) - TORIO&#39;s blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )" />
+<meta property="og:description" content="2022年に「Go言語(golang)でTUIアプリを作ろう」という記事を十数回に渡って書いてみたのですが、開発を進めるにつれてコードの冗長" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/" />
+<meta property="article:published_time" content="2025-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-12-01T00:00:00+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )"/>
+<meta name="twitter:description" content="2022年に「Go言語(golang)でTUIアプリを作ろう」という記事を十数回に渡って書いてみたのですが、開発を進めるにつれてコードの冗長"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-154494132-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="TORIO&#39;s blog" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">TORIO&#39;s blog</div>
+					<div class="logo__tagline">本好き、旅好き、酒好きのブログ</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				
+				<span class="menu__text">Home</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/eqmm/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">EQMM-HMM</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/anthology/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">アンソロジー</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/fbook/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">原書</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">その他の本</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tr/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">書を求め町にでよう</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/it/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">IT</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book/abouttorio/">
+				<i class='fa fa-road'></i>
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )</p></a>
+	</div>
+</nav>
+  <article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Go言語(golang)でTUIふたたび ( その１ TUIフレームワーク Taps の作成 )</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-12-01T00:00:00Z">December 01, 2025</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
+	</span>
+</div></div>
+		</header>
+<div class="content post__content clearfix">
+			<h2 id="heading"></h2>
+<br clear="left">
+<p>　2022年に「<strong>Go言語(golang)でTUIアプリを作ろう</strong>」という記事を十数回に渡って書いてみたのですが、開発を進めるにつれてコードの冗長度が上がり複雑化していく始末。とりあえず動くコードは書き上げたものの、その出来には極めて不満足、耐えられなくなって、メニュー上から削除してしまいました。<br>
+　それから3年、まあ今年(2025年)の半ばから思い立って、新しくコードを考え始めました。今回は自分のアプリケーションにとって最適と思われる構造を考えて、それをフレームワークとして実装するところから初めています。ライブラリに比べて汎用性に乏しいですが、その分使い勝手は良いはず。</p>
+<p>　とりあえず、&quot;<strong>Taps</strong>&rdquo; と名付けたフレームワークを<a href="https://github.com/rsn604/taps" target="_blank">GitHub</a>にアップロードしました。以下、アップロードファイルに添付した <strong>READMEJP.md</strong> で、概要を説明しておきます。</p>
+<hr>
+<h1 id="taps">Taps</h1>
+<p>　<strong>Taps <strong>とは、&quot;<strong>Tcell and TOML based Terminal APplication Script</strong>&rdquo; を意味しており、<strong>Golang</strong>で</strong>TUI</strong>アプリケーションを作成するためのフレームワークです。下記の特徴を持ちます。</p>
+<h2 id="1-tomlによる画面作成">(1) TOMLによる画面作成</h2>
+<p>　多くの <strong>UI</strong> ツールは、画面にオブジェクトを積み上げていく方式を採っています。この方法は汎用性はありますが、画面イメージを簡単に確認することができないという問題があります。部品の生成方法やオブジェクト間の関連付けなどの仕様を十分理解しておかないとコンパイルも通らないので、初期の学習コストは少なくありません。</p>
+<p>　<strong>Taps</strong> では、画面定義に <strong>TOML</strong> を利用することで、フォーマット作成が用意に行えます。一般に、<strong>TOML</strong> は、プログラムの設定ファイルに使われる形式ですが、<strong>Taps</strong>では画面定義に利用、簡単に画面を定義することが可能です。<br>
+例えば、下記のような形で定義していきます</p>
+<pre><code>StartX = 0  
+StartY = 0  
+EndX = 9999  
+EndY = 9999  
+  
+[[Field]]  
+Name = &quot;L01&quot;  
+Data = &quot;E01　String(20)&quot;  
+X = 2  
+Y = 4  
+Style = &quot;label&quot;  
+FieldType = &quot;label&quot;  
+  
+[[Field]]  
+Name = &quot;E01&quot;  
+X = 20  
+Y = 4  
+Style = &quot;edit, edit_focus&quot;  
+FieldLen = 20  
+FieldType = &quot;edit&quot;  
+   :  
+  
+</code></pre><hr>
+<h2 id="2-シンプルなプログラミングスタイル">(2) シンプルなプログラミングスタイル</h2>
+<p>　多くのUIアプリでは、入力フィールドやキーのイベントに合わせたロジックを各所に挿入することで動作を記述していきます。この形式では、どうしてもコードが各所に分散してしまい可読性を損ねる場合が少なくありません。</p>
+<p>　今回の<strong>Taps</strong>では、このようなイベントドリブンな構造を避け、シンプルなプログラム構造を目的としています。<br>
+それぞれのイベントは <strong>Read</strong>関数で吸収し、特定のキーが押されたときのみ、キーコードとそのフィールド名をプログラムに戻すという構成となり、コードは上から下に流れるシンプルな形となります。</p>
+<pre><code>	m.panel.Store(&quot;Test Data&quot;, &quot;E01&quot;)  
+	for {  
+		m.panel.Say()  
+		k, n := m.panel.Read()  
+		if k == tcell.KeyEscape || n == &quot;Q&quot;{  
+			break  
+		}  
+		if n == &quot;D&quot;{  
+			s := m.panel.Get(n)  
+                :  
+  
+</code></pre><hr>
+<h2 id="3tutorial">(3)Tutorial</h2>
+<p>　さらなる説明は、<strong>examples</strong>ディレクトリにあるプログラムを例とした 次の <strong>Tutorial</strong> を参考にしてください。</p>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/it/pascal%E3%82%92%E6%86%B6%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%9D%E3%81%AE2-cv-%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E3%81%A7%E5%8B%95%E3%81%8F%E8%A1%A8%E8%A8%88%E7%AE%97%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Pascalを憶えているか？ ( その2　CV　ターミナルで動く表計算ツールの作成 )</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 TORIO.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
