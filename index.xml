@@ -6,10 +6,19 @@
     <description>Recent content on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 02 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Dec 2025 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HMM 1969/7 No.159 ショート・ショート特集号</title>
+      <link>https://rsn604.github.io/eqmm/1969-07-159/</link>
+      <pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/eqmm/1969-07-159/</guid>
+      <description>大量のショート・ショートを読むのはしんどいものですが、出来が悪いとなおさらですね。 題名 作者 評点 コメント 少年と両親 星新一 7.0 両親に金をせびる少年</description>
+    </item>
     
     <item>
       <title>Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )</title>
