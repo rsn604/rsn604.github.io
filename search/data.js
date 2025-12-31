@@ -2,6 +2,36 @@
 
 var data = [
   {
+    url: "https://rsn604.github.io/categories/",
+    title: "Categories",
+    date: "2025-12-31T00:00:00Z",
+    body: "Categories"
+  },
+  {
+    url: "https://rsn604.github.io/categories/golang%E3%81%A7tui/",
+    title: "golangでTUI",
+    date: "2025-12-31T00:00:00Z",
+    body: "golangでTUI"
+  },
+  {
+    url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%93-appointment-bookapb-%E3%81%AE%E4%BD%9C%E6%88%90/",
+    title: "Go言語(golang)でTUIふたたび ( その３ Appointment Book(apb) の作成 )",
+    date: "2025-12-31T00:00:00Z",
+    body: "Go言語(golang)でTUIふたたび ( その３ Appointment Book(apb) の作成 ) 　今回は、taps の利用例を紹介します。すでに、こちらにアプロードしておりますが、apb と名付けたアプリケーションです。 以下、README と同一の内容になりますが、概要を転載しておきます。 apb について 　先に作成したGolangによるTUIフレームワーク taps の利用例として、アポイント管理アプリケーション apb を作成しました。 いわゆるスケジュール帳で、データは日付と時刻により管理されています。一回限りのスケジュールはもちろんですが、Day、Week、Month、Year で繰り返される事項などの登録も簡単にできます。 　画面構成、遷移などは、かつての名機 HP100LX、200LXの「内蔵アプリケーション」である Appointment Book を踏襲しています。 [1] コンパイル 　下記のコマンドでコンパイルします。 go build -o apb main.go なお、bin ディレクトリに、Linux、Windows 用の各バイナリを格納してあります。 [2] 使用法 apb \u0026lt;DB Name\u0026gt; で起動します。DB Name が存在しない場合は、新規作成します。 (1)　一覧　Apptlist 　当日の予定一覧が表示されます。右上に当月のカレンダー、その下に次の予定と、TodoList が同時に表示されています。 なお、以下の主要画面には「HELP」が付いているので、F1キーやマウスで選択、確認することが出来ます。以降の説明では、キーはファンクションキーのみで説明しますが、その他については「HELP」を参照してください。 (2)　データ登録　Detail 　一覧画面から適当な時間を選択すると、「データ登録」の画面になります。 必要項目を入力し、F2 を押します。完了すると、下部に「D.MG Record added.」表示されるはずです。 (3)　Repeat設定 　レコードの追加が完了すると、「Repeat設定」が可能になります。画面下部のガイダンス部にF8 キーが表示されているはずです。 これを押すと、下記の画面になるので、ここからアポイントの「Repeat設定」を行っていきます。 1. Daily 　画面を見ていただければわかると思います。Duration は、Defaultで5年になっているので、適当な期間を設定してください。 2. Weekly 　「Weekly設定」では、曜日の設定を行います。 3. Monthly 　「Monthly設定」では、日付、あるいは曜日の設定を行います。 4. Yearly 　「Monthly設定」では、日付、あるいは曜日と月の設定を行います。 5. Custom 　「Custom設定」は、さらに多くの選択項目があります。 (4)　表示 1. Weekly 　一覧表示から F8 を押すと週間表示になります。 2. Monthly 　一覧表示から F7 を押すと月間表示になります。 (5)　日付の変更 1. Godate 　一覧表示から F8 を押すと月カレンダーが表示されます。 この画面から日付を選択、あるいは Goto とあるフィールドに直接日付を入力すると、その日付に切り替わります。 2. Calendar(6ヶ月) 　一覧表示から F7 を押すと6ヶ月カレンダーが表示されます。 この画面から日付を選択すると、その日付に切り替わります。 (6)　削除 　一覧項目で、DELキーを押すと、その項目を削除できます。 「Repeat設定」がされていた場合、下記のように3つから選択します。単一スケジュールの場合は、上の2つは選択できない画面となります。 (7)　Todo 　一覧項目から、F10 を押すと、TodoList 一覧が表示されます。新規に追加する場合は、最終のブランク業を選択します。 登録画面が表示されるので、必要な項目を入力します。Appointment 同様、「Repeat設定」も可能です。 (8)　Utility 　bin ディレクトリ内に、Linux、Windows 用の各バイナリを格納してあります。 1. Unload、Load 　アポイントDB の Unload と Load が可能です。 apbunload \u0026lt;DB Name\u0026gt; データを JSON形式で表示します。適当にリダイレクトしてください。 apbload \u0026lt;load file\u0026gt; \u0026lt;DB Name\u0026gt; JSON形式のデータをLoadします。なお、既存のDBを指定した場合、同一のデータでも二重に登録してしまいます。あくまで新規DB登録用と考えてください。 2. adbdump、hpload 　HP100LX、200LXからデータを抜き出し、apb にコンバートするプログラムです。ただ、実機を持っていないので十分なテストは出来ていないことをご了承ください。参考程度ということでお願いします。 　HPのデータベースからの抜き出しは、S.U.P.E.R Siteというところに登録されている ADBIO というツールを使わせてもらいました。 ADBIO is freeware and may be distributed/copied/used/modified/eaten/microwaved etc. freely. とあるので、今回は gcc でコンパイルできるように少し変更しています。 まずは、HPのデータをCSVに落とします。appt.adb というファイル名は各自の環境によって違うかもしれませんが、HP内のデータを意味します。 ./adbdump2 -c -i atnr -d \u0026quot;yyyy/mm/dd\u0026quot; -q1 appt.adb \u0026gt;t1.txt ここで、2バイトコードを含んでいる場合は、nkf などを使用して、UTF-8の文字列に変換してください。 次に apb にロードします。 ./hpload t1.txt HPL.boltdb あとは、下記のように内容を確認してください。 apb HPL.boltdb"
+  },
+  {
+    url: "https://rsn604.github.io/it/",
+    title: "ITs",
+    date: "2025-12-31T00:00:00Z",
+    body: "ITs"
+  },
+  {
+    url: "https://rsn604.github.io/",
+    title: "TORIO's blog",
+    date: "2025-12-31T00:00:00Z",
+    body: "TORIO's blog"
+  },
+  {
     url: "https://rsn604.github.io/eqmm/",
     title: "EQMMs",
     date: "2025-12-07T00:00:00Z",
@@ -14,34 +44,10 @@ var data = [
     body: "HMM 1969/7 No.159 ショート・ショート特集号 大量のショート・ショートを読むのはしんどいものですが、出来が悪いとなおさらですね。 題名 作者 評点 コメント 少年と両親 星新一 7.0 両親に金をせびる少年の行く末は。今なら現実にありそうな設定だ。 ライター マッキンレイ・カンター 7.5 盲目の物乞いに絡まれる男。ラストのオチが面白い。 蘭 塚本邦雄 8.0 短い中に一つの完結した世界を作りあげる筆力がすごい。 第二の降臨 ロバート・ブロック 6.5 降臨した第二のキリストをめぐる騒ぎを時系列で示したお話。ジョークだな。 わかれ イアン・Ｓ・トムスン 7.0 別れのカップルと思わせておいて．．、オチが面白い。 ドノヴァン、早く帰ってきて 三条美穂 5.0 ベトナムからの帰還兵は故郷に残した女に会いに行く。オチが今ひとつ。 動かぬ証拠 ヘレン・ニールスン 3.0 ゴタゴタしていてまとまりがない。 サラダ料理 ロバート・マクニア 4.0 これのどこが「MWA最優秀短編賞候補作品」なのだろうか。 ディナー・パーティ リング・ラードナー 4.0 内容のないおしゃべり女はうんざりだが、それを読まされる読者も同感だな。 兇暴な口 小松左京 6.0 自分自身を食べ尽くす男の話。悪趣味だが発送はすごい。 きっともどってくる コーリイ・フォード 3.0 つまらない。 悪魔飼育法 アントニー・バウチャー 7.0 悪魔との契約物。なるほどと納得できる交渉術だ。 霊夢 福島正実 3.0 作家としてのレベルが低い。 生存の図式 リチャード・マシスン 4.0 よく意味がわからない。 二つの物語 河野典生 3.0 つまらない。 銀紙 アルフォンソ・Ｆ・アモレス 4.0 予想通りの展開で平凡な出来。 ふたりの世界をバラ色に 結城昌治 6.0 落語だね。 2000年 ロバート・アバーナシイ 4.0 未来の2000年は今や遠い過去なのもあってピンと外れになってしまった。 メアリー叔母さんの安楽死 シリル・ヘアー 5.0 叔母の遺産を狙う男の話。ラストは今ひとつ。 温泉宿 都筑道夫 4.0 宿泊を拒否されるカップル。設定は面白いが、ショートショートでは生かされない。 バーニイ ウィル・スタントン 3.0 よくわからない。 特別サービス エド・レイシイ 7.0 懲役を終えたスリを車に拾った男は、悪徳警官に違反切符を着られうのだが．．。ラストは痛快。 ミステリの女王 石川喬司 5.0 三面記事風の展開。当時似たような事件があったのだろうか。 ストロベリー・アイスクリーム・ソーダ アーウィン・ショウ 3.0 「都会小説」とのことだが、舞台は田舎、中身は退屈。 消えたスタンドウィック夫人 ネドラ・タイア 5.0 旅先で親しくなった婦人を訪ねる女性。他愛のない結末にがっかり。 救いの手 リチャード・マーステン 6.5 孤独な老人と暮らす組織を抜けた男は殺し屋を返り討ちにするが嫌疑は老人に。どうすべきか彼は苦悩する。さすがマクベイン、うまくまとめている。 クラレンス・ダロウは弁護する(8) アーヴィング・ストーン 新・進化した猿たち 星新一 男性雑誌による現代アメリカのフォークロア 片岡義男 殺人実話＜2＞ みすてり鳥瞰図 福田淳 地獄の仏 石川喬司 異常感覚歳時記 針谷愛 背広について 紐育の日本人 平尾圭吾 底辺に生きる男たち ミステリ英語道場 中内正利 ミステリ診察室 「モンゴが帰ってきた」E・リチャード・ジョンソン ノンフィクションガイド 青木雨彦 「暮しの手帖」をテストする 海外ミステリ消息 響きと怒り ミステリ一駒漫画 われらのモンタージュが行く 梅田秀俊 表紙 表紙の言葉 真鍋博 目次・扉 真鍋博 イラスト 真鍋博・勝呂忠・金森達・池田拓・伊藤直樹・岩渕慶造・桜井一・楢喜八 ページ 202ページ 定価 230円 今号は「ショート・ショート特集」。小説を読むというのはその世界に入るまで時間がかかるもので、その労力は馬鹿になりません。その意味で「ショートショート」を大量に読まされるというのは結構な負荷であり、これを特集するというのはいかがなものでしょう。あまり良い編集方針とは言えないのではないでしょうか。 ましてや、出来が良くない作品が続くとうんざりします。今後の前半はそれなりの作品が並んでいたのですが、後半に至ってレベルが低下。うんざりしました。 そんな作品の中で、塚本邦雄「蘭」は強い印象を持ちました。やはり詩人の持つ表現力というものはすごい。この人には「十二神将変」というミステリ仕立ての小説もあるようなので、今度是非読んでみたいものです。"
   },
   {
-    url: "https://rsn604.github.io/",
-    title: "TORIO's blog",
-    date: "2025-12-07T00:00:00Z",
-    body: "TORIO's blog"
-  },
-  {
-    url: "https://rsn604.github.io/categories/",
-    title: "Categories",
-    date: "2025-12-02T00:00:00Z",
-    body: "Categories"
-  },
-  {
-    url: "https://rsn604.github.io/categories/golang%E3%81%A7tui/",
-    title: "golangでTUI",
-    date: "2025-12-02T00:00:00Z",
-    body: "golangでTUI"
-  },
-  {
     url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%92-taps-%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/",
     title: "Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル )",
     date: "2025-12-02T00:00:00Z",
     body: "Go言語(golang)でTUIふたたび ( その２ Taps チュートリアル ) 　Taps を利用するプログラムは、入力パネルを TOML 形式で指定します。具体的なプログラムを例に説明しましょう。TOMLは主に設定ファイルに使用されるフォーマットの1つです。詳細は、こちらなどを参照してください。 [1] 入力プログラムの例 (examples/01_input/input.go) 　下記のような入力画面があるとします。 (1) パネルの定義 　最初にフィールド属性定義がありますが、これは後述するとして、\u0026quot;var doc\u0026rdquo; 以下を見てください。 まずは、パネルの定義をします。StartX、StartY が始点、EndX、EndY が終点を示します。 \u0026ldquo;9999\u0026rdquo; には特別な意味があり、ターミナルサイズに置き換わります。例えば、サイズ 80x24 のターミナルならば、EndX は \u0026ldquo;79\u0026rdquo;、EndY は \u0026ldquo;23\u0026rdquo; となります。これにより、ターミナルのサイズによる違いを吸収するというわけです。 \tvar doc = ` StartX = 0 StartY = 0 EndX = 9999 EndY = 9999 (2) フィールドの定義 　続けてフィールドの設定を行います。下記のように、[[Field]] タグを使用して、各フィールドを定義していきます。 [[Field]] Name = \u0026quot;L01\u0026quot; Data = \u0026quot;E01　String(20)\u0026quot; X = 2 Y = 4 Style = \u0026quot;label\u0026quot; FieldType = \u0026quot;label\u0026quot; [[Field]] Name = \u0026quot;E01\u0026quot; X = 20 Y = 4 Style = \u0026quot;edit, edit_focus\u0026quot; FieldLen = 20 FieldType = \u0026quot;edit\u0026quot; この例では、最初の表示フィールドと入力フィールドを設定しています。フィールドタイプは、FieldType で指定します。tapsでサポートしているフィールドタイプは、\u0026quot;label\u0026quot;、\u0026quot;edit\u0026quot;、\u0026quot;select\u0026rdquo; の3種類のみです。 また、E02フィールドのように、**Attr = \u0026ldquo;N\u0026rdquo; **を指定すると、数字入力のみ(\u0026ldquo;+\u0026rdquo;、\u0026quot;-\u0026quot;、\u0026quot;.\u0026ldquo;を含む)が可能なフィールドとなります。この例では、DataLen = 6 でデータの桁数も制限しています。 [[Field]] Name = \u0026quot;E02\u0026quot; X = 20 Y = 6 Style = \u0026quot;edit, edit_focus\u0026quot; FieldLen = 6 DataLen = 6 Attr = \u0026quot;N\u0026quot; FieldType = \u0026quot;edit\u0026quot; (3) フィールドのスタイル定義 　フィールドスタイルとは表示される際のアトリビュートのことで、単に表示されている場合と、フォーカスが当たっている場合の2つについて指定することができます。 \tvar styleMatrix = [][]string{ {\u0026quot;label\u0026quot;, \u0026quot;lightcyan\u0026quot;, \u0026quot;default\u0026quot;}, {\u0026quot;select\u0026quot;, \u0026quot;yellow\u0026quot;, \u0026quot;default\u0026quot;}, {\u0026quot;select_focus\u0026quot;, \u0026quot;red,bold\u0026quot;, \u0026quot;white\u0026quot;}, {\u0026quot;edit\u0026quot;, \u0026quot;white, underline\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;edit_focus\u0026quot;, \u0026quot;yellow\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;note\u0026quot;, \u0026quot;white\u0026quot;, \u0026quot;black\u0026quot;}, {\u0026quot;note_focus\u0026quot;, \u0026quot;yellow,underline\u0026quot;, \u0026quot;black\u0026quot;}, } 1項目目に、Styleで指定した文字列、2番めがForeGroundの属性、3番めにBackGroundの属性を指定します。色属性は、tcellが定数定義しているものなので、こちらを参照ください。 (4) パネルの登録 　すべてのフィールドを定義して、下記のように NewPanel関数にパラメータとして渡します。 func InputPanel() *taps.Panel { : : return taps.NewPanel(doc, styleMatrix, \u0026quot;\u0026quot;) } (5) 入力フィールドの編集 　入力フィールドでは下記のキーを使用することができます。 Key function ESC パネルの終了 CTRL+B(ArrowR) カーソルを右に移動 CTRL+F(ArrowL) カーソルを右に移動 TAB フィールド間の移動 CTRL+A カーソルを行頭に移動 CTRL+E カーソルを行末に移動 CTRL+K カーソル以下を削除 CTRL+D(DEL) カーソル位置を削除 CTRL+H(BS) カーソル前を削除。マルチラインの行頭では行連結 ENTER \u0026quot;edit\u0026quot;の場合、次のフィールドへ。マルチラインでは行分割 フィールドを Disbale/Enable、Browseモードに変更するには、関数を使用します。 m.panel.SetDisabled(\u0026quot;E01\u0026quot;) m.panel.SetEnabled(\u0026quot;E01\u0026quot;) m.panel.SetBrowseMode(\u0026quot;E03\u0026quot;, true) m.panel.SetBrowseMode(\u0026quot;E03\u0026quot;, false) (6) プログラミングパターン 　通常のアプリケーションでは、複数のコードを使用することになると想定されるので、まずは struct を定義し、そこに使用するパネルを格納しておきます。 type Input struct { panel *taps.Panel } func (m *Input) Run() { if m.panel == nil { m.panel = InputPanel() } m.panel.Store(\u0026quot;Test Data\u0026quot;, \u0026quot;E01\u0026quot;) m.panel.StoreList([]string{\u0026quot;\u0026quot;}, \u0026quot;E03\u0026quot;) for { m.panel.Say() k, n := m.panel.Read() if k == tcell.KeyEscape || n == \u0026quot;Q\u0026quot;{ break } if n == \u0026quot;D\u0026quot;{ s := m.panel.Get(n) : 　次に、データをパネル上のフィールドに設定しておきます。上記では、E01 フィールドに、定数 \u0026ldquo;Test Data\u0026rdquo; を格納しています。フィールドにデータをセットする命令は Store となります。 その後に Say で画面に表示、Read で入力データを受け取るという手順が一般的でしょう。Read は、入力されたキーコードとフィールド名を返すので、その内容によってロジックを分岐させます。 上の例では、\u0026quot;Escape\u0026ldquo;キーが押されたか、フィールド \u0026ldquo;Q\u0026rdquo; がセレクトされた場合、このループからブレイクすることになります。 また、フィールド \u0026ldquo;D\u0026rdquo; がセレクトされた場合には、Get によって、その内容を読み取っています。このようなパターンで、プログラムを構成することになります。 [2] リスト形式の例 (examples/02_list/list.go) 　リスト形式の構造について説明します。一般にListBoxと呼ばれる形式で、リスト表示した一覧からデータを選択する際に利用されることになるでしょう。 　パネルは、ターミナルの一部を指定します。また選択項目には、Rows = 12 という行数を指定すれば、上記のような画面を定義できます。 StartX = 20 StartY = 4 EndX = 50 EndY = 17 Rect = true [[Field]] Name = \u0026quot;LIST\u0026quot; X = 2 Y = 1 Rows = 12 Style = \u0026quot;list, list_focus\u0026quot; FieldType = \u0026quot;select\u0026quot; この \u0026ldquo;LIST\u0026ldquo;フィールドには、StoreList で、stringの配列を渡すことで、実際のデータを設定できます。 func (m *List) getList() []string { var listData []string for i := 0; i \u0026lt; 30; i++ { listData = append(listData, \u0026quot;Data\u0026quot; + fmt.Sprintf(\u0026quot;%d\u0026quot;, i)) } return listData } func (m *List) Run() string { if m.panel == nil{ m.panel = ListPanel() } m.panel.StoreList(m.getList(), \u0026quot;LIST\u0026quot;) : exampleでは、適当なデータをセットしておきました。 (3) GoDate (examples/03_godate/godate.go) 　次は少し複雑な構成のプログラムを見てみましょう。いわゆる Calendar プログラムです。 パネル定義に \u0026ldquo;ExitKey\u0026rdquo; という設定を追加しています。 StartX = 10 StartY = 2 EndX = 48 EndY = 16 Rect = true ExitKey = [\u0026quot;F2\u0026quot;, \u0026quot;F3\u0026quot;, \u0026quot;F4\u0026quot;, \u0026quot;F5\u0026quot;, \u0026quot;F6\u0026quot;, \u0026quot;F7\u0026quot;, \u0026quot;F8\u0026quot;, \u0026quot;F10\u0026quot;, \u0026quot;F12\u0026quot;] 　Read関数は、通常では \u0026ldquo;ESC\u0026rdquo; と、 selectフィールドで \u0026ldquo;ENTER\u0026rdquo; が叩かれた場合のみ制御を戻します。他のキーは無視されるので、Read から抜け出したいキーをここで指定します。 なお、キーは、tcellが定数定義しているものなので、こちらを参照ください。 　次に、Calendar 本体の定義は、下記になります。 [[Field]] Name = \u0026quot;CAL\u0026quot; X = 6 Y = 3 FieldLen = 4 Cols = 7 Rows = 6 Style = \u0026quot;CAL, CAL_FOCUS\u0026quot; FieldType = \u0026quot;select\u0026quot; Cols =7、 Rows = 6 7 x 6 のselectフィールドとして定義されています。 操作については、画面を見ていただければ解ると思いますが、日、月、年の増減が下記の操作で可能となっています。 カーソルを合わせて、\u0026quot;Enter\u0026quot; キーを直接入力　(\u0026quot;d\u0026quot;、\u0026quot;D\u0026quot;、\u0026quot;T\u0026quot;、\u0026quot;m\u0026quot;、\u0026quot;M\u0026quot;、\u0026quot;y\u0026quot;、\u0026quot;Y\u0026quot;) PFキー(F2からF8) マウスで選択 (4) TestApp　(examples/04_testapp/testapp.go) 　最後に、ここまでのプログラム3つを組み合わせたアプリケーションを示します。 このプログラムでは、下記の処理を行います。 ・ 入力データのエラーチェック if n == \u0026quot;I\u0026quot; { msg, num := m.errCheck() if num \u0026gt; NO_ERROR { m.panel.Store(msg, \u0026quot;ERR_MSG\u0026quot;) m.panel.SelectFocus = num : この例のように、エラー時にはメッセージを表示し、該当フィールドに制御を移すには、SelectFocus にフィールドナンバーを代入します。 ・ ＜List＞フィールドからの選択入力 ・ ＜Date＞フィールドからの選択入力 サブプログラムの起動は、下記のように実行します。 godate := \u0026amp;GoDate{} : rs := godate.Run(time.Now()) これにより、プログラムがポップアップし、必要なデータを取り出すことができます。 　次回は、Taps で開発した、もう少し実用的なプログラム例を示していく予定です。"
-  },
-  {
-    url: "https://rsn604.github.io/it/",
-    title: "ITs",
-    date: "2025-12-02T00:00:00Z",
-    body: "ITs"
   },
   {
     url: "https://rsn604.github.io/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%81%B5%E3%81%9F%E3%81%9F%E3%81%B3%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF-taps-%E3%81%AE%E4%BD%9C%E6%88%90/",
