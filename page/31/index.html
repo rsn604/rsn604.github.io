@@ -137,129 +137,114 @@ if (!doNotTrack) {
 <main class="main list" role="main">
 	<article class="list__item post">
 	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/eqmm/1964-03-093/">
-		<img class="thumbnail__image" src="/EQMM/1964-03-093-01.jpg" alt="EQMM 1964/3 No.93 特集ハードボイルド">
-		</a>
-	</figure>
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/eqmm/1964-03-093/" rel="bookmark">
-			EQMM 1964/3 No.93 特集ハードボイルド
+			<a href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-%E6%96%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AE%E6%8E%A1%E7%94%A8/" rel="bookmark">
+			Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その２　新データベースツールの採用 )
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-13T00:00:00Z">July 13, 2022</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		「ハードボイルド特集」がぱっとしないなか、エリンが救いでした。 題名 作者 評点 コメント 嵐の闇の中で ヒュー・ペンティコースト 6.0 レイクビューという土
-	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/book/%E5%89%B2%E3%82%8C%E3%82%8B%E9%99%B3%E8%88%9C%E8%87%A3/">
-		<img class="thumbnail__image" src="/BOOK/%e5%89%b2%e3%82%8c%e3%82%8b%28%e9%99%b3%e8%88%9c%e8%87%a3%29-01.jpg" alt="割れる ( 陳舜臣 )">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/book/%E5%89%B2%E3%82%8C%E3%82%8B%E9%99%B3%E8%88%9C%E8%87%A3/" rel="bookmark">
-			割れる ( 陳舜臣 )
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-12T00:00:00Z">July 12, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-24T00:00:00Z">August 24, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		中盤は少しダレるが、ラストでひねるところはさすが。 陳舜臣は「阿片戦争」など中国を舞台にした歴史小説で名高い作家ですが、そのスタートは「枯草の
+		BoltDBを使ってみる。 [1] 新データベースの選択 前回述べたように、当初アプリケーションのデータベースとしてSQLite3をターゲットに進めて
 	</div>
 </article><article class="list__item post">
 	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/anthology/%E8%A6%8B%E3%81%88%E3%81%AA%E3%81%84%E6%A9%9F%E9%96%A2%E8%BB%8A-%E9%89%84%E9%81%93%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%83%BC%E5%82%91%E4%BD%9C%E9%81%B8%E9%AE%8E%E5%B7%9D%E5%93%B2%E4%B9%9F%E7%B7%A8/">
-		<img class="thumbnail__image" src="/ANTHOLOGY/%e8%a6%8b%e3%81%88%e3%81%aa%e3%81%84%e6%a9%9f%e9%96%a2%e8%bb%8a%e3%80%80%e9%89%84%e9%81%93%e3%83%9f%e3%82%b9%e3%83%86%e3%83%aa%e3%83%bc%e5%82%91%e4%bd%9c%e9%81%b8%28%e9%ae%8e%e5%b7%9d%e5%93%b2%e4%b9%9f%e7%b7%a8%29-01.jpg" alt="見えない機関車　鉄道ミステリー傑作選 ( 鮎川哲也編 )">
-		</a>
-	</figure>
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/anthology/%E8%A6%8B%E3%81%88%E3%81%AA%E3%81%84%E6%A9%9F%E9%96%A2%E8%BB%8A-%E9%89%84%E9%81%93%E3%83%9F%E3%82%B9%E3%83%86%E3%83%AA%E3%83%BC%E5%82%91%E4%BD%9C%E9%81%B8%E9%AE%8E%E5%B7%9D%E5%93%B2%E4%B9%9F%E7%B7%A8/" rel="bookmark">
-			見えない機関車　鉄道ミステリー傑作選 ( 鮎川哲也編 )
+			<a href="/it/go%E8%A8%80%E8%AA%9Egolang%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90/" rel="bookmark">
+			Go言語(golang)でTUIアプリを作ろう 第二部入魂編 ( その１　TUIアプリケーションの作成 )
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-01T00:00:00Z">July 01, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/" rel="category">鉄道アンソロジー</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-22T00:00:00Z">August 22, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/golang%E3%81%A7tui/" rel="category">golangでTUI</a>
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		低調な作品ばかりで盛り上がらず。無理やり集めた鉄道アンソロジー、その感が拭えません。 題名 作者 評点 コメント 指環 江戸川乱歩 5.0 [新青年 大正14年7
+		先に10回の長きに渡って、golangのtviewモジュールを使用したTUI(Terminal base User Interface)アプリケーション開発に
 	</div>
 </article><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/eqmm/1964-02-092/">
-		<img class="thumbnail__image" src="/EQMM/1964-02-092-01.jpg" alt="EQMM 1964/2 No.92">
+		<a class="thumbnail__link" href="/eqmm/1964-06-096/">
+		<img class="thumbnail__image" src="/EQMM/1964-06-096-01.jpg" alt="EQMM 1964/6 No.96">
 		</a>
 	</figure>
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/eqmm/1964-02-092/" rel="bookmark">
-			EQMM 1964/2 No.92
+			<a href="/eqmm/1964-06-096/" rel="bookmark">
+			EQMM 1964/6 No.96
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-27T00:00:00Z">June 27, 2022</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-14T00:00:00Z">August 14, 2022</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		マクベインにギャスキル、そしてエッセイの充実が目を引きます。 題名 作者 評点 コメント 天井から血が… ロイド・ビッグル・ジュニア 7.0 天井から落ちてくる
+		スタウト、フレミング、シムノン、どれも冴えません。 題名 作者 評点 コメント ヘクターの喜び ヒュー・ペンティコースト 6.5 法廷で明かされるトリックはチー
 	</div>
 </article><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/anthology/%E6%8E%A2%E5%81%B5%E5%B0%8F%E8%AA%AC%E5%B9%B4%E9%91%911960%E5%B9%B4%E7%89%88%E6%8E%A2%E5%81%B5%E4%BD%9C%E5%AE%B6%E3%82%AF%E3%83%A9%E3%83%96%E7%B7%A8/">
-		<img class="thumbnail__image" src="/ANTHOLOGY/%e6%8e%a2%e5%81%b5%e5%b0%8f%e8%aa%ac%e5%b9%b4%e9%91%91%281960%e5%b9%b4%e7%89%88%29%28%e6%8e%a2%e5%81%b5%e4%bd%9c%e5%ae%b6%e3%82%af%e3%83%a9%e3%83%96%e7%b7%a8%29-01.jpg" alt="探偵小説年鑑(1960年版) ( 探偵作家クラブ編 )">
+		<a class="thumbnail__link" href="/eqmm/1964-05-095/">
+		<img class="thumbnail__image" src="/EQMM/1964-05-095-01.jpg" alt="EQMM 1964/5 No.95">
 		</a>
 	</figure>
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/anthology/%E6%8E%A2%E5%81%B5%E5%B0%8F%E8%AA%AC%E5%B9%B4%E9%91%911960%E5%B9%B4%E7%89%88%E6%8E%A2%E5%81%B5%E4%BD%9C%E5%AE%B6%E3%82%AF%E3%83%A9%E3%83%96%E7%B7%A8/" rel="bookmark">
-			探偵小説年鑑(1960年版) ( 探偵作家クラブ編 )
+			<a href="/eqmm/1964-05-095/" rel="bookmark">
+			EQMM 1964/5 No.95
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-23T00:00:00Z">June 23, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8E%A2%E5%81%B5%E5%B0%8F%E8%AA%AC%E5%B9%B4%E9%91%91%E3%82%92%E8%AA%AD%E3%82%80/" rel="category">「探偵小説年鑑」を読む</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-04T00:00:00Z">August 04, 2022</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		クリスティの中編で満足。 題名 作者 評点 コメント 二世の契り ヘンリー・スレッサー 4.0 妻を殺した男はその再生に怯える。スレッサーにしてはつまらない。 赤
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/book/%E9%A2%A8%E3%81%AF%E6%95%85%E9%83%B7%E3%81%AB%E5%90%91%E3%81%8B%E3%81%86%E4%B8%89%E5%A5%BD%E5%BE%B9/" rel="bookmark">
+			風は故郷に向かう ( 三好徹 )
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-27T00:00:00Z">July 27, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text">
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		推理小説ブームの中、一定レベルの作品が揃っているものの、何か物足りなさを覚えてしまう。 題名 作者 評点 コメント 金魚の寝言 鮎川哲也 7.0 支店長の死を調
+		前半快調も中盤から停滞。当時は新鮮だったテーマも今では風化気味かな。 本書「風は故郷に向かう」の舞台は、1959年のキューバ。ちょうど、あのカ
 	</div>
 </article><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/anthology/%E5%B9%B4%E5%88%8A%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AA%AC%E3%83%99%E3%82%B9%E3%83%8810-1960%E5%B9%B4%E7%89%88%E3%83%87%E3%82%A4%E3%83%B4%E3%82%A3%E3%83%89%EF%BD%83%E3%82%AF%E3%83%83%E3%82%AF%E7%B7%A8/">
-		<img class="thumbnail__image" src="/ANTHOLOGY/%e5%b9%b4%e5%88%8a%e6%8e%a8%e7%90%86%e5%b0%8f%e8%aa%ac%e3%83%bb%e3%83%99%e3%82%b9%e3%83%8810%20%281960%e5%b9%b4%e7%89%88%29%28%e3%83%87%e3%82%a4%e3%83%b4%e3%82%a3%e3%83%89%e3%83%bb%ef%bc%a3%e3%83%bb%e3%82%af%e3%83%83%e3%82%af%e7%b7%a8%29-01.jpg" alt="年刊推理小説・ベスト10 (1960年版) ( デイヴィド・Ｃ・クック編 )">
+		<a class="thumbnail__link" href="/eqmm/1964-04-094/">
+		<img class="thumbnail__image" src="/EQMM/1964-04-094-01.jpg" alt="EQMM 1964/4 No.94 ユーモア特集">
 		</a>
 	</figure>
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/anthology/%E5%B9%B4%E5%88%8A%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AA%AC%E3%83%99%E3%82%B9%E3%83%8810-1960%E5%B9%B4%E7%89%88%E3%83%87%E3%82%A4%E3%83%B4%E3%82%A3%E3%83%89%EF%BD%83%E3%82%AF%E3%83%83%E3%82%AF%E7%B7%A8/" rel="bookmark">
-			年刊推理小説・ベスト10 (1960年版) ( デイヴィド・Ｃ・クック編 )
+			<a href="/eqmm/1964-04-094/" rel="bookmark">
+			EQMM 1964/4 No.94 ユーモア特集
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-18T00:00:00Z">June 18, 2022</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-24T00:00:00Z">July 24, 2022</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		どれも平均以上の出来で、楽しく読めます。ただ圧倒的な印象を残す作品はありませんね。 題名 作者 評点 コメント そのさきは -闇 ウイリアム・オファレル 6.0
+		出来の悪い作品群にいささかうんざり。 題名 作者 評点 コメント 愉しみの館 レイ・ラッセル 5.0 完璧なモデルの写真を無料で入手した編集者。結末はよくあるや
 	</div>
 </article>
 </main>
@@ -1039,7 +1024,34 @@ if (!doNotTrack) {
         
     
     
-    <li class="page-item"><a class="page-link" href="/page/83/">83</a></li>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/86/">86</a></li>
     
     
     <li class="page-item">
@@ -1047,7 +1059,7 @@ if (!doNotTrack) {
     </li>
     
     <li class="page-item">
-        <a href="/page/83/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/86/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
