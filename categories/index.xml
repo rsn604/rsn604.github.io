@@ -6,10 +6,19 @@
     <description>Recent content in Categories on TORIO&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 May 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rsn604.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EQMM-HMM総括</title>
+      <link>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</link>
+      <pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ポケミス</title>
@@ -44,15 +53,6 @@
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
       
       <guid>https://rsn604.github.io/categories/%E9%89%84%E9%81%93%E3%82%A2%E3%83%B3%E3%82%BD%E3%83%AD%E3%82%B8%E3%83%BC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>EQMM-HMM総括</title>
-      <link>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</link>
-      <pubDate>Fri, 11 Jul 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://rsn604.github.io/categories/eqmm-hmm%E7%B7%8F%E6%8B%AC/</guid>
       <description></description>
     </item>
     
