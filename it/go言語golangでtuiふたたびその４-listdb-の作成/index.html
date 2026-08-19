@@ -153,7 +153,8 @@ if (!doNotTrack) {
 			<h2 id="heading"></h2>
 <br clear="left">
 <p>　今回も、<a href="https://github.com/rsn604/taps" target="_blank">taps</a> の利用例を紹介します。</p>
-<p>　このアプリケーションは、　<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/">「PythonでTUIアプリを作ろう 第二部入魂編(その１　個人データの管理を考える)」</a>と<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">「PythonでTUIアプリを作ろう 第二部入魂編(その２　ListDBの構造について)」</a>で説明したPythonアプリを、Go言語に移行したものです。当初、2022年に作成したのですが、色々不具合があり、一旦削除してしまったものです。今回は <strong>taps</strong> をベースに一から書き直しました。</p>
+<p>　このアプリケーションは、　<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%91-%E5%80%8B%E4%BA%BA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%AE%A1%E7%90%86%E3%82%92%E8%80%83%E3%81%88%E3%82%8B/">「PythonでTUIアプリを作ろう 第二部入魂編(その１　個人データの管理を考える)」</a>と<a href="https://rsn604.github.io/it/python%E3%81%A7tui%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%85%A5%E9%AD%82%E7%B7%A8%E3%81%9D%E3%81%AE%EF%BC%92-listdb%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">「PythonでTUIアプリを作ろう 第二部入魂編(その２　ListDBの構造について)」</a>で説明したPythonアプリを、Go言語に移行したものです。当初、2022年に作成したのですが、色々不具合があり、一旦削除してしまったものです。<br>
+今回は <strong>taps</strong> をベースに一から書き直しました。前回、3000ステップ近く書いたコードを、なんとか1100ステップ程度に収めることができました。</p>
 <hr>
 <h2 id="1-コンパイル">[1] コンパイル</h2>
 <p>　下記のコマンドでコンパイルします。</p>
@@ -191,7 +192,6 @@ ex) ./listdbg SQLITE3 ./db/ListDB.sqlite3
 <h3 id="ソースコードについて">ソースコードについて</h3>
 <p><a id="source"></a><br>
 <a href="https://github.com/rsn604/listdbg" target="_blank">GitHub</a>に登録しました。</p>
-<p>前回、3000ステップ近く書いたコードが1100ステップに収まっています。</p>
 
 		</div>
 	</article>
