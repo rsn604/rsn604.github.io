@@ -3,8 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rsn604.github.io/anthology/</loc>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rsn604.github.io/categories/</loc>
-    <lastmod>2026-08-15T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/</loc>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/categories/%E5%AF%86%E5%AE%A4%E3%82%92%E8%AA%AD%E3%82%80/</loc>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rsn604.github.io/anthology/%E5%AF%86%E5%AE%A4%E5%A4%A7%E9%9B%86%E5%90%88%E3%82%A8%E3%83%89%E3%83%AF%E3%83%BC%E3%83%89%EF%BD%84%E3%83%9B%E3%83%83%E3%82%AF%E7%B7%A8/</loc>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +39,6 @@
   
   <url>
     <loc>https://rsn604.github.io/it/</loc>
-    <lastmod>2026-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/</loc>
     <lastmod>2026-08-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -45,11 +60,6 @@
   <url>
     <loc>https://rsn604.github.io/fbook/</loc>
     <lastmod>2026-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/anthology/</loc>
-    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -424,11 +434,6 @@
   
   <url>
     <loc>https://rsn604.github.io/fbook/the-death-of-lawrence-viningalan-thomas/</loc>
-    <lastmod>2024-10-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rsn604.github.io/categories/%E5%AF%86%E5%AE%A4%E3%82%92%E8%AA%AD%E3%82%80/</loc>
     <lastmod>2024-10-25T00:00:00+00:00</lastmod>
   </url>
   
